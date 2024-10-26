@@ -1,0 +1,5 @@
+- Signale im Schiff decodieren
+- Weg finden selbst Signale zu senden
+-
+- Playstation Controller mit Rogue Device verbinden
+	- Tastenanschläge verarbeiten

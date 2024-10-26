@@ -1,0 +1,5 @@
+Wo ist Fokus?
+	Eher Rogue Device Entwickeln und Signale decodieren
+	oder Verbindung zu Rogue Device herstellen und Signale extern daran senden
+Wie weit sind die in der Signaldecodierung? Wie viel können wir übernehmen?
+Wenn wir die Signale decodieren müssen, können wir den Schritt komplett zusammen bearbeiten?
