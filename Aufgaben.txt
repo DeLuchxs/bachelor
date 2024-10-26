@@ -1,5 +1,5 @@
 - Signale im Schiff decodieren
 - Weg finden selbst Signale zu senden
--
+	-> an CanBus des Gashebels
 - Playstation Controller mit Rogue Device verbinden
 	- Tastenanschläge verarbeiten

@@ -1,0 +1,11 @@
+Bedienkonzept Controller
+Konzept des Rogue Devices
+	- Verbindung mit Controller
+	- Übersetzung Signale
+	- evtl Rückmeldung über OLED Bildschirm oder App
+Aufbau CanBus System Limanda
+Signale auf dem Schiff
+Anbindung Rogue Device an Schiff
+Unterdrückung Signale der originalen Steuerungseinheiten
+Ruderanbindung?
+Verhinderungsmaßnahmen
