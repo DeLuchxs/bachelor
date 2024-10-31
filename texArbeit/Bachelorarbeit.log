@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.6.4)  31 OCT 2024 11:15
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.6.4)  31 OCT 2024 12:11
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -597,40 +597,26 @@ LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
 \calc@Ccount=\count327
 \calc@Cskip=\skip92
-) (c:/texlive/2024/texmf-dist/tex/latex/titlesec/titlesec.sty
-Package: titlesec 2023/10/27 v2.16 Sectioning titles
-\ttl@box=\box68
-\beforetitleunit=\skip93
-\aftertitleunit=\skip94
-\ttl@plus=\dimen270
-\ttl@minus=\dimen271
-\ttl@toksa=\toks38
-\titlewidth=\dimen272
-\titlewidthlast=\dimen273
-\titlewidthfirst=\dimen274
-)
-\c@ttlp@side=\count328
-\ttlp@side=\count329
- (c:/texlive/2024/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
+) (c:/texlive/2024/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
 Package: fancyhdr 2024/04/23 v4.2 Extensive control of page headers and footers
-\f@nch@headwidth=\skip95
-\f@nch@O@elh=\skip96
-\f@nch@O@erh=\skip97
-\f@nch@O@olh=\skip98
-\f@nch@O@orh=\skip99
-\f@nch@O@elf=\skip100
-\f@nch@O@erf=\skip101
-\f@nch@O@olf=\skip102
-\f@nch@O@orf=\skip103
+\f@nch@headwidth=\skip93
+\f@nch@O@elh=\skip94
+\f@nch@O@erh=\skip95
+\f@nch@O@olh=\skip96
+\f@nch@O@orh=\skip97
+\f@nch@O@elf=\skip98
+\f@nch@O@erf=\skip99
+\f@nch@O@olf=\skip100
+\f@nch@O@orf=\skip101
 ) (c:/texlive/2024/texmf-dist/tex/latex/csquotes/csquotes.sty
 Package: csquotes 2024-04-04 v5.2o context-sensitive quotations (JAW)
-\csq@reset=\count330
-\csq@gtype=\count331
-\csq@glevel=\count332
-\csq@qlevel=\count333
-\csq@maxlvl=\count334
-\csq@tshold=\count335
-\csq@ltx@everypar=\toks39
+\csq@reset=\count328
+\csq@gtype=\count329
+\csq@glevel=\count330
+\csq@qlevel=\count331
+\csq@maxlvl=\count332
+\csq@tshold=\count333
+\csq@ltx@everypar=\toks38
  (c:/texlive/2024/texmf-dist/tex/latex/csquotes/csquotes.def
 File: csquotes.def 2024-04-04 v5.2o csquotes generic definitions (JAW)
 )
@@ -649,69 +635,69 @@ Package minitoc Info: I0033
 Package: biblatex 2024/03/21 v3.20 programmable bibliographies (PK/MW)
  (c:/texlive/2024/texmf-dist/tex/latex/logreq/logreq.sty
 Package: logreq 2010/08/04 v1.0 xml request logger
-\lrq@indent=\count336
+\lrq@indent=\count334
  (c:/texlive/2024/texmf-dist/tex/latex/logreq/logreq.def
 File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
 )) (c:/texlive/2024/texmf-dist/tex/latex/base/ifthen.sty
 Package: ifthen 2024/03/16 v1.1e Standard LaTeX ifthen package (DPC)
 )
-\c@tabx@nest=\count337
-\c@listtotal=\count338
-\c@listcount=\count339
-\c@liststart=\count340
-\c@liststop=\count341
-\c@citecount=\count342
-\c@citetotal=\count343
-\c@multicitecount=\count344
-\c@multicitetotal=\count345
-\c@instcount=\count346
-\c@maxnames=\count347
-\c@minnames=\count348
-\c@maxitems=\count349
-\c@minitems=\count350
-\c@citecounter=\count351
-\c@maxcitecounter=\count352
-\c@savedcitecounter=\count353
-\c@uniquelist=\count354
-\c@uniquename=\count355
-\c@refsection=\count356
-\c@refsegment=\count357
-\c@maxextratitle=\count358
-\c@maxextratitleyear=\count359
-\c@maxextraname=\count360
-\c@maxextradate=\count361
-\c@maxextraalpha=\count362
-\c@abbrvpenalty=\count363
-\c@highnamepenalty=\count364
-\c@lownamepenalty=\count365
-\c@maxparens=\count366
-\c@parenlevel=\count367
-\blx@tempcnta=\count368
-\blx@tempcntb=\count369
-\blx@tempcntc=\count370
-\c@blx@maxsection=\count371
-\blx@maxsegment@0=\count372
-\blx@notetype=\count373
-\blx@parenlevel@text=\count374
-\blx@parenlevel@foot=\count375
-\blx@sectionciteorder@0=\count376
-\blx@sectionciteorderinternal@0=\count377
-\blx@entrysetcounter=\count378
-\blx@biblioinstance=\count379
-\labelnumberwidth=\skip104
-\labelalphawidth=\skip105
-\biblabelsep=\skip106
-\bibitemsep=\skip107
-\bibnamesep=\skip108
-\bibinitsep=\skip109
-\bibparsep=\skip110
-\bibhang=\skip111
+\c@tabx@nest=\count335
+\c@listtotal=\count336
+\c@listcount=\count337
+\c@liststart=\count338
+\c@liststop=\count339
+\c@citecount=\count340
+\c@citetotal=\count341
+\c@multicitecount=\count342
+\c@multicitetotal=\count343
+\c@instcount=\count344
+\c@maxnames=\count345
+\c@minnames=\count346
+\c@maxitems=\count347
+\c@minitems=\count348
+\c@citecounter=\count349
+\c@maxcitecounter=\count350
+\c@savedcitecounter=\count351
+\c@uniquelist=\count352
+\c@uniquename=\count353
+\c@refsection=\count354
+\c@refsegment=\count355
+\c@maxextratitle=\count356
+\c@maxextratitleyear=\count357
+\c@maxextraname=\count358
+\c@maxextradate=\count359
+\c@maxextraalpha=\count360
+\c@abbrvpenalty=\count361
+\c@highnamepenalty=\count362
+\c@lownamepenalty=\count363
+\c@maxparens=\count364
+\c@parenlevel=\count365
+\blx@tempcnta=\count366
+\blx@tempcntb=\count367
+\blx@tempcntc=\count368
+\c@blx@maxsection=\count369
+\blx@maxsegment@0=\count370
+\blx@notetype=\count371
+\blx@parenlevel@text=\count372
+\blx@parenlevel@foot=\count373
+\blx@sectionciteorder@0=\count374
+\blx@sectionciteorderinternal@0=\count375
+\blx@entrysetcounter=\count376
+\blx@biblioinstance=\count377
+\labelnumberwidth=\skip102
+\labelalphawidth=\skip103
+\biblabelsep=\skip104
+\bibitemsep=\skip105
+\bibnamesep=\skip106
+\bibinitsep=\skip107
+\bibparsep=\skip108
+\bibhang=\skip109
 \blx@bcfin=\read4
 \blx@bcfout=\write5
 \blx@langwohyphens=\language90
-\c@mincomprange=\count380
-\c@maxcomprange=\count381
-\c@mincompwidth=\count382
+\c@mincomprange=\count378
+\c@maxcomprange=\count379
+\c@mincompwidth=\count380
 Package biblatex Info: Trying to load biblatex default data model...
 Package biblatex Info: ... file 'blx-dm.def' found.
  (c:/texlive/2024/texmf-dist/tex/latex/biblatex/blx-dm.def
@@ -721,88 +707,88 @@ Package biblatex Info: Trying to load biblatex style data model...
 Package biblatex Info: ... file 'alphabetic.dbx' not found.
 Package biblatex Info: Trying to load biblatex custom data model...
 Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
-\c@afterword=\count383
-\c@savedafterword=\count384
-\c@annotator=\count385
-\c@savedannotator=\count386
-\c@author=\count387
-\c@savedauthor=\count388
-\c@bookauthor=\count389
-\c@savedbookauthor=\count390
-\c@commentator=\count391
-\c@savedcommentator=\count392
-\c@editor=\count393
-\c@savededitor=\count394
-\c@editora=\count395
-\c@savededitora=\count396
-\c@editorb=\count397
-\c@savededitorb=\count398
-\c@editorc=\count399
-\c@savededitorc=\count400
-\c@foreword=\count401
-\c@savedforeword=\count402
-\c@holder=\count403
-\c@savedholder=\count404
-\c@introduction=\count405
-\c@savedintroduction=\count406
-\c@namea=\count407
-\c@savednamea=\count408
-\c@nameb=\count409
-\c@savednameb=\count410
-\c@namec=\count411
-\c@savednamec=\count412
-\c@translator=\count413
-\c@savedtranslator=\count414
-\c@shortauthor=\count415
-\c@savedshortauthor=\count416
-\c@shorteditor=\count417
-\c@savedshorteditor=\count418
-\c@labelname=\count419
-\c@savedlabelname=\count420
-\c@institution=\count421
-\c@savedinstitution=\count422
-\c@lista=\count423
-\c@savedlista=\count424
-\c@listb=\count425
-\c@savedlistb=\count426
-\c@listc=\count427
-\c@savedlistc=\count428
-\c@listd=\count429
-\c@savedlistd=\count430
-\c@liste=\count431
-\c@savedliste=\count432
-\c@listf=\count433
-\c@savedlistf=\count434
-\c@location=\count435
-\c@savedlocation=\count436
-\c@organization=\count437
-\c@savedorganization=\count438
-\c@origlocation=\count439
-\c@savedoriglocation=\count440
-\c@origpublisher=\count441
-\c@savedorigpublisher=\count442
-\c@publisher=\count443
-\c@savedpublisher=\count444
-\c@language=\count445
-\c@savedlanguage=\count446
-\c@origlanguage=\count447
-\c@savedoriglanguage=\count448
-\c@pageref=\count449
-\c@savedpageref=\count450
-\shorthandwidth=\skip112
-\shortjournalwidth=\skip113
-\shortserieswidth=\skip114
-\shorttitlewidth=\skip115
-\shortauthorwidth=\skip116
-\shorteditorwidth=\skip117
-\locallabelnumberwidth=\skip118
-\locallabelalphawidth=\skip119
-\localshorthandwidth=\skip120
-\localshortjournalwidth=\skip121
-\localshortserieswidth=\skip122
-\localshorttitlewidth=\skip123
-\localshortauthorwidth=\skip124
-\localshorteditorwidth=\skip125
+\c@afterword=\count381
+\c@savedafterword=\count382
+\c@annotator=\count383
+\c@savedannotator=\count384
+\c@author=\count385
+\c@savedauthor=\count386
+\c@bookauthor=\count387
+\c@savedbookauthor=\count388
+\c@commentator=\count389
+\c@savedcommentator=\count390
+\c@editor=\count391
+\c@savededitor=\count392
+\c@editora=\count393
+\c@savededitora=\count394
+\c@editorb=\count395
+\c@savededitorb=\count396
+\c@editorc=\count397
+\c@savededitorc=\count398
+\c@foreword=\count399
+\c@savedforeword=\count400
+\c@holder=\count401
+\c@savedholder=\count402
+\c@introduction=\count403
+\c@savedintroduction=\count404
+\c@namea=\count405
+\c@savednamea=\count406
+\c@nameb=\count407
+\c@savednameb=\count408
+\c@namec=\count409
+\c@savednamec=\count410
+\c@translator=\count411
+\c@savedtranslator=\count412
+\c@shortauthor=\count413
+\c@savedshortauthor=\count414
+\c@shorteditor=\count415
+\c@savedshorteditor=\count416
+\c@labelname=\count417
+\c@savedlabelname=\count418
+\c@institution=\count419
+\c@savedinstitution=\count420
+\c@lista=\count421
+\c@savedlista=\count422
+\c@listb=\count423
+\c@savedlistb=\count424
+\c@listc=\count425
+\c@savedlistc=\count426
+\c@listd=\count427
+\c@savedlistd=\count428
+\c@liste=\count429
+\c@savedliste=\count430
+\c@listf=\count431
+\c@savedlistf=\count432
+\c@location=\count433
+\c@savedlocation=\count434
+\c@organization=\count435
+\c@savedorganization=\count436
+\c@origlocation=\count437
+\c@savedoriglocation=\count438
+\c@origpublisher=\count439
+\c@savedorigpublisher=\count440
+\c@publisher=\count441
+\c@savedpublisher=\count442
+\c@language=\count443
+\c@savedlanguage=\count444
+\c@origlanguage=\count445
+\c@savedoriglanguage=\count446
+\c@pageref=\count447
+\c@savedpageref=\count448
+\shorthandwidth=\skip110
+\shortjournalwidth=\skip111
+\shortserieswidth=\skip112
+\shorttitlewidth=\skip113
+\shortauthorwidth=\skip114
+\shorteditorwidth=\skip115
+\locallabelnumberwidth=\skip116
+\locallabelalphawidth=\skip117
+\localshorthandwidth=\skip118
+\localshortjournalwidth=\skip119
+\localshortserieswidth=\skip120
+\localshorttitlewidth=\skip121
+\localshortauthorwidth=\skip122
+\localshorteditorwidth=\skip123
 Package biblatex Info: Trying to load compatibility code...
 Package biblatex Info: ... file 'blx-compat.def' found.
  (c:/texlive/2024/texmf-dist/tex/latex/biblatex/blx-compat.def
@@ -812,19 +798,19 @@ Package biblatex Info: Trying to load generic definitions...
 Package biblatex Info: ... file 'biblatex.def' found.
  (c:/texlive/2024/texmf-dist/tex/latex/biblatex/biblatex.def
 File: biblatex.def 2024/03/21 v3.20 biblatex compatibility (PK/MW)
-\c@textcitecount=\count451
-\c@textcitetotal=\count452
-\c@textcitemaxnames=\count453
-\c@biburlbigbreakpenalty=\count454
-\c@biburlbreakpenalty=\count455
-\c@biburlnumpenalty=\count456
-\c@biburlucpenalty=\count457
-\c@biburllcpenalty=\count458
+\c@textcitecount=\count449
+\c@textcitetotal=\count450
+\c@textcitemaxnames=\count451
+\c@biburlbigbreakpenalty=\count452
+\c@biburlbreakpenalty=\count453
+\c@biburlnumpenalty=\count454
+\c@biburlucpenalty=\count455
+\c@biburllcpenalty=\count456
 \biburlbigskip=\muskip18
 \biburlnumskip=\muskip19
 \biburlucskip=\muskip20
 \biburllcskip=\muskip21
-\c@smartand=\count459
+\c@smartand=\count457
 )
 Package biblatex Info: Trying to load bibliography style 'alphabetic'...
 Package biblatex Info: ... file 'alphabetic.bbx' found.
@@ -834,8 +820,8 @@ Package biblatex Info: Trying to load bibliography style 'standard'...
 Package biblatex Info: ... file 'standard.bbx' found.
  (c:/texlive/2024/texmf-dist/tex/latex/biblatex/bbx/standard.bbx
 File: standard.bbx 2024/03/21 v3.20 biblatex bibliography style (PK/MW)
-\c@bbx:relatedcount=\count460
-\c@bbx:relatedtotal=\count461
+\c@bbx:relatedcount=\count458
+\c@bbx:relatedtotal=\count459
 ))
 Package biblatex Info: Trying to load citation style 'alphabetic'...
 Package biblatex Info: ... file 'alphabetic.cbx' found.
@@ -863,8 +849,8 @@ Package biblatex Info: Document encoding is UTF8 ....
 Package: expl3 2024-05-08 L3 programming layer (loader) 
  (c:/texlive/2024/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count462
-\l__pdf_internal_box=\box69
+\l__color_backend_stack_int=\count460
+\l__pdf_internal_box=\box68
 ))
 Package biblatex Info: ... and expl3
 (biblatex)             2024-05-08 L3 programming layer (loader) 
@@ -902,26 +888,26 @@ LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 29.
 LaTeX Font Info:    ... okay on input line 29.
  (c:/texlive/2024/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count463
-\scratchdimen=\dimen275
-\scratchbox=\box70
-\nofMPsegments=\count464
-\nofMParguments=\count465
-\everyMPshowfont=\toks40
-\MPscratchCnt=\count466
-\MPscratchDim=\dimen276
-\MPnumerator=\count467
-\makeMPintoPDFobject=\count468
-\everyMPtoPDFconversion=\toks41
+\scratchcounter=\count461
+\scratchdimen=\dimen270
+\scratchbox=\box69
+\nofMPsegments=\count462
+\nofMParguments=\count463
+\everyMPshowfont=\toks39
+\MPscratchCnt=\count464
+\MPscratchDim=\dimen271
+\MPnumerator=\count465
+\makeMPintoPDFobject=\count466
+\everyMPtoPDFconversion=\toks40
 ) (c:/texlive/2024/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
  (c:/texlive/2024/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-\c@lstlisting=\count469
-\c@mv@tabular=\count470
-\c@mv@boldtabular=\count471
+\c@lstlisting=\count467
+\c@mv@tabular=\count468
+\c@mv@boldtabular=\count469
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -962,12 +948,12 @@ Package hyperref Info: Link coloring OFF on input line 29.
 \@outlinefile=\write6
 \openout6 = `Bachelorarbeit.out'.
 
-\c@minilofdepth=\count472
-\c@minilotdepth=\count473
-\c@partlofdepth=\count474
-\c@partlotdepth=\count475
-\c@sectlofdepth=\count476
-\c@sectlotdepth=\count477
+\c@minilofdepth=\count470
+\c@minilotdepth=\count471
+\c@partlofdepth=\count472
+\c@partlotdepth=\count473
+\c@sectlofdepth=\count474
+\c@sectlotdepth=\count475
 Package minitoc(hints) Info: I0049
 (minitoc(hints))             ==> You requested the hints option. 
 (minitoc(hints))             Some hints are eventually given below.
@@ -975,16 +961,9 @@ Package minitoc(hints) Info: I0047
 (minitoc(hints))             --- The tocloft package is loaded. 
 (minitoc(hints))             See the minitoc package documentation 
 (minitoc(hints))             for specific precautions.
-
-
-Package minitoc(hints) Warning: W0099
-(minitoc(hints))                --- The titlesec package is loaded. 
-(minitoc(hints))                It is incompatible 
-(minitoc(hints))                with the minitoc package.
-
 Package biblatex Info: Trying to load language 'ngerman'...
 Package biblatex Info: ... file 'ngerman.lbx' found.
-(c:/texlive/2024/texmf-dist/tex/latex/biblatex/lbx/ngerman.lbx
+ (c:/texlive/2024/texmf-dist/tex/latex/biblatex/lbx/ngerman.lbx
 File: ngerman.lbx 2024/03/21 v3.20 biblatex localization (PK/MW)
 Package biblatex Info: Trying to load language 'german'...
 Package biblatex Info: ... file 'german.lbx' found.
@@ -1055,42 +1034,11 @@ LaTeX Font Info:    Font shape `OT1/AlegreyaSans-LF/m/n' in size <12> not availa
 (Font)              Font shape `OT1/AlegreyaSans-LF/regular/n' tried instead on input line 31.
 LaTeX Font Info:    Font shape `OT1/AlegreyaSans-LF/regular/n' will be
 (Font)              scaled to size 12.0pt on input line 31.
-
-
-e:/studium/Semester 7/Bachelorarbeit/texArbeit/Bachelorarbeit.tex:31: Package pdftex.def Error: Options `bblly', `bblly', `bburx', `bbury',
-(pdftex.def)                `natheight' and `natwidth' are not
-(pdftex.def)                supported by pdftex driver:
-(pdftex.def)                use `viewport' instead.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.31 \makelicense
-                 
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-e:/studium/Semester 7/Bachelorarbeit/texArbeit/Bachelorarbeit.tex:31: Package pdftex.def Error: Options `bblly', `bblly', `bburx', `bbury',
-(pdftex.def)                `natheight' and `natwidth' are not
-(pdftex.def)                supported by pdftex driver:
-(pdftex.def)                use `viewport' instead.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.31 \makelicense
-                 
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
 <images/lehrstuhllogo.png, id=56, 335.00156pt x 207.02344pt>
 File: images/lehrstuhllogo.png Graphic file (type png)
 <use images/lehrstuhllogo.png>
 Package pdftex.def Info: images/lehrstuhllogo.png  used on input line 31.
-(pdftex.def)             Requested size: 28.45274pt x 17.58253pt.
+(pdftex.def)             Requested size: 28.45274pt x 17.58047pt.
 LaTeX Font Info:    Font shape `OT1/AlegreyaSans-LF/m/n' in size <10.95> not available
 (Font)              Font shape `OT1/AlegreyaSans-LF/regular/n' tried instead on input line 31.
 LaTeX Font Info:    Font shape `OT1/AlegreyaSans-LF/regular/n' will be
@@ -1123,6 +1071,227 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 
 
 
-{c:/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map
-!pdfTeX error: pdflatex.exe (file c:/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map): fflush() failed (Invalid argument)
- ==> Fatal error occurred, no output PDF file produced!
+{c:/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/texlive/2024/texmf-dist/fonts/enc/dvips/alegreya/algr_iszm25.enc} <./images/Hintergrund_Titel_v2.pdf> <./images/lehrstuhllogo.png>]
+LaTeX Font Info:    Font shape `OT1/Alegreya-LF/m/n' in size <24.88> not available
+(Font)              Font shape `OT1/Alegreya-LF/regular/n' tried instead on input line 31.
+LaTeX Font Info:    Font shape `OT1/Alegreya-LF/regular/n' will be
+(Font)              scaled to size 24.88pt on input line 31.
+LaTeX Font Info:    Font shape `U/ccicons/m/n' will be
+(Font)              scaled to size 24.88pt on input line 31.
+LaTeX Font Info:    Font shape `OT1/Alegreya-LF/m/n' in size <6> not available
+(Font)              Font shape `OT1/Alegreya-LF/regular/n' tried instead on input line 31.
+LaTeX Font Info:    Font shape `OT1/Alegreya-LF/regular/n' will be
+(Font)              scaled to size 6.0pt on input line 31.
+
+
+[2
+
+{c:/texlive/2024/texmf-dist/fonts/enc/dvips/alegreya/algr_2vgxay.enc}]
+LaTeX Font Info:    Font shape `OT1/Alegreya-LF/m/it' in size <24.88> not available
+(Font)              Font shape `OT1/Alegreya-LF/regular/it' tried instead on input line 35.
+LaTeX Font Info:    Font shape `OT1/Alegreya-LF/regular/it' will be
+(Font)              scaled to size 24.88pt on input line 35.
+LaTeX Font Info:    Font shape `OT1/AlegreyaSans-LF/m/it' in size <24.88> not available
+(Font)              Font shape `OT1/AlegreyaSans-LF/regular/it' tried instead on input line 35.
+LaTeX Font Info:    Font shape `OT1/AlegreyaSans-LF/regular/it' will be
+(Font)              scaled to size 24.88pt on input line 35.
+ (./Bachelorarbeit.toc
+LaTeX Font Info:    Font shape `OT1/Alegreya-LF/b/n' in size <10.95> not available
+(Font)              Font shape `OT1/Alegreya-LF/bold/n' tried instead on input line 2.
+LaTeX Font Info:    Font shape `OT1/Alegreya-LF/bold/n' will be
+(Font)              scaled to size 10.95pt on input line 2.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <10.95> on input line 2.
+)
+\tf@toc=\write7
+\openout7 = `Bachelorarbeit.toc'.
+
+
+
+[1
+
+
+] (./chapter/abstract.tex
+LaTeX Font Info:    Font shape `OT1/AlegreyaSans-LF/m/n' in size <20.74> not available
+(Font)              Font shape `OT1/AlegreyaSans-LF/regular/n' tried instead on input line 4.
+LaTeX Font Info:    Font shape `OT1/AlegreyaSans-LF/regular/n' will be
+(Font)              scaled to size 20.74pt on input line 4.
+LaTeX Font Info:    Font shape `OT1/AlegreyaSans-LF/m/it' in size <20.74> not available
+(Font)              Font shape `OT1/AlegreyaSans-LF/regular/it' tried instead on input line 4.
+LaTeX Font Info:    Font shape `OT1/AlegreyaSans-LF/regular/it' will be
+(Font)              scaled to size 20.74pt on input line 4.
+)
+
+[1
+
+
+] (./chapter/einleitung.tex
+Kapitel 1.
+LaTeX Font Info:    Font shape `OT1/Alegreya-LF/b/n' in size <24.88> not available
+(Font)              Font shape `OT1/Alegreya-LF/bold/n' tried instead on input line 1.
+LaTeX Font Info:    Font shape `OT1/Alegreya-LF/bold/n' will be
+(Font)              scaled to size 24.88pt on input line 1.
+\openout4 = `Bachelorarbeit.mtc'.
+
+\openout4 = `Bachelorarbeit.mtc'.
+
+LaTeX Font Info:    Font shape `OT1/Alegreya-LF/m/n' in size <10> not available
+(Font)              Font shape `OT1/Alegreya-LF/regular/n' tried instead on input line 2.
+LaTeX Font Info:    Font shape `OT1/Alegreya-LF/regular/n' will be
+(Font)              scaled to size 10.0pt on input line 2.
+LaTeX Font Info:    Font shape `OT1/AlegreyaSans-LF/m/n' in size <10> not available
+(Font)              Font shape `OT1/AlegreyaSans-LF/regular/n' tried instead on input line 2.
+LaTeX Font Info:    Font shape `OT1/AlegreyaSans-LF/regular/n' will be
+(Font)              scaled to size 10.0pt on input line 2.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 2.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 2.
+(./Bachelorarbeit.mtc1)
+LaTeX Font Info:    Font shape `OT1/Alegreya-LF/m/n' in size <14.4> not available
+(Font)              Font shape `OT1/Alegreya-LF/regular/n' tried instead on input line 5.
+LaTeX Font Info:    Font shape `OT1/Alegreya-LF/regular/n' will be
+(Font)              scaled to size 14.4pt on input line 5.
+LaTeX Font Info:    Font shape `OT1/Alegreya-LF/b/n' in size <14.4> not available
+(Font)              Font shape `OT1/Alegreya-LF/bold/n' tried instead on input line 5.
+LaTeX Font Info:    Font shape `OT1/Alegreya-LF/bold/n' will be
+(Font)              scaled to size 14.4pt on input line 5.
+LaTeX Font Info:    Trying to load font information for OMS+Alegreya-LF on input line 9.
+LaTeX Font Info:    No file OMSAlegreya-LF.fd. on input line 9.
+
+
+LaTeX Font Warning: Font shape `OMS/Alegreya-LF/m/n' undefined
+(Font)              using `OMS/cmsy/m/n' instead
+(Font)              for symbol `textbackslash' on input line 9.
+
+LaTeX Font Info:    Font shape `OT1/Alegreya-LF/b/n' in size <12> not available
+(Font)              Font shape `OT1/Alegreya-LF/bold/n' tried instead on input line 20.
+LaTeX Font Info:    Font shape `OT1/Alegreya-LF/bold/n' will be
+(Font)              scaled to size 12.0pt on input line 20.
+LaTeX Font Info:    Trying to load font information for OMS+cmtt on input line 21.
+LaTeX Font Info:    No file OMScmtt.fd. on input line 21.
+
+LaTeX Font Warning: Font shape `OMS/cmtt/m/n' undefined
+(Font)              using `OMS/cmsy/m/n' instead
+(Font)              for symbol `textbackslash' on input line 21.
+
+
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.22 
+      [1
+
+
+]
+LaTeX Font Info:    Trying to load font information for TS1+Alegreya-LF on input line 24.
+ (c:/texlive/2024/texmf-dist/tex/latex/alegreya/TS1Alegreya-LF.fd
+File: TS1Alegreya-LF.fd 2019/10/08 (autoinst) Font definitions for TS1/Alegreya-LF.
+)
+LaTeX Font Info:    Font shape `TS1/Alegreya-LF/m/n' in size <10.95> not available
+(Font)              Font shape `TS1/Alegreya-LF/regular/n' tried instead on input line 24.
+LaTeX Font Info:    Font shape `TS1/Alegreya-LF/regular/n' will be
+(Font)              scaled to size 10.95pt on input line 24.
+
+Underfull \hbox (badness 3514) in paragraph at lines 25--26
+[]\OT1/Alegreya-LF/regular/n/10.95 Mendeley (Et-was mi-ni-ma-lis-ti-scher, Nut-zer k[]onnen dort Li-te-ra-tur auch von den
+ []
+
+)
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.49 \clearpage
+                [2{c:/texlive/2024/texmf-dist/fonts/enc/dvips/alegreya/algr_nwaz6g.enc}]
+LaTeX Font Info:    Font shape `OT1/Alegreya-LF/m/it' in size <20.74> not available
+(Font)              Font shape `OT1/Alegreya-LF/regular/it' tried instead on input line 50.
+LaTeX Font Info:    Font shape `OT1/Alegreya-LF/regular/it' will be
+(Font)              scaled to size 20.74pt on input line 50.
+ (./Bachelorarbeit.lof)
+\tf@lof=\write8
+\openout8 = `Bachelorarbeit.lof'.
+
+
+
+[3
+
+]
+
+[4
+
+]
+LaTeX Font Info:    Font shape `OT1/Alegreya-LF/m/sc' in size <10.95> not available
+(Font)              Font shape `OT1/Alegreya-LF/regular/sc' tried instead on input line 51.
+LaTeX Font Info:    Font shape `OT1/Alegreya-LF/regular/sc' will be
+(Font)              scaled to size 10.95pt on input line 51.
+
+
+[5{c:/texlive/2024/texmf-dist/fonts/enc/dvips/alegreya/algr_hnbre7.enc}] (./chapter/erklaerung.tex
+LaTeX Font Info:    Trying to load font information for U+pzd on input line 14.
+ (c:/texlive/2024/texmf-dist/tex/latex/psnfss/upzd.fd
+File: upzd.fd 2001/06/04 font definitions for U/pzd.
+))
+Underfull \hbox (badness 10000) in paragraph at lines 9--54
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--54
+
+ []
+
+Package minitoc Info: I0009
+(minitoc)             Listing minitoc auxiliary files. 
+(minitoc)             Creating the Bachelorarbeit.maf file.
+\openout4 = `Bachelorarbeit.maf'.
+
+
+Package minitoc(hints) Warning: W0024
+(minitoc(hints))                Some hints have been written 
+(minitoc(hints))                in the Bachelorarbeit.log file.
+
+
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.54 \end{document}
+                    [1
+
+
+] (./Bachelorarbeit.aux)
+ ***********
+LaTeX2e <2024-06-01>
+L3 programming layer <2024-05-08>
+ ***********
+
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+Package rerunfilecheck Info: File `Bachelorarbeit.out' has not changed.
+(rerunfilecheck)             Checksum: 28C21E54F619F931CDBB56DE826CD3CA;785.
+Package logreq Info: Writing requests to 'Bachelorarbeit.run.xml'.
+\openout1 = `Bachelorarbeit.run.xml'.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 34970 strings out of 473599
+ 657020 string characters out of 5732717
+ 1941893 words of memory out of 5000000
+ 57280 multiletter control sequences out of 15000+600000
+ 661747 words of font info for 77 fonts, out of 8000000 for 9000
+ 1143 hyphenation exceptions out of 8191
+ 99i,15n,104p,752b,2465s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<c:/texlive/2024/texmf-dist/fonts/type1/huerta/alegreya/Alegreya-Bold.pfb><c:/texlive/2024/texmf-dist/fonts/type1/huerta/alegreya/Alegreya-Regular.pfb><c:/texlive/2024/texmf-dist/fonts/type1/huerta/alegreya/AlegreyaSans-Bold.pfb><c:/texlive/2024/texmf-dist/fonts/type1/huerta/alegreya/AlegreyaSans-Italic.pfb><c:/texlive/2024/texmf-dist/fonts/type1/huerta/alegreya/AlegreyaSans-Regular.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/ccicons/ccicons.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
+Output written on Bachelorarbeit.pdf (10 pages, 3295354 bytes).
+PDF statistics:
+ 295 PDF objects out of 1000 (max. 8388607)
+ 155 compressed objects within 2 object streams
+ 22 named destinations out of 1000 (max. 500000)
+ 219 words of extra memory for PDF output out of 10000 (max. 10000000)
+

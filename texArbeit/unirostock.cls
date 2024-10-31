@@ -184,31 +184,12 @@ left=3.3cm,right=3.3cm,
 \renewcommand{\mtcSSfont}{\small\sffamily}
 \renewcommand{\mtcSSSfont}{\small\sffamily}
 
-\RequirePackage[]{titlesec}
-
 \let\oldl@chapter\l@chapter
 \def\l@chapter#1#2{\oldl@chapter{#1}{\textcolor{black}{#2}}}
 
 \let\old@dottedcontentsline\@dottedtocline
 \def\@dottedtocline#1#2#3#4#5{%
 \old@dottedcontentsline{#1}{#2}{#3}{#4}{{\textcolor{black}{#5}}}}
-
-\titleformat{\chapter}[display]
-  {\normalfont\color{uniblau}}
-  {\filleft\Huge\sffamily\bfseries\chaptertitlename\hspace*{2mm}%
-  \begin{tikzpicture}[baseline={([yshift=-.6ex]current bounding box.center)}]
-    \node[fill=uniblau,circle,text=white] {\thechapter};
-  \end{tikzpicture}}
-  {1ex}
-  {\titlerule[1.5pt]\vspace*{5ex}\huge\sffamily\itshape}
-  []
-
-\titleformat{name=\chapter,numberless}[display]
-  {\normalfont\color{uniblau}}
-  {}
-  {1ex}
-  {\vspace*{5ex}\huge\sffamily\itshape}
-  []
 
 \setcounter{minitocdepth}{1}
 
@@ -268,7 +249,7 @@ left=3.3cm,right=3.3cm,
 \node [right, white] at (0,-25) {\large{\textsf{#2}}};
 \node [right, white] at (0,-25.5) {\large{\textsf{#3}}};
 \node [right, white] at (0,-26) {\large{\textsf{#4}}};
-\node [right] at (12.7, -25.7) {\includegraphics[width=1cm,natwidth=44.5mm,natheight=27.5mm]{images/lehrstuhllogo.png}};
+\node [right] at (12.7, -25.7) {\includegraphics[width=1cm,viewport=0 0 445 275,clip]{images/lehrstuhllogo.png}};
 \end{tikzpicture}
 }
 
@@ -279,7 +260,7 @@ left=3.3cm,right=3.3cm,
 \node [right, white] at (0,-25) {\large{\textsf{#2}}};
 \node [right, white] at (0,-25.5) {\large{\textsf{#3}}};
 \node [right, white] at (0,-26) {\large{\textsf{#4}}};
-\node [right] at (12.7, -25.7) {\includegraphics[width=1cm,natwidth=44.5mm,natheight=27.5mm]{images/lehrstuhllogo.png}};
+\node [right] at (12.7, -25.7) {\includegraphics[width=1cm,viewport=0 0 445 275,clip]{images/lehrstuhllogo.png}};
 \end{tikzpicture}
 }
 
