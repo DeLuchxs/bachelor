@@ -1,0 +1,15 @@
+[0] Config.pm:308> INFO - This is Biber 2.20
+[0] Config.pm:311> INFO - Logfile is 'Bachelorarbeit.blg'
+[221] biber-MSWIN64:340> INFO - === 
+[281] Biber.pm:420> INFO - Reading 'Bachelorarbeit.bcf'
+[465] Biber.pm:994> INFO - Found 1 citekeys in bib section 0
+[495] Biber.pm:4463> INFO - Processing section 0
+[516] Biber.pm:4654> INFO - Looking for bibtex file 'lit.bib' for section 0
+[588] bibtex.pm:1713> INFO - LaTeX decoding ...
+[603] bibtex.pm:1519> INFO - Found BibTeX data source 'lit.bib'
+[669] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'variable = shifted' with 'variable = non-ignorable'
+[669] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[674] Biber.pm:4283> INFO - Sorting list 'anyt/global//global/global/global' of type 'entry' with template 'anyt' and locale 'de-DE'
+[674] Biber.pm:4289> INFO - No sort tailoring available for locale 'de-DE'
+[686] bbl.pm:676> INFO - Writing 'Bachelorarbeit.bbl' with encoding 'UTF-8'
+[687] bbl.pm:779> INFO - Output to Bachelorarbeit.bbl

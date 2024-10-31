@@ -1,0 +1,38 @@
+\chapter{Über diese Vorlage}
+\printmyminitoc{1} % Wenn es mehr als einen Abschnitt gibt
+
+Mit dieser Vorlage lassen sich ohne großen Aufwand Bachelor- oder Masterarbeiten im Corporate Design der Universität Rostock erstellen.
+\section{Verzeichnisstruktur}
+Der eigentliche Inhalt, also der Text (der so aufwendig zu schreiben ist) gehört in das Verzeichnis \texttt{chapter}. Wie der Name vermuten lässt, sollte man dort für jedes Verzeichnis eine eigene Datei erstellen. Das erleichtert die Übersicht und so trennt man auch den Inhalt vom ganzen Drumherum. In die \texttt{main.tex} können die Kapitel dann so eingebunden werden:
+
+\begin{lstlisting}
+\input{chapter/0_einleitung}
+\input{chapter/1_stand_der_technik}
+...
+\input{chapter/6_fazit}
+\end{lstlisting}
+
+Bilder sollten in den Ordner \texttt{images} hochgeladen werden.
+
+\section{Tipps und Tricks}
+Hier stelle ich noch einige Dinge vor, die nicht zum Template gehören aber allgemein weiterhelfen können.
+
+\subsection{Literaturverwaltung}
+Quellen kann man in Latex mit \texttt{.bib}-Dateien definieren und mit dem Befehl \texttt{\textbackslash{}cite} \cite{iuk696} in den Fließtext einbinden. Ein Literaturverwaltungsprogramm erleichtert die ganze Sache jedoch erheblich, da sich damit Quellen automatisch importieren, bequem verwalten und katalogisieren lassen. Es gibt unzählige Programme, hier eine kleine Auswahl:
+
+\begin{itemize}
+    \item Citavi (Viele Funktionen, Cloudspeicher möglich, Uni hat eine Campuslizenz)
+    \item Mendeley (Etwas minimalistischer, Nutzer können dort Literatur auch von den Einträgen anderer Nutzer importieren)
+    \item Zotero (Für Linux, Mac und Windows, Overleaf-Integration vorhanden)
+    \item Jabref (Open Source)
+\end{itemize}
+
+\subsection{Druck}
+Auch im 21. Jahrhundert muss man seine Belegarbeiten noch auf Papier abgeben. Meine Bachelorarbeit habe ich bei einem Copyshop in Rostock drucken und binden lassen, war damit jedoch überhaupt nicht zufrieden. Mit dem vom ITMZ angebotenen \href{https://www.itmz.uni-rostock.de/anwendungen/multimedia/druckservice/angebote-universitaetsmitglieder/druck-von-wissenschaftlichen-arbeiten/}{Druckservice} habe ich hingegen sehr gute Erfahrungen gemacht. Ich musste dort nur ein Fünftel des Preises bezahlen, der im Copyshop fällig gewesen wäre.
+
+Im Copyshop musste ich die Seiten auch noch selbst zusammensortieren, während ich beim ITMZ einfach ein fertiges Exemplar bekommen habe. Meine Exemplare (je ca. 100 Seiten, Klebebindung) waren Stunden nach Auftragserteilung fertig, es kann aber je nach Auftragslage auch länger dauern.
+
+Für die Leute die trotzdem gern eine Hardcover-Bindung möchten ist es empfehlenswert die Arbeit beim ITMZ drucken zu lassen und dann im Copyshop binden zu lassen. Das spart Geld beim Druck und man hat trotzdem eine gute Bindung. Zu Empfehlen ist hier Copy \& Paste in der Margaretenstraße 40 in Rostock, da man dort auch das Hardcover beliebig beschriften kann und es schon fertige mit Uni-Logo gibt.
+
+\section{Zum Schluss}
+Ich hoffe dass dir diese Vorlage weiterhelfen kann. Wenn du dich für LaTeX interessierst, schau gerne in die \texttt{unirostock.cls} und ändere sie dir so ab wie du möchtest. Wichtiger ist allerdings der Inhalt, wenn der nicht stimmt kann auch die beste Vorlage nicht helfen. Viel Erfolg!

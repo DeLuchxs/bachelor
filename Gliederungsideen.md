@@ -1,0 +1,39 @@
+- Bedienkonzept Controller
+- Konzept des Rogue Devices
+	- Verbindung mit Controller
+	- Übersetzung Signale
+	- evtl Rückmeldung über OLED Bildschirm oder App
+- Aufbau CanBus System Limanda
+- Signale auf dem Schiff
+- Anbindung Rogue Device an Schiff
+- Unterdrückung Signale der originalen Steuerungseinheiten
+- Ruderanbindung?
+- Verhinderungsmaßnahmen
+
+## ca. geordnet
+- Abstract
+- Einleitung
+- Grundlagen (CanBus, Serielle Übertragung, Raspery Pi, ...)
+- Konzept 
+	- Bedienkonzept Controller
+	- Konzept des Rogue Devices
+		- evtl Rückmeldung über OLED Bildschirm oder App
+	- Aufbau CanBus System Limanda
+		- Anbindung Rogue Device an Schiff
+	- Signale auf dem Schiff
+- Implementierung
+	- Verbindung des Rogue Device mit Controller
+		- Benutzte Hardware, Protokolle, Libraries
+	- Übersetzung Signale
+		- (Unterdrückung Signale der originalen Steuerungseinheiten)
+	- Rückmeldung (wahrscheinlich App)
+- Sicherheit
+	- genutzte Schwachstellen
+	- Verhinderungsmaßnahmen
+	- Generalisierung auf andere Schiffe
+- Schluss
+- Anhang
+	- Quellcode
+	- Schaltpläne
+	- Bildverzeichnis
+	- Literaturverzeichnis

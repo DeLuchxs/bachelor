@@ -1,0 +1,7 @@
+\babel@toc {ngerman}{}\relax 
+\contentsline {chapter}{\numberline {1}Über diese Vorlage}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Verzeichnisstruktur}{1}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Tipps und Tricks}{1}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}Literaturverwaltung}{2}{subsection.1.2.1}%
+\contentsline {subsection}{\numberline {1.2.2}Druck}{2}{subsection.1.2.2}%
+\contentsline {section}{\numberline {1.3}Zum Schluss}{2}{section.1.3}%
