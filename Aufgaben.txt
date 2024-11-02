@@ -3,3 +3,6 @@
 	-> an CanBus des Gashebels
 - Playstation Controller mit Rogue Device verbinden
 	- Tastenanschläge verarbeiten
+
+- CanBus belesen (mit quellen)
+- welches Rogue Device (mit quellen)
