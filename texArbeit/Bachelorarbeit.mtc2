@@ -1,5 +1,3 @@
-{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {2.1}Verzeichnisstruktur}{\reset@font\mtcSfont 1}{section.2.1}}
-{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {2.2}Tipps und Tricks}{\reset@font\mtcSfont 1}{section.2.2}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2.2.1}Literaturverwaltung}{\reset@font\mtcSSfont 2}{subsection.2.2.1}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2.2.2}Druck}{\reset@font\mtcSSfont 2}{subsection.2.2.2}}
-{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {2.3}Zum Schluss}{\reset@font\mtcSfont 2}{section.2.3}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {2.1}CanBus}{\reset@font\mtcSfont 3}{section.2.1}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {2.2}Raspberry Pi}{\reset@font\mtcSfont 3}{section.2.2}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2.2.1}Raspberry Pi als Rogue Device}{\reset@font\mtcSSfont 3}{subsection.2.2.1}}

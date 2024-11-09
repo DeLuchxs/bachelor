@@ -13,7 +13,7 @@
 ## ca. geordnet
 - Abstract
 - Einleitung
-- Grundlagen (CanBus, Serielle Übertragung, Raspery Pi, ...)
+- Grundlagen (CanBus, Serielle Übertragung, Raspberry Pi, ...)
 - Konzept 
 	- Bedienkonzept Controller
 	- Konzept des Rogue Devices

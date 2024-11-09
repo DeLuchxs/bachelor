@@ -16,46 +16,5 @@
   {}
 \endgroup
 
-
-\refsection{0}
-  \datalist[entry]{anyt/global//global/global/global}
-    \entry{iuk696}{thesis}{}{}
-      \name{author}{1}{}{%
-        {{hash=b68a3fadd4dc47fc01b26960541c4c2c}{%
-           family={Bauer},
-           familyi={B\bibinitperiod},
-           given={Johann},
-           giveni={J\bibinitperiod}}}%
-      }
-      \list{institution}{1}{%
-        {Universität Rostock}%
-      }
-      \strng{namehash}{b68a3fadd4dc47fc01b26960541c4c2c}
-      \strng{fullhash}{b68a3fadd4dc47fc01b26960541c4c2c}
-      \strng{fullhashraw}{b68a3fadd4dc47fc01b26960541c4c2c}
-      \strng{bibnamehash}{b68a3fadd4dc47fc01b26960541c4c2c}
-      \strng{authorbibnamehash}{b68a3fadd4dc47fc01b26960541c4c2c}
-      \strng{authornamehash}{b68a3fadd4dc47fc01b26960541c4c2c}
-      \strng{authorfullhash}{b68a3fadd4dc47fc01b26960541c4c2c}
-      \strng{authorfullhashraw}{b68a3fadd4dc47fc01b26960541c4c2c}
-      \field{labelalpha}{Bau18}
-      \field{sortinit}{B}
-      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{abstract}{Honeypots enable tracing the actions of attackers with a system in detail in order to gain knowledge about the defense against future attacks. In this master thesis a concept is established to develop a honeypot for a known insecure building automation system and to evaluate the recorded attacks. This concept was subsequently implemented and the developed honeypot made publicly available. The records obtained in this way were further examined and evaluated.}
-      \field{month}{10}
-      \field{title}{Untersuchung der Möglichkeiten zum Betreiben von Honeypots zur Nachbildung von internetfähigen Steuergeräten in der Gebäudeautomation}
-      \field{type}{Masterarbeit}
-      \field{year}{2018}
-      \verb{urlraw}
-      \verb http://eprints.iuk.informatik.uni-rostock.de/696/
-      \endverb
-      \verb{url}
-      \verb http://eprints.iuk.informatik.uni-rostock.de/696/
-      \endverb
-    \endentry
-  \enddatalist
-\endrefsection
 \endinput
 
