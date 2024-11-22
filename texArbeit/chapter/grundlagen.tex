@@ -4,6 +4,30 @@
 
 \section{CanBus}
 Wie wird ein CanBus verdrahtet und wie kommunizieren die Geräte?
+Was ist ein CanBus:
+\begin{itemize}
+    \item Technologie für serielle Netzwerke
+    \item 1983 von Bosch für die Autoindustrie entwickelt
+    \item Ist ein zweiadriger Bus, halbduplex
+    \item konventionellen seriellen Technologien überlegen in Funktionalität und Zuverlässigkeit
+    \item Kosteneffiizienter
+    \item Entwickelt für Echtzeitanwendungen mit 1Mbit/s Baudrate
+    \item Verwendung mittlwerweile allen möglichen Fahrzeugen, auch maritimer Bereich und Luftfahrt
+    \item Medizinische Geräte, Industrieanlagen, Gebäudeautomation
+\end{itemize}
+
+\cite[Seiten 2-10]{voss2008comprehensible}
+\\
+Aufbau:
+Alle Knoten sind mit zwei Drähten verbunden und sind gleichberechtigt.
+\cite[Seite 132]{voss2008comprehensible}
+\\
+Die Nachrichten werden nach Broadcasting-Prinzip übertragen. Jede Nachricht wird von allen Knoten empfangen, 
+aber nur die Knoten, die die Nachricht benötigen, verarbeiten sie. Diese werden aber nicht bestätigt,
+da dies zu einer größeren Last auf dem Bus führen würde. Bei einer fehlerhaften Nachricht reagieren
+die Knoten mit einer Fehlermeldung, die wieder der gesamte Bus empfängt.
+\cite[Seite 80]{voss2008comprehensible}
+
 
 \section{Raspberry Pi}
 

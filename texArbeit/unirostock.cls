@@ -13,7 +13,6 @@
     \newcommand{\unirostockhandedinby}{Vorgelegt von}
     \newcommand{\unirostockenrolmentnumber}{Matrikelnummer}
     \newcommand{\unirostockworkperiod}{Bearbeitungszeitraum}
-    \newcommand{\unirostocksupervisor}{Betreuer}
     \newcommand{\unirostockprimaryreviewer}{Erstgutachter}
     \newcommand{\unirostocksecondaryreviewer}{Zweitgutachter}
 }
@@ -26,7 +25,6 @@
     \newcommand{\unirostockhandedinby}{Handed in by}
     \newcommand{\unirostockenrolmentnumber}{Enrolment number}
     \newcommand{\unirostockworkperiod}{Work period}
-    \newcommand{\unirostocksupervisor}{Supervisor}
     \newcommand{\unirostockprimaryreviewer}{Primary Reviewer}
     \newcommand{\unirostocksecondaryreviewer}{Secondary Reviewer}
 }
@@ -51,7 +49,6 @@
 
 \newcommand*{\course}[1]{\gdef\@course{#1}}
 \newcommand*{\enrolmentnumber}[1]{\gdef\@enrolmentnumber{#1}}
-\newcommand*{\supervisor}[1]{\gdef\@supervisor{#1}}
 \newcommand*{\primaryreviewer}[1]{\gdef\@primaryreviewer{#1}}
 \newcommand*{\workperiod}[1]{\gdef\@workperiod{#1}}
 \newcommand*{\faculty}[1]{\gdef\@faculty{#1}}
@@ -115,7 +112,6 @@
     \unirostockhandedinby: & & \@author\\
     \unirostockenrolmentnumber: & & \@enrolmentnumber \\
     \unirostockworkperiod: & & \@workperiod\\
-    \unirostocksupervisor: & & \@supervisor\\
     \unirostockprimaryreviewer: & & \@primaryreviewer\\
     \ifnum\pdf@strcmp{\@secondaryreviewer}{}>0 %
     \unirostocksecondaryreviewer: & & \@secondaryreviewer\\
