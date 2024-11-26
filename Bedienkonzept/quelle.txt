@@ -1,0 +1,25 @@
+https://support.xbox.com/de-DE/help/hardware-network/controller/xbox-one-wireless-controller
+
+1 Linker Stick
+2 Linker Bumper
+3 Ansicht-Taste 
+4 USB-Ladeanschluss
+5 Xbox-Taste 
+6 Menü-Taste 
+7 Rechter Bumper
+8 Steuerkreuz (D-Pad)	
+9 Erweiterungsanschluss	
+10 Rechter Stick
+11 Rechter Trigger
+12 IR-Fenster
+13 Koppeln-Taste
+14 Linker Trigger
+15 Akkuabdeckung
+16 3,5-mm-Anschluss
+	
+X X-Taste 	
+Y Y-Taste 
+A A-Taste 
+B B-Taste 
+
+	

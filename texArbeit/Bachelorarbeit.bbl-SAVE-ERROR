@@ -16,5 +16,37 @@
   {}
 \endgroup
 
+
+\refsection{0}
+  \datalist[entry]{anyt/global//global/global/global}
+    \entry{voss2008comprehensible}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=9d4ad8bde782945f70c3a13cb618b07f}{%
+           family={Voss},
+           familyi={V\bibinitperiod},
+           given={Wilfried},
+           giveni={W\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Copperhill Media}%
+      }
+      \strng{namehash}{9d4ad8bde782945f70c3a13cb618b07f}
+      \strng{fullhash}{9d4ad8bde782945f70c3a13cb618b07f}
+      \strng{fullhashraw}{9d4ad8bde782945f70c3a13cb618b07f}
+      \strng{bibnamehash}{9d4ad8bde782945f70c3a13cb618b07f}
+      \strng{authorbibnamehash}{9d4ad8bde782945f70c3a13cb618b07f}
+      \strng{authornamehash}{9d4ad8bde782945f70c3a13cb618b07f}
+      \strng{authorfullhash}{9d4ad8bde782945f70c3a13cb618b07f}
+      \strng{authorfullhashraw}{9d4ad8bde782945f70c3a13cb618b07f}
+      \field{labelalpha}{Vos08}
+      \field{sortinit}{V}
+      \field{sortinithash}{afb52128e5b4dc4b843768c0113d673b}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{A comprehensible guide to controller area network}
+      \field{year}{2008}
+    \endentry
+  \enddatalist
+\endrefsection
 \endinput
 
