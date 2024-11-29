@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.11.22)  26 NOV 2024 12:37
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.11.22)  29 NOV 2024 13:30
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -626,7 +626,7 @@ Package csquotes Info: ... configuration file loaded successfully.
 File: csquotes.cfg 
 )))
 Package minitoc Info: I0024
-(minitoc)             PREPARING MINITOCS FROM Bachelorarbeit.toc on input line 5.
+(minitoc)             PREPARING MINITOCS FROM Bachelorarbeit.toc on input line 6.
 Package minitoc Info: I0033
 (minitoc)             Writing Bachelorarbeit.mtc1.
 \openout4 = `Bachelorarbeit.mtc1'.
@@ -654,6 +654,14 @@ Package minitoc Info: I0033
 Package minitoc Info: I0033
 (minitoc)             Writing Bachelorarbeit.mtc7.
 \openout4 = `Bachelorarbeit.mtc7'.
+
+Package minitoc Info: I0033
+(minitoc)             Writing Bachelorarbeit.mtc8.
+\openout4 = `Bachelorarbeit.mtc8'.
+
+Package minitoc Info: I0033
+(minitoc)             Writing Bachelorarbeit.mtc9.
+\openout4 = `Bachelorarbeit.mtc9'.
 
  (c:/texlive/2024/texmf-dist/tex/latex/biblatex/biblatex.sty
 Package: biblatex 2024/03/21 v3.20 programmable bibliographies (PK/MW)
@@ -892,24 +900,24 @@ Package csquotes Info: Redefining alias 'default' -> 'ngerman'.
  (./Bachelorarbeit.aux)
 \openout1 = `Bachelorarbeit.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
  (c:/texlive/2024/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count463
@@ -940,7 +948,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 * paper: <default>
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
-* modes: twoside 
+* modes: 
 * h-part:(L,W,R)=(93.89418pt, 409.71951pt, 93.89418pt)
 * v-part:(T,H,B)=(71.13188pt, 697.09262pt, 76.82234pt)
 * \paperwidth=597.50787pt
@@ -954,7 +962,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 * \headsep=28.45274pt
 * \topskip=11.0pt
 * \footskip=48.36958pt
-* \marginparwidth=106.0pt
+* \marginparwidth=53.0pt
 * \marginparsep=7.0pt
 * \columnsep=10.0pt
 * \skip\footins=10.0pt plus 4.0pt minus 2.0pt
@@ -962,12 +970,12 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 * \voffset=0.0pt
 * \mag=1000
 * \@twocolumnfalse
-* \@twosidetrue
-* \@mparswitchtrue
+* \@twosidefalse
+* \@mparswitchfalse
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring OFF on input line 28.
+Package hyperref Info: Link coloring OFF on input line 32.
 (./Bachelorarbeit.out) (./Bachelorarbeit.out)
 \@outlinefile=\write6
 \openout6 = `Bachelorarbeit.out'.
@@ -1007,14 +1015,14 @@ Package biblatex Info: Automatic encoding selection.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'Bachelorarbeit.bbl' found.
  (./Bachelorarbeit.bbl)
-Package biblatex Info: Reference section=0 on input line 28.
-Package biblatex Info: Reference segment=0 on input line 28.
+Package biblatex Info: Reference section=0 on input line 32.
+Package biblatex Info: Reference segment=0 on input line 32.
 *geometry* verbose mode - [ newgeometry ] result:
 * driver: pdftex
 * paper: <default>
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
-* modes: twoside 
+* modes: 
 * h-part:(L,W,R)=(42.67912pt, 483.69687pt, 71.13188pt)
 * v-part:(T,H,B)=(71.13188pt, 717.00946pt, 56.9055pt)
 * \paperwidth=597.50787pt
@@ -1022,13 +1030,13 @@ Package biblatex Info: Reference segment=0 on input line 28.
 * \textwidth=483.69687pt
 * \textheight=717.00946pt
 * \oddsidemargin=-29.59087pt
-* \evensidemargin=-1.1381pt
+* \evensidemargin=-29.59087pt
 * \topmargin=-43.19086pt
 * \headheight=13.6pt
 * \headsep=28.45274pt
 * \topskip=11.0pt
 * \footskip=48.36958pt
-* \marginparwidth=106.0pt
+* \marginparwidth=53.0pt
 * \marginparsep=7.0pt
 * \columnsep=10.0pt
 * \skip\footins=10.0pt plus 4.0pt minus 2.0pt
@@ -1036,59 +1044,59 @@ Package biblatex Info: Reference segment=0 on input line 28.
 * \voffset=0.0pt
 * \mag=1000
 * \@twocolumnfalse
-* \@twosidetrue
-* \@mparswitchtrue
+* \@twosidefalse
+* \@mparswitchfalse
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-<images/Hintergrund_Titel_v2.pdf, id=143, 597.50829pt x 845.0471pt>
+<images/Hintergrund_Titel_v2.pdf, id=150, 597.50829pt x 845.0471pt>
 File: images/Hintergrund_Titel_v2.pdf Graphic file (type pdf)
 <use images/Hintergrund_Titel_v2.pdf>
-Package pdftex.def Info: images/Hintergrund_Titel_v2.pdf  used on input line 30.
+Package pdftex.def Info: images/Hintergrund_Titel_v2.pdf  used on input line 34.
 (pdftex.def)             Requested size: 603.47966pt x 853.49084pt.
 LaTeX Font Info:    Font shape `OT1/Alegreya-LF/m/n' in size <12> not available
-(Font)              Font shape `OT1/Alegreya-LF/regular/n' tried instead on input line 30.
+(Font)              Font shape `OT1/Alegreya-LF/regular/n' tried instead on input line 34.
 LaTeX Font Info:    Font shape `OT1/Alegreya-LF/regular/n' will be
-(Font)              scaled to size 12.0pt on input line 30.
-LaTeX Font Info:    Trying to load font information for OT1+AlegreyaSans-LF on input line 30.
+(Font)              scaled to size 12.0pt on input line 34.
+LaTeX Font Info:    Trying to load font information for OT1+AlegreyaSans-LF on input line 34.
  (c:/texlive/2024/texmf-dist/tex/latex/alegreya/OT1AlegreyaSans-LF.fd
 File: OT1AlegreyaSans-LF.fd 2019/10/08 (autoinst) Font definitions for OT1/AlegreyaSans-LF.
 )
 LaTeX Font Info:    Font shape `OT1/AlegreyaSans-LF/m/n' in size <12> not available
-(Font)              Font shape `OT1/AlegreyaSans-LF/regular/n' tried instead on input line 30.
+(Font)              Font shape `OT1/AlegreyaSans-LF/regular/n' tried instead on input line 34.
 LaTeX Font Info:    Font shape `OT1/AlegreyaSans-LF/regular/n' will be
-(Font)              scaled to size 12.0pt on input line 30.
-<images/lehrstuhllogo.png, id=144, 335.00156pt x 207.02344pt>
+(Font)              scaled to size 12.0pt on input line 34.
+<images/lehrstuhllogo.png, id=151, 335.00156pt x 207.02344pt>
 File: images/lehrstuhllogo.png Graphic file (type png)
 <use images/lehrstuhllogo.png>
-Package pdftex.def Info: images/lehrstuhllogo.png  used on input line 30.
+Package pdftex.def Info: images/lehrstuhllogo.png  used on input line 34.
 (pdftex.def)             Requested size: 28.45274pt x 17.58047pt.
 LaTeX Font Info:    Font shape `OT1/AlegreyaSans-LF/m/n' in size <10.95> not available
-(Font)              Font shape `OT1/AlegreyaSans-LF/regular/n' tried instead on input line 30.
+(Font)              Font shape `OT1/AlegreyaSans-LF/regular/n' tried instead on input line 34.
 LaTeX Font Info:    Font shape `OT1/AlegreyaSans-LF/regular/n' will be
-(Font)              scaled to size 10.95pt on input line 30.
+(Font)              scaled to size 10.95pt on input line 34.
 LaTeX Font Info:    Font shape `OT1/AlegreyaSans-LF/b/n' in size <10.95> not available
-(Font)              Font shape `OT1/AlegreyaSans-LF/bold/n' tried instead on input line 30.
+(Font)              Font shape `OT1/AlegreyaSans-LF/bold/n' tried instead on input line 34.
 LaTeX Font Info:    Font shape `OT1/AlegreyaSans-LF/bold/n' will be
-(Font)              scaled to size 10.95pt on input line 30.
+(Font)              scaled to size 10.95pt on input line 34.
 LaTeX Font Info:    Font shape `OT1/Alegreya-LF/m/n' in size <20.74> not available
-(Font)              Font shape `OT1/Alegreya-LF/regular/n' tried instead on input line 30.
+(Font)              Font shape `OT1/Alegreya-LF/regular/n' tried instead on input line 34.
 LaTeX Font Info:    Font shape `OT1/Alegreya-LF/regular/n' will be
-(Font)              scaled to size 20.74pt on input line 30.
+(Font)              scaled to size 20.74pt on input line 34.
 LaTeX Font Info:    Font shape `OT1/Alegreya-LF/b/n' in size <20.74> not available
-(Font)              Font shape `OT1/Alegreya-LF/bold/n' tried instead on input line 30.
+(Font)              Font shape `OT1/Alegreya-LF/bold/n' tried instead on input line 34.
 LaTeX Font Info:    Font shape `OT1/Alegreya-LF/bold/n' will be
-(Font)              scaled to size 20.74pt on input line 30.
+(Font)              scaled to size 20.74pt on input line 34.
 LaTeX Font Info:    Font shape `OT1/AlegreyaSans-LF/b/n' in size <20.74> not available
-(Font)              Font shape `OT1/AlegreyaSans-LF/bold/n' tried instead on input line 30.
+(Font)              Font shape `OT1/AlegreyaSans-LF/bold/n' tried instead on input line 34.
 LaTeX Font Info:    Font shape `OT1/AlegreyaSans-LF/bold/n' will be
-(Font)              scaled to size 20.74pt on input line 30.
+(Font)              scaled to size 20.74pt on input line 34.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 30.
+(Font)              <12> on input line 34.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 30.
+(Font)              <8> on input line 34.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 30.
+(Font)              <6> on input line 34.
 
 
 [1
@@ -1097,28 +1105,33 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 
 {c:/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/texlive/2024/texmf-dist/fonts/enc/dvips/alegreya/algr_iszm25.enc} <./images/Hintergrund_Titel_v2.pdf> <./images/lehrstuhllogo.png>]
 LaTeX Font Info:    Font shape `OT1/Alegreya-LF/m/n' in size <24.88> not available
-(Font)              Font shape `OT1/Alegreya-LF/regular/n' tried instead on input line 30.
+(Font)              Font shape `OT1/Alegreya-LF/regular/n' tried instead on input line 34.
 LaTeX Font Info:    Font shape `OT1/Alegreya-LF/regular/n' will be
-(Font)              scaled to size 24.88pt on input line 30.
+(Font)              scaled to size 24.88pt on input line 34.
 LaTeX Font Info:    Font shape `U/ccicons/m/n' will be
-(Font)              scaled to size 24.88pt on input line 30.
+(Font)              scaled to size 24.88pt on input line 34.
 LaTeX Font Info:    Font shape `OT1/Alegreya-LF/m/n' in size <6> not available
-(Font)              Font shape `OT1/Alegreya-LF/regular/n' tried instead on input line 30.
+(Font)              Font shape `OT1/Alegreya-LF/regular/n' tried instead on input line 34.
 LaTeX Font Info:    Font shape `OT1/Alegreya-LF/regular/n' will be
-(Font)              scaled to size 6.0pt on input line 30.
+(Font)              scaled to size 6.0pt on input line 34.
 
 
-[2
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.34 \makelicense
+                  [1
 
 {c:/texlive/2024/texmf-dist/fonts/enc/dvips/alegreya/algr_2vgxay.enc}]
 LaTeX Font Info:    Font shape `OT1/Alegreya-LF/m/it' in size <24.88> not available
-(Font)              Font shape `OT1/Alegreya-LF/regular/it' tried instead on input line 34.
+(Font)              Font shape `OT1/Alegreya-LF/regular/it' tried instead on input line 38.
 LaTeX Font Info:    Font shape `OT1/Alegreya-LF/regular/it' will be
-(Font)              scaled to size 24.88pt on input line 34.
+(Font)              scaled to size 24.88pt on input line 38.
 LaTeX Font Info:    Font shape `OT1/AlegreyaSans-LF/m/it' in size <24.88> not available
-(Font)              Font shape `OT1/AlegreyaSans-LF/regular/it' tried instead on input line 34.
+(Font)              Font shape `OT1/AlegreyaSans-LF/regular/it' tried instead on input line 38.
 LaTeX Font Info:    Font shape `OT1/AlegreyaSans-LF/regular/it' will be
-(Font)              scaled to size 24.88pt on input line 34.
+(Font)              scaled to size 24.88pt on input line 38.
  (./Bachelorarbeit.toc
 LaTeX Font Info:    Font shape `OT1/Alegreya-LF/b/n' in size <10.95> not available
 (Font)              Font shape `OT1/Alegreya-LF/bold/n' tried instead on input line 2.
@@ -1135,7 +1148,9 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 [1
 
 
-] (./chapter/abstract.tex
+]
+
+[2] (./chapter/abstract.tex
 LaTeX Font Info:    Font shape `OT1/AlegreyaSans-LF/m/n' in size <20.74> not available
 (Font)              Font shape `OT1/AlegreyaSans-LF/regular/n' tried instead on input line 4.
 LaTeX Font Info:    Font shape `OT1/AlegreyaSans-LF/regular/n' will be
@@ -1186,21 +1201,11 @@ LaTeX Font Info:    Font shape `OT1/Alegreya-LF/bold/n' will be
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.47 \clearpage
+l.51 \clearpage
                 [1
 
 
 ] (./chapter/grundlagen.tex
-
-
-pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.1 \chapter
-            {Grundlagen} [2
-
-
-]
 Kapitel 2.
 \openout4 = `Bachelorarbeit.mtc'.
 
@@ -1222,21 +1227,19 @@ Underfull \hbox (badness 10000) in paragraph at lines 12--13
 
 
 
-[3{c:/texlive/2024/texmf-dist/fonts/enc/dvips/alegreya/algr_nwaz6g.enc}]
+[2
+
+
+{c:/texlive/2024/texmf-dist/fonts/enc/dvips/alegreya/algr_nwaz6g.enc}]
 LaTeX Font Info:    Font shape `OT1/Alegreya-LF/b/n' in size <12> not available
 (Font)              Font shape `OT1/Alegreya-LF/bold/n' tried instead on input line 41.
 LaTeX Font Info:    Font shape `OT1/Alegreya-LF/bold/n' will be
 (Font)              scaled to size 12.0pt on input line 41.
 
 
-[4])
+[3])
 
-[5] (./chapter/konzept.tex
-
-[6
-
-
-]
+[4] (./chapter/konzept.tex
 Kapitel 3.
 \openout4 = `Bachelorarbeit.mtc'.
 
@@ -1249,12 +1252,10 @@ Underfull \hbox (badness 4441) in paragraph at lines 11--13
 
 )
 
-[7] (./chapter/implementierung.tex
-
-[8
+[5
 
 
-]
+] (./chapter/implementierung.tex
 Kapitel 4.
 \openout4 = `Bachelorarbeit.mtc'.
 
@@ -1272,12 +1273,10 @@ Underfull \hbox (badness 2277) in paragraph at lines 2--2
 
 ))
 
-[9] (./chapter/sicherheit.tex
-
-[10
+[6
 
 
-]
+] (./chapter/sicherheit.tex
 Kapitel 5.
 \openout4 = `Bachelorarbeit.mtc'.
 
@@ -1285,12 +1284,10 @@ Kapitel 5.
 
 (./Bachelorarbeit.mtc5))
 
-[11] (./chapter/schluss.tex
-
-[12
+[7
 
 
-]
+] (./chapter/schluss.tex
 Kapitel 6.
 \openout4 = `Bachelorarbeit.mtc'.
 
@@ -1298,12 +1295,10 @@ Kapitel 6.
 
 (./Bachelorarbeit.mtc6))
 
-[13] (./chapter/anhang.tex
-
-[14
+[8
 
 
-]
+] (./chapter/anhang.tex
 Kapitel VII.
 \openout4 = `Bachelorarbeit.mtc'.
 
@@ -1311,39 +1306,51 @@ Kapitel VII.
 
 (./Bachelorarbeit.mtc7))
 
-[15]
+[9
+
+
+]
 LaTeX Font Info:    Font shape `OT1/Alegreya-LF/m/it' in size <20.74> not available
-(Font)              Font shape `OT1/Alegreya-LF/regular/it' tried instead on input line 62.
+(Font)              Font shape `OT1/Alegreya-LF/regular/it' tried instead on input line 66.
 LaTeX Font Info:    Font shape `OT1/Alegreya-LF/regular/it' will be
-(Font)              scaled to size 20.74pt on input line 62.
+(Font)              scaled to size 20.74pt on input line 66.
  (./Bachelorarbeit.lof)
 \tf@lof=\write8
 \openout8 = `Bachelorarbeit.lof'.
 
 
 
-[16
+[10
 
 ]
 LaTeX Font Info:    Font shape `OT1/Alegreya-LF/m/it' in size <10.95> not available
-(Font)              Font shape `OT1/Alegreya-LF/regular/it' tried instead on input line 64.
+(Font)              Font shape `OT1/Alegreya-LF/regular/it' tried instead on input line 70.
 LaTeX Font Info:    Font shape `OT1/Alegreya-LF/regular/it' will be
-(Font)              scaled to size 10.95pt on input line 64.
+(Font)              scaled to size 10.95pt on input line 70.
+LaTeX Font Info:    Font shape `OT1/Alegreya-LF/m/sc' in size <10.95> not available
+(Font)              Font shape `OT1/Alegreya-LF/regular/sc' tried instead on input line 70.
+LaTeX Font Info:    Font shape `OT1/Alegreya-LF/regular/sc' will be
+(Font)              scaled to size 10.95pt on input line 70.
+ (./chapter/erklaerung.tex
 
 
-[17
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2 \chapter
+            *{Erklärung} [1
 
-] (./chapter/erklaerung.tex
+{c:/texlive/2024/texmf-dist/fonts/enc/dvips/alegreya/algr_hnbre7.enc}]
 LaTeX Font Info:    Trying to load font information for U+pzd on input line 14.
  (c:/texlive/2024/texmf-dist/tex/latex/psnfss/upzd.fd
 File: upzd.fd 2001/06/04 font definitions for U/pzd.
 ))
-Underfull \hbox (badness 10000) in paragraph at lines 9--67
+Underfull \hbox (badness 10000) in paragraph at lines 9--74
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 9--67
+Underfull \hbox (badness 10000) in paragraph at lines 9--74
 
  []
 
@@ -1363,9 +1370,8 @@ Package minitoc(hints) Warning: W0024
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.67 \end{document}
-                    [1
-
+l.74 \end{document}
+                    [2
 
 ] (./Bachelorarbeit.aux)
  ***********
@@ -1373,24 +1379,24 @@ LaTeX2e <2024-11-01>
 L3 programming layer <2024-11-02>
  ***********
 Package rerunfilecheck Info: File `Bachelorarbeit.out' has not changed.
-(rerunfilecheck)             Checksum: 7945D8E35501B39A17ED318988322E3B;4197.
+(rerunfilecheck)             Checksum: 447753FE6D6BE9351BEA53F81ED12AA1;4388.
 Package logreq Info: Writing requests to 'Bachelorarbeit.run.xml'.
 \openout1 = `Bachelorarbeit.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 34891 strings out of 473361
- 658943 string characters out of 5725029
- 1486855 words of memory out of 5000000
- 57367 multiletter control sequences out of 15000+600000
- 662351 words of font info for 75 fonts, out of 8000000 for 9000
+ 34909 strings out of 473361
+ 659421 string characters out of 5725029
+ 1487939 words of memory out of 5000000
+ 57383 multiletter control sequences out of 15000+600000
+ 665810 words of font info for 78 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  99i,15n,104p,752b,2465s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<c:/texlive/2024/texmf-dist/fonts/type1/huerta/alegreya/Alegreya-Bold.pfb><c:/texlive/2024/texmf-dist/fonts/type1/huerta/alegreya/Alegreya-Italic.pfb><c:/texlive/2024/texmf-dist/fonts/type1/huerta/alegreya/Alegreya-Regular.pfb><c:/texlive/2024/texmf-dist/fonts/type1/huerta/alegreya/AlegreyaSans-Bold.pfb><c:/texlive/2024/texmf-dist/fonts/type1/huerta/alegreya/AlegreyaSans-Italic.pfb><c:/texlive/2024/texmf-dist/fonts/type1/huerta/alegreya/AlegreyaSans-Regular.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/ccicons/ccicons.pfb><c:/texlive/2024/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on Bachelorarbeit.pdf (22 pages, 3315082 bytes).
+<c:/texlive/2024/texmf-dist/fonts/type1/huerta/alegreya/Alegreya-Bold.pfb><c:/texlive/2024/texmf-dist/fonts/type1/huerta/alegreya/Alegreya-Italic.pfb><c:/texlive/2024/texmf-dist/fonts/type1/huerta/alegreya/Alegreya-Regular.pfb><c:/texlive/2024/texmf-dist/fonts/type1/huerta/alegreya/AlegreyaSans-Bold.pfb><c:/texlive/2024/texmf-dist/fonts/type1/huerta/alegreya/AlegreyaSans-Italic.pfb><c:/texlive/2024/texmf-dist/fonts/type1/huerta/alegreya/AlegreyaSans-Regular.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/ccicons/ccicons.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
+Output written on Bachelorarbeit.pdf (17 pages, 3378305 bytes).
 PDF statistics:
- 496 PDF objects out of 1000 (max. 8388607)
- 333 compressed objects within 4 object streams
- 56 named destinations out of 1000 (max. 500000)
- 467 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 498 PDF objects out of 1000 (max. 8388607)
+ 337 compressed objects within 4 object streams
+ 52 named destinations out of 1000 (max. 500000)
+ 483 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,6 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{unirostock}
-\LoadClass[11pt, a4paper, twoside]{book}
+\LoadClass[11pt, a4paper, oneside]{book}
 \RequirePackage[utf8]{inputenc}
 
 % Sprachvariablen

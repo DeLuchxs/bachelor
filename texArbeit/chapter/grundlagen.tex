@@ -16,17 +16,17 @@ Was ist ein CanBus:
     \item Medizinische Geräte, Industrieanlagen, Gebäudeautomation
 \end{itemize}
 
-\cite[Seiten 2-10]{voss2008comprehensible}
+\cite[Seiten 2-10]{Voss2008}
 \\
 Aufbau:
 Alle Knoten sind mit zwei Drähten verbunden und sind gleichberechtigt.
-\cite[Seite 132]{voss2008comprehensible}
+\cite[Seite 132]{Voss2008}
 \\
 Die Nachrichten werden nach Broadcasting-Prinzip übertragen. Jede Nachricht wird von allen Knoten empfangen, 
 aber nur die Knoten, die die Nachricht benötigen, verarbeiten sie. Diese werden aber nicht bestätigt,
 da dies zu einer größeren Last auf dem Bus führen würde. Bei einer fehlerhaften Nachricht reagieren
 die Knoten mit einer Fehlermeldung, die wieder der gesamte Bus empfängt.
-\cite[Seite 80]{voss2008comprehensible}
+\cite[Seite 80]{Voss2008}
 
 
 \section{Raspberry Pi}
@@ -55,6 +55,16 @@ sich Angreifer Zugriff auf das Netzwerk verschaffen.
     \item Was ist der aktuelle Stand der Forschung?
 \end{itemize}
 \subsection{Anbindung von Raspberry Pi an CanBus}
+\begin{itemize}
+    \item Raspbian OS hat seit 05.05.2015 eingebundenen Support für den Mikrochip MCP251x
+\end{itemize}
+\cite{Salunkhe2016}
+\begin{itemize}
+    \item PiCan2 ist ein CanBus Board für den Raspberry Pi
+    \item HAT (Hardware Attached on Top) Standard
+    \item erlaubt dem Raspberry Pi mit dem CanBus zu kommunizieren mit einer Geschwindigkeit von bis zu 1Mbit/s
+\end{itemize}
+\cite{Pant2019}
 \subsection{Übersetzung von CanBus Nachrichten}
 \begin{itemize}
     \item CanBoat

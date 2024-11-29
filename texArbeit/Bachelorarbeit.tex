@@ -1,10 +1,14 @@
 % Statt "de" kann hier auch "en" stehen, wenn die Arbeit auf Englisch verfasst wird
 % Entweder "darkstyle" oder "lightstyle"
+
 \documentclass[de, darkstyle]{unirostock}
 % Für die Quellenangaben, weitere Informationen https://de.overleaf.com/learn/latex/Bibliography_management_with_biblatex
 \usepackage[backend=biber,style=alphabetic,maxbibnames=99,backref=true,citestyle=alphabetic]{biblatex}
 \addbibresource{lit.bib}
-
+\DeclareFieldFormat{titlecase}{#1} % Optional: Titelstil setzen
+\defbibheading{bibliography}[]{%
+  \chapter*{\color{uniblau}\huge\sffamily\normalfont \textit{Literatur}}%
+}
 % Welche Bedingungen gibt es für die Verbreitung der Arbeit?
 % creative-commons: Creative Commons Lizenz, Namensnennung - Weitergabe erlaubt unter gleichen Bedingungen 
 % private: Veröffentlichung und Veränderung nur nach Rücksprache mit dem Autor
@@ -59,9 +63,12 @@
 \renewcommand{\thechapter}{\Roman{chapter}}
 \input{chapter/anhang}
 \clearpage
-\listoffigures % Abbildungsverzeichnis
+\listoffigures
 
-\printbibliography % Literaturverzeichnis
-\clearpage
+\addcontentsline{toc}{chapter}{Abbildungen}
+
+\printbibliography
+
+\addcontentsline{toc}{chapter}{Literatur}
 \input{chapter/erklaerung}
 \end{document}
