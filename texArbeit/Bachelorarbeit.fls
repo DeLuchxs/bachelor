@@ -1019,5 +1019,6 @@ INPUT c:/texlive/2024/texmf-dist/fonts/type1/huerta/alegreya/AlegreyaSans-Bold.p
 INPUT c:/texlive/2024/texmf-dist/fonts/type1/huerta/alegreya/AlegreyaSans-Italic.pfb
 INPUT c:/texlive/2024/texmf-dist/fonts/type1/huerta/alegreya/AlegreyaSans-Regular.pfb
 INPUT c:/texlive/2024/texmf-dist/fonts/type1/public/ccicons/ccicons.pfb
+INPUT c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
 INPUT c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb
 INPUT c:/texlive/2024/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb
