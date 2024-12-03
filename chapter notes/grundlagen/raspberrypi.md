@@ -11,3 +11,9 @@
 
 # Verbindung zu Xbox Series S Controller
 - Treiber müssen installiert werden
+
+# Zur Verbindung mit CanBus
+- SocketCan
+- CanDump
+- Testweise CanBus aufbauen mit RasPi und Laptop
+- UCan
