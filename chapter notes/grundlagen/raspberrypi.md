@@ -10,6 +10,7 @@
 - Original Raspberry Pi Netzteil (5,1V, 3A)
 
 # Verbindung zu Xbox Series S Controller
+- Bluetooth: bluez, bluez-utils
 - Treiber müssen installiert werden (xboxdrv)
 - Enhanced Re-Transmission Mode (ERTM) muss deaktiviert werden
 - Firmware-Update für Controller
