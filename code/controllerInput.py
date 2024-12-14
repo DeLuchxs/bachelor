@@ -27,9 +27,22 @@ else:
 while running and len(joysticks) > 0:
     for event in pygame.event.get():
         if event.type == pygame.JOYBUTTONDOWN:
-            print("Button: {}".format(event.button))
-#        elif event.type == pygame.JOYAXISMOTION and event.axis == 0:
-#           print("Axis: {}".format(event.value))
+            if xboxController.get_button(4) == 1 and xboxController.get_button(5) == 1 and xboxController.get_button(1) == 1:
+                backwards = not backwards
+                throttleR = 0
+                throttleL = 0
+                print("Backwards: {}".format(backwards))
+                if backwards:
+                    print("Der Rückwärtsgang wird eingelegt, bitte warten...")
+                    sleep(10)
+                    pygame.event.clear()
+                elif not backwards:
+                    print("Der Vorwärtsgang wird eingelegt, bitte warten...")
+                    sleep(10)
+                    pygame.event.clear()
+#        elif event.type == pygame.JOYAXISMOTION:
+#            print("Axis: {}".format(event.axis))
+#            print("Axis: {}".format(event.value))
         elif event.type == pygame.JOYHATMOTION:
             print("Hat: {}".format(event.value))
     
@@ -43,15 +56,30 @@ while running and len(joysticks) > 0:
         print("Rudder: {}".format(rudderAngle))
          
     # Throttle Left
-    if (xboxController.get_axis(4) > 0.1 or xboxController.get_button(4) == 1) and not backwards:
-        throttleL += xboxController.get_axis(4) * (1/(2*fps)) # bei 2 Sekunden soll der Throttle-Wert 1 betragen, wenn Trigger vollständig gedrückt ist
-        print(format(xboxController.get_axis(4)))   # Deadzone-Test: Axis fängt bei -1 an und geht bis 1 -> soll bei 0 anfangen und bis 1 gehen
+    if (xboxController.get_axis(4) > -0.9 or xboxController.get_button(4) == 1):
+        # Achse 4 muss normalisiert werden, da sie bei -1 anfängt und bei 1 aufhört -> soll bei 0 anfangen und bis 1 gehen
+        normalisedAxisL = (xboxController.get_axis(4) + 1) / 2
+        throttleL += normalisedAxisL * (1/(2*fps)) # bei 2 Sekunden soll der Throttle-Wert 1 betragen, wenn Trigger vollständig gedrückt ist
         throttleL -= xboxController.get_button(4) * (1/(2*fps))
         if throttleL > 1:
             throttleL = 1
         if throttleL < 0:
             throttleL = 0
         print("Throttle Left: {}".format(throttleL))
+
+    # Throttle Right
+    if (xboxController.get_axis(5) > -0.9 or xboxController.get_button(5) == 1):
+        # Achse 4 muss normalisiert werden, da sie bei -1 anfängt und bei 1 aufhört -> soll bei 0 anfangen und bis 1 gehen
+        normalisedAxisR = (xboxController.get_axis(5) + 1) / 2
+        throttleR += normalisedAxisR * (1/(2*fps)) # bei 2 Sekunden soll der Throttle-Wert 1 betragen, wenn Trigger vollständig gedrückt ist
+        throttleR -= xboxController.get_button(5) * (1/(2*fps))
+        if throttleR > 1:
+            throttleR = 1
+        if throttleR < 0:
+            throttleR = 0
+        print("Throttle Right: {}".format(throttleR))
+
+    # Backwards
     clock.tick(fps)
     
 
