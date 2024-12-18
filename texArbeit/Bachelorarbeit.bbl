@@ -105,6 +105,38 @@
       \verb 10.1109/rteict.2016.7807831
       \endverb
     \endentry
+    \entry{Venkataraman2015}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=0989f033c794cc516b653e1c2a35d74c}{%
+           family={Venkataraman},
+           familyi={V\bibinitperiod},
+           given={Aditya},
+           giveni={A\bibinitperiod}}}%
+        {{hash=a8770570314c306f85a85458bf5695f4}{%
+           family={Jagadeesha},
+           familyi={J\bibinitperiod},
+           given={Kishore\bibnamedelima Kumar},
+           giveni={K\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+      }
+      \strng{namehash}{719faded4591961d8ed2ddc1ff8e9d93}
+      \strng{fullhash}{719faded4591961d8ed2ddc1ff8e9d93}
+      \strng{fullhashraw}{719faded4591961d8ed2ddc1ff8e9d93}
+      \strng{bibnamehash}{719faded4591961d8ed2ddc1ff8e9d93}
+      \strng{authorbibnamehash}{719faded4591961d8ed2ddc1ff8e9d93}
+      \strng{authornamehash}{719faded4591961d8ed2ddc1ff8e9d93}
+      \strng{authorfullhash}{719faded4591961d8ed2ddc1ff8e9d93}
+      \strng{authorfullhashraw}{719faded4591961d8ed2ddc1ff8e9d93}
+      \field{labelalpha}{VJ15}
+      \field{sortinit}{V}
+      \field{sortinithash}{afb52128e5b4dc4b843768c0113d673b}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Architecture}
+      \field{number}{64}
+      \field{title}{Evaluation of inter-process communication mechanisms}
+      \field{volume}{86}
+      \field{year}{2015}
+    \endentry
     \entry{Voss2008}{book}{}{}
       \name{author}{1}{}{%
         {{hash=9d4ad8bde782945f70c3a13cb618b07f}{%

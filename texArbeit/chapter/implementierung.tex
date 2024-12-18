@@ -17,5 +17,18 @@ Welches Dateiformat wird für Controllersignale benutzt?
 Wie werden diese effizient genug in Motorsignale übersetzt?
 Kann ich einfach originale Steuerungssignale unterdrücken?
 
+Es gibt zuerst ein Programm, welches die Signale des Controllers erhält und in passende Variablen in Python interpretiert. Diese Variablen müssen
+dann in Nachrichten für den Can-Bus umgewandelt werden. Hierfür gibt es ein weiteres Programm. Damit die beiden Programme miteinander kommunizieren
+können, wird Inter-Process-Communication (IPC) benutzt. Als Methode werden hierbei Pipes benutzt. Diese sind einfach zu implementieren und haben
+eine automatische Synchronisierung zwischen den Prozessen. Das bedeutet, dass die Prozesse nicht aufeinander warten müssen, sondern einfach
+weiterarbeiten können. Es wird durch den Puffer der Pipe sichergestellt. Wenn dieser voll ist, wird der schreibende Prozess angehalten, bis der
+lesende Prozess den Puffer geleert hat. Dies ist ein einfaches und effizientes Verfahren, 
+um die beiden Prozesse zu synchronisieren \cite{Venkataraman2015}. 
+
+\begin{itemize}
+    \item Anfangsbeispiel: \href{https://www.geeksforgeeks.org/inter-process-communication-ipc/}{geeksforgeeks} (abgerufen am 18.12.2024)
+    \item 
+\end{itemize}
+
 \section{Eingabe-Interface}
 Wie wird die Rückmeldung tatsächlich aussehen?

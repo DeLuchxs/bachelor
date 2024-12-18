@@ -80,7 +80,7 @@ while running and len(joysticks) > 0:
         # Achse 4 muss normalisiert werden, da sie bei -1 anfängt und bei 1 aufhört -> soll bei 0 anfangen und bis 1 gehen
         normalisedAxisL = (xboxController.get_axis(triggerLT) + 1) / 2
         throttleL += normalisedAxisL * (1/(2*fps)) # bei 2 Sekunden soll der Throttle-Wert 1 betragen, wenn Trigger vollständig gedrückt ist
-        throttleL -= xboxController.get_button(buttonLB) * (1/(2*fps))
+        throttleL -= xboxController.get_button(buttonLB) * (1/(20*fps))
         if throttleL > 1:
             throttleL = 1
         if throttleL < 0:
@@ -92,7 +92,7 @@ while running and len(joysticks) > 0:
         # Achse 4 muss normalisiert werden, da sie bei -1 anfängt und bei 1 aufhört -> soll bei 0 anfangen und bis 1 gehen
         normalisedAxisR = (xboxController.get_axis(triggerRT) + 1) / 2
         throttleR += normalisedAxisR * (1/(2*fps)) # bei 2 Sekunden soll der Throttle-Wert 1 betragen, wenn Trigger vollständig gedrückt ist
-        throttleR -= xboxController.get_button(buttonRB) * (1/(2*fps))
+        throttleR -= xboxController.get_button(buttonRB) * (1/(20*fps))
         if throttleR > 1:
             throttleR = 1
         if throttleR < 0:

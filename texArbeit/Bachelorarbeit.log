@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.11.22)  11 DEC 2024 13:47
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.11.22)  18 DEC 2024 12:45
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1276,12 +1276,12 @@ Overfull \hbox (6.9603pt too wide) in paragraph at lines 7--8
 []\OT1/Alegreya-LF/regular/n/10.95 Bibliothek: Py-ga-me f[]ur die Con-trol-ler-ein-ga-be (https://www.pygame.org/docs/(abgerufen
  []
 
-)
+
 
 [6
 
 
-]
+])
 
 [7] (./chapter/sicherheit.tex
 Kapitel 5.
@@ -1392,18 +1392,18 @@ Package logreq Info: Writing requests to 'Bachelorarbeit.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 34910 strings out of 473361
- 659428 string characters out of 5725029
- 1487939 words of memory out of 5000000
- 57383 multiletter control sequences out of 15000+600000
+ 34915 strings out of 473361
+ 659631 string characters out of 5725029
+ 1488015 words of memory out of 5000000
+ 57387 multiletter control sequences out of 15000+600000
  665810 words of font info for 78 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  99i,15n,104p,752b,2465s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2024/texmf-dist/fonts/type1/huerta/alegreya/Alegreya-Bold.pfb><c:/texlive/2024/texmf-dist/fonts/type1/huerta/alegreya/Alegreya-Italic.pfb><c:/texlive/2024/texmf-dist/fonts/type1/huerta/alegreya/Alegreya-Regular.pfb><c:/texlive/2024/texmf-dist/fonts/type1/huerta/alegreya/AlegreyaSans-Bold.pfb><c:/texlive/2024/texmf-dist/fonts/type1/huerta/alegreya/AlegreyaSans-Italic.pfb><c:/texlive/2024/texmf-dist/fonts/type1/huerta/alegreya/AlegreyaSans-Regular.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/ccicons/ccicons.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on Bachelorarbeit.pdf (18 pages, 3387077 bytes).
+Output written on Bachelorarbeit.pdf (18 pages, 3388420 bytes).
 PDF statistics:
- 508 PDF objects out of 1000 (max. 8388607)
- 344 compressed objects within 4 object streams
- 53 named destinations out of 1000 (max. 500000)
+ 512 PDF objects out of 1000 (max. 8388607)
+ 348 compressed objects within 4 object streams
+ 54 named destinations out of 1000 (max. 500000)
  483 words of extra memory for PDF output out of 10000 (max. 10000000)
 
