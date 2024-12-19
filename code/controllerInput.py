@@ -1,6 +1,6 @@
 import pygame
 import platform
-import os
+import sys
 from time import sleep
 
 pygame.init()
@@ -30,10 +30,6 @@ if platform.system() == "Linux":
     triggerLT = 5
     triggerRT = 4
 
-# pipes
-parent_conn, child_conn = os.pipe()
-
-
 joysticks = []
 for i in range(0, pygame.joystick.get_count()):
     joysticks.append(pygame.joystick.Joystick(i))
@@ -54,22 +50,23 @@ while running and len(joysticks) > 0:
                 backwards = not backwards
                 throttleR = 0
                 throttleL = 0
-                print("Backwards: {}".format(backwards))
+                print("backwards: {}".format(backwards))
+                sys.stdout.flush()
                 if backwards:
-                    print("Der Rückwärtsgang wird eingelegt, bitte warten...")
+                    #print("Der Rückwärtsgang wird eingelegt, bitte warten...")
                     sleep(10)
-                    print("Der Rückwärtsgang wurde eingelegt")
+                    #print("Der Rückwärtsgang wurde eingelegt")
                     pygame.event.clear()
                 elif not backwards:
-                    print("Der Vorwärtsgang wird eingelegt, bitte warten...")
+                    #print("Der Vorwärtsgang wird eingelegt, bitte warten...")
                     sleep(10)
-                    print("Der Vorwärtsgang wurde eingelegt")
+                    #print("Der Vorwärtsgang wurde eingelegt")
                     pygame.event.clear()
 #        elif event.type == pygame.JOYAXISMOTION:
 #            print("Axis: {}".format(event.axis))
 #            print("Axis: {}".format(event.value))
-        elif event.type == pygame.JOYHATMOTION:
-            print("Hat: {}".format(event.value))
+        #elif event.type == pygame.JOYHATMOTION:
+            #print("Hat: {}".format(event.value))
     
     # Rudder Angle
     if (xboxController.get_axis(0) < -0.1 or xboxController.get_axis(0) > 0.1):
@@ -78,7 +75,8 @@ while running and len(joysticks) > 0:
             rudderAngle = 1
         elif rudderAngle < -1:
             rudderAngle = -1
-        print("Rudder: {}".format(rudderAngle))
+        print("rudderAngle: {}".format(rudderAngle))
+        sys.stdout.flush()
          
     # Throttle Left
     if (xboxController.get_axis(triggerLT) > -0.9 or xboxController.get_button(buttonLB) == 1): 
@@ -90,7 +88,8 @@ while running and len(joysticks) > 0:
             throttleL = 1
         if throttleL < 0:
             throttleL = 0
-        print("Throttle Left: {}".format(throttleL))
+        print("throttleL: {}".format(throttleL))
+        sys.stdout.flush()
 
     # Throttle Right
     if (xboxController.get_axis(triggerRT) > -0.9 or xboxController.get_button(buttonRB) == 1): #Windows: RT = 5 RB = 5, Linux: RT = 4 RB = 7 
@@ -102,12 +101,8 @@ while running and len(joysticks) > 0:
             throttleR = 1
         if throttleR < 0:
             throttleR = 0
-        print("Throttle Right: {}".format(throttleR))
+        print("throttleR: {}".format(throttleR))
+        sys.stdout.flush()
 
-    # Send data to canInterpreter.py
-    os.write(parent_conn, "throttleL: {}\n".format(throttleL).encode())
-    os.write(parent_conn, "throttleR: {}\n".format(throttleR).encode())
-    os.write(parent_conn, "rudderAngle: {}\n".format(rudderAngle).encode())
-    os.write(parent_conn, "backwards: {}\n".format(backwards).encode())
     clock.tick(fps)
 

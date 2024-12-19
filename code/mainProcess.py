@@ -1,44 +1,37 @@
-import os
 import subprocess
+import platform
 
-def main():
-    # Create a pipe
-    read_fd, write_fd = os.pipe()
+path = None
+# Check the platform to determine the correct command
+linux_path = '.venv/bin/python'
+windows_path = '.venv/Scripts/python'
 
-    try:
-        # Launch controllerInput.py
-        controller_process = subprocess.Popen(
-            ['python', 'controllerInput.py'],  # Adjust for your environment (e.g., 'python3')
-            pass_fds=(write_fd,),              # Pass the write end of the pipe
-            env={**os.environ, 'WRITE_PIPE': str(write_fd)}  # Pass pipe ID via environment
-        )
+if platform.system() == "Linux":
+    path = linux_path
+else:
+    path = windows_path
 
-        # Launch canInterpreter.py
-        interpreter_process = subprocess.Popen(
-            ['python', 'canInterpreter.py'], 
-            pass_fds=(read_fd,),               # Pass the read end of the pipe
-            env={**os.environ, 'READ_PIPE': str(read_fd)}    # Pass pipe ID via environment
-        )
 
-        # Close the pipe ends in the parent process
-        os.close(read_fd)
-        os.close(write_fd)
+# Start the controllerInput process
+controller_process = subprocess.Popen(
+    [path, 'controllerInput.py'],  # Replace with 'python3' if necessary
+    stdout=subprocess.PIPE,            # Pipe the output
+    text=True                          # Treat as text
+)
 
-        # Wait for both processes to complete
-        controller_process.wait()
-        interpreter_process.wait()
+# Start the canInterpreter process
+interpreter_process = subprocess.Popen(
+    [path, 'canInterpreter.py'], 
+    stdin=controller_process.stdout,   # Use controller's stdout as input
+    text=True                          # Treat as text
+)
 
-    except Exception as e:
-        print(f"An error occurred: {e}")
-    finally:
-        try:
-            os.close(read_fd)
-        except OSError:
-            pass
-        try:
-            os.close(write_fd)
-        except OSError:
-            pass
-
-if __name__ == "__main__":
-    main()
+try:
+    # Keep the main script running while the two processes communicate
+    controller_process.wait()          # Wait for controllerInput.py to finish (if it ends)
+    interpreter_process.wait()         # Wait for canInterpreter.py to finish (if it ends)
+except KeyboardInterrupt:
+    # Handle Ctrl+C gracefully
+    print("Stopping processes...")
+    controller_process.terminate()
+    interpreter_process.terminate()
