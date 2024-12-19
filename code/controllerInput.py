@@ -1,5 +1,6 @@
 import pygame
 import platform
+import os
 from time import sleep
 
 pygame.init()
@@ -28,6 +29,10 @@ if platform.system() == "Linux":
     buttonRB = 7
     triggerLT = 5
     triggerRT = 4
+
+# pipes
+parent_conn, child_conn = os.pipe()
+
 
 joysticks = []
 for i in range(0, pygame.joystick.get_count()):
@@ -99,8 +104,10 @@ while running and len(joysticks) > 0:
             throttleR = 0
         print("Throttle Right: {}".format(throttleR))
 
-    # Backwards
+    # Send data to canInterpreter.py
+    os.write(parent_conn, "throttleL: {}\n".format(throttleL).encode())
+    os.write(parent_conn, "throttleR: {}\n".format(throttleR).encode())
+    os.write(parent_conn, "rudderAngle: {}\n".format(rudderAngle).encode())
+    os.write(parent_conn, "backwards: {}\n".format(backwards).encode())
     clock.tick(fps)
-    
 
-# To-Do: Bedien-Logik implementieren
