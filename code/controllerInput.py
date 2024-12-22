@@ -103,6 +103,5 @@ while running and len(joysticks) > 0:
             throttleR = 0
         print("throttleR: {}".format(throttleR))
         sys.stdout.flush()
-
     clock.tick(fps)
 
