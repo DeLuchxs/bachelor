@@ -1,7 +1,10 @@
+import os
+os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import pygame
 import platform
 import sys
 from time import sleep
+
 
 pygame.init()
 
@@ -40,7 +43,7 @@ for i in range(0, pygame.joystick.get_count()):
 if len(joysticks) == 0:
     print("Kein Controller gefunden")
 else:
-    print("Controller verbunden: {}".format(joysticks[0].get_name()))
+    print("Controller verbunden ({})".format(joysticks[0].get_name()))
     xboxController = joysticks[0]
 
 while running and len(joysticks) > 0:
@@ -51,16 +54,18 @@ while running and len(joysticks) > 0:
                 throttleR = 0
                 throttleL = 0
                 print("backwards: {}".format(backwards))
+                print("throttleL: {}".format(throttleL))
+                print("throttleR: {}".format(throttleR))
                 sys.stdout.flush()
                 if backwards:
-                    #print("Der Rückwärtsgang wird eingelegt, bitte warten...")
+                    print("Der Rückwärtsgang wird eingelegt, bitte warten...")
                     sleep(10)
-                    #print("Der Rückwärtsgang wurde eingelegt")
+                    print("Der Rückwärtsgang wurde eingelegt")
                     pygame.event.clear()
                 elif not backwards:
-                    #print("Der Vorwärtsgang wird eingelegt, bitte warten...")
+                    print("Der Vorwärtsgang wird eingelegt, bitte warten...")
                     sleep(10)
-                    #print("Der Vorwärtsgang wurde eingelegt")
+                    print("Der Vorwärtsgang wurde eingelegt")
                     pygame.event.clear()
 #        elif event.type == pygame.JOYAXISMOTION:
 #            print("Axis: {}".format(event.axis))
@@ -82,8 +87,8 @@ while running and len(joysticks) > 0:
     if (xboxController.get_axis(triggerLT) > -0.9 or xboxController.get_button(buttonLB) == 1): 
         # Achse 4 muss normalisiert werden, da sie bei -1 anfängt und bei 1 aufhört -> soll bei 0 anfangen und bis 1 gehen
         normalisedAxisL = (xboxController.get_axis(triggerLT) + 1) / 2
-        throttleL += normalisedAxisL * (1/(2*fps)) # bei 2 Sekunden soll der Throttle-Wert 1 betragen, wenn Trigger vollständig gedrückt ist
-        throttleL -= xboxController.get_button(buttonLB) * (1/(20*fps))
+        throttleL += normalisedAxisL * (1/(20*fps)) # bei 20 Sekunden soll der Throttle-Wert 1 betragen, wenn Trigger vollständig gedrückt ist
+        throttleL -= xboxController.get_button(buttonLB) * (1/(2*fps))
         if throttleL > 1:
             throttleL = 1
         if throttleL < 0:
@@ -95,8 +100,8 @@ while running and len(joysticks) > 0:
     if (xboxController.get_axis(triggerRT) > -0.9 or xboxController.get_button(buttonRB) == 1): #Windows: RT = 5 RB = 5, Linux: RT = 4 RB = 7 
         # Achse 4 muss normalisiert werden, da sie bei -1 anfängt und bei 1 aufhört -> soll bei 0 anfangen und bis 1 gehen
         normalisedAxisR = (xboxController.get_axis(triggerRT) + 1) / 2
-        throttleR += normalisedAxisR * (1/(2*fps)) # bei 2 Sekunden soll der Throttle-Wert 1 betragen, wenn Trigger vollständig gedrückt ist
-        throttleR -= xboxController.get_button(buttonRB) * (1/(20*fps))
+        throttleR += normalisedAxisR * (1/(20*fps)) # bei 20 Sekunden soll der Throttle-Wert 1 betragen, wenn Trigger vollständig gedrückt ist
+        throttleR -= xboxController.get_button(buttonRB) * (1/(2*fps))
         if throttleR > 1:
             throttleR = 1
         if throttleR < 0:

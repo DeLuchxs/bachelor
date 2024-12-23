@@ -17,3 +17,20 @@
   year={2008},
   publisher={Copperhill Media}
 }
+
+# CAN-Bus Setup für Testings
+- 2 UCAN-Boards
+- 1 Raspberry Pi mit Raspberry Pi OS (64-bit)
+- 1 Laptop mit Arch Linux
+- can-utils
+- https://canbus.esoterical.online/Getting_Started.html
+- https://wiki.fysetc.com/UCAN/
+- bitrate zum Testen: 500000
+
+- CanH: Gelbes Kabel
+- CanL: Weißes Kabel
+- GND: Schwarzes Kabel
+
+- wenn CanBus aufgesetzt ist, dann cansend und candump verwenden
+- cansend can0 123#DEADBEEF (123 ist der Identifier, DEADBEEF sind die Daten in Hexadezimal)
+- candump can0
