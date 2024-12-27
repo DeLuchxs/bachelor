@@ -10,6 +10,9 @@ value = 0
 
 import sys
 
+os.system("sudo ip link set can0 down")
+os.system("sudo ip link set can0 up type can bitrate 500000")
+
 # Continuously read data from stdin
 while True:
     line = sys.stdin.readline()  # Read a single line of input
@@ -41,5 +44,14 @@ while True:
     # Print the received data
     #print(f"throttleL: {throttleL},\nthrottleR: {throttleR},\nrudderAngle: {rudderAngle},\nbackwards: {backwards}")
     
-    # Send the received data to the CAN-Bus
-    
+    # Convert the values to a fixed-width 2-character hexadecimal string
+    throttleL_hex = f"{int(throttleL*100):02X}"
+    throttleR_hex = f"{int(throttleR*100):02X}"
+    rudderAngle_hex = f"{int((rudderAngle+1)*100):02X}"
+    backwards_hex = "01" if backwards else "00"
+
+    # Send the data to the CAN bus
+    if line:
+        os.system(f"sudo cansend can0 001#{throttleL_hex}{throttleR_hex}{rudderAngle_hex}{backwards_hex}")
+
+
