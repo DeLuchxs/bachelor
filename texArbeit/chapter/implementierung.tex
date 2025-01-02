@@ -9,8 +9,20 @@
     \item Beispielscode für Pygame: \href{https://github.com/kevinmcaleer/xbox_controller}{github} (abgerufen am 08.12.2024)
 \end{itemize}
 
+Im ersten Schritt wird der Controller mit dem Raspberry Pi verbunden. Der Raspberry Pi wird mit Raspberry Pi OS betrieben. 
+Dieses Betriebssystem ist eine auf Debian basierende Distribution, die speziell für den Raspberry Pi entwickelt wurde.
+Als Standard-Bluetooth-Treiber wird \href{https://www.bluez.org/}{BlueZ} verwendet. Dieser ist bereits vorinstalliert und muss 
+nicht extra installiert werden. Da es sich in diesem Fall um einen XBox Controllers handelt, müssen die richtigen Treiber
+(\href{https://github.com/xboxdrv/xboxdrv}{xboxdrv}) installiert werden. Diese können im apt-Repository gefunden werden.
+Zusätzlich muss der Enhanced Re-Transmission Mode (ERTM) deaktiviert werden. Dieser Modus ist standardmäßig aktiviert und
+verhindert die korrekte Verbindung des Controllers. Zum Schluss soll der Controller auf die aktuelle Firmware geupdatet werden.
+Dies kann über die Xbox Accessories App gemacht werden, allerdings ist dies nur auf Windows möglich. Nun kann 
+der Controller mit dem Raspberry Pi verbunden werden. Dies geschieht über die Bluetooth-Einstellungen des Raspberry Pi.
+Um die Verbindung zu testen, kann eine Webapplikation benutzt werden. Diese zeigt die Eingaben des Controllers an. Zum 
+Beispiel: \href{https://hardwaretester.com/gamepad}{hardwaretester} (abgerufen am 02.01.2025)
 
-Benutzte Hardware, Protokolle, Libraries
+
+Benutzte Hardware, Protokolle, Libraries 
 
 \section{Übersetzung Signale Controller - Schiff}
 Welches Dateiformat wird für Controllersignale benutzt?
