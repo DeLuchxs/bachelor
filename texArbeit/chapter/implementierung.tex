@@ -5,7 +5,6 @@
 \begin{itemize}
     \item benutzt wird Python 3.12.8, da einfache Syntax und gute Bibliotheken
     \item Bibliothek: Pygame für die Controllereingabe (https://www.pygame.org/docs/(abgerufen am 08.12.2024))
-    \item Pygame braucht ein GUI, andersfalls wird es Fehler ausgeben
     \item Beispielscode für Pygame: \href{https://github.com/kevinmcaleer/xbox_controller}{github} (abgerufen am 08.12.2024)
 \end{itemize}
 
@@ -19,7 +18,17 @@ verhindert die korrekte Verbindung des Controllers. Zum Schluss soll der Control
 Dies kann über die Xbox Accessories App gemacht werden, allerdings ist dies nur auf Windows möglich. Nun kann 
 der Controller mit dem Raspberry Pi verbunden werden. Dies geschieht über die Bluetooth-Einstellungen des Raspberry Pi.
 Um die Verbindung zu testen, kann eine Webapplikation benutzt werden. Diese zeigt die Eingaben des Controllers an. Zum 
-Beispiel: \href{https://hardwaretester.com/gamepad}{hardwaretester} (abgerufen am 02.01.2025)
+Beispiel: \href{https://hardwaretester.com/gamepad}{hardwaretester} (abgerufen am 02.01.2025) 
+\\
+Als Programmiersprache wird Python 3 benutzt. Dies ist eine einfache Sprache, die viele Bibliotheken hat. Für die
+Controller-Eingaben wird die Bibliothek Pygame benutzt. Diese Bibliothek ist einfach zu benutzen und hat viele Funktionen.
+Sobald der Controller mit dem Raspberry Pi verbunden ist, wird dieser von Pygame erkannt. Die Eingaben des Controllers
+können dann in Variablen gespeichert werden. Dabei gilt es zu beachten, dass der Gashebel oder die Ruderposition nicht
+zu schnell verändert werden. Dies könnte zu unerwünschten Ergebnissen führen. Daher werden diese Werte mit Tasten des
+Controllers eingegeben, welche nicht nur eine binäre Eingabe haben. Diese werden als Achsen bezeichnet. Diese ermöglichen
+eine stufenlose Eingabe. Bei einer vollständigen Eingabe soll die Gashebelposition nach 20 Sekunden 100\% erreichen.
+So ist sichergestellt, dass die Gashebelposition nicht zu schnell verändert wird. Die Ruderposition soll nach 2 Sekunden
+in jede Richtung jeweils 100\% erreichen. Dies ist ein Kompromiss zwischen Geschwindigkeit und Genauigkeit.
 
 
 Benutzte Hardware, Protokolle, Libraries 

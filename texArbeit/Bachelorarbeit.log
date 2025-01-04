@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024/Arch Linux) (preloaded format=pdflatex 2024.12.3)  2 JAN 2025 12:53
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024/Arch Linux) (preloaded format=pdflatex 2024.12.3)  4 JAN 2025 12:28
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1264,22 +1264,17 @@ File: images/rueckseite.jpg Graphic file (type jpg)
 <use images/rueckseite.jpg>
 Package pdftex.def Info: images/rueckseite.jpg  used on input line 28.
 (pdftex.def)             Requested size: 398.48776pt x 223.33382pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 48--55
-
- []
-
-[6
+ [6
 pdfTeX warning (ext4): destination with the same identifier (name{figure.3.1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.55     \item
-               Was passiert bei Veränderung der Gashebelposition?
+l.64 
+     
 pdfTeX warning (ext4): destination with the same identifier (name{figure.3.2}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.55     \item
-               Was passiert bei Veränderung der Gashebelposition? <./images/vorderseite.jpg> <./images/rueckseite.jpg>]) [7] (./chapter/implementierung.tex
+l.64 
+      <./images/vorderseite.jpg> <./images/rueckseite.jpg>]) [7] (./chapter/implementierung.tex
 Kapitel 4.
 \openout4 = `Bachelorarbeit.mtc'.
 
@@ -1303,13 +1298,13 @@ Overfull \hbox (6.9603pt too wide) in paragraph at lines 7--8
 [8
 
 
-]) [9] (./chapter/sicherheit.tex
+]) [9] [10] (./chapter/sicherheit.tex
 Kapitel 5.
 \openout4 = `Bachelorarbeit.mtc'.
 
 \openout4 = `Bachelorarbeit.mtc'.
 
-(./Bachelorarbeit.mtc5)) [10
+(./Bachelorarbeit.mtc5)) [11
 
 
 ] (./chapter/schluss.tex
@@ -1318,7 +1313,7 @@ Kapitel 6.
 
 \openout4 = `Bachelorarbeit.mtc'.
 
-(./Bachelorarbeit.mtc6)) [11
+(./Bachelorarbeit.mtc6)) [12
 
 
 ] (./chapter/anhang.tex
@@ -1327,7 +1322,7 @@ Kapitel VII.
 
 \openout4 = `Bachelorarbeit.mtc'.
 
-(./Bachelorarbeit.mtc7)) [12
+(./Bachelorarbeit.mtc7)) [13
 
 
 ]
@@ -1339,7 +1334,7 @@ LaTeX Font Info:    Font shape `OT1/Alegreya-LF/regular/it' will be
 \tf@lof=\write8
 \openout8 = `Bachelorarbeit.lof'.
 
- [13
+ [14
 
 ]
 LaTeX Font Info:    Font shape `OT1/Alegreya-LF/m/it' in size <10.95> not available
@@ -1405,18 +1400,18 @@ Package logreq Info: Writing requests to 'Bachelorarbeit.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 34975 strings out of 476023
- 657352 string characters out of 5791582
- 1940187 words of memory out of 5000000
+ 34976 strings out of 476023
+ 657359 string characters out of 5791582
+ 1941187 words of memory out of 5000000
  56450 multiletter control sequences out of 15000+600000
  665810 words of font info for 78 fonts, out of 8000000 for 9000
  16 hyphenation exceptions out of 8191
  99i,16n,104p,739b,2465s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf-dist/fonts/type1/huerta/alegreya/Alegreya-Bold.pfb></usr/share/texmf-dist/fonts/type1/huerta/alegreya/Alegreya-Italic.pfb></usr/share/texmf-dist/fonts/type1/huerta/alegreya/Alegreya-Regular.pfb></usr/share/texmf-dist/fonts/type1/huerta/alegreya/AlegreyaSans-Bold.pfb></usr/share/texmf-dist/fonts/type1/huerta/alegreya/AlegreyaSans-Italic.pfb></usr/share/texmf-dist/fonts/type1/huerta/alegreya/AlegreyaSans-Regular.pfb></usr/share/texmf-dist/fonts/type1/public/ccicons/ccicons.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on Bachelorarbeit.pdf (20 pages, 3491798 bytes).
+Output written on Bachelorarbeit.pdf (21 pages, 3494846 bytes).
 PDF statistics:
- 533 PDF objects out of 1000 (max. 8388607)
- 365 compressed objects within 4 object streams
- 58 named destinations out of 1000 (max. 500000)
+ 537 PDF objects out of 1000 (max. 8388607)
+ 368 compressed objects within 4 object streams
+ 59 named destinations out of 1000 (max. 500000)
  493 words of extra memory for PDF output out of 10000 (max. 10000000)
 
