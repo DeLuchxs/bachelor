@@ -1,6 +1,6 @@
-{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {2.1}CanBus}{\reset@font\mtcSfont 2}{section.2.1}}
-{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {2.2}Raspberry Pi}{\reset@font\mtcSfont 3}{section.2.2}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2.2.1}Raspberry Pi als Rogue Device}{\reset@font\mtcSSfont 3}{subsection.2.2.1}}
-{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {2.3}State of the Art}{\reset@font\mtcSfont 3}{section.2.3}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2.3.1}Anbindung von Raspberry Pi an CanBus}{\reset@font\mtcSSfont 4}{subsection.2.3.1}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2.3.2}Übersetzung von CanBus Nachrichten}{\reset@font\mtcSSfont 4}{subsection.2.3.2}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {2.1}CanBus}{\reset@font\mtcSfont 3}{section.2.1}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {2.2}Raspberry Pi}{\reset@font\mtcSfont 4}{section.2.2}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2.2.1}Raspberry Pi als Rogue Device}{\reset@font\mtcSSfont 4}{subsection.2.2.1}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {2.3}State of the Art}{\reset@font\mtcSfont 4}{section.2.3}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2.3.1}Anbindung von Raspberry Pi an CanBus}{\reset@font\mtcSSfont 5}{subsection.2.3.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2.3.2}Übersetzung von CanBus Nachrichten}{\reset@font\mtcSSfont 5}{subsection.2.3.2}}
