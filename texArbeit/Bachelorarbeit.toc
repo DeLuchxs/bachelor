@@ -20,12 +20,12 @@
 \contentsline {chapter}{\numberline {5}Sicherheit}{12}{chapter.5}%
 \contentsline {section}{\numberline {5.1}Schwachstellen}{12}{section.5.1}%
 \contentsline {section}{\numberline {5.2}Schutzmaßnahmen}{12}{section.5.2}%
-\contentsline {section}{\numberline {5.3}Relevanz für andere Schiffe}{12}{section.5.3}%
-\contentsline {chapter}{\numberline {6}Abschließende Betrachtung}{13}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Fazit}{13}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Ausblick}{13}{section.6.2}%
-\contentsline {chapter}{\numberline {VII}Anhang}{14}{chapter.7}%
-\contentsline {section}{\numberline {VII.1}Quellcode}{14}{section.7.1}%
-\contentsline {section}{\numberline {VII.2}Schaltpläne}{14}{section.7.2}%
-\contentsline {chapter}{Abbildungen}{15}{section.7.2}%
+\contentsline {section}{\numberline {5.3}Relevanz für andere Schiffe}{13}{section.5.3}%
+\contentsline {chapter}{\numberline {6}Abschließende Betrachtung}{14}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Fazit}{14}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Ausblick}{14}{section.6.2}%
+\contentsline {chapter}{\numberline {VII}Anhang}{15}{chapter.7}%
+\contentsline {section}{\numberline {VII.1}Quellcode}{15}{section.7.1}%
+\contentsline {section}{\numberline {VII.2}Schaltpläne}{15}{section.7.2}%
+\contentsline {chapter}{Abbildungen}{16}{section.7.2}%
 \contentsline {chapter}{Literatur}{}{chapter*.1}%

@@ -3,10 +3,33 @@
 
 \section{Schwachstellen}
 Welche habe ich benutzt und welche weiteren möglichen Schwachstellen habe ich gefunden?
-
+\begin{itemize}
+    \item Kommunikation auf dem Can-Bus ist nicht verschlüsselt
+    \item Keine Authentifizierung der Nachrichten
+    \item Einfach, weiteres Gerät in das System zu integrieren
+    \item Serielle Schnittstelle am Autopiloten unverschlüsselt
+    \item lediglich physischer Zugriff notwendig
+    \item Daten in bestimmten Format, allerdings mit recht wenig Aufwand zu verstehen
+\end{itemize}
 \section{Schutzmaßnahmen}
 Welche gibt es bereits?
+\begin{itemize}
+    \item richtige Baudrate muss eingestellt sein
+    \item keine dedizierten Schutzmaßnahmen auf dem Forschungsschiff
+\end{itemize}
 Was sind weitere Möglichkeiten?
+\begin{itemize}
+    \item Verschlüsselung der Kommunikation
+    \item Authentifizierung der Nachrichten
+    \item Überwachung der Kommunikation
+    \item regelmäßige Überprüfung der Kommunikation
+    \item Auf größeren Schiffen: Trennung der Passagiernetzwerke von den Steuerungssystemen
+\end{itemize}
 
 \section{Relevanz für andere Schiffe}
 Gibt es solche Angriffsmöglichkeiten auch auf anderen Schiffen?
+\begin{itemize}
+    \item Can-Bus häufig genutzt, häufig unverschlüsselt
+    \item besonders auf größeren Schiffen ist das Ruder nicht mehr mechanisch, sondern elektronisch
+    \item Angriff auf das Steuerungssystem könnte katastrophale Folgen haben
+\end{itemize}

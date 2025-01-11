@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.11.22)  8 JAN 2025 11:10
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.11.22)  11 JAN 2025 12:07
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1336,12 +1336,14 @@ Kapitel 5.
 
 \openout4 = `Bachelorarbeit.mtc'.
 
-(./Bachelorarbeit.mtc5))
+(./Bachelorarbeit.mtc5)
 
 [12
 
 
-] (./chapter/schluss.tex
+])
+
+[13] (./chapter/schluss.tex
 Kapitel 6.
 \openout4 = `Bachelorarbeit.mtc'.
 
@@ -1349,7 +1351,7 @@ Kapitel 6.
 
 (./Bachelorarbeit.mtc6))
 
-[13
+[14
 
 
 ] (./chapter/anhang.tex
@@ -1360,7 +1362,7 @@ Kapitel VII.
 
 (./Bachelorarbeit.mtc7))
 
-[14
+[15
 
 
 ]
@@ -1374,7 +1376,7 @@ LaTeX Font Info:    Font shape `OT1/Alegreya-LF/regular/it' will be
 
 
 
-[15
+[16
 
 ]
 LaTeX Font Info:    Font shape `OT1/Alegreya-LF/m/it' in size <10.95> not available
@@ -1444,18 +1446,18 @@ Package logreq Info: Writing requests to 'Bachelorarbeit.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 35164 strings out of 473361
- 663481 string characters out of 5725029
+ 35165 strings out of 473361
+ 663488 string characters out of 5725029
  1494117 words of memory out of 5000000
  57624 multiletter control sequences out of 15000+600000
  665810 words of font info for 78 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  99i,16n,104p,752b,2465s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2024/texmf-dist/fonts/type1/huerta/alegreya/Alegreya-Bold.pfb><c:/texlive/2024/texmf-dist/fonts/type1/huerta/alegreya/Alegreya-Italic.pfb><c:/texlive/2024/texmf-dist/fonts/type1/huerta/alegreya/Alegreya-Regular.pfb><c:/texlive/2024/texmf-dist/fonts/type1/huerta/alegreya/AlegreyaSans-Bold.pfb><c:/texlive/2024/texmf-dist/fonts/type1/huerta/alegreya/AlegreyaSans-Italic.pfb><c:/texlive/2024/texmf-dist/fonts/type1/huerta/alegreya/AlegreyaSans-Regular.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/ccicons/ccicons.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on Bachelorarbeit.pdf (22 pages, 3495388 bytes).
+Output written on Bachelorarbeit.pdf (23 pages, 3496800 bytes).
 PDF statistics:
- 537 PDF objects out of 1000 (max. 8388607)
- 367 compressed objects within 4 object streams
- 56 named destinations out of 1000 (max. 500000)
+ 541 PDF objects out of 1000 (max. 8388607)
+ 370 compressed objects within 4 object streams
+ 57 named destinations out of 1000 (max. 500000)
  493 words of extra memory for PDF output out of 10000 (max. 10000000)
 
