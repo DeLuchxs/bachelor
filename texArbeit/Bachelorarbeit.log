@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.11.22)  11 JAN 2025 12:07
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.11.22)  16 JAN 2025 12:40
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1255,40 +1255,47 @@ Underfull \hbox (badness 10000) in paragraph at lines 12--13
 
 
 {c:/texlive/2024/texmf-dist/fonts/enc/dvips/alegreya/algr_nwaz6g.enc}]
+Underfull \hbox (badness 1418) in paragraph at lines 42--50
+\OT1/Alegreya-LF/regular/n/10.95 Identifier wur-de mit J1939 auf 29 Bit er-wei-tert um mehr ver-schie-de-ne Nach-rich-ten zu
+ []
+
+
+
+[4]
 LaTeX Font Info:    Font shape `OT1/Alegreya-LF/b/n' in size <12> not available
-(Font)              Font shape `OT1/Alegreya-LF/bold/n' tried instead on input line 41.
+(Font)              Font shape `OT1/Alegreya-LF/bold/n' tried instead on input line 61.
 LaTeX Font Info:    Font shape `OT1/Alegreya-LF/bold/n' will be
-(Font)              scaled to size 12.0pt on input line 41.
+(Font)              scaled to size 12.0pt on input line 61.
 
 
-[4])
+[5])
 
-[5] (./chapter/konzept.tex
+[6] (./chapter/konzept.tex
 Kapitel 3.
 \openout4 = `Bachelorarbeit.mtc'.
 
 \openout4 = `Bachelorarbeit.mtc'.
 
 (./Bachelorarbeit.mtc3)
-<images/vorderseite.jpg, id=356, 796.9775pt x 446.66875pt>
+<images/vorderseite.jpg, id=361, 796.9775pt x 446.66875pt>
 File: images/vorderseite.jpg Graphic file (type jpg)
 <use images/vorderseite.jpg>
 Package pdftex.def Info: images/vorderseite.jpg  used on input line 21.
 (pdftex.def)             Requested size: 398.48776pt x 223.33382pt.
 
 
-[6
+[7
 
 
 ]
-<images/rueckseite.jpg, id=361, 796.9775pt x 446.66875pt>
+<images/rueckseite.jpg, id=366, 796.9775pt x 446.66875pt>
 File: images/rueckseite.jpg Graphic file (type jpg)
 <use images/rueckseite.jpg>
 Package pdftex.def Info: images/rueckseite.jpg  used on input line 28.
 (pdftex.def)             Requested size: 398.48776pt x 223.33382pt.
 
 
-[7
+[8
 pdfTeX warning (ext4): destination with the same identifier (name{figure.3.1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
@@ -1300,7 +1307,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.3.2}) h
 l.64 
       <./images/vorderseite.jpg> <./images/rueckseite.jpg>])
 
-[8] (./chapter/implementierung.tex
+[9] (./chapter/implementierung.tex
 Kapitel 4.
 \openout4 = `Bachelorarbeit.mtc'.
 
@@ -1323,14 +1330,14 @@ Overfull \hbox (6.9603pt too wide) in paragraph at lines 7--8
 
 
 
-[9
+[10
 
 
 ])
 
-[10]
+[11]
 
-[11] (./chapter/sicherheit.tex
+[12] (./chapter/sicherheit.tex
 Kapitel 5.
 \openout4 = `Bachelorarbeit.mtc'.
 
@@ -1338,12 +1345,12 @@ Kapitel 5.
 
 (./Bachelorarbeit.mtc5)
 
-[12
+[13
 
 
 ])
 
-[13] (./chapter/schluss.tex
+[14] (./chapter/schluss.tex
 Kapitel 6.
 \openout4 = `Bachelorarbeit.mtc'.
 
@@ -1351,7 +1358,7 @@ Kapitel 6.
 
 (./Bachelorarbeit.mtc6))
 
-[14
+[15
 
 
 ] (./chapter/anhang.tex
@@ -1362,7 +1369,7 @@ Kapitel VII.
 
 (./Bachelorarbeit.mtc7))
 
-[15
+[16
 
 
 ]
@@ -1376,7 +1383,7 @@ LaTeX Font Info:    Font shape `OT1/Alegreya-LF/regular/it' will be
 
 
 
-[16
+[17
 
 ]
 LaTeX Font Info:    Font shape `OT1/Alegreya-LF/m/it' in size <10.95> not available
@@ -1446,18 +1453,18 @@ Package logreq Info: Writing requests to 'Bachelorarbeit.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 35165 strings out of 473361
- 663488 string characters out of 5725029
- 1494117 words of memory out of 5000000
+ 35166 strings out of 473361
+ 663495 string characters out of 5725029
+ 1494118 words of memory out of 5000000
  57624 multiletter control sequences out of 15000+600000
  665810 words of font info for 78 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  99i,16n,104p,752b,2465s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2024/texmf-dist/fonts/type1/huerta/alegreya/Alegreya-Bold.pfb><c:/texlive/2024/texmf-dist/fonts/type1/huerta/alegreya/Alegreya-Italic.pfb><c:/texlive/2024/texmf-dist/fonts/type1/huerta/alegreya/Alegreya-Regular.pfb><c:/texlive/2024/texmf-dist/fonts/type1/huerta/alegreya/AlegreyaSans-Bold.pfb><c:/texlive/2024/texmf-dist/fonts/type1/huerta/alegreya/AlegreyaSans-Italic.pfb><c:/texlive/2024/texmf-dist/fonts/type1/huerta/alegreya/AlegreyaSans-Regular.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/ccicons/ccicons.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on Bachelorarbeit.pdf (23 pages, 3496800 bytes).
+Output written on Bachelorarbeit.pdf (24 pages, 3498260 bytes).
 PDF statistics:
- 541 PDF objects out of 1000 (max. 8388607)
- 370 compressed objects within 4 object streams
- 57 named destinations out of 1000 (max. 500000)
+ 547 PDF objects out of 1000 (max. 8388607)
+ 375 compressed objects within 4 object streams
+ 58 named destinations out of 1000 (max. 500000)
  493 words of extra memory for PDF output out of 10000 (max. 10000000)
 

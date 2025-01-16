@@ -28,6 +28,26 @@ da dies zu einer größeren Last auf dem Bus führen würde. Bei einer fehlerhaf
 die Knoten mit einer Fehlermeldung, die wieder der gesamte Bus empfängt.
 \cite[Seite 80]{Voss2008}
 
+Data-Frames eines Can-Bus:
+\begin{itemize}
+    \item Start of Frame (SOF): Startbit
+    \item Arbitration Field: Identifier
+    \item Control Field: wird zur Datengröße und Nachrichtslänge verwendet
+    \item Data Field: eigentliche Nutzdaten
+    \item CRC Field: Prüfsumme
+    \item End of Frame (EOF): Stopbit
+\end{itemize}
+\cite[Seite 36]{Voss2008}
+
+Erweitertes Can-Protokoll: 
+Standard Can-Protokoll hat 11 Bit Identifier, erweitertes Can-Protokoll hat 29 Bit Identifier.
+Higher-Layer-Protokolle SAE J1939 wurde für die Kommunikation in Nutzfahrzeugen entwickelt.
+SAE = Society of Automotive Engineers\\
+Identifier wurde mit J1939 auf 29 Bit erweitert um mehr verschiedene Nachrichten zu ermöglichen.\\
+Auf einem Can-Bus können der Standard 11 Bit Identifier und der erweiterte 29 Bit Identifier gleichzeitig verwendet werden.
+Wenn zwei Nachrichten den gleichen 11 Bit Identifier haben, wird die Nachricht mit dem 11 Bit Identifier bevorzugt immer die
+höhere Priorität haben.
+
 
 \section{Raspberry Pi}
 \begin{itemize}
