@@ -1,5 +1,9 @@
 import os
+import cantools
+import can
 from time import sleep
+
+import cantools.database
 
 throttleL = 0
 throttleR = 0
@@ -12,6 +16,8 @@ import sys
 
 os.system("sudo ip link set can0 down")
 os.system("sudo ip link set can0 up type can bitrate 500000")
+
+db = cantools.database.load_file('dbc/j1939.dbc')
 
 # Continuously read data from stdin
 while True:
@@ -45,13 +51,16 @@ while True:
     #print(f"throttleL: {throttleL},\nthrottleR: {throttleR},\nrudderAngle: {rudderAngle},\nbackwards: {backwards}")
     
     # Convert the values to a fixed-width 2-character hexadecimal string
-    throttleL_hex = f"{int(throttleL*100):02X}"
-    throttleR_hex = f"{int(throttleR*100):02X}"
-    rudderAngle_hex = f"{int((rudderAngle+1)*100):02X}"
-    backwards_hex = "01" if backwards else "00"
+    #throttleL_hex = f"{int(throttleL*100):02X}"
+    #throttleR_hex = f"{int(throttleR*100):02X}"
+    #rudderAngle_hex = f"{int((rudderAngle+1)*100):02X}"
+    #backwards_hex = "01" if backwards else "00"
+
 
     # Send the data to the CAN bus
-    if line:
-        os.system(f"sudo cansend can0 001#{throttleL_hex}{throttleR_hex}{rudderAngle_hex}{backwards_hex}")
-
+    #if line:
+    #    os.system(f"sudo cansend can0 001#{throttleL_hex}{throttleR_hex}{rudderAngle_hex}{backwards_hex}")
+    can_bus = can.interface.Bus(channel='can0', bustype='socketcan')
+    throttleLInput = example_message.encode({'EngRequestedTorque_TorqueLimit': throttleL, 'EngOverrideCtrlMode': '01b'})
+    leftMessage = can.Message(arbitration_id=example_message.frame_id, data=throttleLInput)
 
