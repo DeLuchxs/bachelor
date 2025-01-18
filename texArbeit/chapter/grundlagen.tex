@@ -3,30 +3,35 @@
 \printmyminitoc{1}
 
 \section{CanBus}
-Wie wird ein CanBus verdrahtet und wie kommunizieren die Geräte?
-Was ist ein CanBus:
-\begin{itemize}
-    \item Technologie für serielle Netzwerke
-    \item 1983 von Bosch für die Autoindustrie entwickelt
-    \item Ist ein zweiadriger Bus, halbduplex
-    \item konventionellen seriellen Technologien überlegen in Funktionalität und Zuverlässigkeit
-    \item Kosteneffiizienter
-    \item Entwickelt für Echtzeitanwendungen mit 1Mbit/s Baudrate
-    \item Verwendung mittlwerweile allen möglichen Fahrzeugen, auch maritimer Bereich und Luftfahrt
-    \item Medizinische Geräte, Industrieanlagen, Gebäudeautomation
-\end{itemize}
-
+Bei einem Can-Bus handelt es sich um eine serielle Netzwerktechnologie, 
+welche mehrere Geräte mit einem Draht verbindet.
+Die Entwicklung des Can-Bus wurde von Bosch im Jahr 1983 begonnen. 1986 wurde der erste Can-Bus Standard 
+veröffentlicht.
+Die Motivation der Entwicklung war die effiziente Kommunikation zwischen den Steuergeräten in einem Auto. 
+Als günstige
+Nebenwirkung konnte damit die Kabelmenge reduziert werden, da alle Geräte mit einem Bus verbunden werden können.
+Durch die höhere Zuverlässigkeit und Funktionalität des Can-Bus, wurde dieser schnell in der Autoindustrie etabliert.
+Aber auch in anderen Sektoren, wie z.B. der Medizintechnik, der Gebäudeautomation oder der Luftfahrt, spielt der
+Can-Bus mittlwerweile eine wichtige Rolle.
 \cite[Seiten 2-10]{Voss2008}
 \\
-Aufbau:
-Alle Knoten sind mit zwei Drähten verbunden und sind gleichberechtigt.
+Man sprich von einem Bussystem, da alle Geräte gleichberechtigt sind. Dass heißt, dass jedes Gerät Nachrichten 
+senden und empfangen kann.
+Die Nachrichten werden nach Broadcasting-Prinzip übertragen. Jede Nachricht wird von allen Knoten empfangen, 
+aber nur die Knoten, die die Nachricht benötigen, verarbeiten sie. Diese werden nicht bestätigt,
+da dies zu einer größeren unnötigen Last auf dem Bus führen würde. Bei einer fehlerhaften Nachricht reagieren
+die Knoten mit einer Fehlermeldung, die wieder der gesamte Bus empfängt. Wenn ein Knoten dauerhaft fehlerhafte
+Nachrichten sendet, wird dieser vom Bus getrennt. Die auf dem Bus gesendeten Daten werden mit einer Nachrichten-ID
+versehen, die die Priorität der Nachricht angibt. Die Nachrichten mit der niedrigsten ID haben die höchste Priorität.
+Die Maximale Länge einer Nachricht beträgt 8 Byte. Durch die vergleichsweise geringe Länge der Nachrichten, kann 
+eine geringe Latenz erreicht werden. Dabei kann eine höchste Baudrate von 1Mbit/s gesetzt werden.
+\cite[Seiten 13-19]{Voss2008}
+\\
+Alle Knoten in einem Can-Bus sind mit einem Zweiadrigen Kabel verbunden. Diese werden als High(CAN\_H) und Low(CAN\_L) 
+bezeichnet. Der Bus ist an beiden Enden mit einem Widerstand von 120 Ohm abgeschlossen um Reflexionen zu vermeiden.
 \cite[Seite 132]{Voss2008}
 \\
-Die Nachrichten werden nach Broadcasting-Prinzip übertragen. Jede Nachricht wird von allen Knoten empfangen, 
-aber nur die Knoten, die die Nachricht benötigen, verarbeiten sie. Diese werden aber nicht bestätigt,
-da dies zu einer größeren Last auf dem Bus führen würde. Bei einer fehlerhaften Nachricht reagieren
-die Knoten mit einer Fehlermeldung, die wieder der gesamte Bus empfängt.
-\cite[Seite 80]{Voss2008}
+
 
 Data-Frames eines Can-Bus:
 \begin{itemize}
@@ -83,6 +88,7 @@ sich Angreifer Zugriff auf das Netzwerk verschaffen.
     \item PiCan2 ist ein CanBus Board für den Raspberry Pi
     \item HAT (Hardware Attached on Top) Standard
     \item erlaubt dem Raspberry Pi mit dem CanBus zu kommunizieren mit einer Geschwindigkeit von bis zu 1Mbit/s
+    \item UCAN ist ein USB-CAN Adapter, der es ermöglicht ein beliebiges USB-Gerät mit dem CanBus zu verbinden
 \end{itemize}
 \cite{Pant2019}
 \subsection{Übersetzung von CanBus Nachrichten}
@@ -90,4 +96,5 @@ sich Angreifer Zugriff auf das Netzwerk verschaffen.
     \item J1939 (DBC-Dateien) (https://docs.fileformat.com/de/database/dbc/)
     \item NMEA 0183 
     \item NMEA 2000 $\rightarrow$ CanBoat (https://github.com/canboat/canboat)
+    \item cantools Python Library 
 \end{itemize}
