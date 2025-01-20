@@ -11,7 +11,8 @@ pygame.init()
 throttleL = 0
 throttleR = 0
 rudderAngle = 0
-backwards = False
+backwardsL = False
+backwardsR = False
 running = True
 clock = pygame.time.Clock()
 fps = 60
@@ -50,23 +51,58 @@ while running and len(joysticks) > 0:
     for event in pygame.event.get():
         if event.type == pygame.JOYBUTTONDOWN:
             if xboxController.get_button(buttonLB) == 1 and xboxController.get_button(buttonRB) == 1 and xboxController.get_button(buttonB) == 1: 
-                backwards = not backwards
+                backwardsL = not backwardsR
+                backwardsR = not backwardsR
                 throttleR = 0
                 throttleL = 0
-                print("backwards: {}".format(backwards))
+                print("backwardsL: {}".format(backwardsL))
+                print("backwardsR: {}".format(backwardsR))
                 print("throttleL: {}".format(throttleL))
                 print("throttleR: {}".format(throttleR))
                 sys.stdout.flush()
-                if backwards:
+                if backwardsR:
                     print("Der Rückwärtsgang wird eingelegt, bitte warten...")
                     sleep(10)
                     print("Der Rückwärtsgang wurde eingelegt")
                     pygame.event.clear()
-                elif not backwards:
+                elif not backwardsR:
                     print("Der Vorwärtsgang wird eingelegt, bitte warten...")
                     sleep(10)
                     print("Der Vorwärtsgang wurde eingelegt")
                     pygame.event.clear()
+            elif xboxController.get_button(buttonLB) == 1 and xboxController.get_button(buttonB) == 1:
+                backwardsL = not backwardsL
+                throttleL = 0
+                print("backwardsL: {}".format(backwardsL))
+                print("throttleL: {}".format(throttleL))
+                sys.stdout.flush()
+                if backwardsR:
+                    print("Der linke Rückwärtsgang wird eingelegt, bitte warten...")
+                    sleep(10)
+                    print("Der linke Rückwärtsgang wurde eingelegt")
+                    pygame.event.clear()
+                elif not backwardsR:
+                    print("Der linke Vorwärtsgang wird eingelegt, bitte warten...")
+                    sleep(10)
+                    print("Der linke Vorwärtsgang wurde eingelegt")
+                    pygame.event.clear()
+            elif xboxController.get_button(buttonRB) == 1 and xboxController.get_button(buttonB) == 1:
+                backwardsR = not backwardsR
+                throttleR = 0
+                print("backwardsR: {}".format(backwardsR))
+                print("throttleR: {}".format(throttleR))
+                sys.stdout.flush()
+                if backwardsR:
+                    print("Der rechte Rückwärtsgang wird eingelegt, bitte warten...")
+                    sleep(10)
+                    print("Der rechte Rückwärtsgang wurde eingelegt")
+                    pygame.event.clear()
+                elif not backwardsR:
+                    print("Der rechte Vorwärtsgang wird eingelegt, bitte warten...")
+                    sleep(10)
+                    print("Der rechte Vorwärtsgang wurde eingelegt")
+                    pygame.event.clear()
+
 #        elif event.type == pygame.JOYAXISMOTION:
 #            print("Axis: {}".format(event.axis))
 #            print("Axis: {}".format(event.value))

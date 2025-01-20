@@ -8,7 +8,8 @@ import cantools.database
 throttleL = 0
 throttleR = 0
 rudderAngle = 0
-backwards = False
+backwardsL = False
+backwardsR = False
 key = ""
 value = 0
 
@@ -38,8 +39,10 @@ while True:
                 throttleR = float(value)
             case "rudderAngle":
                 rudderAngle = float(value)
-            case "backwards":
+            case "backwardsL":
                 backwards = bool(value) 
+            case "backwardsR":
+                backwards = bool(value)
             case _:
                 print(f"Unknown key: {key}")
                 continue
