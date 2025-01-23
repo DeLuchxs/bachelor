@@ -19,6 +19,42 @@
 
 \refsection{0}
   \datalist[entry]{anyt/global//global/global}
+    \entry{Murvay2018}{article}{}
+      \name{author}{2}{}{%
+        {{hash=ad52b66eafb87f884f86853d7e385c74}{%
+           family={Murvay},
+           familyi={M\bibinitperiod},
+           given={Pal-Stefan},
+           giveni={P\bibinithyphendelim S\bibinitperiod}}}%
+        {{hash=79ee5d44320aeb10109792abd0f307c3}{%
+           family={Groza},
+           familyi={G\bibinitperiod},
+           given={Bogdan},
+           giveni={B\bibinitperiod}}}%
+      }
+      \strng{namehash}{2f20e6a02bd12eb9dcc3047dc7dc5d00}
+      \strng{fullhash}{2f20e6a02bd12eb9dcc3047dc7dc5d00}
+      \strng{bibnamehash}{2f20e6a02bd12eb9dcc3047dc7dc5d00}
+      \strng{authorbibnamehash}{2f20e6a02bd12eb9dcc3047dc7dc5d00}
+      \strng{authornamehash}{2f20e6a02bd12eb9dcc3047dc7dc5d00}
+      \strng{authorfullhash}{2f20e6a02bd12eb9dcc3047dc7dc5d00}
+      \field{labelalpha}{MG18}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{IEEE Transactions on Vehicular Technology}
+      \field{number}{5}
+      \field{title}{Security Shortcomings and Countermeasures for the SAE J1939 Commercial Vehicle Bus Protocol}
+      \field{volume}{67}
+      \field{year}{2018}
+      \field{pages}{4325\bibrangedash 4339}
+      \range{pages}{15}
+      \verb{doi}
+      \verb 10.1109/TVT.2018.2795384
+      \endverb
+      \keyw{Protocols;Authentication;Industries;Standards;Automotive engineering;Automobiles;J1939;commercial vehicles;security;authentication}
+    \endentry
     \entry{Pant2019}{article}{}
       \name{author}{2}{}{%
         {{hash=c515045ee547ab3d21b9d8eb5a087311}{%

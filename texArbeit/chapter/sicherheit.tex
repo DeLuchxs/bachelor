@@ -11,6 +11,29 @@ Welche habe ich benutzt und welche weiteren möglichen Schwachstellen habe ich g
     \item lediglich physischer Zugriff notwendig
     \item Daten in bestimmten Format, allerdings mit recht wenig Aufwand zu verstehen
 \end{itemize}
+Spezifische Schwachstellen für J1939:
+\begin{itemize}
+    \item Nachrichten mit der niedrigsten ID haben die höchste Priorität, damit können DoS Angriffe durch das Senden von Nachrichten mit niedriger ID durchgeführt werden
+    \item Es ist möglich, ein Node in das Netzwerk hinzuzufügen, welcher seinen NAME, Adresse ändern kann und vollständige Kontrolle über alles veränderbaren Felder hat (CANoe)
+    \item Angreifer-Node kann später hinzugefügt werden und dann eine schon vorhandene Adresse übernehmen, durch ein NAME-field mit niedrigerem Wert und somit höherer Priorität
+    \item ständig diesen ehrlichen Knoten zu stören eine Adresse zu erlangen kann diesen komplett aus der Kommunikation ausschließen
+\end{itemize}
+Sicherheitsmaßnahme von J1939:
+Es gibt eine Zuweisungstabelle für Adresse-zu-NAME correspondence, welche jedoch einfach umgangen werden
+kann, durch das deklarieren des gleichen NAME wie der gezielte Knoten, jedoch mit einer niedrigeren ID
+um eine höhere Priorität zu erhalten und die Adresszuweisung zu gewinnen.
+\begin{itemize}
+    \item Angreifer kann sich als ein anderer Knoten ausgeben und so falsche, bösartige Nachrichten senden
+    \item bei einer globalen Anfrage nach PGNs sollte jeder Knoten antworten
+    \begin{itemize}
+        \item Spezifikation rät dazu, maximal 3 Anfragen pro Sekunde für eine Parametergruppe
+        \item keine Gegenmaßnahmen gegen mehr Anfragen
+        \item somit kann ein DDoS Angriff durchgeführt werden (alle Knoten antworten bei einer Anfrage)
+    \end{itemize}
+\end{itemize}
+
+\cite{Murvay2018}
+
 \section{Schutzmaßnahmen}
 Welche gibt es bereits?
 \begin{itemize}

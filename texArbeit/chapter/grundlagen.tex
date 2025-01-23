@@ -51,7 +51,14 @@ SAE = Society of Automotive Engineers\\
 Identifier wurde mit J1939 auf 29 Bit erweitert um mehr verschiedene Nachrichten zu ermöglichen.\\
 Auf einem Can-Bus können der Standard 11 Bit Identifier und der erweiterte 29 Bit Identifier gleichzeitig verwendet werden.
 Wenn zwei Nachrichten den gleichen 11 Bit Identifier haben, wird die Nachricht mit dem 11 Bit Identifier bevorzugt immer die
-höhere Priorität haben.
+höhere Priorität haben. Die spezifierten Baudraten sind hier 250kbit/s und 500kbit/s. Die Hauptkomponenten des
+erweiterten Identifier sind die Priorität, eine Parameter Group Number (PGN) und eine Quell-Adresse.
+Das PGN-Feld ist aus 2 Bit Data Page, einer Protocol Data Unit (PDU) und einem PDU spezifischen Feld 
+aufgebaut.
+Jedes Gerät an dem Can-Bus muss eine valide Adresse und einen einzigartigen Namen haben. Vor 
+der Kommunikation in einem Netzwerk muss ein Gerät sich einen Namen und eine Adresse geben.
+\cite{Murvay2018}
+
 
 
 \section{Raspberry Pi}
