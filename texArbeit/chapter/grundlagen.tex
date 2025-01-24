@@ -2,7 +2,7 @@
 
 \printmyminitoc{1}
 
-\section{CanBus}
+\section{CAN-Bus}
 Bei einem Can-Bus handelt es sich um eine serielle Netzwerktechnologie, 
 welche mehrere Geräte mit einem Draht verbindet.
 Die Entwicklung des Can-Bus wurde von Bosch im Jahr 1983 begonnen. 1986 wurde der erste Can-Bus Standard 
@@ -18,8 +18,13 @@ Can-Bus mittlwerweile eine wichtige Rolle.
 Man sprich von einem Bussystem, da alle Geräte gleichberechtigt sind. Dass heißt, dass jedes Gerät Nachrichten 
 senden und empfangen kann.
 Die Nachrichten werden nach Broadcasting-Prinzip übertragen. Jede Nachricht wird von allen Knoten empfangen, 
-aber nur die Knoten, die die Nachricht benötigen, verarbeiten sie. Diese werden nicht bestätigt,
-da dies zu einer größeren unnötigen Last auf dem Bus führen würde. Bei einer fehlerhaften Nachricht reagieren
+aber nur die Knoten, die die Nachricht benötigen, verarbeiten sie. Diese werden nicht Einhaltung der Protokollregeln 
+überprüft,
+da dies zu einer größeren unnötigen Last auf dem Bus führen würde. 
+Jedoch wird die Integrität der Nachrichten durch eine Prüfsumme sichergestellt. Das wird auch mit 
+einer Acknowledge-Nachricht(ACK) bestätigt. Wird eine Nachricht nicht bestätigt, wird von dem Sender eine Fehlermeldung
+auf den Bus gesendet.
+Bei einer fehlerhaften Nachricht reagieren
 die Knoten mit einer Fehlermeldung, die wieder der gesamte Bus empfängt. Wenn ein Knoten dauerhaft fehlerhafte
 Nachrichten sendet, wird dieser vom Bus getrennt. Die auf dem Bus gesendeten Daten werden mit einer Nachrichten-ID
 versehen, die die Priorität der Nachricht angibt. Die Nachrichten mit der niedrigsten ID haben die höchste Priorität.
@@ -64,14 +69,13 @@ der Kommunikation in einem Netzwerk muss ein Gerät sich einen Namen und eine Ad
 \section{Raspberry Pi}
 \begin{itemize}
     \item Ein Raspberry Pi ist ein Einplatinencomputer, der von der Raspberry Pi Foundation entwickelt wurde.
-    \item mit diesem kann man viele Dinge machen, wie z.B. programmieren, Musik hören, Videos schauen, im Internet surfen, etc.
-    \item Der Raspberry Pi hat viele Anschlüsse, wie z.B. USB, HDMI, Ethernet, Audio, etc.
-    \item eignet sich gut um einfache Aufgaben zu erledigen, wie z.B. eine Webseite hosten, einen Fileserver betreiben, etc.
-    \item 
+    \item Der Raspberry Pi ist ein vollwertiger Computer, der auf einem einzigen Board integriert ist. (vergleichsweise günstig, aber leistungsschwach)
+    \item eignet sich gut um einfache Aufgaben zu erledigen, wie z.B. das Ausführen von Programmen, das Anzeigen von Informationen auf einem Bildschirm oder das Steuern von Geräten.
+    \item Der benutzte Raspberry Pi 5 hat folgende Anschlüsse: 4 $\cdot$ USB, 2$\cdot$Micro-HDMI, 1$\cdot$Ethernet, 1$\cdot$USB-C für Stromversorgung, 1$\cdot$Micro-SD-Kartensteckplatz
 \end{itemize}
 
 \subsection{Raspberry Pi als Rogue Device}
-Unter einem Rogue Device versteht man ein Gerät, welches sich unautorisiert und unauffällig in ein Netzwerk einbindet.
+Unter einem Rogue Device versteht man ein Gerät, welches sich unautorisiert und unauffällig in ein Netzwerk einbindet. \cite{Scarfone2008}
 Dies kann ein Raspberry Pi sein, der sich in ein Netzwerk einbindet und Daten abgreift oder manipuliert. Hierüber können 
 sich Angreifer Zugriff auf das Netzwerk verschaffen. 
 \begin{itemize}

@@ -13,25 +13,25 @@ Gibt es noch weitere wichtige Systeme?
 \end{itemize}
 
 \section{Steuerungslogik des Controllers}
-Der benutzte Controller ist ein XBox Series X Controller. Dieser wurde gewählt, da er eine gute Haptik hat und 
-viele Tasten besitzt. Zusätzlich ist er kabellos und kann somit frei bewegt werden. Um die Steuerung des Schiffes zu
-ermöglichen, müssen die Eingabgen des Controllers in Steuerbefehle umgewandelt werden. Dies passiert auf dem 
+Der benutzte Controller ist ein Xbox Series X Controller. Dieser wurde gewählt, da er eine gute Haptik hat und weit
+verbreitet ist. Zusätzlich ist er kabellos und kann somit frei bewegt werden. Um die Steuerung des Schiffes zu
+ermöglichen, müssen die Eingaben des Controllers in Steuerbefehle umgewandelt werden. Dies passiert auf dem 
 Raspberry Pi. Der Controller wird über Bluetooth mit dem Raspberry Pi verbunden. Dort werden die Eingaben des Controllers
-ausgelesen und in einem Python-Script in Steuerbefehle umgewandelt. \\
-Um eine intuitive Steuerung zu ermöglichen, muss das Konzept des Controllers gut durchdacht sein.
-Da der XBox Controller viele Tasten besitzt und die Steuerung des Schiffes nicht zu komplex sein soll,
-werden einige Tasten nicht verwendet. 
+ausgelesen und in einem Python-Programm in Steuerbefehle umgewandelt. \\
+Um eine einfache Steuerung zu ermöglichen, wird im folgenden die Tastenbelegung aufgeschlüsselt.
+Um alle gewünschten Funktionen umzusetzen, werden nicht alle Tasten benötigt. 
+
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.5]{images/vorderseite.jpg}
-    \caption{Vorderseite des Controllers}
+    \caption{Vorderseite des Controllers \cite{XboxController}}
     \label{fig:vorderseite}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.5]{images/rueckseite.jpg}
-    \caption{Rückseite des Controllers}
+    \caption{Rückseite des Controllers \cite{XboxController}}
     \label{fig:rueckseite}
 \end{figure}
 
@@ -45,9 +45,21 @@ werden einige Tasten nicht verwendet.
      7 & Reduzierung der rechten Gashebelposition \\ \hline
      11 & Erhöhung der rechten Gashebelposition \\ \hline
      14 & Erhöhung der linken Gashebelposition \\ \hline
-     B + 2 + 7 & Einlegen des Rückwärtsgangs \\ \hline
+     B + 2 & Umschalten des Rückwärtsgangs am linken Motor \\ \hline
+     B + 7 & Umschalten des Rückwärtsgangs am rechten Motor \\ \hline
+     B + 2 + 7 & Umschalten des Rückwärtsgangs an beiden Motoren \\
+      & (basierend auf dem derzeitigen Gang am rechten Motor) \\ \hline
     \end{tabular}
 \end{table}
+Das Einlegen des Rückwärtsgangs ist durch eine Tastenkombination so gewählt, dass es nicht aus Versehen passieren kann.
+Mit jeweils der Taste 2 oder 7 wird die Gashebelposition reduziert. Mit der zusätzlichen Betätigung der Taste B wird der 
+Rückwärtsgang eingelegt an dem jeweiligen Motor. Wenn die Tasten 2, 7 und B gleichzeitig betätigt werden, 
+wird der Rückwärtsgang für beide Motoren gleichzeitig umgeschalten. Dies ist so gewählt, da eine Verzögerung bei dem
+Umschalten eines Rückwärtsgangs von 10 Sekunden eingebaut ist. Das soll dem Getriebe ermöglichen, den Gang zu wechseln
+ohne eine direkte Gaseingabe. Nun muss es aber auch möglich sein, beide Rückwärtsgänge gleichzeitig umzuschalten, daher 
+die vergleichsweise komplexe Tastenkombination.
+
+
 
 \section{Integration des Rogue Device}
 Damit der Controller die Steuerbefehle an das Schiff senden kann, muss das Rogue Device in das System integriert werden.
