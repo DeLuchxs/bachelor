@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.11.22)  24 JAN 2025 13:54
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.11.22)  28 JAN 2025 16:55
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1346,9 +1346,30 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.3.2}) h
 l.54 D
       as Einlegen des Rückwärtsgangs ist durch eine Tastenkombination so g... <./images/vorderseite.jpg> <./images/rueckseite.jpg>]
 
-[9])
+[9]
+<images/j1939header.png, id=389, 1446.15282pt x 813.0375pt>
+File: images/j1939header.png Graphic file (type png)
+<use images/j1939header.png>
+Package pdftex.def Info: images/j1939header.png  used on input line 84.
+(pdftex.def)             Requested size: 433.8492pt x 243.91313pt.
 
-[10] (./chapter/implementierung.tex
+Overfull \hbox (24.12968pt too wide) in paragraph at lines 84--85
+ [][] 
+ []
+
+
+Underfull \hbox (badness 3250) in paragraph at lines 85--85
+[]\OT1/Alegreya-LF/regular/n/10.95 Abbildung 3.3: []Header ei-ner J1939-Nachricht auf dem CAN-Bus [[][]Gmb[]](letzter Zu-griff:
+ []
+
+)
+
+[10
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.3}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.57 \clearpage
+                <./images/j1939header.png>] (./chapter/implementierung.tex
 Kapitel 4.
 \openout4 = `Bachelorarbeit.mtc'.
 
@@ -1420,7 +1441,12 @@ LaTeX Font Info:    Font shape `OT1/Alegreya-LF/m/it' in size <20.74> not availa
 (Font)              Font shape `OT1/Alegreya-LF/regular/it' tried instead on input line 68.
 LaTeX Font Info:    Font shape `OT1/Alegreya-LF/regular/it' will be
 (Font)              scaled to size 20.74pt on input line 68.
- (./Bachelorarbeit.lof)
+ (./Bachelorarbeit.lof
+Underfull \hbox (badness 4779) in paragraph at lines 10--10
+ [][] [][]\OT1/Alegreya-LF/regular/n/10.95 Header ei-ner J1939-Nachricht auf dem CAN-Bus [[]Gmb[]](letzter Zu-griff: 
+ []
+
+)
 \tf@lof=\write8
 \openout8 = `Bachelorarbeit.lof'.
 
@@ -1501,18 +1527,18 @@ Package logreq Info: Writing requests to 'Bachelorarbeit.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 35184 strings out of 473361
- 664158 string characters out of 5725029
- 1496365 words of memory out of 5000000
- 57637 multiletter control sequences out of 15000+600000
+ 35198 strings out of 473361
+ 664555 string characters out of 5725029
+ 1496599 words of memory out of 5000000
+ 57649 multiletter control sequences out of 15000+600000
  665810 words of font info for 78 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  99i,16n,104p,752b,3119s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2024/texmf-dist/fonts/type1/huerta/alegreya/Alegreya-Bold.pfb><c:/texlive/2024/texmf-dist/fonts/type1/huerta/alegreya/Alegreya-Italic.pfb><c:/texlive/2024/texmf-dist/fonts/type1/huerta/alegreya/Alegreya-Regular.pfb><c:/texlive/2024/texmf-dist/fonts/type1/huerta/alegreya/AlegreyaSans-Bold.pfb><c:/texlive/2024/texmf-dist/fonts/type1/huerta/alegreya/AlegreyaSans-Italic.pfb><c:/texlive/2024/texmf-dist/fonts/type1/huerta/alegreya/AlegreyaSans-Regular.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/ccicons/ccicons.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on Bachelorarbeit.pdf (26 pages, 3514411 bytes).
+Output written on Bachelorarbeit.pdf (26 pages, 3571386 bytes).
 PDF statistics:
- 586 PDF objects out of 1000 (max. 8388607)
- 411 compressed objects within 5 object streams
- 63 named destinations out of 1000 (max. 500000)
- 501 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 597 PDF objects out of 1000 (max. 8388607)
+ 420 compressed objects within 5 object streams
+ 65 named destinations out of 1000 (max. 500000)
+ 506 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -19,6 +19,36 @@
 
 \refsection{0}
   \datalist[entry]{anyt/global//global/global/global}
+    \entry{VektorSAE}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=0c6c3fd2fd0c3da80c3141252affe3f7}{%
+           family={GmbH},
+           familyi={G\bibinitperiod},
+           given={Vektor\bibnamedelima Informatik},
+           giveni={V\bibinitperiod\bibinitdelim I\bibinitperiod}}}%
+      }
+      \strng{namehash}{0c6c3fd2fd0c3da80c3141252affe3f7}
+      \strng{fullhash}{0c6c3fd2fd0c3da80c3141252affe3f7}
+      \strng{fullhashraw}{0c6c3fd2fd0c3da80c3141252affe3f7}
+      \strng{bibnamehash}{0c6c3fd2fd0c3da80c3141252affe3f7}
+      \strng{authorbibnamehash}{0c6c3fd2fd0c3da80c3141252affe3f7}
+      \strng{authornamehash}{0c6c3fd2fd0c3da80c3141252affe3f7}
+      \strng{authorfullhash}{0c6c3fd2fd0c3da80c3141252affe3f7}
+      \strng{authorfullhashraw}{0c6c3fd2fd0c3da80c3141252affe3f7}
+      \field{labelalpha}{Gmb}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{Website}
+      \field{title}{SAE1939}
+      \verb{urlraw}
+      \verb https://www.vector.com/de/de/know-how/protokolle/sae-j1939/#
+      \endverb
+      \verb{url}
+      \verb https://www.vector.com/de/de/know-how/protokolle/sae-j1939/#
+      \endverb
+    \endentry
     \entry{Murvay2018}{article}{}{}
       \name{author}{2}{}{%
         {{hash=ad52b66eafb87f884f86853d7e385c74}{%

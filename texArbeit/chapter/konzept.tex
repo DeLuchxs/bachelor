@@ -24,14 +24,14 @@ Um alle gewünschten Funktionen umzusetzen, werden nicht alle Tasten benötigt.
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.5]{images/vorderseite.jpg}
-    \caption{Vorderseite des Controllers \cite{XboxController}}
+    \caption{Vorderseite des Controllers \cite{XboxController}(letzter Zugriff: 24.01.2025)}
     \label{fig:vorderseite}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.5]{images/rueckseite.jpg}
-    \caption{Rückseite des Controllers \cite{XboxController}}
+    \caption{Rückseite des Controllers \cite{XboxController}(letzter Zugriff: 24.01.2025)}
     \label{fig:rueckseite}
 \end{figure}
 
@@ -79,6 +79,16 @@ werden. Allerdings hat dieser den Nachteil, dass er physisch an den Raspberry Pi
 ist keine Rückmeldung möglich, wenn dieser als Rogue Device in dem System versteckt angeschlossen ist.
 Um die Kommunikation zwischen dem Raspberry Pi und dem Handy mit der App zu ermöglichen, wird Bluetooth benutzt.
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.3]{images/j1939header.png}
+    \caption{Header einer J1939-Nachricht auf dem CAN-Bus \cite{VektorSAE}(letzter Zugriff: 28.01.2025)}
+    \label{fig:j1939header}
+\end{figure}
+Wie in der Grafik zu sehen, besteht der Header aus einer PGN, einer Quelladresse und einer Priorität. Um nun Nachrichten
+an den Motor zu senden, kann eine Nachricht des Gashebels abgefangen werden. Die PGN kann für die eigene Nachricht genutzt
+werden. Die Quelladresse kann man auch kopieren. Die Priorität sollte möglichst klein gewählt werden, 
+damit die eigene Nachricht bevorzugt wird. In der eigenen Nachricht kann dann die gewünschte Gashebelposition gesendet werden.
 
 \begin{itemize}
     \item Was passiert bei Veränderung der Gashebelposition?
