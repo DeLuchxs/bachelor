@@ -67,7 +67,10 @@ In diesem Fall ist das Rogue Device der Raspberry Pi. Damit dieser möglichst un
 muss der Controller drahtlos verbunden werden. Um die Kommunikation von dem Rogue Device zu dem Schiff zu ermöglichen, müssen
 die einzelnen Systeme angesteuert werden. Um die Gashebelposition zu verändern, wird der Raspberry Pi mit dem Can-Bus des Schiffes
 verbunden. 
-\\
+\begin{itemize}
+    \item Stromversorgung des Raspberry Pi (Battery Pack oder Steckdose)
+\end{itemize}
+
 Sollte der Gashebel in der normalen Benutzung vom Schiffsführer benutzt werden, wird ein Signal an den Can-Bus gesendet. Dieses Signal wird dann an die Motoren weitergeleitet.
 Um diese Eingabe zu verhindern, muss auf diese Nachricht geachtet und reagiert werden. Mit dem Lesen des Can-Bus kann die 
 entsprechende Nachricht entdeckt werden. Dann kann eine Nachricht von dem Rogue Device gesendet werden, um die Gashebelposition
