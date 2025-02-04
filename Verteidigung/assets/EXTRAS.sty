@@ -1,0 +1,134 @@
+\mode<presentation>
+
+\newif\ifbeamer@secheader
+\beamer@secheaderfalse
+
+%\DeclareOptionBeamer{secheader}{\beamer@secheadertrue}
+\ProcessOptionsBeamer
+
+\useoutertheme[footline=authorinstitutetitle,subsection=false]{smoothbars}
+
+\makeatletter % [add curpage/total page at the bottom](http://tex.stackexchange.com/questions/100838/beamer-dresden-theme-miniframes-appeareance-and-frame-number-insertion)
+\newcommand{\frameofframes}{/}
+\newcommand{\setframeofframes}[1]{\renewcommand{\frameofframes}{#1}}
+
+\setbeamercolor{block title}{bg=blue!85,fg=white}
+\setbeamercolor{block body}{fg=black, bg=white}
+
+% \beamertemplatenavigationsymbolsempty
+
+% \setbeamerfont{footnote}{size=\tiny}
+
+\setbeamertemplate{headline}{%
+  \leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=\paperwidth,ht=2.75ex,dp=1.125ex]{palette quaternary}%
+      \insertsectionnavigationhorizontal{\paperwidth}{\hspace*{3.5em}}{\hspace*{3.5em}} % vorher .75
+    \end{beamercolorbox}%
+  }
+}
+
+\setbeamertemplate{frametitle}{%
+  \nointerlineskip%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1.125ex]{frametitle}%
+    \hspace*{0.4cm}\insertframetitle%
+  \end{beamercolorbox}%
+}
+
+\setbeamertemplate{footline}{%
+  \leavevmode%
+  \hbox{\begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.5ex,dp=1.125ex,center]{author in head/foot}%
+      \usebeamerfont{author in head/foot}\insertshortauthor \insertshortinstitute
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.5ex,dp=1.125ex,center]{title in head/foot}%
+      \usebeamerfont{title in head/foot}\insertshorttitle
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.5ex,dp=1.125ex,right]{date in head/foot}%
+      \usebeamerfont{date in head/foot}\hspace*{\fill}\insertshortdate{}\hspace*{\fill} % Datum Position anpassen
+      \insertframenumber{} / \inserttotalframenumber\hspace*{2ex}
+    \end{beamercolorbox}}%
+  \vskip0pt%
+}
+
+% \useinnertheme{circles}
+
+% \useoutertheme{default}
+\useinnertheme[shadow=true]{rounded}
+
+\xdefinecolor{swufe}{RGB}{1,83,139}
+\xdefinecolor{hellgrau}{RGB}{193,193,193}
+\setbeamercolor{alerted text}{fg=swufe}
+\setbeamercolor{footline}{bg=swufe}
+\setbeamercolor{frametitle}{bg=swufe,fg=white}
+\setbeamercolor{title}{bg=swufe}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{title}{size=\Large}
+\setbeamerfont{subtitle}{size=\large}
+\setbeamerfont{date}{size=\footnotesize}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{bibliography item}[text]
+\setbeamertemplate{caption}[numbered]
+
+\setbeamercolor{palette primary}{use=structure,fg=white,bg=structure.fg}
+\setbeamercolor{palette secondary}{use=structure,fg=white,bg=structure.fg!75!black}
+\setbeamercolor{palette tertiary}{use=structure,fg=white,bg=structure.fg!50!black}
+\setbeamercolor{palette quaternary}{fg=white,bg=structure.fg!50!black}
+% \setbeamercolor*{sidebar}{use=structure,bg=structure.fg}
+\setbeamercolor{titlelike}{parent=palette primary}
+
+%% try
+\setbeamercolor{block title}{bg=swufe,fg=white}
+\setbeamercolor*{block title example}{use={normal text,example text},bg=white,fg=swufe}
+\setbeamercolor{fine separation line}{}
+\setbeamercolor{item projected}{fg=white}
+\setbeamercolor{palette sidebar primary}{use=normal text,fg=normal text.fg}
+\setbeamercolor{palette sidebar quaternary}{use=structure,fg=structure.fg}
+\setbeamercolor{palette sidebar secondary}{use=structure,fg=structure.fg}
+\setbeamercolor{palette sidebar tertiary}{use=normal text,fg=normal text.fg}
+%\setbeamercolor{palette sidebar quaternary}{fg=white}
+\setbeamercolor{section in head/foot}{bg=hellgrau, fg=hellgrau}
+\setbeamercolor{section in sidebar}{fg=brown}
+\setbeamercolor{section in sidebar shaded}{fg=grey}
+\setbeamercolor{separation line}{}
+\setbeamercolor{sidebar}{bg=swufe}
+\setbeamercolor{sidebar}{parent=palette primary}
+\setbeamercolor{structure}{fg=swufe}
+\setbeamercolor{subsection in sidebar}{fg=brown}
+\setbeamercolor{subsection in sidebar shaded}{fg=grey}
+
+\AtBeginSection[]{
+  \begin{frame}
+    \tableofcontents[sectionstyle=show/shaded,subsectionstyle=hide,subsubsectionstyle=show/shaded/hide]
+  \end{frame}
+}
+% for chapter slides in between
+
+% ------------------------------------------------------------------
+% decide here if needed
+
+\AtBeginSubsection[]{
+  \begin{frame}
+    \tableofcontents[sectionstyle=show/shaded,subsectionstyle=show/shaded/hide,subsubsectionstyle=show/shaded/hide]
+  \end{frame}
+}
+
+% \AtBeginSubsubsection[]{
+%   \begin{frame}
+    
+%   \end{frame}
+% }
+
+% \AtBeginSection[]{
+%   \begin{frame}
+%     \tableofcontents[sectionstyle=show/shaded,subsectionstyle=show/shaded/hide,subsubsectionstyle=show/shaded/hide]
+%   \end{frame}
+% }
+% \AtBeginSubsection[]{
+%   \begin{frame}
+%     \addtocounter{framenumber}{-1} % Um die zusätzliche Folie zu verstecken
+%     \tableofcontents[sectionstyle=show/shaded,subsectionstyle=show/hide,subsubsectionstyle=show/shaded/hide]
+%   \end{frame}
+% }
+
+\mode
+<all>

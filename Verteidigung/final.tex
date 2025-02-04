@@ -1,0 +1,146 @@
+\documentclass[usenames, dvipsnames, aspectratio=75]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\usepackage[defaultfam, regular]{montserrat}
+\usepackage[german=guillemets]{csquotes}
+\usepackage{hyperref}
+    \hypersetup{colorlinks=true, citecolor=purple, filecolor=black, linkcolor=TealBlue, urlcolor=blue}
+\usepackage{latexsym,multicol,booktabs,miama}
+\usepackage{setspace}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows}
+\tikzstyle{task} = [rectangle, rounded corners, text centered, draw=black,
+    minimum width=4cm, minimum height=1.5cm]
+\usepackage{amssymb,amsfonts,amsmath,amsthm,mathrsfs,mathptmx} 
+\usepackage{graphicx,pstricks,listings,stackengine}
+\usepackage[figurename=Fig., tablename=Tab., font=footnotesize]{caption}
+\usepackage[backend=biber,bibencoding=utf8,urldateusetime=true,style=alphabetic,sorting=nyt,natbib=true]{biblatex}
+\usepackage{tcolorbox} % For creating colored boxes
+\addbibresource{assets/refs.bib}
+
+\setcounter{biburllcpenalty}{7500}
+\setcounter{biburlucpenalty}{8000}
+
+\setbeamertemplate{bibliography item}{\insertbiblabel}
+
+\usepackage{todonotes}
+\newcommand{\newtodo}[1]{\vspace{.75em}\todo[inline,color=yellow]{#1}}
+\setlength {\marginparwidth }{2cm}
+
+\author{Jakob Engelbert Tomahogh}
+
+\title[]{Sicherheitsanalyse durch Entwicklung eines Rogue Device zur Echtzeitmanipulation maritimer Steuerungssysteme}
+\institute[Universität Rostock]{
+\inst{}
+\footnotesize{Betreuer: \textit{M.Sc. Marvin Davieds}} \vspace*{.25em} \\
+\footnotesize{Zweitgutachter: \textit{Prof. Dr. rer. nat. Clemens H. Cap}}
+}
+\date{14.02.2025}
+
+\usepackage{assets/EXTRAS}
+
+\def\cmd#1{\texttt{\color[RGB]{0, 0, 139}\footnotesize $\backslash$#1}}
+\def\env#1{\texttt{\color[RGB]{0, 0, 139}\footnotesize #1}}
+
+\lstdefinestyle{texstyle}{
+    language=[LaTeX]TeX,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle={\bfseries\color[RGB]{0, 0, 180}},
+    keywordstyle=[2]{\slshape\color[RGB]{225, 140, 30}},
+    morekeywords=[2]{,itemize, enumerate, equation, table, tabular},
+    stringstyle=\color[RGB]{50, 50, 50},
+    numbers=left,
+    numberstyle=\footnotesize\color{gray},
+    rulesepcolor=\color{red!20!green!20!blue!20},
+    frame=shadowbox
+}
+
+\begin{document}
+
+\begin{frame}
+    \vspace*{.25em}
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=0.55\linewidth]{assets/logo_uni_rostock.jpg}
+    \end{figure}
+    \vspace*{-1.5em}
+    \titlepage
+\end{frame}
+
+\section{Einführung}
+
+\subsection{Motivation}
+
+\begin{frame}{Motivation}
+    \begin{itemize}
+        \item Sicherheit wurde in maritimen Systemen vernachlässigt
+        \item Kommunikationssysteme sind anfällig für Angriffe
+        \item Angriff auf Steuerungssysteme könnte katastrophale Folgen haben
+        \item Ziel ist: Bewusstsein für Sicherheit schaffen und die Einfachheit eines Angriffs zeigen
+    \end{itemize}
+\end{frame}
+
+
+% ---------------------------------------------------------------------------
+
+\section{Grundlagen}
+
+\subsection{CAN-Bus}
+\begin{frame}
+    \begin{itemize}
+        \item serielle Netzwerktechnologie, bei dem mehrere Geräte miteinander kommunizieren können
+        \item ermöglichicht effiziente Kommunikation zwischen Steuergeräten
+        \item alle Geräte sind gleichberechtigt
+    \end{itemize}
+\end{frame}
+
+\subsection{bekannte Sicherheitslücken}
+\begin{frame}
+    \begin{itemize}
+        \item Kommunikation auf dem CAN-Bus ist unverschlüsselt
+        \item Ein zusätzliches Gerät kann ohne Probleme in das Netzwerk eingebunden werden
+        \item Nachrichten mit niedrigerer ID haben höhere Priorität
+    \end{itemize}
+\end{frame}
+% ---------------------------------------------------------------------------
+
+\section{Konzept}
+\begin{frame}
+    \begin{itemize}
+        \item Entwicklung eines Rogue Devices
+        \item Anbindung an das Schiff über den CAN-Bus 
+        \item Eingabe der Befehle über einen Xbox Series X Controller
+        \item Übersetzung auf dem Rogue Device
+    \end{itemize}
+\end{frame}
+
+\section{derzeitiger Stand}
+\begin{frame}
+    \begin{itemize}
+        \item Anbindung des Raspberry Pi an den CAN-Bus
+        \item Steuerung des Schiffes über den Controller
+    \end{itemize}
+\end{frame}
+
+\section{Ausblick}
+\begin{frame}
+    \begin{itemize}
+        \item Implementierung der Übersetzung der Befehle
+        \item Testen der Steuerung
+        \item Analyse der Auswirkungen
+    \end{itemize}
+\end{frame}
+
+% ---------------------------------------------------------------------------
+
+\begin{frame}[allowframebreaks]{References}
+    \printbibliography[heading=none]
+    \begin{itemize}
+        \item alle Quellen der Arbeit oder nur die der Präsentation?
+    \end{itemize}
+\end{frame}
+
+\end{document} 
+
