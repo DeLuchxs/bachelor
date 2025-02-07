@@ -15,10 +15,12 @@ value = 0
 
 import sys
 
-os.system("sudo ip link set can0 down")
-os.system("sudo ip link set can0 up type can bitrate 500000")
+#os.system("sudo ip link set can0 down")
+#os.system("sudo ip link set can0 up type can bitrate 500000")
 
 db = cantools.database.load_file('dbc/j1939.dbc')
+db.messages
+example_message = db.get_message_by_name('TSC1')
 
 # Continuously read data from stdin
 while True:
@@ -61,9 +63,9 @@ while True:
 
 
     # Send the data to the CAN bus
-    #if line:
-    #    os.system(f"sudo cansend can0 001#{throttleL_hex}{throttleR_hex}{rudderAngle_hex}{backwards_hex}")
-    can_bus = can.interface.Bus(channel='can0', bustype='socketcan')
-    throttleLInput = example_message.encode({'EngRequestedTorque_TorqueLimit': throttleL, 'EngOverrideCtrlMode': '01b'})
-    leftMessage = can.Message(arbitration_id=example_message.frame_id, data=throttleLInput)
 
+    can_bus = can.interface.Bus(channel='can0', bustype='socketcan')
+    throttleRInput = example_message.encode({'EngRequestedTorque_TorqueLimit': throttleR, 'EngOverrideCtrlMode': '01b'})
+    rightMessage = can.Message(arbitration_id=example_message.frame_id, data=throttleRInput)
+
+    print(f"Sending message: {rightMessage}") 
