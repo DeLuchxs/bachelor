@@ -32,7 +32,7 @@
 \author{Jakob Engelbert Tomahogh}
 
 \title[]{Sicherheitsanalyse durch Entwicklung eines Rogue Device zur Echtzeitmanipulation maritimer Steuerungssysteme}
-\institute[Universität Rostock]{
+\institute[]{
 \inst{}
 \footnotesize{Betreuer: \textit{M.Sc. Marvin Davieds}} \vspace*{.25em} \\
 \footnotesize{Zweitgutachter: \textit{Prof. Dr. rer. nat. Clemens H. Cap}}
@@ -78,30 +78,86 @@
         \item Sicherheit wurde in maritimen Systemen vernachlässigt
         \item Kommunikationssysteme sind anfällig für Angriffe
         \item Angriff auf Steuerungssysteme könnte katastrophale Folgen haben
-        \item Ziel ist: Bewusstsein für Sicherheit schaffen und die Einfachheit eines Angriffs zeigen
+        \item physischer Zugriff bei Passagierschiffen möglich
     \end{itemize}
 \end{frame}
 
+\subsection{Zielsetzung}
+    \begin{frame}{Zielsetzung}
+        \begin{itemize}
+            \item Entwicklung eines Rogue Devices
+            \item Anbindung an das Schiff über CAN-Bus und serielle Schnittstelle
+            \item Eingabe der Befehle über einen Xbox Controller
+            \item Übersetzung auf dem Rogue Device
+            \item Steuerung des Schiffs
+        \end{itemize}
+    \end{frame}
 
+    \begin{frame}{Zielsetzung}
+        \begin{itemize}
+            \item Machbarkeit eines solchen Angriffs soll gezeigt werden
+            \item Aufmerksamkeit auf Sicherheitslücken in maritimen Systemen lenken
+            \item Sicherheitslücken sollen durch Steueurung mit Spielecontroller veranschaulicht werden
+        \end{itemize}
+    \end{frame}
 % ---------------------------------------------------------------------------
 
 \section{Grundlagen}
 
+\subsection{Schiffstechnik}
+\begin{frame}{Schiffstechnik}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.6\linewidth]{assets/limanda.png}
+        \caption{Forschungsschiff Limanda}
+    \end{figure}
+    \begin{itemize}
+        \item zweimotoriger Katermaran
+        \item Länge: 15,73m 
+        \item Breite: 6,16m
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Schiffstechnik}
+    \begin{figure}
+        \centering
+        \includegraphics[width=1\linewidth]{assets/limanda_system.png}
+        \caption{Vereinfachter Aufbau des Systeme}
+    \end{figure}
+\end{frame}
+
 \subsection{CAN-Bus}
-\begin{frame}
+\begin{frame}{CAN-Bus}
     \begin{itemize}
         \item serielle Netzwerktechnologie, bei dem mehrere Geräte miteinander kommunizieren können
         \item ermöglichicht effiziente Kommunikation zwischen Steuergeräten
         \item alle Geräte sind gleichberechtigt
+        \item Nachrichten werden nach Broadcast-Prinzip übertragen
+        \item Kommunikation auf dem CAN-Bus ist unverschlüsselt
     \end{itemize}
 \end{frame}
 
-\subsection{bekannte Sicherheitslücken}
-\begin{frame}
+\begin{frame}{J1939}
     \begin{itemize}
-        \item Kommunikation auf dem CAN-Bus ist unverschlüsselt
-        \item Ein zusätzliches Gerät kann ohne Probleme in das Netzwerk eingebunden werden
-        \item Nachrichten mit niedrigerer ID haben höhere Priorität
+        \item Standard für die Kommunikation auf dem CAN-Bus
+        \item Nutzt 29 Bit Extended CAN Identifier
+        \item ermöglicht Knotenadressierung
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{CAN-Bus Nachricht}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.9\linewidth]{assets/canMessage.png}
+        \caption{Aufbau einer CAN-Bus Nachricht}
+    \end{figure}
+    \begin{itemize}
+        \item SOF: Start of Frame
+        \item Arbitration Field: Nachrichten-ID und Remote Transmission Request
+        \item Control Field: Datenlänge
+        \item Data Field: Nutzdaten
+        \item CRC Field: Prüfsumme
+        \item EOF: End of Frame
     \end{itemize}
 \end{frame}
 % ---------------------------------------------------------------------------
@@ -127,20 +183,15 @@
 \section{Ausblick}
 \begin{frame}
     \begin{itemize}
-        \item Implementierung der Übersetzung der Befehle
+        \item Decodieren der CAN-Bus Nachrichten in Echtzeit
+        \item Reagieren auf Gashebel Eingaben
         \item Testen der Steuerung
         \item Analyse der Auswirkungen
+        \item Implementierung der Rudersteuerung
     \end{itemize}
 \end{frame}
 
 % ---------------------------------------------------------------------------
-
-\begin{frame}[allowframebreaks]{References}
-    \printbibliography[heading=none]
-    \begin{itemize}
-        \item alle Quellen der Arbeit oder nur die der Präsentation?
-    \end{itemize}
-\end{frame}
 
 \end{document} 
 
