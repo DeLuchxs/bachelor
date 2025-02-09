@@ -85,11 +85,9 @@
 \subsection{Zielsetzung}
     \begin{frame}{Zielsetzung}
         \begin{itemize}
-            \item Entwicklung eines Rogue Devices
-            \item Anbindung an das Schiff über CAN-Bus und serielle Schnittstelle
-            \item Eingabe der Befehle über einen Xbox Controller
-            \item Übersetzung auf dem Rogue Device
-            \item Steuerung des Schiffs
+            \item Steuerung eines Schiffes durch ein Spielecontroller
+            \item Rogue Device als Schnittstelle zwischen Controller und Schiff
+            \item Unbemerkte Manipulation der Steuerung
         \end{itemize}
     \end{frame}
 
@@ -98,6 +96,7 @@
             \item Machbarkeit eines solchen Angriffs soll gezeigt werden
             \item Aufmerksamkeit auf Sicherheitslücken in maritimen Systemen lenken
             \item Sicherheitslücken sollen durch Steueurung mit Spielecontroller veranschaulicht werden
+            \item Betrachtung möglicher Gegenmaßnahmen
         \end{itemize}
     \end{frame}
 % ---------------------------------------------------------------------------
@@ -130,7 +129,7 @@
 \begin{frame}{CAN-Bus}
     \begin{itemize}
         \item serielle Netzwerktechnologie, bei dem mehrere Geräte miteinander kommunizieren können
-        \item ermöglichicht effiziente Kommunikation zwischen Steuergeräten
+        \item ermöglicht effiziente Kommunikation zwischen Steuergeräten
         \item alle Geräte sind gleichberechtigt
         \item Nachrichten werden nach Broadcast-Prinzip übertragen
         \item Kommunikation auf dem CAN-Bus ist unverschlüsselt
@@ -163,25 +162,67 @@
 % ---------------------------------------------------------------------------
 
 \section{Konzept}
-\begin{frame}
+\begin{frame}{Konzept}
     \begin{itemize}
-        \item Entwicklung eines Rogue Devices
-        \item Anbindung an das Schiff über den CAN-Bus 
-        \item Eingabe der Befehle über einen Xbox Series X Controller
-        \item Übersetzung auf dem Rogue Device
+        \item Xbox Controller als Eingabegerät
+        \item Raspberry Pi 5 als Rogue Device
+        \item Anbindung des Raspberry Pi an den CAN-Bus
+        \item Übersetzung der Controllereingaben in CAN-Bus Nachrichten auf Rogue Device
     \end{itemize}
+\end{frame}
+
+\begin{frame}{Konzept}
+    \begin{figure}
+        \begin{itemize}
+            \item Unterbindung der originalen Steuerung
+            \item Reaktion auf Nachrichten der Gashebel
+            \item Rückmeldung der derzeitigen Eingaben des Controllers
+        \end{itemize}
+    \end{figure}
 \end{frame}
 
 \section{derzeitiger Stand}
-\begin{frame}
+
+\begin{frame}{derzeitiger Stand}
     \begin{itemize}
-        \item Anbindung des Raspberry Pi an den CAN-Bus
-        \item Steuerung des Schiffes über den Controller
+        \item Raspberry Pi mit Raspberry Pi OS
+        \item Programmierung in Python
+    \end{itemize}
+    
+\end{frame}
+
+\begin{frame}{derzeitiger Stand}
+    \begin{itemize}
+        \item Bedienungsanleitung des Controllers
+        \item Verbindung des Controllers mit dem Raspberry Pi über Bluetooth
+        \item Interpretation der Controller Eingaben in Python mit pygame (\texttt{controllerInput.py})
     \end{itemize}
 \end{frame}
 
+\begin{frame}{derzeitiger Stand}
+    \begin{itemize}
+        \item Übertragung der Eingaben über Pipes an weiteres Python Skript \begin{itemize}
+            \item Ausgaben von \texttt{controllerInput.py} als Eingabe \texttt{canInterpreter.py} gelesen
+        \end{itemize}
+        \item Aufbau eines CAN-Bus Netzwerks mit UCAN (USB-zu-CAN Adapter)
+        \item Kodieren der Eingaben in CAN-Bus Nachrichten \begin{itemize}
+            \item cantools
+            \item DBC-Datei
+        \end{itemize}
+    \end{itemize}   
+\end{frame}
+
+\begin{frame}{derzeitiger Stand}
+    \begin{figure}
+        \centering
+        \includegraphics[width=1\linewidth]{assets/CAN-DBC-File-Format-Explained-Intro-Basics_2.png}
+        \caption{Auszug einer Beispiel DBC-Datei}
+    \end{figure}
+\end{frame}
+
+
 \section{Ausblick}
-\begin{frame}
+\begin{frame}{Ausblick}
     \begin{itemize}
         \item Decodieren der CAN-Bus Nachrichten in Echtzeit
         \item Reagieren auf Gashebel Eingaben
