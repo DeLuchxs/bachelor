@@ -212,7 +212,7 @@
     \end{itemize}   
 \end{frame}
 
-\begin{frame}{derzeitiger Stand}
+\begin{frame}{DBC-Datei}
     \begin{figure}
         \centering
         \includegraphics[width=1\linewidth]{assets/CAN-DBC-File-Format-Explained-Intro-Basics_2.png}
@@ -220,16 +220,24 @@
     \end{figure}
 \end{frame}
 
+\begin{frame}{derzeitiger Stand}
+    \begin{itemize}
+        \item anhand der DBC-Datei einzelne Signale mit validen Werten erstellt
+        \item Frame-ID der DBC-Datei entnommen
+        \item Prüfsumme mit Nachrichten-ID, ersten 7 Bytes und Nachrichtenzähler berechnet
+        \item Daraus CAN-Bus Nachricht erstellt
+    \end{itemize}
+    
+\end{frame}
+
 
 \section{Ausblick}
 \begin{frame}{Ausblick}
-    \begin{itemize}
-        \item Decodieren der CAN-Bus Nachrichten in Echtzeit
-        \item Reagieren auf Gashebel Eingaben
-        \item Testen der Steuerung
-        \item Analyse der Auswirkungen
-        \item Implementierung der Rudersteuerung
-    \end{itemize}
+    \begin{figure}
+        \centering
+        \includegraphics[width=1\linewidth]{assets/Zeitplan.png}
+        \caption{Ausblick}
+    \end{figure}
 \end{frame}
 
 % ---------------------------------------------------------------------------
