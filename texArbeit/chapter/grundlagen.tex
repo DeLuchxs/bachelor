@@ -64,7 +64,7 @@ In dem anderen Fall wird das PS-Feld als Gruppenerweiterung verwendet.
 \cite{Murvay2018}
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.3]{images/j1939header.png}
+    \includegraphics[scale=0.28]{images/j1939header.png}
     \caption{Header einer J1939-Nachricht auf dem CAN-Bus \cite{VektorSAE}(letzter Zugriff: 28.01.2025)}
     \label{fig:j1939header}
 \end{figure}
@@ -78,22 +78,23 @@ zielgerichtet an bestimmte Geräte zu senden. \cite{Murvay2018}
 
 
 \section{Raspberry Pi}
-\begin{itemize}
-    \item Ein Raspberry Pi ist ein Einplatinencomputer, der von der Raspberry Pi Foundation entwickelt wurde.
-    \item Der Raspberry Pi ist ein vollwertiger Computer, der auf einem einzigen Board integriert ist. (vergleichsweise günstig, aber leistungsschwach)
-    \item eignet sich gut um einfache Aufgaben zu erledigen, wie z.B. das Ausführen von Programmen, das Anzeigen von Informationen auf einem Bildschirm oder das Steuern von Geräten.
-    \item Der benutzte Raspberry Pi 5 hat folgende Anschlüsse: 4 $\cdot$ USB, 2$\cdot$Micro-HDMI, 1$\cdot$Ethernet, 1$\cdot$USB-C für Stromversorgung, 1$\cdot$Micro-SD-Kartensteckplatz
-\end{itemize}
+Ein Raspberry Pi ist ein Einplatinencomputer, der von der Raspberry Pi Foundation entwickelt wurde. 
+Dieser den Prozessor mit Grafikeinheit, Arbeitsspeicher, Speicher und Anschlüsse auf einem einzigen Board integriert.
+Es handelt sich um einen vollwertiger Computer, der kleiner als normale PCs ist. Für die Größe ist der Raspberry Pi
+leitsungsstark, während er einen recht günstigen Preis von unter 100€ hat. Er kann mit einem normalen Betriebssystem
+betrieben werden. Trotzdem gibt es ein spezielles Betriebssystem, das für den Raspberry Pi entwickelt wurde, das Raspberry Pi OS (ehemals Raspbian).
+Dieses basiert auf der Linux-Distribution Debian. Um viele Funktionen erfüllen zu können, hat der Raspberry Pi viele Anschlüsse.
+Der Raspberry Pi 5 hat 4 USB-Anschlüsse, 2 Micro-HDMI-Anschlüsse, 1 Ethernet-Anschluss, 1 USB-C-Anschluss für die Stromversorgung und einen Micro-SD-Kartensteckplatz.
 
 \subsection{Raspberry Pi als Rogue Device}
-Unter einem Rogue Device versteht man ein Gerät, welches sich unautorisiert und unauffällig in ein Netzwerk einbindet. \cite{Scarfone2008}
-Dies kann ein Raspberry Pi sein, der sich in ein Netzwerk einbindet und Daten abgreift oder manipuliert. Hierüber können 
+Unter einem Rogue Device versteht man ein Gerät, welches sich unautorisiert und unauffällig in ein Netzwerk integriert. \cite{Scarfone2008}
+Dies kann ein Raspberry Pi sein, der sich in ein Netzwerk einbindet und Daten abfängt oder manipuliert. Hierüber können 
 sich Angreifer Zugriff auf das Netzwerk verschaffen. 
-\begin{itemize}
-    \item eigener Code kann auf Rogue Device laufen
-    \item kann von Angreifern von außen gesteuert werden
-    \item kann auch genuzt werden um Informationen über das Netzwerk zu sammeln
-\end{itemize}
+Ein solches Gerät kann dazu verwendet werden, um eigenen Code auszuführen, der beispielsweise Daten verändert oder 
+weitere Angriffe vorbereitet. Zudem kann es von Angreifern aus der Ferne gesteuert werden, wodurch gezielte 
+Manipulationen oder Spionageangriffe möglich sind. Darüber hinaus lässt sich ein Rogue Device nutzen, um Informationen 
+über das Netzwerk zu sammeln, etwa durch das Mithören von Kommunikation oder die Analyse von Sicherheitsmechanismen.
+Das ermöglicht es, Schwachstellen im Netzwerk aufzudecken und gezielt auszunutzen.
 
 \section{State of the Art}
 \begin{itemize}
