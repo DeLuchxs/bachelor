@@ -136,14 +136,6 @@
     \end{itemize}
 \end{frame}
 
-\begin{frame}{J1939}
-    \begin{itemize}
-        \item Standard für die Kommunikation auf dem CAN-Bus
-        \item Nutzt 29 Bit Extended CAN Identifier
-        \item ermöglicht Knotenadressierung
-    \end{itemize}
-\end{frame}
-
 \begin{frame}{CAN-Bus Nachricht}
     \begin{figure}
         \centering
@@ -159,6 +151,23 @@
         \item EOF: End of Frame
     \end{itemize}
 \end{frame}
+
+\begin{frame}{J1939}
+    \begin{itemize}
+        \item Standard für die Kommunikation auf dem CAN-Bus
+        \item Nutzt 29 Bit Extended CAN Identifier
+        \item ermöglicht Knotenadressierung
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{J1939}
+    \begin{figure}
+        \centering
+        \includegraphics[width=1\linewidth]{assets/j1939id.png}
+        \caption{J1939 Nachrichten-ID}
+    \end{figure}
+\end{frame}
+
 % ---------------------------------------------------------------------------
 
 \section{Konzept}
@@ -187,12 +196,6 @@
     \begin{itemize}
         \item Raspberry Pi mit Raspberry Pi OS
         \item Programmierung in Python
-    \end{itemize}
-    
-\end{frame}
-
-\begin{frame}{derzeitiger Stand}
-    \begin{itemize}
         \item Bedienungsanleitung des Controllers
         \item Verbindung des Controllers mit dem Raspberry Pi über Bluetooth
         \item Interpretation der Controller Eingaben in Python mit pygame (\texttt{controllerInput.py})
@@ -236,7 +239,7 @@
     \begin{figure}
         \centering
         \includegraphics[width=1\linewidth]{assets/Zeitplan.png}
-        \caption{Ausblick}
+        \caption{Zeitplan}
     \end{figure}
 \end{frame}
 
