@@ -143,12 +143,13 @@
         \caption{Aufbau einer CAN-Bus Nachricht}
     \end{figure}
     \begin{itemize}
-        \item SOF: Start of Frame
-        \item Arbitration Field: Nachrichten-ID und Remote Transmission Request
-        \item Control Field: Datenlänge
-        \item Data Field: Nutzdaten
-        \item CRC Field: Prüfsumme
-        \item EOF: End of Frame
+        \item \textbf{SOF}: Start of Frame
+        \item \textbf{Arbitration Field}: Nachrichten-ID und Remote Transmission Request
+        \item \textbf{Control Field}: Datenlänge
+        \item \textbf{Data Field}: Nutzdaten
+        \item \textbf{CRC Field}: Prüfsumme
+        \item \textbf{EOF}: End of Frame
+        \item \textbf{IFS}: Interframe Space, Pause zwischen Nachrichten
     \end{itemize}
 \end{frame}
 
@@ -164,6 +165,7 @@
     \begin{figure}
         \centering
         \includegraphics[width=1\linewidth]{assets/j1939id.png}
+        \tiny{Quelle: \url{https://www.vector.com/de/de/know-how/protokolle/sae-j1939/}}
         \caption{J1939 Nachrichten-ID}
     \end{figure}
 \end{frame}
@@ -185,7 +187,8 @@
         \begin{itemize}
             \item Unterbindung der originalen Steuerung
             \item Reaktion auf Nachrichten der Gashebel
-            \item Rückmeldung der derzeitigen Eingaben des Controllers
+            \item Rückmeldung der derzeitigen Eingaben des Xbox-Controllers
+            \item Rudersteuerung über Autopiloten
         \end{itemize}
     \end{figure}
 \end{frame}
@@ -225,7 +228,7 @@
 
 \begin{frame}{derzeitiger Stand}
     \begin{itemize}
-        \item anhand der DBC-Datei einzelne Signale mit validen Werten erstellt
+        \item Anhand der DBC-Datei einzelne Signale mit validen Werten erstellt
         \item Frame-ID der DBC-Datei entnommen
         \item Prüfsumme mit Nachrichten-ID, ersten 7 Bytes und Nachrichtenzähler berechnet
         \item Daraus CAN-Bus Nachricht erstellt
