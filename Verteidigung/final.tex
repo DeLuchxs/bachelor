@@ -200,17 +200,20 @@
     \begin{itemize}
         \item Raspberry Pi mit Raspberry Pi OS
         \item Programmierung in Python
-        \item Bedienungsanleitung des Controllers
-        \item Verbindung des Controllers mit dem Raspberry Pi über Bluetooth
-        \item Interpretation der Controller Eingaben in Python mit pygame (\texttt{controllerInput.py})
+        \item Bedienungskonzept des Xbox-Controllers
     \end{itemize}
 \end{frame}
 
 \begin{frame}{derzeitiger Stand}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.85\linewidth]{assets/piKonzept.png}
+        \caption{Programmstruktur auf dem Raspberry Pi} 
+    \end{figure}
+\end{frame}
+
+\begin{frame}{derzeitiger Stand}
     \begin{itemize}
-        \item Übertragung der Eingaben über Pipes an weiteres Python Skript \begin{itemize}
-            \item Ausgaben von \texttt{controllerInput.py} als Eingabe \texttt{canInterpreter.py} gelesen
-        \end{itemize}
         \item Aufbau eines CAN-Bus Netzwerks mit UCAN (USB-zu-CAN Adapter)
         \item Kodieren der Eingaben in CAN-Bus Nachrichten \begin{itemize}
             \item cantools

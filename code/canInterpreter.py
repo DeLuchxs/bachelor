@@ -15,7 +15,9 @@ backwardsR = False
 key = ""
 value = 0
 messageCounter = -1
-canFrameID = 0x2348875518
+canLeftFrameID = 0x5b3 # CAN3
+canRightFrameID = 0x2c7 # CAN4
+
 
 import sys
 
@@ -30,6 +32,68 @@ db = cantools.database.load_file('dbc/j1939.dbc')
 db.messages
 example_message = db.get_message_by_name('TSC1')
 can_bus = can.interface.Bus(channel='vcan0', interface='socketcan')
+
+# Functions
+def encodeThrottleMessage(speed, throttle, canFrameID):
+    try:
+        throttleInput = example_message.encode({ 
+            'EngOverrideCtrlMode': 3, #3: Torque Control Mode
+            'EngRqedSpeedCtrlConditions': 3, # 3: Transient Optimized for driveline disengaged and non-lockup conditions
+            'OverrideCtrlModePriority': 0, # 0: Highest Priority
+            'EngRqedSpeed_SpeedLimit': speed,
+            'EngRqedTorque_TorqueLimit': throttle,
+            'TransmissionRate': 2, # Transmission Rate of 100ms
+            'ControlPurpose': 5, # Transient Optimized Torque Limit
+            'EngineRequestedTorqueHiRes': throttle,
+            'MessageCounter': messageCounter,
+            'MessageChecksum': 0
+        })
+    except Exception as e:
+        print(f"Error encoding message: {e}")
+        return None
+    #calculate the checksum        
+    if messageCounter != 4 and messageCounter != 15:
+        return can.Message(arbitration_id=canFrameID, data=throttleInput, is_extended_id=False)
+    elif messageCounter == 4:
+        currentChecksum = 3
+    else:
+        currentChecksum = 15
+    
+    # encode the message with checksum
+    try:
+        throttleRChecksum = example_message.encode({ 
+            'EngOverrideCtrlMode': 3, #3: Torque Control Mode
+            'EngRqedSpeedCtrlConditions': 3, # 3: Transient Optimized for driveline disengaged and non-lockup conditions
+            'OverrideCtrlModePriority': 0, # 0: Highest Priority
+            'EngRqedSpeed_SpeedLimit': speed,
+            'EngRqedTorque_TorqueLimit': throttle,
+            'TransmissionRate': 2, # Transmission Rate of 100ms
+            'ControlPurpose': 5, # Transient Optimized Torque Limit
+            'EngineRequestedTorqueHiRes': throttle,
+            'MessageCounter': messageCounter,
+            'MessageChecksum': currentChecksum
+        })
+    except Exception as e:
+        print(f"Error encoding message: {e}")
+        return None
+    return can.Message(arbitration_id=example_message.frame_id, data=throttleRChecksum, is_extended_id=False)
+
+def calculateChecksum(dataInput, canFrameID):
+    checksum = 0x00
+    data_bytes = dataInput[:7]
+    checksum = sum(data_bytes)
+    checksum += (messageCounter & 0x0F)
+                 
+    idLowByte = canFrameID & 0xFF
+    idMidLowByte = (canFrameID >> 8) & 0xFF
+    idMidHighByte = (canFrameID >> 16) & 0xFF
+    idHighByte = (canFrameID >> 24) & 0xFF
+
+    checksum += idLowByte + idMidLowByte + idMidHighByte + idHighByte
+    checksum = (((checksum >> 4) + checksum) & 0x0F)
+    return checksum
+
+
 
 
 # Continuously read data from stdin
@@ -49,9 +113,11 @@ try:
                 case "throttleL":
                     throttleL = float(value)
                     speedL = float(value) * 8031.75 # 8031.75 maximum value for rpm speed in DBC (scale 0.125)
+                    throttleLMessage = encodeThrottleMessage(speedL, throttleL, canLeftFrameID)
                 case "throttleR":
                     throttleR = float(value)
                     speedR = float(value) * 8031.75
+                    throttleRMessage = encodeThrottleMessage(speedR, throttleR, canRightFrameID)
                 case "rudderAngle":
                     rudderAngle = float(value)
                 case "backwardsL":
@@ -65,64 +131,12 @@ try:
             print(f"Error processing line: {line} ({e})")
             continue
 
-        if messageCounter < 15:
-            messageCounter += 1
-        else:
-            messageCounter = 0
-
-    # encode the message for the CAN bus
-        try:
-            throttleRInput = example_message.encode({ 
-                'EngOverrideCtrlMode': 3, #3: Torque Control Mode
-                'EngRqedSpeedCtrlConditions': 3, # 3: Transient Optimized for driveline disengaged and non-lockup conditions
-                'OverrideCtrlModePriority': 0, # 0: Highest Priority
-                'EngRqedSpeed_SpeedLimit': speedR,
-                'EngRqedTorque_TorqueLimit': throttleR,
-                'TransmissionRate': 2, # Transmission Rate of 100ms
-                'ControlPurpose': 5, # Transient Optimized Torque Limit
-                'EngineRequestedTorqueHiRes': throttleR,
-                'MessageCounter': messageCounter,
-                'MessageChecksum': 0
-            })
-        except Exception as e:
-            print(f"Error encoding message: {e}")
-            continue
-        #calculate the checksum
-        checksum = 0x00
-        data_bytes = throttleRInput[:7]
-        checksum = sum(data_bytes)
-        checksum += (messageCounter & 0x0F)
-                 
-        idLowByte = canFrameID & 0xFF
-        idMidLowByte = (canFrameID >> 8) & 0xFF
-        idMidHighByte = (canFrameID >> 16) & 0xFF
-        idHighByte = (canFrameID >> 24) & 0xFF
-
-        checksum += idLowByte + idMidLowByte + idMidHighByte + idHighByte
-        checksum = (((checksum >> 4) + checksum) & 0x0F)
-
-    # encode the message with checksum
-        try:
-            throttleRChecksum = example_message.encode({ 
-                'EngOverrideCtrlMode': 3, #3: Torque Control Mode
-                'EngRqedSpeedCtrlConditions': 3, # 3: Transient Optimized for driveline disengaged and non-lockup conditions
-                'OverrideCtrlModePriority': 0, # 0: Highest Priority
-                'EngRqedSpeed_SpeedLimit': speedR,
-                'EngRqedTorque_TorqueLimit': throttleR,
-                'TransmissionRate': 2, # Transmission Rate of 100ms
-                'ControlPurpose': 5, # Transient Optimized Torque Limit
-                'EngineRequestedTorqueHiRes': throttleR,
-                'MessageCounter': messageCounter,
-                'MessageChecksum': checksum
-            })
-        except Exception as e:
-            print(f"Error encoding message: {e}")
-            continue
-        rightMessage = can.Message(arbitration_id=example_message.frame_id, data=throttleRChecksum, is_extended_id=True)
-        print(rightMessage)
+        messageCounter = (messageCounter + 1) % 16
+        
 
 except KeyboardInterrupt:
     print("Exiting")
 
 finally:
     can_bus.shutdown()
+
