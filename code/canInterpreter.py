@@ -110,6 +110,10 @@ try:
         try:
             key, value = line.split(": ", 1)  # Split into key and value, allow extra colons in value
             match key:
+                case "Action":
+                    if value == "Throttle":
+                        throttleLMessage = encodeThrottleMessage(speedL, throttleL, canLeftFrameID)
+                        throttleRMessage = encodeThrottleMessage(speedR, throttleR, canRightFrameID)
                 case "throttleL":
                     throttleL = float(value)
                     speedL = float(value) * 8031.75 # 8031.75 maximum value for rpm speed in DBC (scale 0.125)
