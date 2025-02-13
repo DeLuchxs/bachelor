@@ -96,7 +96,7 @@
         \begin{itemize}
             \item Machbarkeit eines solchen Angriffs soll gezeigt werden
             \item Aufmerksamkeit auf Sicherheitslücken in maritimen Systemen lenken
-            \item Sicherheitslücken sollen durch Steueurung mit Spielecontroller veranschaulicht werden
+            \item Sicherheitslücken sollen durch Steuerung mit Spielecontroller veranschaulicht werden
             \item Betrachtung möglicher Gegenmaßnahmen
         \end{itemize}
     \end{frame}
@@ -109,6 +109,7 @@
     \begin{figure}
         \centering
         \includegraphics[width=0.6\linewidth]{assets/limanda.png}
+        \tiny{Quelle: \url{https://www.inf.uni-rostock.de/mts/forschungsschiff/forschungsschiff-limanda-1/}}
         \caption{Forschungsschiff Limanda}
     \end{figure}
     \begin{itemize}
@@ -141,6 +142,7 @@
     \begin{figure}
         \centering
         \includegraphics[width=0.9\linewidth]{assets/canMessage.png}
+        \tiny{Quelle: A Comprehensible Guide to Controller Area Network (Wilfried Voss)}
         \caption{Aufbau einer CAN-Bus Nachricht}
     \end{figure}
     \begin{itemize}
@@ -169,6 +171,8 @@
         \tiny{Quelle: \url{https://www.vector.com/de/de/know-how/protokolle/sae-j1939/}}
         \caption{J1939 Nachrichten-ID}
     \end{figure}
+    \note{edp - extended data page, dp - data page, pdu - protocol data unit}
+    \note{edp und dp geben format der pgn an}
 \end{frame}
 
 % ---------------------------------------------------------------------------
@@ -226,6 +230,7 @@
     \begin{figure}
         \centering
         \includegraphics[width=1\linewidth]{assets/CAN-DBC-File-Format-Explained-Intro-Basics_2.png}
+        \tiny{Quelle: \url{https://www.csselectronics.com/pages/can-dbc-file-database-intro}}
         \caption{Auszug einer Beispiel DBC-Datei}
     \end{figure}
 \end{frame}
@@ -233,7 +238,7 @@
 \begin{frame}{derzeitiger Stand}
     \begin{itemize}
         \item Anhand der DBC-Datei einzelne Signale mit validen Werten erstellt
-        \item Frame-ID der DBC-Datei entnommen
+        \item Frame-ID einer aufgezeichneten Nachricht entnommen
         \item Prüfsumme mit Nachrichten-ID, ersten 7 Bytes und Nachrichtenzähler berechnet
         \item Daraus CAN-Bus Nachricht erstellt
     \end{itemize}
@@ -247,6 +252,30 @@
         \centering
         \includegraphics[width=1\linewidth]{assets/Zeitplan.png}
         \caption{Zeitplan}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Ausblick}
+    \begin{figure}
+        \centering
+        \includegraphics[width=1\linewidth]{assets/zeitplan1.png}
+        \caption{Auszug aus dem Zeitplan}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Ausblick}
+    \begin{figure}
+        \centering
+        \includegraphics[width=1\linewidth]{assets/zeitplan2.png}
+        \caption{Auszug aus dem Zeitplan}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Ausblick}
+    \begin{figure}
+        \centering
+        \includegraphics[width=1\linewidth]{assets/zeitplan3.png}
+        \caption{Auszug aus dem Zeitplan}
     \end{figure}
 \end{frame}
 
