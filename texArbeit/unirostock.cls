@@ -3,6 +3,9 @@
 \LoadClass[11pt, a4paper, oneside]{book}
 \RequirePackage[utf8]{inputenc}
 
+\renewcommand{\listfigurename}{Abbildungen}
+
+
 % Sprachvariablen
 \DeclareOption{de}{
     \newcommand{\unirostocklanguage}{ngerman}

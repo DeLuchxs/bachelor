@@ -65,12 +65,15 @@
 \renewcommand{\thechapter}{\Roman{chapter}}
 \input{chapter/anhang}
 \clearpage
-\listoffigures
 
+\phantomsection
 \addcontentsline{toc}{chapter}{Abbildungen}
-
+\listoffigures
+\clearpage
+\phantomsection
+\markboth{\uppercase{Literatur}}{}
+\addcontentsline{toc}{chapter}{Literatur}
 \printbibliography
 
-\addcontentsline{toc}{chapter}{Literatur}
 \input{chapter/erklaerung}
 \end{document}
