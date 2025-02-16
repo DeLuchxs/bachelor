@@ -15,26 +15,31 @@ backwardsR = False
 key = ""
 value = 0
 messageCounter = -1
-canLeftFrameID = 0x5b3 # CAN3
+canLeftFrameID = 2348875518 # CAN3
 canRightFrameID = 0x2c7 # CAN4
 
 
 import sys
 
-#os.system("sudo ip link set can0 down")
-#os.system("sudo ip link set can0 up type can bitrate 500000")
+"""os.system("sudo ip link set can0 down")
+os.system("sudo modprobe -r gs_usb")
+os.system("sudo modprobe gs_usb")
+os.system("sudo ip link set can0 up type can bitrate 500000") """
+
+
 os.system("sudo ip link delete vcan0")
 os.system("sudo modprobe vcan")
 os.system("sudo ip link add dev vcan0 type vcan")
 os.system("sudo ip link set up vcan0")
 
-db = cantools.database.load_file('dbc/j1939.dbc')
+db = cantools.database.load_file('dbc/j1939_utf8.dbc')
 db.messages
 example_message = db.get_message_by_name('TSC1')
 can_bus = can.interface.Bus(channel='vcan0', interface='socketcan')
 
 # Functions
 def encodeThrottleMessage(speed, throttle, canFrameID):
+    torqueHiRes = throttle * 0.125
     try:
         throttleInput = example_message.encode({ 
             'EngOverrideCtrlMode': 3, #3: Torque Control Mode
@@ -44,7 +49,7 @@ def encodeThrottleMessage(speed, throttle, canFrameID):
             'EngRqedTorque_TorqueLimit': throttle,
             'TransmissionRate': 2, # Transmission Rate of 100ms
             'ControlPurpose': 5, # Transient Optimized Torque Limit
-            'EngineRequestedTorqueHiRes': throttle,
+            'EngineRequestedTorqueHiRes': torqueHiRes,
             'MessageCounter': messageCounter,
             'MessageChecksum': 0
         })
@@ -53,7 +58,7 @@ def encodeThrottleMessage(speed, throttle, canFrameID):
         return None
     #calculate the checksum        
     if messageCounter != 4 and messageCounter != 15:
-        return can.Message(arbitration_id=canFrameID, data=throttleInput, is_extended_id=False)
+        return can.Message(arbitration_id=canFrameID, data=throttleInput, is_extended_id=True)
     elif messageCounter == 4:
         currentChecksum = 3
     else:
@@ -61,7 +66,7 @@ def encodeThrottleMessage(speed, throttle, canFrameID):
     
     # encode the message with checksum
     try:
-        throttleRChecksum = example_message.encode({ 
+        throttleInput = example_message.encode({ 
             'EngOverrideCtrlMode': 3, #3: Torque Control Mode
             'EngRqedSpeedCtrlConditions': 3, # 3: Transient Optimized for driveline disengaged and non-lockup conditions
             'OverrideCtrlModePriority': 0, # 0: Highest Priority
@@ -69,14 +74,14 @@ def encodeThrottleMessage(speed, throttle, canFrameID):
             'EngRqedTorque_TorqueLimit': throttle,
             'TransmissionRate': 2, # Transmission Rate of 100ms
             'ControlPurpose': 5, # Transient Optimized Torque Limit
-            'EngineRequestedTorqueHiRes': throttle,
+            'EngineRequestedTorqueHiRes': torqueHiRes,
             'MessageCounter': messageCounter,
             'MessageChecksum': currentChecksum
         })
     except Exception as e:
         print(f"Error encoding message: {e}")
         return None
-    return can.Message(arbitration_id=example_message.frame_id, data=throttleRChecksum, is_extended_id=False)
+    return can.Message(arbitration_id=example_message.frame_id, data=throttleInput, is_extended_id=True)
 
 def calculateChecksum(dataInput, canFrameID):
     checksum = 0x00
@@ -94,7 +99,10 @@ def calculateChecksum(dataInput, canFrameID):
     return checksum
 
 
-
+throttleLMessage = ""
+throttleRMessage = ""
+previousThrottleL = ""
+previousThrottleR = ""
 
 # Continuously read data from stdin
 try:
@@ -107,6 +115,9 @@ try:
             continue  # Skip empty lines
         if ":" not in line:
             continue
+        
+        messageCounter = (messageCounter + 1) % 16
+
         try:
             key, value = line.split(": ", 1)  # Split into key and value, allow extra colons in value
             match key:
@@ -135,8 +146,10 @@ try:
             print(f"Error processing line: {line} ({e})")
             continue
 
-        messageCounter = (messageCounter + 1) % 16
-        
+        if throttleLMessage != "" or previousThrottleL != throttleLMessage:
+            can_bus.send(throttleLMessage)
+            previousThrottleL = throttleLMessage
+            print(f"Sent message: {throttleLMessage}")
 
 except KeyboardInterrupt:
     print("Exiting")
