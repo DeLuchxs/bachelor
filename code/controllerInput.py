@@ -123,6 +123,10 @@ while running and len(joysticks) > 0:
         rudderAngle += xboxController.get_axis(0) * (1/(2*fps)) # 2*fps, damit wenn der Joystick ganz nach links/rechts gedrückt ist, der Ruderwinkel innerhalb 2 Sekunden bei spezifizierten FPS 1 beträgt
         if (previousRudderAngle < 0 and rudderAngle >= 0) or (previousRudderAngle > 0 and rudderAngle <= 0):
             xboxController.rumble(0.2, 0.2, 100)
+        elif (previousRudderAngle < 0.5 and rudderAngle >= 0.5) or (previousRudderAngle > 0.5 and rudderAngle <= 0.5):
+            rumbleAtMaximum()
+        elif (previousRudderAngle < -0.5 and rudderAngle >= -0.5) or (previousRudderAngle > -0.5 and rudderAngle <= -0.5):
+            rumbleAtMaximum()
         elif rudderAngle > 1:
             rudderAngle = 1
             rumbleAtMaximum()

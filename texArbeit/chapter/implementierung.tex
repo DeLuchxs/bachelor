@@ -46,6 +46,7 @@ Welches Dateiformat wird für Controllersignale benutzt?
 Wie werden diese effizient genug in Motorsignale übersetzt?
 Kann ich einfach originale Steuerungssignale unterdrücken?
 
+\subsection{CAN-Bus}
 Es gibt zuerst ein Programm, welches die Signale des Controllers erhält und in passende Variablen in Python interpretiert. Diese Variablen müssen
 dann in Nachrichten für den Can-Bus umgewandelt werden. Hierfür gibt es ein weiteres Programm. Damit die beiden Programme miteinander kommunizieren
 können, wird Inter-Process-Communication (IPC) benutzt. Als Methode werden hierbei Pipes benutzt. Diese sind einfach zu implementieren und haben
@@ -70,5 +71,16 @@ um die beiden Prozesse zu synchronisieren \cite{Venkataraman2015}.
     \item checksum berechnet nach \href{https://www.vector.com/de/de/know-how/protokolle/sae-j1939/#c103447}{vector} (abgerufen am 07.02.2025)
 \end{itemize}
 
-\section{Eingabe-Interface}
-Wie wird die Rückmeldung tatsächlich aussehen?
+\subsection{Serielle Schnittstelle}
+
+\subsection{Eingabe-Interface}
+Durch die begrenzte Zeit dieser Arbeit, wurde die Rückmeldung mit Vibrationen im Xbox-Controller implementiert.
+Dabei wird bei Erreichen des Maximums oder Minimums der Gashebelposition eine Vibration ausgelöst. Dies ist eine einfache
+Methode, um dem Benutzer eine Rückmeldung zu geben. Auch bei der hälfte der Gashebelposition wird eine kurze und leichte 
+Vibration ausgelöst. Das soll ermöglichen, dass es eine ungefähre Vorstellung der Gashebelposition gibt.
+Bei der Ruderposition wird eine Vibration ausgelöst, wenn die Ruderposition 100\% erreicht hat in jeweils beide Richtungen
+erreicht hat. Bei der Mitte der Ruderposition wird eine kurze und leichte Vibration ausgelöst. Wenn die 
+Ruderposition auf 50\% in eine Richtung ist, werden zwei kurze und leichte Vibrationen ausgelöst. Dies soll die Bedienung
+erleichtern. Zusätzlich soll der Effekt von \textcolor{red}{pilot induced oscillation} verhindert werden. Dies ist ein Effekt,
+bei dem der Pilot zu stark gegensteuert und somit eine Schwingung entsteht. Dafür muss der Schiffsführer 
+die ungefähre Position des Ruders kennen. Dies wird durch die Vibrationen erreicht.
