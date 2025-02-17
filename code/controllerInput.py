@@ -9,8 +9,11 @@ from time import sleep
 pygame.init()
 
 throttleL = 0
+previousThrottleL = 0
 throttleR = 0
+previousThrottleR = 0
 rudderAngle = 0
+previousRudderAngle = 0
 backwardsL = False
 backwardsR = False
 running = True
@@ -39,6 +42,12 @@ for i in range(0, pygame.joystick.get_count()):
     joysticks.append(pygame.joystick.Joystick(i))
     joysticks[-1].init()
 
+# Function to rumble the controller when an axis is at maximum or minimum
+def rumbleAtMaximum():
+    xboxController.rumble(0.2, 0.2, 100)
+    pygame.time.delay(100)
+    xboxController.rumble(0.2, 0.2, 100)
+    return
 
 # Print the joystick's name
 if len(joysticks) == 0:
@@ -112,10 +121,15 @@ while running and len(joysticks) > 0:
     # Rudder Angle
     if (xboxController.get_axis(0) < -0.1 or xboxController.get_axis(0) > 0.1):
         rudderAngle += xboxController.get_axis(0) * (1/(2*fps)) # 2*fps, damit wenn der Joystick ganz nach links/rechts gedrückt ist, der Ruderwinkel innerhalb 2 Sekunden bei spezifizierten FPS 1 beträgt
-        if rudderAngle > 1:
+        if (previousRudderAngle < 0 and rudderAngle >= 0) or (previousRudderAngle > 0 and rudderAngle <= 0):
+            xboxController.rumble(0.2, 0.2, 100)
+        elif rudderAngle > 1:
             rudderAngle = 1
+            rumbleAtMaximum()
         elif rudderAngle < -1:
             rudderAngle = -1
+            rumbleAtMaximum()
+        previousRudderAngle = rudderAngle
         print("rudderAngle: {}".format(rudderAngle))
         sys.stdout.flush()
          
@@ -125,10 +139,16 @@ while running and len(joysticks) > 0:
         normalisedAxisL = (xboxController.get_axis(triggerLT) + 1) / 2
         throttleL += normalisedAxisL * (1/(20*fps)) # bei 20 Sekunden soll der Throttle-Wert 1 betragen, wenn Trigger vollständig gedrückt ist
         throttleL -= xboxController.get_button(buttonLB) * (1/(2*fps))
-        if throttleL > 1:
+        #if throttle passes treshold 0.5, rumble
+        if (previousThrottleL < 0.5 and throttleL >= 0.5) or (previousThrottleL > 0.5 and throttleL <= 0.5):
+            xboxController.rumble(0.2, 0.2, 100)
+        elif throttleL > 1:
             throttleL = 1
-        if throttleL < 0:
+            rumbleAtMaximum()
+        elif throttleL < 0:
             throttleL = 0
+            rumbleAtMaximum()
+        previousThrottleL = throttleL
         print("throttleL: {}".format(throttleL))
         sys.stdout.flush()
 
@@ -138,10 +158,16 @@ while running and len(joysticks) > 0:
         normalisedAxisR = (xboxController.get_axis(triggerRT) + 1) / 2
         throttleR += normalisedAxisR * (1/(20*fps)) # bei 20 Sekunden soll der Throttle-Wert 1 betragen, wenn Trigger vollständig gedrückt ist
         throttleR -= xboxController.get_button(buttonRB) * (1/(2*fps))
-        if throttleR > 1:
+        #if throttle passes treshold 0.5, rumble
+        if (previousThrottleR < 0.5 and throttleR >= 0.5) or (previousThrottleR > 0.5 and throttleR <= 0.5):
+            xboxController.rumble(0.2, 0.2, 100)
+        elif throttleR > 1:
             throttleR = 1
-        if throttleR < 0:
+            rumbleAtMaximum()
+        elif throttleR < 0:
             throttleR = 0
+            rumbleAtMaximum()
+        previousThrottleR = throttleR
         print("throttleR: {}".format(throttleR))
         sys.stdout.flush()
     clock.tick(fps)

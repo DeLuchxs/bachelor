@@ -11,6 +11,14 @@ Welche habe ich benutzt und welche weiteren möglichen Schwachstellen habe ich g
     \item lediglich physischer Zugriff notwendig
     \item Daten in bestimmten Format, allerdings mit recht wenig Aufwand zu verstehen
 \end{itemize}
+benutzte Schwachstellen:
+\begin{itemize}
+    \item Standard dafür ausgelegt weitere Geräte hinzuzufügen
+    \item Schwierigkeit an DBC-Datei zu kommen
+    \item Priorität der Nachrichten einfach zu manipulieren
+    \item Alle Geräte sind gleichberechtigt (keine Schwachstelle, aber ausgenutzt)
+\end{itemize}
+
 Spezifische Schwachstellen für J1939:
 \begin{itemize}
     \item Nachrichten mit der niedrigsten ID haben die höchste Priorität, damit können DoS Angriffe durch das Senden von Nachrichten mit niedriger ID durchgeführt werden

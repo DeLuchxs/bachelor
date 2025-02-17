@@ -88,10 +88,22 @@ an den Motor zu senden, kann eine Nachricht des Gashebels abgefangen werden. Die
 werden. Die Quelladresse kann man auch kopieren. Die Priorität sollte möglichst klein gewählt werden, 
 damit die eigene Nachricht bevorzugt wird. In der eigenen Nachricht kann dann die gewünschte Gashebelposition gesendet werden.
 
+\subsection{Rückmeldung der Eingaben}
 \begin{itemize}
     \item Was passiert bei Veränderung der Gashebelposition?
     \item Wie passiert die Rückmeldung
+    \item wichtig um pilot induced oscillation zu verhindern
 \end{itemize}
 Was muss ich dabei beachten?
 Muss eine Rückmeldung für die Eingaben geschehen? Wenn ja, wie?
 (kleiner OLED-Bildschirm oder App)
+Es muss eine Art der Rückmeldung geben, um in etwa die Eingaben im Vergleich zum momentanen Zustand zu sehen.
+Dabei sollte die Rückmeldung möglichst unauffällig sein. Ein kleiner OLED-Bildschirm könnte benutzt werden, allerdings
+muss dieser physisch an den Raspberry Pi angeschlossen werden. Das würde die Versteckung des Rogue Devices erschweren.
+Eine App auf einem Handy könnte die Rückmeldung geben. Diese App könnte dann die gewünschten Positionen anzeigen.
+Dafür muss der Raspberry Pi mit dem Handy verbunden werden. Dies könnte über Bluetooth geschehen.
+Hier ist zu beachten, dass die Verbindung stabil ist und nicht von anderen Geräten gestört wird.
+Jedoch kann ist hier mit einem größeren Aufwand zu rechnen, da die App erst entwickelt werden muss.
+Eine weitere Möglichkeit würden Vibrationen im Xbox Controller sein. Diese könnten genutzt werden, wenn die derzeitige
+Eingabe ein Maximum oder Minimum erreicht hat. Allerdings ist dies nicht so genau wie eine Anzeige auf einem Bildschirm.
+Es könnten auch nur wenige bestimmte Positionen mittgeteilt werden.

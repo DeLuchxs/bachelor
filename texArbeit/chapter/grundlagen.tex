@@ -102,19 +102,27 @@ Daher gibt es auch viele Tools und Bibliotheken, die es ermöglichen, mit dem CA
 In diesem Abschnitt wird der aktuelle Stand der Technik vorgestellt.
 
 \subsection{Anbindung von Raspberry Pi an CanBus}
-\begin{itemize}
-    \item Raspbian OS hat seit 05.05.2015 eingebundenen Support für den Mikrochip MCP251x
-\end{itemize}
-\cite{Salunkhe2016}
-\begin{itemize}
-    \item PiCan2 ist ein CanBus Board für den Raspberry Pi
-    \item HAT (Hardware Attached on Top) Standard
-    \item erlaubt dem Raspberry Pi mit dem CanBus zu kommunizieren mit einer Geschwindigkeit von bis zu 1Mbit/s
-    \item UCAN ist ein USB-CAN Adapter, der es ermöglicht ein beliebiges USB-Gerät mit dem CanBus zu verbinden
-\end{itemize}
-\cite{Pant2019}
+In der folgenden Arbeit soll ein Raspberry Pi an einen CAN-Bus angeschlossen werden. 
+Dafür gibt es verschiedene Möglichkeiten. Im Folgenden werden einige Möglichkeiten vorgestellt.\\
+Die erste Möglichkeit ist die Verwendung eines Microchip MCP251x, welcher als CAN-Controller dient. Dieser wird 
+mit dem Microchip MCP2551 ergänzt, welcher als CAN-Transceiver dient. Diese Kombination ermöglicht es, den
+Raspberry Pi mit dem CAN-Bus zu verbinden. Der MCP251x wird über die SPI-Schnittstelle(Serial Peripheral Interface) 
+des Raspberry Pi angeschlossen. Dazu wird ein Treiber benötigt, der die Kommunikation zwischen dem Raspberry Pi und dem
+MCP251x ermöglicht. Ein solcher Treiber ist bereits seit dem 05.05.2015 in das Raspberry Pi OS (ehemals Raspbian OS)
+integriert. \cite{Salunkhe2016}
+Um diese Möglichkeit zu vereinfachen, gibt es auch verschiedene HATs (Hardware Attached on Top), die solche Microchips
+bereits integriert haben. Ein Beispiel dafür ist das PiCan2 von SK Pang Electronics. Dieses Board wird auf den 
+GPIO-Pins (General Purpose Input/Output) des Raspberry Pi gesteckt. Es erlaubt damit dem Raspberry Pi mit dem CAN-Bus
+zu kommunizieren. Das PiCan2 unterstützt eine Geschwindigkeit von bis zu 1Mbit/s. \cite{Pant2019}\\
+Es besteht auch die Möglichkeit, einen USB-CAN-Adapter zu verwenden. Damit ist die Anbindung eines 
+beliebigen Linux-System an den CAN-Bus möglich. Unter Umständen ist es auch mit Windows und MacOS möglich.
+Ein Beispiel für einen solchen Adapter ist der UCAN von Fysetc. Dieser Adapter ist mit einer open-source Firmware
+ausgestattet. Zusätzlich ist auch die Hardware open-source. Die Verbindung zum Raspberry Pi erfolgt über USB-C.
+Zum CAN-Bus müssen lediglich CAN\_H und CAN\_L und die Masse verbunden werden. 
+\cite{FysetcUCAN} (letzter Zugriff: 17.02.2025)
 
-\subsection{Software}
+
+\subsection{Überseztung von CAN-Nachrichten}
 Es gibt viele Software-Tools, die es ermöglichen, mit dem CAN-Bus zu arbeiten. Um einen Überblick zu bekommen, 
 werden hier einige vorgestellt. Diese Tools unterscheiden sich in ihrem Funktionsumfang, ihrer Benutzerfreundlichkeit 
 und den unterstützten Anwendungsfällen. Einige Programme sind speziell für die Analyse und das Debugging von CAN-Nachrichten 
@@ -147,12 +155,11 @@ Eigenschaften, Einsatzbereiche und Besonderheiten der einzelnen Tools vorgestell
     Es ist ein Open-Source-Projekt und kann auf GitHub gefunden werden. Diese Tools bieten eine Grundlage für die Entwicklung von Anwendungen, die mit dem CAN-Bus arbeiten.
     \cite{can-utils} (letzter Zugriff: 15.02.2025)
 \end{itemize}
-
-\subsection{Übersetzung von CanBus Nachrichten}
-\begin{itemize}
-    \item J1939 (DBC-Dateien) (https://docs.fileformat.com/de/database/dbc/)
-    \item NMEA 0183 
-    \item NMEA 2000 $\rightarrow$ CanBoat (https://github.com/canboat/canboat)
-    \item cantools Python Library 
-    
-\end{itemize}
+Um der Nutzlast der CAN-Bus Nachrichten Informationen zuzuordnen, ist eine DBC-Datei essentiell. 
+Diese Datei schlüsselt auf, welche Informationen in den verschiedenen CAN-Nachrichten enthalten sind.
+Da auch sensitive Informationen in den Nachrichten enthalten sein können, wird diese Datei in den meisten 
+Fällen nicht öffentlich verfügbar gemacht. Ohne diese Datei können zwar Brute-Force Ansätze verwendet werden,
+allerdings ist dies sehr aufwendig und nicht zielführend. \cite{Choi2021} \\
+Um die vorher genannten Tools zu verwenden, ist es also notwendig, die DBC-Datei zu haben. Bei canCommander
+sind einige DBC-Dateien bereits vorinstalliert. Bei cantools kann die DBC-Datei in das Programm geladen werden.
+Allerdings kann es eine Schwierigkeit darstellen, die bestimmte DBC-Datei zu erhalten.
