@@ -20,8 +20,13 @@ can_bus = can.interface.Bus(channel='vcan0', interface='socketcan')
 
 def isThrottleMessage(decodedMessage):
     print ("decodedMessage: ", decodedMessage)
-    if "EngRqedTorque_TorqueLimit" in decodedMessage:
-       print ("Action: Throttle")
+    if "EngRqedTorque_TorqueLimit" in decodedMessage and "MessageCounter" in decodedMessage:
+       if decodedMessage["MessageCounter"] not in {0, 4, 8, 15}:
+           # Prüfe, ob Nachrichtenzähler in aufgezeichneten Nachrichten enthalten ist, wenn nicht, ist es eine eigene Nachricht
+           return
+       else:
+            print ("Action: Throttle")
+            return
 
 
 while True:

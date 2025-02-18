@@ -45,7 +45,7 @@ for i in range(0, pygame.joystick.get_count()):
 # Function to rumble the controller when an axis is at maximum or minimum
 def rumbleAtMaximum():
     xboxController.rumble(0.2, 0.2, 100)
-    pygame.time.delay(100)
+    pygame.time.delay(200)
     xboxController.rumble(0.2, 0.2, 100)
     return
 

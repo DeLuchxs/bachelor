@@ -15,7 +15,7 @@ backwardsR = False
 key = ""
 value = 0
 messageCounter = -1
-canLeftFrameID = 2348875518 # CAN3
+canLeftFrameID = 2348875518 # CAN3 (0x5b3)
 canRightFrameID = 0x2c7 # CAN4
 
 
@@ -58,7 +58,7 @@ def encodeThrottleMessage(speed, throttle, canFrameID):
         print(f"Error encoding message: {e}")
         return None
     #calculate the checksum        
-    if messageCounter != 4 and messageCounter != 15:
+    if messageCounter != 4 and messageCounter != 15: 
         print ("EngRqedTorque_TorqueLimit: ", throttle)
         return can.Message(arbitration_id=canFrameID, data=throttleInput, is_extended_id=True)
     elif messageCounter == 4:

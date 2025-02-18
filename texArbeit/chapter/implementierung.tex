@@ -9,6 +9,7 @@ vergleichbar mit einem normalen Linux-System. Der Standard Package Manager ist a
 Python 3.12 und die benötigten Bibliotheken installiert. Damit sind die Vorraussetzungen für die weitere Implementierung
 gesetzt.
 
+
 \section{Verbindung Rogue Device - Controller}
 \begin{itemize}
     \item benutzt wird Python 3.12.8, da einfache Syntax und gute Bibliotheken
@@ -42,11 +43,7 @@ in jede Richtung jeweils 100\% erreichen. Dies ist ein Kompromiss zwischen Gesch
 Benutzte Hardware, Protokolle, Libraries 
 
 \section{Übersetzung Signale Controller - Schiff}
-Welches Dateiformat wird für Controllersignale benutzt?
-Wie werden diese effizient genug in Motorsignale übersetzt?
-Kann ich einfach originale Steuerungssignale unterdrücken?
 
-\subsection{CAN-Bus}
 Es gibt zuerst ein Programm, welches die Signale des Controllers erhält und in passende Variablen in Python interpretiert. Diese Variablen müssen
 dann in Nachrichten für den Can-Bus umgewandelt werden. Hierfür gibt es ein weiteres Programm. Damit die beiden Programme miteinander kommunizieren
 können, wird Inter-Process-Communication (IPC) benutzt. Als Methode werden hierbei Pipes benutzt. Diese sind einfach zu implementieren und haben
@@ -55,21 +52,36 @@ weiterarbeiten können. Es wird durch den Puffer der Pipe sichergestellt. Wenn d
 lesende Prozess den Puffer geleert hat. Dies ist ein einfaches und effizientes Verfahren, 
 um die beiden Prozesse zu synchronisieren \cite{Venkataraman2015}. 
 
-\begin{itemize}
-    \item Anfangsbeispiel: \href{https://www.geeksforgeeks.org/inter-process-communication-ipc/}{geeksforgeeks} (abgerufen am 18.12.2024)
-    \item Python: \href{https://thelinuxcode.com/python-pipe-example/}{thelinuxcode} (abgerufen am 19.12.2024)
-    \item encoding von canbus nachrichten in Python: \href{https://cantools.readthedocs.io/en/latest/}{cantools}
-\end{itemize}
+\subsection{CAN-Bus}
+Die Übertragenen Eingabewerte werden in dem nächsten Programm \texttt{canInterpreter.py} erkannt. Basierend auf den
+Eingaben wird dann die entsprechende Nachricht erstellt. Um eine Nachricht zu kodieren, wird die Bibliothek \texttt{cantools} benutzt.
+Mit dieser Bibliothek können DBC-Dateien gelesen und Nachrichten erstellt werden. Mit einer solchen Datei kann eine
+bestimmte Nachricht mit ihren Signalen definiert werden. Es ist dafür notwendig, diese DBC-Datei zu verstehen.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.2]{images/CAN-DBC-File-Format-Explained-Intro-Basics_2.png}
+    \caption{Auszug aus einer Beispiel DBC-Datei \cite{cssElectronics}(letzter Zugriff: 18.02.2025)}
+    \label{fig:dbcfile}
+\end{figure}
 
-\begin{itemize}
-    \item encoding mit cantools
-    \item signal definieren
-    \item message erstellen
-    \item mit beispiel dbc datei und encoden
-    \item decoder für canbus nachrichten (vor allem zum testen, aber auch für reaktion auf gashebel) (cantools)
-    \item dbc Datei verstehen \href{https://www.csselectronics.com/pages/can-dbc-file-database-intro}{csselectronics}
-    \item checksum berechnet nach \href{https://www.vector.com/de/de/know-how/protokolle/sae-j1939/#c103447}{vector} (abgerufen am 07.02.2025)
-\end{itemize}
+In dieser sind einzelne Nachrichten aufgelistet. Jede Nachricht hat eine ID, eine Länge und Signale. Diese Signale
+haben eine Länge, einen Offset und einen Faktor. Mit diesen Informationen kann eine Nachricht erstellt werden.
+Im Anschluss an die Nachrichtentypen werden in der DBC-Datei für bestimmte Signale die möglichen Eingaben definiert.
+Das hilft bei der richtigen Wahl der Eingabe. \\
+In der benötigten Nachricht ist eine Prüfsumme von 4 Bit notwendig. Jedoch gibt es zwei Methoden der Prüfsummenberechnung
+nach dem SAE J1939 Standard \cite{VectorSAE} (letzter Zugriff: 18.02.2025). Die richtige Methode für das System der 
+Limanda wurde durch aufgezeichnete Nachrichten ermittelt. Am Ende wird die Prüfsumme der Nachricht hinzugefügt und die
+Nachricht wird an den Can-Bus gesendet. \\
+Zusätzlich hilft das Programm \texttt{canReader.py} bei der Überwachung des Can-Bus. Es kann die Nachrichten auf dem
+Can-Bus lesen und in Echtzeit dekodieren. Dazu wurde wieder die Bibliothek \texttt{cantools} benutzt. Auch hier wird
+mit der gleichen DBC-Datei gearbeitet, da es sich um die gleichen Nachrichten handelt. In den dekodierten Nachrichten
+können die Signale und deren Werte gesehen werden. Dies hilft bei der Überwachung des Systems. Es wird spezifisch nach
+dem Signal für die Gashebelposition gesucht. Wenn dieses Signal entdeckt wird, dann muss eine eigene Nachricht
+gesendet werden, um die wahren Eingaben zu verhindern. Dies passiert wieder durch \texttt{canInterpreter.py} nach 
+einem über Pipes übermittelten Signal. Um eine Endlosschleife von eigenen Nachrichten zu verhindern, wird auch
+der Nachrichtenzähler überwacht. Aus den aufgezeichneten Nachrichten hat sich herausgestellt, dass der 
+Nachrichtenzähler wenige verschiedene Werte hat. Daher sind diese Werte zu den eigenen erstellten Nachrichten 
+verschieden. Dies ist eine einfache Methode, um die eigenen Nachrichten zu erkennen. \\
 
 \subsection{Serielle Schnittstelle}
 
@@ -83,4 +95,34 @@ erreicht hat. Bei der Mitte der Ruderposition wird eine kurze und leichte Vibrat
 Ruderposition auf 50\% in eine Richtung ist, werden zwei kurze und leichte Vibrationen ausgelöst. Dies soll die Bedienung
 erleichtern. Zusätzlich soll der Effekt von \textcolor{red}{pilot induced oscillation} verhindert werden. Dies ist ein Effekt,
 bei dem der Pilot zu stark gegensteuert und somit eine Schwingung entsteht. Dafür muss der Schiffsführer 
-die ungefähre Position des Ruders kennen. Dies wird durch die Vibrationen erreicht.
+die ungefähre Position des Ruders kennen. Dies wird durch die Vibrationen erreicht.\\
+\\
+Die Ruderstellung wird durch den linken Stick des Controllers gesteuert. Wenn die Eingabe eine bestimmte Schwelle überschreitet,
+wird dies wie Folgt durch Vibrationen signalisiert:
+\begin{figure}[h!]
+    \centering
+    \begin{tikzpicture}
+        \draw (0,0) -- (13,0);
+        \draw (0,0.25) -- (0,-0.25);
+        \draw (0,-0.5) node {-100\%};
+        \draw (0,-1) node {Vibration};
+        \draw (3.25, 0.25) -- (3.25, -0.25);
+        \draw (3.25,-0.5) node {-50\%};
+        \draw (3.25,-1) node {2x Vibration};
+        \draw (6.5,0.25) -- (6.5,-0.25);
+        \draw (6.5,-0.5) node {0\%};
+        \draw (6.5,-1) node {1x Vibration};
+        \draw (9.75,0.25) -- (9.75,-0.25);
+        \draw (9.75,-0.5) node {50\%};
+        \draw (9.75,-1) node {2x Vibration};
+        \draw (13,0.25) -- (13,-0.25);
+        \draw (13,-0.5) node {100\%};
+        \draw (13,-1) node {Vibration};
+    \end{tikzpicture}
+\end{figure}
+Dabei ist die Schwelle so gewählt, dass die Vibrationen nicht zu oft ausgelöst werden. 
+Es ist wichtig zu wissen, dass der Wert basierend auf der Eingabe des Joysticks kontinuierlich berechnet wird.
+Die Eingabe beträgt -1 bis 1. Dabei ist -1 die maximale Position nach links und 1 die maximale Position nach rechts.
+Damit die Ruderstellung nicht zu schnell verändert wird, benötigt es eine volle Eingabe von 1 oder -1 für 2 Sekunden,
+damit die Ruderstellung 100\% erreicht. Entsprechend werden diese 100\% langsamer erreicht, wenn die Eingabe geringer
+ist.
