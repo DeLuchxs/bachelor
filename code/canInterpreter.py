@@ -32,24 +32,25 @@ os.system("sudo modprobe vcan")
 os.system("sudo ip link add dev vcan0 type vcan")
 os.system("sudo ip link set up vcan0")
 
-db = cantools.database.load_file('dbc/j1939_utf8.dbc')
+db = cantools.database.load_file('dbc/j1939.dbc')
 db.messages
 example_message = db.get_message_by_name('TSC1')
 can_bus = can.interface.Bus(channel='vcan0', interface='socketcan')
 
 # Functions
 def encodeThrottleMessage(speed, throttle, canFrameID):
-    torqueHiRes = throttle * 0.125
+    torqueHiRes = throttle * 0.125 <= 0.875
+    throttle = (throttle * 250) - 125
     try:
         throttleInput = example_message.encode({ 
-            'EngOverrideCtrlMode': 3, #3: Torque Control Mode
-            'EngRqedSpeedCtrlConditions': 3, # 3: Transient Optimized for driveline disengaged and non-lockup conditions
+            'EngOverrideCtrlMode': 3, #3: Speed / Torque Limit Control Mode
+            'EngRequestedSpeedCtrlConditions': 0, # 0: Transient Optimized for driveline disengaged and non-lockup conditions
             'OverrideCtrlModePriority': 0, # 0: Highest Priority
-            'EngRqedSpeed_SpeedLimit': speed,
-            'EngRqedTorque_TorqueLimit': throttle,
-            'TransmissionRate': 2, # Transmission Rate of 100ms
-            'ControlPurpose': 5, # Transient Optimized Torque Limit
-            'EngineRequestedTorqueHiRes': torqueHiRes,
+            'EngRequestedSpeed_SpeedLimit': speed,
+            'EngRequestedTorque_TorqueLimit': throttle,
+            'TSC1TransRate': 4, # Transmission Rate of 100ms
+            'TSC1CtrlPurpose': 31, # Temporary PowerTrain Control
+            'EngineRequestedTorqueHighResolution': torqueHiRes,
             'MessageCounter': messageCounter,
             'MessageChecksum': 0
         })
@@ -58,6 +59,7 @@ def encodeThrottleMessage(speed, throttle, canFrameID):
         return None
     #calculate the checksum        
     if messageCounter != 4 and messageCounter != 15:
+        print ("EngRqedTorque_TorqueLimit: ", throttle)
         return can.Message(arbitration_id=canFrameID, data=throttleInput, is_extended_id=True)
     elif messageCounter == 4:
         currentChecksum = 3
@@ -67,13 +69,13 @@ def encodeThrottleMessage(speed, throttle, canFrameID):
     # encode the message with checksum
     try:
         throttleInput = example_message.encode({ 
-            'EngOverrideCtrlMode': 3, #3: Torque Control Mode
-            'EngRqedSpeedCtrlConditions': 3, # 3: Transient Optimized for driveline disengaged and non-lockup conditions
+            'EngOverrideCtrlMode': 3, #3: Speed / Torque Limit Control Mode
+            'EngRequestedSpeedCtrlConditions': 0, # 0: Transient Optimized for driveline disengaged and non-lockup conditions
             'OverrideCtrlModePriority': 0, # 0: Highest Priority
-            'EngRqedSpeed_SpeedLimit': speed,
-            'EngRqedTorque_TorqueLimit': throttle,
-            'TransmissionRate': 2, # Transmission Rate of 100ms
-            'ControlPurpose': 5, # Transient Optimized Torque Limit
+            'EngRequestedSpeed_SpeedLimit': speed,
+            'EngRequestedTorque_TorqueLimit': throttle,
+            'TSC1TransRate': 4, # Transmission Rate of 100ms
+            'TSC1CtrlPurpose': 31, # Temporary PowerTrain Control
             'EngineRequestedTorqueHiRes': torqueHiRes,
             'MessageCounter': messageCounter,
             'MessageChecksum': currentChecksum
@@ -81,6 +83,7 @@ def encodeThrottleMessage(speed, throttle, canFrameID):
     except Exception as e:
         print(f"Error encoding message: {e}")
         return None
+    print ("EngRqedTorque_TorqueLimit: ", throttle)
     return can.Message(arbitration_id=example_message.frame_id, data=throttleInput, is_extended_id=True)
 
 def calculateChecksum(dataInput, canFrameID):
@@ -116,7 +119,7 @@ try:
         if ":" not in line:
             continue
         
-        messageCounter = (messageCounter + 1) % 16
+        messageCounter = (messageCounter + 1) % 8
 
         try:
             key, value = line.split(": ", 1)  # Split into key and value, allow extra colons in value

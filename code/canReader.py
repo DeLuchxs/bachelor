@@ -26,7 +26,11 @@ def isThrottleMessage(decodedMessage):
 
 while True:
     message = can_bus.recv()
-    messageData = db.decode_message(message.arbitration_id, message.data)
+    try:
+        messageData = db.decode_message(message.arbitration_id, message.data)
+        isThrottleMessage(messageData)
+    except Exception as e:
+        print(f"Error decoding message: {e}")
+        continue
     print ("message: ", message)
-    isThrottleMessage(messageData)
 
