@@ -32,14 +32,16 @@ os.system("sudo modprobe vcan")
 os.system("sudo ip link add dev vcan0 type vcan")
 os.system("sudo ip link set up vcan0")
 
-db = cantools.database.load_file('dbc/j1939.dbc')
+db = cantools.database.load_file('dbc/j1939_1.dbc', strict=False)
 db.messages
 example_message = db.get_message_by_name('TSC1')
 can_bus = can.interface.Bus(channel='vcan0', interface='socketcan')
 
 # Functions
 def encodeThrottleMessage(speed, throttle, canFrameID):
-    torqueHiRes = throttle * 0.125 <= 0.875
+    torqueHiRes = throttle * 0.125
+    if torqueHiRes > 0.875:
+        torqueHiRes = 0.875
     throttle = (throttle * 250) - 125
     try:
         throttleInput = example_message.encode({ 
@@ -50,7 +52,7 @@ def encodeThrottleMessage(speed, throttle, canFrameID):
             'EngRequestedTorque_TorqueLimit': throttle,
             'TSC1TransRate': 4, # Transmission Rate of 100ms
             'TSC1CtrlPurpose': 31, # Temporary PowerTrain Control
-            'EngineRequestedTorqueHighResolution': torqueHiRes,
+            'EngRequestedTorqueHighResolution': torqueHiRes,
             'MessageCounter': messageCounter,
             'MessageChecksum': 0
         })
@@ -76,7 +78,7 @@ def encodeThrottleMessage(speed, throttle, canFrameID):
             'EngRequestedTorque_TorqueLimit': throttle,
             'TSC1TransRate': 4, # Transmission Rate of 100ms
             'TSC1CtrlPurpose': 31, # Temporary PowerTrain Control
-            'EngineRequestedTorqueHiRes': torqueHiRes,
+            'EngRequestedTorqueHighResolution': torqueHiRes,
             'MessageCounter': messageCounter,
             'MessageChecksum': currentChecksum
         })
@@ -84,7 +86,7 @@ def encodeThrottleMessage(speed, throttle, canFrameID):
         print(f"Error encoding message: {e}")
         return None
     print ("EngRqedTorque_TorqueLimit: ", throttle)
-    return can.Message(arbitration_id=example_message.frame_id, data=throttleInput, is_extended_id=False)
+    return can.Message(arbitration_id=canFrameID, data=throttleInput, is_extended_id=False)
 
 def calculateChecksum(dataInput, canFrameID):
     checksum = 0x00

@@ -112,14 +112,19 @@ class CanId:
         )
 
 
-print("Frame ID in hex eingeben: ")
-frame_id_hex = input()
-canId = CanId.parse_hex(frame_id_hex)
-print(canId)
-#replace_src
-print("Neue Source eingeben: ")
-src = input()
-canId = canId.replace_src(int(src))
-print(canId)
-#print in hex
-print(hex(canId.canid))
+
+def main():
+    print("Frame ID in hex eingeben: ")
+    frame_id_hex = input()
+    canId = CanId.parse_hex(frame_id_hex)
+    print(canId)
+    #replace_src
+    print("Neue Source eingeben: ")
+    src = input()
+    canId = canId.replace_src(int(src))
+    print(canId)
+    #print in hex
+    print(hex(canId.canid))
+
+if __name__ == "__main__":
+    main()

@@ -16,11 +16,11 @@ os.system("sudo ip link add dev vcan0 type vcan")
 os.system("sudo ip link set up vcan0")"""
 
 
-db = cantools.database.load_file('dbc/j1939.dbc')
+db = cantools.database.load_file('dbc/j1939_1.dbc', strict=False)
 can_bus = can.interface.Bus(channel='vcan0', interface='socketcan')
+example_message = db.get_message_by_name('TSC1')
 
 def isThrottleMessage(decodedMessage):
-    print ("decodedMessage: ", decodedMessage)
     if "EngRqedTorque_TorqueLimit" in decodedMessage and "MessageCounter" in decodedMessage:
         print ("Action: Throttle")
         return
@@ -29,10 +29,13 @@ def isThrottleMessage(decodedMessage):
 while True:
     message = can_bus.recv()
     try:
-        messageData = db.decode_message(message.arbitration_id, message.data)
         print ("messageArbitrationID: ", message.arbitration_id)
-        if message.arbitriation_id not in {0x50d}:
-            isThrottleMessage(messageData)
+        pgn = CanId.parse_int(message.arbitration_id).pgn
+        if pgn == 0:
+            messageData = db.decode_message(example_message.frame_id, message.data)
+            print ("decodedMessage: ", messageData)
+            if message.arbitration_id not in {0x50d, 0x20d}:
+                isThrottleMessage(messageData)
     except Exception as e:
         print(f"Error decoding message: {e}")
         continue
