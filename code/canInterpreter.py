@@ -15,8 +15,8 @@ backwardsR = False
 key = ""
 value = 0
 messageCounter = -1
-canLeftFrameID = 2348875518 # CAN3 (0x5b3)
-canRightFrameID = 0x2c7 # CAN4
+canLeftFrameID = 0x50d # CAN3 (0x5b3)
+canRightFrameID = 0x20d # CAN4
 
 
 import sys
@@ -60,7 +60,7 @@ def encodeThrottleMessage(speed, throttle, canFrameID):
     #calculate the checksum        
     if messageCounter != 4 and messageCounter != 15: 
         print ("EngRqedTorque_TorqueLimit: ", throttle)
-        return can.Message(arbitration_id=canFrameID, data=throttleInput, is_extended_id=True)
+        return can.Message(arbitration_id=canFrameID, data=throttleInput, is_extended_id=False)
     elif messageCounter == 4:
         currentChecksum = 3
     else:
@@ -84,7 +84,7 @@ def encodeThrottleMessage(speed, throttle, canFrameID):
         print(f"Error encoding message: {e}")
         return None
     print ("EngRqedTorque_TorqueLimit: ", throttle)
-    return can.Message(arbitration_id=example_message.frame_id, data=throttleInput, is_extended_id=True)
+    return can.Message(arbitration_id=example_message.frame_id, data=throttleInput, is_extended_id=False)
 
 def calculateChecksum(dataInput, canFrameID):
     checksum = 0x00

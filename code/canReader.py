@@ -2,6 +2,7 @@ import os
 import cantools
 import can
 import sys
+from canId import CanId
 
 """os.system("sudo ip link set can0 down")
 os.system("sudo modprobe -r gs_usb")
@@ -21,19 +22,17 @@ can_bus = can.interface.Bus(channel='vcan0', interface='socketcan')
 def isThrottleMessage(decodedMessage):
     print ("decodedMessage: ", decodedMessage)
     if "EngRqedTorque_TorqueLimit" in decodedMessage and "MessageCounter" in decodedMessage:
-       if decodedMessage["MessageCounter"] not in {0, 4, 8, 15}:
-           # Prüfe, ob Nachrichtenzähler in aufgezeichneten Nachrichten enthalten ist, wenn nicht, ist es eine eigene Nachricht
-           return
-       else:
-            print ("Action: Throttle")
-            return
+        print ("Action: Throttle")
+        return
 
 
 while True:
     message = can_bus.recv()
     try:
         messageData = db.decode_message(message.arbitration_id, message.data)
-        isThrottleMessage(messageData)
+        print ("messageArbitrationID: ", message.arbitration_id)
+        if message.arbitriation_id not in {0x50d}:
+            isThrottleMessage(messageData)
     except Exception as e:
         print(f"Error decoding message: {e}")
         continue

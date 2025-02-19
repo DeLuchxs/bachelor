@@ -78,10 +78,7 @@ mit der gleichen DBC-Datei gearbeitet, da es sich um die gleichen Nachrichten ha
 können die Signale und deren Werte gesehen werden. Dies hilft bei der Überwachung des Systems. Es wird spezifisch nach
 dem Signal für die Gashebelposition gesucht. Wenn dieses Signal entdeckt wird, dann muss eine eigene Nachricht
 gesendet werden, um die wahren Eingaben zu verhindern. Dies passiert wieder durch \texttt{canInterpreter.py} nach 
-einem über Pipes übermittelten Signal. Um eine Endlosschleife von eigenen Nachrichten zu verhindern, wird auch
-der Nachrichtenzähler überwacht. Aus den aufgezeichneten Nachrichten hat sich herausgestellt, dass der 
-Nachrichtenzähler wenige verschiedene Werte hat. Daher sind diese Werte zu den eigenen erstellten Nachrichten 
-verschieden. Dies ist eine einfache Methode, um die eigenen Nachrichten zu erkennen. \\
+einem über Pipes übermittelten Signal.  \\
 
 \subsection{Serielle Schnittstelle}
 
