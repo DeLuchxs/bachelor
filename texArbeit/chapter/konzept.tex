@@ -2,15 +2,24 @@
 \printmyminitoc{1}
 
 \section{Aufbau Schiffsysteme}
-Wie werden die Motoren im Schiff angesteuert?
-Welche Angriffsmöglichkeiten gibt es?
-Wie wird das Ruder angesteuert?
-Gibt es noch weitere wichtige Systeme?
-\begin{itemize}
-    \item einzelnen Can-Bus für jeden Gashebel
-    \item Serielle Kommunikation bei Autopilot
-    \item Autopilot kann nur das Ruder steuern
-\end{itemize}
+Ein Schiff besteht aus vielen verschiedenen Systemen, welche verschiedene Aufgaben haben. In diesem Fall wird das
+Steuerungssystem des Schiffes betrachtet. Dabei werden die wichtigen Systeme für die Arbeit abstrahiert, um die
+Funktionsweise des Systems zu verstehen.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.3]{images/limandaSystem.png}
+    \caption{Vereinfachte Darstellung der Systeme auf der Limanda}
+\end{figure}
+Die wichtigen Systeme für diese Arbeit begrenzen sich auf die Gashebel und den Autopiloten. Die beiden Gashebel sind jeweils
+mit einem CAN-Bus verbunden. An diesen Bussen werden die Steuerbefehle für die Motoren gesendet. Dort sind unter anderem 
+auch Bildschirme für den Schiffsführer angeschlossen. Als Higher-Layer-Protokoll wird J1939 genutzt. \\
+Der Autopilot ist ein eigenständiges System, welches über eine serielle Schnittstelle mit dem Ruder verbunden ist.
+Dieser hat keine Verbindung zu den Gashebeln oder Motoren. Er kann lediglich Signale an die Rudersteuerung senden.
+Dabei ist dieser mit einer seriellen Verbindung an die Rudersteuerung angeschlossen. Diese Verbindung ist unverschlüsselt.
+Die Rudersteuerung ist mit dem Ruderstellmotor über eine unbekannte Verbindung angeschlossen. Diese Verbindung ist
+jedoch nicht relevant für diese Arbeit.\\
+
+
 
 \section{Steuerungslogik des Controllers}
 Der benutzte Controller ist ein Xbox Series X Controller. Dieser wurde gewählt, da er eine gute Haptik hat und weit
@@ -64,14 +73,13 @@ die vergleichsweise komplexe Tastenkombination.
 \section{Integration des Rogue Device}
 Damit der Controller die Steuerbefehle an das Schiff senden kann, muss das Rogue Device in das System integriert werden.
 In diesem Fall ist das Rogue Device der Raspberry Pi. Damit dieser möglichst unbemerkt in das System integriert werden könnte,
-muss der Controller drahtlos verbunden werden. Um die Kommunikation von dem Rogue Device zu dem Schiff zu ermöglichen, müssen
+muss der Controller drahtlos verbunden werden. Um eine unentdeckte Integration zu ermöglichen, muss die Art der Stromversorgung
+unabhängig von dem Schiff sein. Dafür könnte ein Akku genutzt werden. Je nach Art der Anwendung kann der Akku 
+Um die Kommunikation von dem Rogue Device zu dem Schiff zu ermöglichen, müssen
 die einzelnen Systeme angesteuert werden. Um die Gashebelposition zu verändern, wird der Raspberry Pi mit dem Can-Bus des Schiffes
 verbunden. 
-\begin{itemize}
-    \item Stromversorgung des Raspberry Pi (Battery Pack oder Steckdose)
-\end{itemize}
-
-Sollte der Gashebel in der normalen Benutzung vom Schiffsführer benutzt werden, wird ein Signal an den Can-Bus gesendet. Dieses Signal wird dann an die Motoren weitergeleitet.
+Sollte der Gashebel in der normalen Benutzung vom Schiffsführer benutzt werden, wird ein Signal an den Can-Bus gesendet. 
+Dieses Signal wird dann an die Motoren weitergeleitet.
 Um diese Eingabe zu verhindern, muss auf diese Nachricht geachtet und reagiert werden. Mit dem Lesen des Can-Bus kann die 
 entsprechende Nachricht entdeckt werden. Dann kann eine Nachricht von dem Rogue Device gesendet werden, um die Gashebelposition
 zu überschreiben. Eigene Nachrichten müssen dazu erkannt werden, um eine Endlosschleife von eigenen Nachrichten zu verhindern. Dafür könnte
@@ -80,6 +88,14 @@ Nachrichtenzähler wenige verschiedene Werte hat. Daher sind diese Werte zu den 
 verschieden. Dies ist eine einfache Methode, um die eigenen Nachrichten zu erkennen. Eine weitere Möglichkeit wäre,
 eine eigene CAN-ID zu berechnen. Diese könnte dann genutzt werden, um die eigenen Nachrichten zu erkennen.
 \\
+konzept der Autopilot-Steuerung
+\begin{itemize}
+    \item Autopilot kommuniziert seriell mit Rudersteuerung
+    \item Autopilot kann nur das Ruder steuern
+    \item Autopilot-Nachrichten abfangen und analysieren
+    \item evtl replayen in eigener Reihenfolge
+    \item evtl eigene Nachrichten nachbauen
+\end{itemize}
 
 
 Wie in der Abbildung \ref{fig:j1939header} zu sehen, besteht der Header aus einer PGN, einer Quelladresse und einer Priorität. Um nun Nachrichten

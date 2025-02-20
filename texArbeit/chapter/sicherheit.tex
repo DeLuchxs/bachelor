@@ -2,21 +2,38 @@
 \printmyminitoc{1}
 
 \section{Schwachstellen}
+Die durchgeführte Arbeit konnte in diesem Format nur durch einige Schwachstellen in der Kommunikation durchgeführt werden.
+Um einen solchen Angriff möglichst zu vermeiden, ist es wichtig, dass die Schwachstellen aufgedeckt und behoben werden.
+Dafür werden in dem folgenden Abschnitt die aufgedeckten Schwachstellen dieser Arbeit aufgeführt und diskutiert.
+
+\subsection{Schwachstellen am CAN-Bus}
+Der CAN-Bus ist eines der zentralen Systeme in modernen Fahrzeugen und Schiffen. So auch auf der Limanda.
+Nach dem CAN-Standard sind die Nachrichten auf dem Bus nicht verschlüsselt. Zusätzlich werden die Nachrichten nur 
+auf ihre Richtigkeit überprüft, jedoch nicht auf ihre Authentizität. Das bedeutet, dass ein Angreifer Nachrichten auf den Bus
+senden kann, die von anderen Systemen als legitim angesehen werden.\cite{Voss2008} (Seiten 13-19) Durch das Bus-Netzwerk wird die einfache Integration weiterer
+Geräte in das System ermöglicht. Ein Angreifer kann so durch physischen Zugriff auf den Bus ein Gerät hinzufügen, welches im schlimmsten Fall
+die Kontrolle über das gesamte System übernehmen kann. Die einzige Hürde, ein Gerät in ein CAN-Bus Netzwerk zu integrieren, ist das
+Beschaffen der richtigen DBC-Datei. Diese Datei wird häufig von den Herstellern der Geräte nicht öffentlich zur Verfügung gestellt.
+Es sind jedoch einige DBC-Dateien im Internet verfügbar, die von anderen Nutzern erstellt wurden. Durch das Ausprobieren von dem Dekodieren
+der CAN-Nachrichten mit verschiedenen DBC-Dateien, kann eine passende Datei gefunden werden. \\
+In dieser Arbeit wurde zuerst ausgenutzt, dass die Nachrichten durch physischen Zugriff auf den Bus mitgelesen werden können.
+Die Nachrichten wurden aufgezeichnet und mit einer passenden DBC-Datei dekodiert. Nachdem die Nachrichten verstanden wurden, konnte
+eine Nachricht mit dem gleichen Syntax und eigenen Werten erstellt werden. Die aufgezeichnete Nachrichten-ID wurde dabei in der Quelle 
+verändert. Die Priorität ist gleich geblieben, da es bereits die höchste Priorität war. In anderen Fällen ist es möglich, die Priorität
+einfach zu verändern. Mit der eigenen Nachrichten-ID konnten nun die 
+echten Nachrichten von den eigenen unterschieden werden. Das ist wichtig, um echte Nachrichten mit den eigenen zu überschreiben. 
+Alle Geräte in einem CAN-Bus sind gleichberechtigt\cite{Voss2008} (Seite 14). Dadurch wird die Überschreibung der älteren Nachrichten möglich.\\
+Die vorher beschriebenen Schwachstellen sind allgemein für CAN-Bus Netzwerke. Wobei nicht alle eine Schwachstelle beschreiben, sondern 
+Eigenschaften des Standards sind, welche zusammen mit den Schwachstellen ausgenutzt werden können.\\
+
+\subsection{Schwachstellen am J1939-Protokoll}
+
+
 Welche habe ich benutzt und welche weiteren möglichen Schwachstellen habe ich gefunden?
 \begin{itemize}
-    \item Kommunikation auf dem Can-Bus ist nicht verschlüsselt
-    \item Keine Authentifizierung der Nachrichten
-    \item Einfach, weiteres Gerät in das System zu integrieren
     \item Serielle Schnittstelle am Autopiloten unverschlüsselt
     \item lediglich physischer Zugriff notwendig
     \item Daten in bestimmten Format, allerdings mit recht wenig Aufwand zu verstehen
-\end{itemize}
-benutzte Schwachstellen:
-\begin{itemize}
-    \item Standard dafür ausgelegt weitere Geräte hinzuzufügen
-    \item Schwierigkeit an DBC-Datei zu kommen
-    \item Priorität der Nachrichten einfach zu manipulieren
-    \item Alle Geräte sind gleichberechtigt (keine Schwachstelle, aber ausgenutzt)
 \end{itemize}
 
 Spezifische Schwachstellen für J1939:

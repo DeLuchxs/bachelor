@@ -11,11 +11,6 @@ gesetzt.
 
 
 \section{Verbindung Rogue Device - Controller}
-\begin{itemize}
-    \item benutzt wird Python 3.12.8, da einfache Syntax und gute Bibliotheken
-    \item Bibliothek: Pygame für die Controllereingabe (https://www.pygame.org/docs/(abgerufen am 08.12.2024))
-    \item Beispielscode für Pygame: \href{https://github.com/kevinmcaleer/xbox_controller}{github} (abgerufen am 08.12.2024)
-\end{itemize}
 
 Im ersten Schritt wird der Controller mit dem Raspberry Pi verbunden. Der Raspberry Pi wird mit Raspberry Pi OS betrieben. 
 Dieses Betriebssystem ist eine auf Debian basierende Distribution, die speziell für den Raspberry Pi entwickelt wurde.
@@ -38,9 +33,6 @@ Controllers eingegeben, welche nicht nur eine binäre Eingabe haben. Diese werde
 eine stufenlose Eingabe. Bei einer vollständigen Eingabe soll die Gashebelposition nach 20 Sekunden 100\% erreichen.
 So ist sichergestellt, dass die Gashebelposition nicht zu schnell verändert wird. Die Ruderposition soll nach 2 Sekunden
 in jede Richtung jeweils 100\% erreichen. Dies ist ein Kompromiss zwischen Geschwindigkeit und Genauigkeit.
-
-
-Benutzte Hardware, Protokolle, Libraries 
 
 \section{Übersetzung Signale Controller - Schiff}
 
@@ -75,10 +67,20 @@ Nachricht wird an den Can-Bus gesendet. \\
 Zusätzlich hilft das Programm \texttt{canReader.py} bei der Überwachung des Can-Bus. Es kann die Nachrichten auf dem
 Can-Bus lesen und in Echtzeit dekodieren. Dazu wurde wieder die Bibliothek \texttt{cantools} benutzt. Auch hier wird
 mit der gleichen DBC-Datei gearbeitet, da es sich um die gleichen Nachrichten handelt. In den dekodierten Nachrichten
-können die Signale und deren Werte gesehen werden. Dies hilft bei der Überwachung des Systems. Es wird spezifisch nach
-dem Signal für die Gashebelposition gesucht. Wenn dieses Signal entdeckt wird, dann muss eine eigene Nachricht
+können die Signale und deren Werte gesehen werden. Dies hilft bei der Überwachung des Systems. 
+In den aufgezeichneten Nachrichten wurde entdeckt, dass Nachrichten des Gashebels
+immer eine PGN von 0 haben, obwohl in der DBC-Datei eine andere PGN definiert ist. Das kann darauf zurückzuführen sein, dass
+es nicht unbedingt die richtige DBC-Datei ist. Es ist jedoch die einzige verfügbare DBC-Datei. Da nur die Gashebelposition
+mit der PGN gesendet wird, kann nach dieser PGN gefiltert werden. Die gefundenen Nachrichten werden dann dekodiert und
+spezifisch nach
+dem Signal für die Gashebelposition durchsucht. 
+Wenn dieses Signal entdeckt wird, dann muss eine eigene Nachricht
 gesendet werden, um die wahren Eingaben zu verhindern. Dies passiert wieder durch \texttt{canInterpreter.py} nach 
-einem über Pipes übermittelten Signal.  \\
+einem über Pipes übermittelten Signal. Um hier zu verhindern, dass eigene Nachrichten vom eigenen System erkannt werden,
+wird ein eigener Identifier benutzt. Um diesen zu berechnen, wurde mit einem Port von \texttt{canboatjs} auf Python gearbeitet.
+In diesem Programm kann eine bestehende CAN-ID in Quelle, Priorität und PGN aufgeteilt werden. Diese Werte können dann
+einzeln verändert werden. Mit diesen Werten kann dann eine neue CAN-ID berechnet werden. Nun können eigene Nachrichten 
+anhand der CAN-ID erkannt werden.
 
 \subsection{Serielle Schnittstelle}
 
