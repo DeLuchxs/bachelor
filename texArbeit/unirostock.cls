@@ -205,7 +205,7 @@ left=3.3cm,right=3.3cm,
 
 %command to print the acutal minitoc
 \newcommand{\printmyminitoc}[1]{%
-    \vspace{-2cm}%
+    \vspace{-1.73cm}%
     \noindent\hspace{-4.5cm}%
     \colorlet{black}{white}%
     \begin{tikzpicture}
