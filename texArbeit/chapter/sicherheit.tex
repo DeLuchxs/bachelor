@@ -27,18 +27,19 @@ Die vorher beschriebenen Schwachstellen sind allgemein für CAN-Bus Netzwerke. W
 Eigenschaften des Standards sind, welche zusammen mit den Schwachstellen ausgenutzt werden können.\\
 
 \subsection{Schwachstellen am J1939-Protokoll}
-
-
-Welche habe ich benutzt und welche weiteren möglichen Schwachstellen habe ich gefunden?
-\begin{itemize}
-    \item Serielle Schnittstelle am Autopiloten unverschlüsselt
-    \item lediglich physischer Zugriff notwendig
-    \item Daten in bestimmten Format, allerdings mit recht wenig Aufwand zu verstehen
-\end{itemize}
+Das J1939-Protokoll ist ein Protokoll, welches nicht für die Sicherheit, sondern für die Kommunikation zwischen den Steuergeräten
+entwickelt wurde. Es ist ein Protokoll, welches auf dem CAN-Bus aufbaut. Das Protokoll ist nicht verschlüsselt und die Nachrichten
+sind nicht authentifiziert. 
+Allerdings hat das Protokoll auch spezifische Schwachstellen, welche aber nicht alle in dieser Arbeit ausgenutzt wurden.\\
+Eine Schwachstelle ist, dass Nachrichten mit der niedrigsten ID die höchste Priorität haben. Zusätzlich ist es möglich, 
+eine eigene Priorität so zu setzen, dass die Nachrichten mit der eigenen ID die höchste Priorität haben. Durch das Senden von
+vielen Nachrichten mit hoher Priorität kann ein Denial-of-Service-Angriff durchgeführt werden. Dabei wird der Bus so stark belastet,
+dass die echten Nachrichten nicht in einem angemessenen Zeitraum gesendet werden können. Ein weiterer Angriff ist das Übernehmen
+einer Adresse. Jedes Gerät im J1939-Netzwerk hat eine eindeutige Adresse. Diese Adresse wird von den anderen Geräten genutzt, um
+Nachrichten an das Gerät zu senden. 
 
 Spezifische Schwachstellen für J1939:
 \begin{itemize}
-    \item Nachrichten mit der niedrigsten ID haben die höchste Priorität, damit können DoS Angriffe durch das Senden von Nachrichten mit niedriger ID durchgeführt werden
     \item Es ist möglich, ein Node in das Netzwerk hinzuzufügen, welcher seinen NAME, Adresse ändern kann und vollständige Kontrolle über alles veränderbaren Felder hat (CANoe)
     \item Angreifer-Node kann später hinzugefügt werden und dann eine schon vorhandene Adresse übernehmen, durch ein NAME-field mit niedrigerem Wert und somit höherer Priorität
     \item ständig diesen ehrlichen Knoten zu stören eine Adresse zu erlangen kann diesen komplett aus der Kommunikation ausschließen
