@@ -34,31 +34,23 @@ Allerdings hat das Protokoll auch spezifische Schwachstellen, welche aber nicht 
 Eine Schwachstelle ist, dass Nachrichten mit der niedrigsten ID die höchste Priorität haben. Zusätzlich ist es möglich, 
 eine eigene Priorität so zu setzen, dass die Nachrichten mit der eigenen ID die höchste Priorität haben. Durch das Senden von
 vielen Nachrichten mit hoher Priorität kann ein Denial-of-Service-Angriff durchgeführt werden. Dabei wird der Bus so stark belastet,
-dass die echten Nachrichten nicht in einem angemessenen Zeitraum gesendet werden können. Ein weiterer Angriff ist das Übernehmen
-einer Adresse. Jedes Gerät im J1939-Netzwerk hat eine eindeutige Adresse. Diese Adresse wird von den anderen Geräten genutzt, um
-Nachrichten an das Gerät zu senden. 
-
-Spezifische Schwachstellen für J1939:
-\begin{itemize}
-    \item Es ist möglich, ein Node in das Netzwerk hinzuzufügen, welcher seinen NAME, Adresse ändern kann und vollständige Kontrolle über alles veränderbaren Felder hat (CANoe)
-    \item Angreifer-Node kann später hinzugefügt werden und dann eine schon vorhandene Adresse übernehmen, durch ein NAME-field mit niedrigerem Wert und somit höherer Priorität
-    \item ständig diesen ehrlichen Knoten zu stören eine Adresse zu erlangen kann diesen komplett aus der Kommunikation ausschließen
-\end{itemize}
-Sicherheitsmaßnahme von J1939:
-Es gibt eine Zuweisungstabelle für Adresse-zu-NAME correspondence, welche jedoch einfach umgangen werden
-kann, durch das deklarieren des gleichen NAME wie der gezielte Knoten, jedoch mit einer niedrigeren ID
-um eine höhere Priorität zu erhalten und die Adresszuweisung zu gewinnen.
-\begin{itemize}
-    \item Angreifer kann sich als ein anderer Knoten ausgeben und so falsche, bösartige Nachrichten senden
-    \item bei einer globalen Anfrage nach PGNs sollte jeder Knoten antworten
-    \begin{itemize}
-        \item Spezifikation rät dazu, maximal 3 Anfragen pro Sekunde für eine Parametergruppe
-        \item keine Gegenmaßnahmen gegen mehr Anfragen
-        \item somit kann ein DDoS Angriff durchgeführt werden (alle Knoten antworten bei einer Anfrage)
-    \end{itemize}
-\end{itemize}
-
+dass die echten Nachrichten nicht in einem angemessenen Zeitraum gesendet werden können. Jedes Gerät in einem J1939-Netzwerk
+benötigt eine eindeutige Adresse und einen einzigartigen Namen \cite{JungerJ1939}. Da ein Gerät vollständige Kontrolle über 
+den eigenen Namen und die eigene Adresse hat, kann ein Angreifer sich als ein anderes Gerät ausgeben. Die Namensübernahme führt
+zunächst zu einem Konflikt, da zwei Geräte den gleichen Namen haben. Diesen Konflikt gewinnt das Gerät, welches die niedrigere
+Adresse hat. Daher kann der Name recht einfach übernommen werden. Dadurch kann ein originelles Gerät aus dem Netzwerk ausgeschlossen
+werden. Mit der übernommenen Adresse kann der Angreifer nun Nachrichten senden, die von anderen Geräten als legitim angesehen werden.
+Die einzige Sicherheitsmaßnahme, die das J1939-Protokoll bietet, ist eine Zuweisungstabelle für die Adressen und Namen. Allerdings
+bietet diese bei der Namensübernahme keinen Schutz, wenn der Angreifer auch die Adresse übernimmt. Diese Schwachstelle 
+wurde in dieser Arbeit nicht ausgenutzt, da es zu unvorhersehbaren Folgen hätte führen können. Das spricht für die 
+Schwere der Schwachstelle.\\
+Eine weitere Möglichkeit den Bus zu stören, ist die globale Anfrage nach PGNs. Bei einer solchen Anfrage sollen alle Geräte
+mit der eigenen PGN antworten. Die Spezifikation rät dazu, maximal 3 Anfragen pro Sekunde für eine Parametergruppe zu senden.
+Es gibt aber keine feste obere Grenze für die Anzahl der Anfragen. Daher gibt es auch keine Gegenmaßnahmen bei zu vielen 
+Anfragen. Ein Angreifer kann also durch das Senden von vielen Anfragen alle Geräte auf dem Bus dazu bringen, zu antworten.
+Damit ist ein Distributed-Denial-of-Service-Angriff (DDoS) möglich, weil die Überlastung von mehreren Geräten ausgeht. \\
 \cite{Murvay2018}
+
 
 \section{Schutzmaßnahmen}
 Welche gibt es bereits?
