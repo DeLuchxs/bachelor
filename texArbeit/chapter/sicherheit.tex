@@ -67,10 +67,24 @@ Was sind weitere Möglichkeiten?
     \item Auf größeren Schiffen: Trennung der Passagiernetzwerke von den Steuerungssystemen
 \end{itemize}
 
+\begin{itemize}
+    \item probleme mit J1939 vorallem durch das Fehlen kryptographischer Authentifizierung
+    \item aufgrund der verschiedenen Hersteller ist es schwierig, eine einheitliche Lösung zu finden
+    \item daher public key infrastructure (PKI) notwendig
+\end{itemize}
+\cite{Murvay2018}
+Feasability of PKI in J1939:
+\begin{itemize}
+    \item notwendigkeit von PKI in Fahrzeug-Fahrzeug Netzwerken
+    \item Support für PKI in AUTOSAR (Automotive Open System Architecture) crypographic specification
+    \item viele Open-Source libraries mit PKI support
+    \item zumindest für Autoindustrie keine ungewöhnliche Forderung, schon einige Implementierungen mit PKI
+\end{itemize}
+\cite{Murvay2018}
 \section{Relevanz für andere Schiffe}
 Gibt es solche Angriffsmöglichkeiten auch auf anderen Schiffen?
 \begin{itemize}
-    \item Can-Bus häufig genutzt, häufig unverschlüsselt
+    \item Can-Bus häufig genutzt, häufig nicht authentifizierte nachrichten
     \item besonders auf größeren Schiffen ist das Ruder nicht mehr mechanisch, sondern elektronisch
     \item Angriff auf das Steuerungssystem könnte katastrophale Folgen haben
 \end{itemize}
