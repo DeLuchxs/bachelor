@@ -34,7 +34,8 @@ os.system("sudo ip link set up vcan0")
 
 db = cantools.database.load_file('dbc/j1939_1.dbc', strict=False)
 db.messages
-example_message = db.get_message_by_name('TSC1')
+gasLeverMessage = db.get_message_by_name('TSC1')
+gearboxMessage = db.get_message_by_name('MAN1')
 can_bus = can.interface.Bus(channel='vcan0', interface='socketcan')
 
 # Functions
@@ -44,7 +45,7 @@ def encodeThrottleMessage(speed, throttle, canFrameID):
         torqueHiRes = 0.875
     throttle = (throttle * 250) - 125
     try:
-        throttleInput = example_message.encode({ 
+        throttleInput = gasLeverMessage.encode({ 
             'EngOverrideCtrlMode': 3, #3: Speed / Torque Limit Control Mode
             'EngRequestedSpeedCtrlConditions': 0, # 0: Transient Optimized for driveline disengaged and non-lockup conditions
             'OverrideCtrlModePriority': 0, # 0: Highest Priority
@@ -70,7 +71,7 @@ def encodeThrottleMessage(speed, throttle, canFrameID):
     
     # encode the message with checksum
     try:
-        throttleInput = example_message.encode({ 
+        throttleInput = gasLeverMessage.encode({ 
             'EngOverrideCtrlMode': 3, #3: Speed / Torque Limit Control Mode
             'EngRequestedSpeedCtrlConditions': 0, # 0: Transient Optimized for driveline disengaged and non-lockup conditions
             'OverrideCtrlModePriority': 0, # 0: Highest Priority
@@ -87,6 +88,37 @@ def encodeThrottleMessage(speed, throttle, canFrameID):
         return None
     print ("EngRqedTorque_TorqueLimit: ", throttle)
     return can.Message(arbitration_id=canFrameID, data=throttleInput, is_extended_id=False)
+
+def encodeGearboxMessage(throttle, backwards):
+    throttle = (throttle * 250) - 125
+    gearboxForward = False
+    gearboxReverse = False
+    gearboxNeutral = True
+    if backwards:
+        gearboxReverse = True
+        gearboxForward = False
+        gearboxNeutral = False
+    else:
+        gearboxForward = True
+        gearboxReverse = False
+        gearboxNeutral = False
+    try: 
+        gearboxInput = gearboxMessage.encode({
+            'StatusGearboxNeutral' : gearboxNeutral,
+            'StatusGearboxForward' : gearboxForward,
+            'StatusGearboxReverse' : gearboxReverse,
+            'EngStartReq' : 0x01,
+            'EngStopReq' : 0x00,
+            'CurrentMaxPermissibleLoad' : throttle,
+            'ExhaustBackPressure' : 0,
+            'SCRSystem1CatalystTemperature' : 0,
+            'SCRSystem2CatalystTemperature' : 0
+        })
+    except Exception as e:
+        print(f"Error encoding message: {e}")
+        return None
+    return can.Message(arbitration_id=gearboxMessage.frame_id, data=gearboxInput, is_extended_id=True)
+
 
 def calculateChecksum(dataInput, canFrameID):
     checksum = 0x00
