@@ -111,8 +111,8 @@ def encodeGearboxMessage(throttle, backwards):
             'EngStopReq' : 0x00,
             'CurrentMaxPermissibleLoad' : throttle,
             'ExhaustBackPressure' : 0,
-            'SCRSystem1CatalystTemperature' : 0,
-            'SCRSystem2CatalystTemperature' : 0
+            'SCRSystem1CatalystTemp' : 0,
+            'SCRSystem2CatalystTemp' : 0
         })
     except Exception as e:
         print(f"Error encoding message: {e}")
