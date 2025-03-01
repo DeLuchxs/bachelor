@@ -140,6 +140,8 @@ throttleLMessage = ""
 throttleRMessage = ""
 previousThrottleL = ""
 previousThrottleR = ""
+gearboxL = ""
+gearboxR = ""
 
 # Continuously read data from stdin
 try:
@@ -174,8 +176,12 @@ try:
                     rudderAngle = float(value)
                 case "backwardsL":
                     backwards = bool(value) 
+                    gearboxL = encodeGearboxMessage(throttleL, backwards)
+                    can_bus.send(gearboxL)
                 case "backwardsR":
                     backwards = bool(value)
+                    gearboxR = encodeGearboxMessage(throttleR, backwards)
+                    #can_bus.send(gearboxR) # can bus unterscheidung muss noch vorgenommen werden
                 case _:
                     print(f"Unknown key: {key}")
                     continue
@@ -183,10 +189,11 @@ try:
             print(f"Error processing line: {line} ({e})")
             continue
 
-        if throttleLMessage != "" or previousThrottleL != throttleLMessage:
+
+        '''if throttleLMessage != "" or previousThrottleL != throttleLMessage:
             can_bus.send(throttleLMessage)
             previousThrottleL = throttleLMessage
-            print(f"Sent message: {throttleLMessage}")
+            print(f"Sent message: {throttleLMessage}")'''
 
 except KeyboardInterrupt:
     print("Exiting")

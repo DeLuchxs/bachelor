@@ -64,10 +64,10 @@ while running and len(joysticks) > 0:
                 backwardsR = not backwardsR
                 throttleR = 0
                 throttleL = 0
-                print("backwardsL: {}".format(backwardsL))
-                print("backwardsR: {}".format(backwardsR))
                 print("throttleL: {}".format(throttleL))
                 print("throttleR: {}".format(throttleR))
+                print("backwardsL: {}".format(backwardsL))
+                print("backwardsR: {}".format(backwardsR))
                 sys.stdout.flush()
                 if backwardsR:
                     print("Der Rückwärtsgang wird eingelegt, bitte warten...")
@@ -82,8 +82,8 @@ while running and len(joysticks) > 0:
             elif xboxController.get_button(buttonLB) == 1 and xboxController.get_button(buttonB) == 1:
                 backwardsL = not backwardsL
                 throttleL = 0
-                print("backwardsL: {}".format(backwardsL))
                 print("throttleL: {}".format(throttleL))
+                print("backwardsL: {}".format(backwardsL))
                 sys.stdout.flush()
                 if backwardsR:
                     print("Der linke Rückwärtsgang wird eingelegt, bitte warten...")
@@ -98,8 +98,8 @@ while running and len(joysticks) > 0:
             elif xboxController.get_button(buttonRB) == 1 and xboxController.get_button(buttonB) == 1:
                 backwardsR = not backwardsR
                 throttleR = 0
-                print("backwardsR: {}".format(backwardsR))
                 print("throttleR: {}".format(throttleR))
+                print("backwardsR: {}".format(backwardsR))
                 sys.stdout.flush()
                 if backwardsR:
                     print("Der rechte Rückwärtsgang wird eingelegt, bitte warten...")
