@@ -89,7 +89,9 @@ wichtige Punkte:
 \begin{itemize}
     \item id des Frames wird nicht als J1939 erkannt und Fehler wird geworfen
     \item mögliche Lösung: Hexadezimale ID mit 80000000hex addieren
-    \item Prüfsumme wird nicht berechnet
+    \item \href{lightrun}{https://lightrun.com/answers/cantools-cantools-standard-frame-id-is-more-than-11-bits} (letzter Zugriff: 02.03.2025)
+    \item funktioniert, weil dateiformat ein bit "missbraucht" um zu zeigen, dass es sich um eine extended ID handelt
+    \item es gibt dazu keine offizielle Dokumentation, aber es funktioniert
     \item um immer die gearbox nachricht mit der aktuellen currentmaxpermissibleload zu sende, wird die gearbox nachricht bei dem jeweiligen Gashebel mit gesendet
 \end{itemize}
 
@@ -107,7 +109,7 @@ Ruderposition auf 50\% in eine Richtung ist, werden zwei kurze und leichte Vibra
 erleichtern. \\
 \\
 Die Ruderstellung wird durch den linken Stick des Controllers gesteuert. Wenn die Eingabe eine bestimmte Schwelle überschreitet,
-wird dies wie Folgt durch Vibrationen signalisiert:
+wird dies wie Folgt durch Vibrationen signalisiert: \\
 \begin{figure}[h!]
     \centering
     \begin{tikzpicture}
@@ -129,6 +131,7 @@ wird dies wie Folgt durch Vibrationen signalisiert:
         \draw (13,-1) node {Vibration};
     \end{tikzpicture}
 \end{figure}
+\\
 Dabei ist die Schwelle so gewählt, dass die Vibrationen nicht zu oft ausgelöst werden. 
 Es ist wichtig zu wissen, dass der Wert basierend auf der Eingabe des Joysticks kontinuierlich berechnet wird.
 Die Eingabe beträgt -1 bis 1. Dabei ist -1 die maximale Position nach links und 1 die maximale Position nach rechts.
