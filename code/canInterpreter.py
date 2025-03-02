@@ -168,10 +168,16 @@ try:
                     throttleL = float(value)
                     speedL = float(value) * 8031.75 # 8031.75 maximum value for rpm speed in DBC (scale 0.125)
                     throttleLMessage = encodeThrottleMessage(speedL, throttleL, canLeftFrameID)
+                    gearboxL = encodeGearboxMessage(throttleL, backwards)
+                    can_bus.send(throttleLMessage)
+                    can_bus.send(gearboxL)
                 case "throttleR":
                     throttleR = float(value)
                     speedR = float(value) * 8031.75
                     throttleRMessage = encodeThrottleMessage(speedR, throttleR, canRightFrameID)
+                    gearboxR = encodeGearboxMessage(throttleR, backwards)
+                    #can_bus.send(throttleRMessage)
+                    #can_bus.send(gearboxR) # can bus unterscheidung muss noch vorgenommen werden
                 case "rudderAngle":
                     rudderAngle = float(value)
                 case "backwardsL":

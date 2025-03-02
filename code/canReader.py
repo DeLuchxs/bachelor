@@ -26,7 +26,6 @@ def isThrottleMessage(decodedMessage):
         print ("Action: Throttle")
         return
 
-
 while True:
     message = can_bus.recv()
     try:
@@ -40,6 +39,7 @@ while True:
         elif message.arbitration_id == 0x18FF1C27:
             messageData = db.decode_message(gearboxMessage.frame_id, message.data)
             print ("gearboxMessage: ", messageData)
+            print ()
     except Exception as e:
         print(f"Error decoding message: {e}")
         continue
