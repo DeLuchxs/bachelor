@@ -9,7 +9,6 @@ vergleichbar mit einem normalen Linux-System. Der Standard Package Manager ist a
 Python 3.12 und die benötigten Bibliotheken installiert. Damit sind die Vorraussetzungen für die weitere Implementierung
 gesetzt.
 
-
 \section{Verbindung Rogue Device - Controller}
 
 Im ersten Schritt wird der Controller mit dem Raspberry Pi verbunden. Der Raspberry Pi wird mit Raspberry Pi OS betrieben. 
@@ -77,24 +76,23 @@ dem Signal für die Gashebelposition durchsucht.
 Wenn dieses Signal entdeckt wird, dann muss eine eigene Nachricht
 gesendet werden, um die wahren Eingaben zu verhindern. Dies passiert wieder durch \texttt{canInterpreter.py} nach 
 einem über Pipes übermittelten Signal. Um hier zu verhindern, dass eigene Nachrichten vom eigenen System erkannt werden,
-wird ein eigener Identifier benutzt. Um diesen zu berechnen, wurde mit einem Port von \texttt{canboatjs} auf Python gearbeitet.
+wird ein eigener Identifier benutzt. Um diesen zu berechnen, wurde mit einem Port von \texttt{canboatjs} auf Python gearbeitet 
+\cite{canboatjs}. 
 In diesem Programm kann eine bestehende CAN-ID in Quelle, Priorität und PGN aufgeteilt werden. Diese Werte können dann
 einzeln verändert werden. Mit diesen Werten kann dann eine neue CAN-ID berechnet werden. Nun können eigene Nachrichten 
-anhand der CAN-ID erkannt werden.
-
+anhand der CAN-ID erkannt werden.\\
 Für die Gangschaltung musste eigene Nachricht in der DBC-Datei definiert werden. Das konnte anhand der Bedienungsanleitung
 der Motoren gemacht werden. Die Nachrichten wurden dann in \texttt{canInterpreter.py} erstellt und gesendet.
-
-wichtige Punkte:
-\begin{itemize}
-    \item id des Frames wird nicht als J1939 erkannt und Fehler wird geworfen
-    \item mögliche Lösung: Hexadezimale ID mit 80000000hex addieren
-    \item \href{lightrun}{https://lightrun.com/answers/cantools-cantools-standard-frame-id-is-more-than-11-bits} (letzter Zugriff: 02.03.2025)
-    \item funktioniert, weil dateiformat ein bit "missbraucht" um zu zeigen, dass es sich um eine extended ID handelt
-    \item es gibt dazu keine offizielle Dokumentation, aber es funktioniert
-    \item um immer die gearbox nachricht mit der aktuellen currentmaxpermissibleload zu sende, wird die gearbox nachricht bei dem jeweiligen Gashebel mit gesendet
-\end{itemize}
-
+Eine Schwierigkeit dabei hat sich ergeben, als die ID nicht als erweiterter J1939-Standard erkannt wurde. 
+Dafür wurde eine Lösung gefunden, indem die ID mit der Hexadezimalen Zahl 80000000 addiert wurde. Die neu erzeugte ID
+wird nun ohne Probleme als erweiterte ID erkannt. Diese Lösung konnte nicht in einer offiziellen Dokumentation für den
+DBC-Standard gefunden werden. Es wurde jedoch in einem Forum gefunden, dass diese Lösung funktioniert \cite{cantoolsIssue} (letzter Zugriff: 04.03.2025).
+Laut der gleichen Quelle hängt der Grund dafür damit zusammen, dass ein Bit für die ID in dem Dateiformat zweckentfremdet für
+die Erkennung einer erweiterten ID benutzt wird. Allerdings kann dies nicht bestätigt werden, aber es scheint eine plausible
+Erklärung zu sein.\\
+Da in der Nachricht für das Getriebe auch die aktuelle maximale zulässige Last gesendet wird, reicht es nicht aus, diese
+Nachricht nur bei einer Änderung des Gangs zu senden. Daher wird die Nachricht bei jeder Änderung der Gashebelposition
+gesendet. Damit hat die aktuelle maximale zulässige Last immer den derzeitigen Wert.
 
 \subsection{Serielle Schnittstelle}
 
