@@ -53,19 +53,35 @@ Damit ist ein Distributed-Denial-of-Service-Angriff (DDoS) möglich, weil die Ü
 
 
 \section{Schutzmaßnahmen}
-Welche gibt es bereits?
-\begin{itemize}
-    \item richtige Baudrate muss eingestellt sein (keine wirkliche Schutzmaßnahme)
-    \item keine dedizierten Schutzmaßnahmen auf dem Forschungsschiff
-\end{itemize}
+Schutzmaßnahmen sind notwendig, um die Schwachstellen zu schließen und Angriffe zu verhindern.
+Eine Schwierigkeit bei dem Zugriff auf den CAN-Bus ist, dass dieser physisch zugänglich sein muss. Dies ist auch auf der Limanda
+der Fall. Wenn man allerdings unbemerkten Zugriff erhält, kann das Rogue Device versteckt in dem System integriert werden. 
+Das stellt die einzige Schutzmaßnahme dar, die in dieser Arbeit umgangen wurde. Jedoch wird der Zugriff nur durch eine Abdeckung zu der Technik des Schiffes
+verhindert. Mit dem richtigen Werkzeug kann diese Abdeckung einfach entfernt werden.
+Eine weitere Hürde ist, dass die richtige Baudrate für den CAN-Bus des Schiffes gewählt werden muss. Ohne vorherige Kenntnisse
+muss dabei ausprobiert werden, welche Baudrate die richtige ist. Das stellt aber keine Schutzmaßnahme dar, sondern einfach
+eine wichtige Eigenschaft des CAN-Standards.\\
+
 Was sind weitere Möglichkeiten?
 \begin{itemize}
-    \item Verschlüsselung der Kommunikation
-    \item Authentifizierung der Nachrichten
-    \item Überwachung der Kommunikation
-    \item regelmäßige Überprüfung der Kommunikation
-    \item Auf größeren Schiffen: Trennung der Passagiernetzwerke von den Steuerungssystemen
+    \item Intrusion Detection Systeme (IDS) für den CAN-Bus
+    \item Dabei muss der CAN-Standard in keiner Form modifiziert werden
+    \item auch keine Implementation in jedem Gerät eines Netzwerkes notwendig
 \end{itemize}
+\cite{Gmiden2016}
+\begin{itemize}
+    \item zwei Arten von IDS für den CAN-Bus
+    \item Signatur/Regel basiertes Detektionssystem
+    \item dabei sind werden gewisse Kombinationen oder Seqeunzen von Nachrichten von bekannten Angriffen erkannt
+    \item Anomalie basiertes Detektionssystem
+    \item dabei wird das normale Verhalten des Systems überwacht
+    \item Abweichungen von diesem Verhalten werden als Angriff erkannt, eigene Lösung für Schiffe notwendig, da unterschiedliches Verhalten
+    \item Studie dazu \cite{Davieds2024}
+    \item Anomalie basiertes System weniger wartungsintensiv, da keine ständige Aktualisierung der Regeln notwendig um neue Angriffe zu erkennen
+    \item Anomalie basiertes System auch besser für unbekannte Angriffe, aber auch mehr Fehlalarme
+    \item Regeln basiertes System sehr zuverlässig für bekannte Angriffe
+\end{itemize}
+\cite{Hoppe2009}
 
 \begin{itemize}
     \item probleme mit J1939 vorallem durch das Fehlen kryptographischer Authentifizierung
