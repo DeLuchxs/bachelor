@@ -21,11 +21,11 @@ jedoch nicht relevant für diese Arbeit.\\
 
 
 
-\section{Steuerungslogik des Controllers}
-Der benutzte Controller ist ein Xbox Series X Controller. Dieser wurde gewählt, da er eine gute Haptik hat und weit
+\section{Steuerungslogik des Spiele-Controllers}
+Der benutzte Spiele-Controller ist ein Xbox Series X Controller. Dieser wurde gewählt, da er eine gute Haptik hat und weit
 verbreitet ist. Zusätzlich ist er kabellos und kann somit frei bewegt werden. Um die Steuerung des Schiffes zu
-ermöglichen, müssen die Eingaben des Controllers in Steuerbefehle umgewandelt werden. Dies passiert auf dem 
-Raspberry Pi. Der Controller wird über Bluetooth mit dem Raspberry Pi verbunden. Dort werden die Eingaben des Controllers
+ermöglichen, müssen die Eingaben des Xbox-Controllers in Steuerbefehle umgewandelt werden. Dies passiert auf dem 
+Raspberry Pi. Der Xbox-Controller wird über Bluetooth mit dem Raspberry Pi verbunden. Dort werden die Eingaben des Controllers
 ausgelesen und in einem Python-Programm in Steuerbefehle umgewandelt. \\
 Um eine einfache Steuerung zu ermöglichen, wird im folgenden die Tastenbelegung aufgeschlüsselt.
 Um alle gewünschten Funktionen umzusetzen, werden nicht alle Tasten benötigt. 
@@ -33,14 +33,14 @@ Um alle gewünschten Funktionen umzusetzen, werden nicht alle Tasten benötigt.
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.5]{images/vorderseite.jpg}
-    \caption{Vorderseite des Controllers \cite{XboxController}(letzter Zugriff: 24.01.2025)}
+    \caption{Vorderseite des Xbox-Controllers \cite{XboxController}(letzter Zugriff: 24.01.2025)}
     \label{fig:vorderseite}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.5]{images/rueckseite.jpg}
-    \caption{Rückseite des Controllers \cite{XboxController}(letzter Zugriff: 24.01.2025)}
+    \caption{Rückseite des Xbox-Controllers \cite{XboxController}(letzter Zugriff: 24.01.2025)}
     \label{fig:rueckseite}
 \end{figure}
 
@@ -96,22 +96,27 @@ zu überschreiben. Eigene Nachrichten müssen dazu erkannt werden, um eine Endlo
 der Nachrichtenzähler überwacht werden. Aus den aufgezeichneten Nachrichten hat sich herausgestellt, dass der 
 Nachrichtenzähler wenige verschiedene Werte hat. Daher sind diese Werte zu den eigenen erstellten Nachrichten 
 verschieden. Dies ist eine einfache Methode, um die eigenen Nachrichten zu erkennen. Eine weitere Möglichkeit wäre,
-eine eigene CAN-ID zu berechnen. Diese könnte dann genutzt werden, um die eigenen Nachrichten zu erkennen.
-\\
-konzept der Autopilot-Steuerung
-\begin{itemize}
-    \item Autopilot kommuniziert seriell mit Rudersteuerung
-    \item Autopilot kann nur das Ruder steuern
-    \item Autopilot-Nachrichten abfangen und analysieren
-    \item evtl replayen in eigener Reihenfolge
-    \item evtl eigene Nachrichten nachbauen
-\end{itemize}
-
-
+eine eigene CAN-ID zu berechnen. Diese könnte dann genutzt werden, um die eigenen Nachrichten zu erkennen.\\
 Wie in der Abbildung \ref{fig:j1939header} zu sehen, besteht der Header aus einer PGN, einer Quelladresse und einer Priorität. Um nun Nachrichten
 an den Motor zu senden, kann eine Nachricht des Gashebels abgefangen werden. Die PGN kann für die eigene Nachricht genutzt
 werden. Die Quelladresse kann man auch kopieren. Die Priorität sollte möglichst klein gewählt werden, 
 damit die eigene Nachricht bevorzugt wird. In der eigenen Nachricht kann dann die gewünschte Gashebelposition gesendet werden.
+\\
+Um die Rudersteuerung zu manipulieren, muss der Raspberry Pi mit dem Autopiloten verbunden werden. Bei dem Autopiloten
+handelt es sich um ein Navitron NT888G. Dieser ist über eine serielle Schnittstelle mit einer elektronischen Kontrolleinheit
+für den Stellmotor des Ruders verbunden. Diese Verbindung ist unverschlüsselt, benutzt jedoch ein Propritäres Protokoll.
+Durch reverse engineering müssen einzelne Befehle herausgefunden werden, welche für die Ruderkontrolle von Bedeutung sind.
+Dazu müssen die Nachrichten des Autopiloten abgefangen und analysiert werden. Mit den gewonnenen Informationen können
+eigene Nachrichten erstellt werden oder bestehende Nachrichten in eigener Reihenfolge abgespielt werden.
+Zusätzlich kann das Ruder auch physikalisch über das Steuerrad bewegt werden. Dieser Weg wird jedoch nicht betrachtet.
+Ein weiterer Ansatz wäre es, die echten Kursdaten abzufangen und zu manipulieren. Dadurch müsste der Autopilot reagieren
+und das Ruder steuern. Die Kursdaten werden nach dem NMEA-0183-Standard gesendet. Dabei handelt es sich um ein Schnittstellenstandard, 
+wobei die Daten in ASCII-Form gesendet werden. Der Standard ist für die Einweg-Kommunikation von einem Sender zu einem oder mehreren
+Empfängern ausgelegt. Es gibt einige Erklärungen der Nachrichten, jedoch ist die offizielle Spezifikation kostenpflichtig. 
+\cite{nmea0183} (letzter Zugriff: 07.03.2025)\\
+Trotzdem sind für alte Systeme genug Informationen verfügbar, um die Nachrichten zu verstehen. Damit können die Kursdaten
+einfach verstanden und manipuliert werden. Mit dem Austauschen der echten Daten durch manipulierte, wäre ein 
+physikalischer Man-in-the-Middle Angriff realisiert.\\
 
 \subsection{Rückmeldung der Eingaben}
 Was muss ich dabei beachten?

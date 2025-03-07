@@ -51,6 +51,24 @@ Anfragen. Ein Angreifer kann also durch das Senden von vielen Anfragen alle Ger�
 Damit ist ein Distributed-Denial-of-Service-Angriff (DDoS) möglich, weil die Überlastung von mehreren Geräten ausgeht. \\
 \cite{Murvay2018}
 
+\subsection{Schwachstellen an der Rudersteuerung}
+Die Rudersteuerung wird nur durch das physikalische Steuerrad oder den Autopiloten gesteuert. Da ein physikalischer
+Angriff auf das Steuerrad nicht verdeckt durchgeführt werden kann, werden keine außerordentlichen Schutzmaßnahmen benötigt.
+Bei dem Autopiloten von Navitron handelt es sich um ein Gerät, welches Informationen zu dem Kurs, Geschwindigkeit und
+Position des Schiffes über den NMEA-0183-Bus erhält. Durch die Eigenschaft, dass NMEA-0183 direkt mit ASCII-Nachrichten
+arbeitet, ist es möglich mit physikalischem Zugriff auf den Bus Nachrichten zu lesen. \cite{nmea0183} (letzter Zugriff 07.03.2025) \\
+Diese können zur Überwachung oder auch späteren Manipulation der Kommunikation genutzt werden. Mit aufgezeichneten Nachrichten
+kann ein Angreifer die Kommunikation von den Sensoren zu dem Autopiloten nachvolziehen. Durch das Senden von eigenen Nachrichten
+könnte es möglich, den Autopiloten indirekt zu steuern. Das könnte durch eine Manipulation der Kursdaten mittels einer Man-in-the-Middle-Attacke
+erreicht werden. Dies wurde in dieser Arbeit aber nicht getestet und ist daher nur eine Annahme. 
+NMEA-0183 unterstützt eine Baudrate von 4800. Das bedeutet, dass die Nachrichten mit einer Geschwindigkeit von 9600 Bit pro Sekunde
+gesendet werden. Dadurch können Geräte mit diesem Standard möglicherweise durch eine Denial-of-Service-Attacke gestört werden.
+\cite{Tran2021}
+Der Autopilot sendet basierend auf den Kursdaten und den eigenen Einstellungen Nachrichten an die Rudersteuerung. Für diese 
+Nachrichten wurde im Rahmen dieser Arbeit keine Verschlüsselung festgestellt. Aber der Standard dieser Nachrichten ist nicht
+bekannt. Das stellt zwar keine Sicherheitsmaßnahme dar, aber es ist eine Hürde für einen Angreifer. Wenn jedoch 
+der Standard bekannt ist, kann ein Angreifer die Nachrichten zumindest mitlesen. Eine Authentifizierung wurde auch
+nicht festgestellt, aber es kann nicht ausgeschlossen werden, dass eine Authentifizierung stattfindet.\\
 
 \section{Schutzmaßnahmen}
 Schutzmaßnahmen sind notwendig, um die Schwachstellen zu schließen und Angriffe zu verhindern.
