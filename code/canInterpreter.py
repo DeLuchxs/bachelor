@@ -24,7 +24,7 @@ import sys
 """os.system("sudo ip link set can0 down")
 os.system("sudo modprobe -r gs_usb")
 os.system("sudo modprobe gs_usb")
-os.system("sudo ip link set can0 up type can bitrate 500000") """
+os.system("sudo ip link set can0 up type can bitrate 125000") """
 
 
 os.system("sudo ip link delete vcan0")
@@ -166,27 +166,27 @@ try:
                         throttleRMessage = encodeThrottleMessage(speedR, throttleR, canRightFrameID)
                 case "throttleL":
                     throttleL = float(value)
-                    speedL = float(value) * 8031.75 # 8031.75 maximum value for rpm speed in DBC (scale 0.125)
+                    speedL = float(value) * 2031.75 # 8031.75 maximum value for rpm speed in DBC (scale 0.125)
                     throttleLMessage = encodeThrottleMessage(speedL, throttleL, canLeftFrameID)
-                    gearboxL = encodeGearboxMessage(throttleL, backwards)
+                    #gearboxL = encodeGearboxMessage(throttleL, backwards)
                     can_bus.send(throttleLMessage)
-                    can_bus.send(gearboxL)
+                    #can_bus.send(gearboxL)
                 case "throttleR":
                     throttleR = float(value)
-                    speedR = float(value) * 8031.75
+                    speedR = float(value) * 2031.75
                     throttleRMessage = encodeThrottleMessage(speedR, throttleR, canRightFrameID)
-                    gearboxR = encodeGearboxMessage(throttleR, backwards)
+                    #gearboxR = encodeGearboxMessage(throttleR, backwards)
                     #can_bus.send(throttleRMessage)
                     #can_bus.send(gearboxR) # can bus unterscheidung muss noch vorgenommen werden
                 case "rudderAngle":
                     rudderAngle = float(value)
                 case "backwardsL":
                     backwards = bool(value) 
-                    gearboxL = encodeGearboxMessage(throttleL, backwards)
+                    #gearboxL = encodeGearboxMessage(throttleL, backwards)
                     can_bus.send(gearboxL)
                 case "backwardsR":
                     backwards = bool(value)
-                    gearboxR = encodeGearboxMessage(throttleR, backwards)
+                    #gearboxR = encodeGearboxMessage(throttleR, backwards)
                     #can_bus.send(gearboxR) # can bus unterscheidung muss noch vorgenommen werden
                 case _:
                     print(f"Unknown key: {key}")

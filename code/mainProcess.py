@@ -19,6 +19,12 @@ controller_process = subprocess.Popen(
     text=True                          # Treat as text
 )
 
+'''reader_process = subprocess.Popen(
+    [path, 'canReader.py'],
+    stdout=subprocess.PIPE,
+    text=True
+)'''
+
 # Start the canInterpreter process
 interpreter_process = subprocess.Popen(
     [path, 'canInterpreter.py'], 

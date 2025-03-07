@@ -4,10 +4,10 @@ import can
 import sys
 from canId import CanId
 
-"""os.system("sudo ip link set can0 down")
+'''os.system("sudo ip link set can0 down")
 os.system("sudo modprobe -r gs_usb")
 os.system("sudo modprobe gs_usb")
-os.system("sudo ip link set can0 up type can bitrate 500000") """
+os.system("sudo ip link set can0 up type can bitrate 125000")'''
 
 
 """os.system("sudo ip link delete vcan0")
