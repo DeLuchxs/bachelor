@@ -79,42 +79,34 @@ verhindert. Mit dem richtigen Werkzeug kann diese Abdeckung einfach entfernt wer
 Eine weitere Hürde ist, dass die richtige Baudrate für den CAN-Bus des Schiffes gewählt werden muss. Ohne vorherige Kenntnisse
 muss dabei ausprobiert werden, welche Baudrate die richtige ist. Das stellt aber keine Schutzmaßnahme dar, sondern einfach
 eine wichtige Eigenschaft des CAN-Standards.\\
-
-Was sind weitere Möglichkeiten?
-\begin{itemize}
-    \item Intrusion Detection Systeme (IDS) für den CAN-Bus
-    \item Dabei muss der CAN-Standard in keiner Form modifiziert werden
-    \item auch keine Implementation in jedem Gerät eines Netzwerkes notwendig
-\end{itemize}
-\cite{Gmiden2016}
-\begin{itemize}
-    \item zwei Arten von IDS für den CAN-Bus
-    \item Signatur/Regel basiertes Detektionssystem
-    \item dabei sind werden gewisse Kombinationen oder Seqeunzen von Nachrichten von bekannten Angriffen erkannt
-    \item Anomalie basiertes Detektionssystem
-    \item dabei wird das normale Verhalten des Systems überwacht
-    \item Abweichungen von diesem Verhalten werden als Angriff erkannt, eigene Lösung für Schiffe notwendig, da unterschiedliches Verhalten
-    \item Studie dazu \cite{Davieds2024}
-    \item Anomalie basiertes System weniger wartungsintensiv, da keine ständige Aktualisierung der Regeln notwendig um neue Angriffe zu erkennen
-    \item Anomalie basiertes System auch besser für unbekannte Angriffe, aber auch mehr Fehlalarme
-    \item Regeln basiertes System sehr zuverlässig für bekannte Angriffe
-\end{itemize}
-\cite{Hoppe2009}
-
-\begin{itemize}
-    \item probleme mit J1939 vorallem durch das Fehlen kryptographischer Authentifizierung
-    \item aufgrund der verschiedenen Hersteller ist es schwierig, eine einheitliche Lösung zu finden
-    \item daher public key infrastructure (PKI) notwendig
-\end{itemize}
-\cite{Murvay2018}
-Feasability of PKI in J1939:
-\begin{itemize}
-    \item notwendigkeit von PKI in Fahrzeug-Fahrzeug Netzwerken
-    \item Support für PKI in AUTOSAR (Automotive Open System Architecture) crypographic specification
-    \item viele Open-Source libraries mit PKI support
-    \item zumindest für Autoindustrie keine ungewöhnliche Forderung, schon einige Implementierungen mit PKI
-\end{itemize}
-\cite{Murvay2018}
+\\
+Im CAN-Standard gibt es keine dedizierten Sicherheitsmaßnahmen. Daher müssen diese nachträglich implementiert werden.
+Eine vergleichsweise einfache Maßnahme ist die Implementierung von Intrusion Detection Systemen (IDS). Diese Systeme überwachen
+den Bus und erkennen mögliche Angriffe. Ein Vorteil dabei ist, dass der CAN-Standard in keiner Form für den 
+Anwendungsfall modifiziert werden muss. Es ist auch keine Implementation in jedem Gerät eines Netzwerkes notwendig.
+Das System kann auf einem zentralen Gerät laufen und den Bus überwachen. \cite{Gmiden2016} 
+Ein IDS kann auf zwei Arten implementiert werden. Zum einen kann ein Signatur/Regel-basiertes System verwendet werden.
+Hier können bereits bekannte Angriffe erkannt werden. Dies wird mit einer Erkennung von bestimmten Kombinationen oder Sequenzen
+von Nachrichten erreicht. Um ständig neue Angriffe zu erkennen, müssen die Regeln ständig aktualisiert werden.
+Für bekannte Angriffe ist dieses System sehr zuverlässig. Zum anderen kann ein Anomalie-basiertes System verwendet werden.
+Hier wird das normale Verhalten des Systems überwacht. Abweichungen von diesem Verhalten werden als möglicher Angriff erkannt.
+Dieses System ist weniger wartungsintensiv, da keine ständige Aktualisierung der Regeln notwendig ist. Es ist auch besser für
+unbekannte Angriffe geeignet, da es keine explizite Regel für den Angriff geben muss. Allerdings gibt es auch mehr Fehlalarme,
+die in einigen Anwendungen nicht toleriert werden können. \cite{Hoppe2009} \\
+Mit der Nutzung von J1939-Netzwerken ist keine höhere Sicherheit geschaffen. Ein großes Problem dabei ist, dass
+eine kryptographische Authentifizierung fehlt. Das bedeutet, dass Nachrichten nicht auf ihre Authentizität überprüft werden.
+Daher ist es möglich, dass ein Angreifer Nachrichten sendet, die von anderen Geräten als legitim angesehen werden.
+Eine einheitliche Lösung für dieses Problem ist schwer zu finden, da in einem solchen Netzwerk verschiedene Geräte
+von verschiedenen Herstellern zusammenarbeiten. Eine Lösung für dieses Problem ist die Implementierung einer Public Key Infrastruktur (PKI).
+Hier werden die Geräte mit einem Zertifikat ausgestattet, welches von einer zentralen Stelle signiert wird, beispielsweise
+dem Fahrzeughersteller. Mittels dieses Zertifikats kann ein Gerät seine Identität beweisen und auch die Identität anderer Geräte
+überprüfen. 
+Die Nutzung von PKI in J1939-Netzwerken ist nicht ungewöhnlich. Es gibt bereits einige Implementierungen, die PKI nutzen.
+Vorallem in der Automobilindustrie ist die Nutzung von PKI teilweise etabliert. Außerdem ist es notwendig, eine PKI in 
+Netwerken zu benutzen, in denen die Geräte nicht vom selben Hersteller sind.
+Desweiteren gibt es viele Open-Source-Bibliotheken,
+die PKI unterstützen. 
+\cite{Murvay2018} \\
 \section{Relevanz für andere Schiffe}
 Gibt es solche Angriffsmöglichkeiten auch auf anderen Schiffen?
 \begin{itemize}
