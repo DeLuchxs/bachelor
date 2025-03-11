@@ -44,7 +44,7 @@ def encodeThrottleMessage(speed, throttle):
     torqueHiRes = throttle * 0.125
     if torqueHiRes > 0.875:
         torqueHiRes = 0.875
-    throttle = (throttle * 250) - 125
+    throttle = (throttle * 35) - 110 # laut aufgezeichneten Werten ist nur bereich von -110 bis -85 bekannt
     try:
         throttleInput = gasLeverMessage.encode({ 
             'EngOverrideCtrlMode': 3, #3: Speed / Torque Limit Control Mode
@@ -235,5 +235,6 @@ Maximale RPM auf 2500 begrenzt
 Minimale RPM auf 500 begrenzt
 Starter immer deaktiviert, weil Motor bereits laufen soll
 Actual werte immer 0, weil kein direkten Zugriff zu sensoren und als Täuschung für Schiffsführer
-Muss getestet werden, ob EEC1 oder TSC1 wichtiger ist
+Muss getestet werden, ob EEC1 oder TSC1 wichtiger
+laut aufgezeichneten Werten ist nur bereich von -110 bis -85 bekannt in EngRequestedTorque_TorqueLimit
 '''
