@@ -125,6 +125,11 @@ def main():
     print(canId)
     #print in hex
     print(hex(canId.canid))
+    print("Neue Destination eingeben: ")
+    dst = input()
+    canId = canId.replace_dst(int(dst))
+    print(canId)
+    print(hex(canId.canid))
 
 if __name__ == "__main__":
     main()
