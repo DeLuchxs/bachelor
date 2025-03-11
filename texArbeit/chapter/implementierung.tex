@@ -3,31 +3,31 @@
 
 \section{Umsetzung des Rogue Device}
 Wie vorher schon beschrieben, wird ein Raspberry Pi 5 als Rogue Device benutzt. 
-Als Betriebssystem wird Raspberry Pi OS benutzt. Dieses Betriebssystem ist eine auf Debian basierende Distribution, 
-die speziell für den Raspberry Pi entwickelt wurde. Da der Raspberry Pi mit Linux betrieben wird, ist es die Bedienung
+Als Betriebssystem wird Raspberry Pi OS benutzt. Da der Raspberry Pi mit Linux betrieben wird, ist es die Bedienung
 vergleichbar mit einem normalen Linux-System. Der Standard Package Manager ist apt. Unter dessen Benutzung werden 
 Python 3.12 und die benötigten Bibliotheken installiert. Damit sind die Vorraussetzungen für die weitere Implementierung
 gesetzt.
 
 \section{Verbindung Rogue Device - Controller}
 
-Im ersten Schritt wird der Controller mit dem Raspberry Pi verbunden. Der Raspberry Pi wird mit Raspberry Pi OS betrieben. 
-Dieses Betriebssystem ist eine auf Debian basierende Distribution, die speziell für den Raspberry Pi entwickelt wurde.
-Als Standard-Bluetooth-Treiber wird \href{https://www.bluez.org/}{BlueZ} verwendet. Dieser ist bereits vorinstalliert und muss 
-nicht extra installiert werden. Da es sich in diesem Fall um einen XBox Controllers handelt, müssen die richtigen Treiber
-(\href{https://github.com/xboxdrv/xboxdrv}{xboxdrv}) installiert werden. Diese können im apt-Repository gefunden werden.
+Im ersten Schritt wird der Controller mit dem Raspberry Pi verbunden. Der Raspberry Pi wird mit Raspberry Pi OS betrieben.
+Als Standard-Bluetooth-Treiber wird \href{https://www.bluez.org/}{BlueZ} (letzter Zugriff: 02.01.2025) verwendet. Dieser ist bereits vorinstalliert und muss 
+nicht extra installiert werden. Da es sich in diesem Fall um einen XBox Controllers handelt, wurde der Treiber
+\href{https://github.com/xboxdrv/xboxdrv}{xboxdrv} (letzter Zugriff: 02.01.2025) installiert. Diese können im apt-Repository gefunden werden.
 Zusätzlich muss der Enhanced Re-Transmission Mode (ERTM) deaktiviert werden. Dieser Modus ist standardmäßig aktiviert und
 verhindert die korrekte Verbindung des Controllers. Zum Schluss soll der Controller auf die aktuelle Firmware geupdatet werden.
 Dies kann über die Xbox Accessories App gemacht werden, allerdings ist dies nur auf Windows möglich. Nun kann 
 der Controller mit dem Raspberry Pi verbunden werden. Dies geschieht über die Bluetooth-Einstellungen des Raspberry Pi.
 Um die Verbindung zu testen, kann eine Webapplikation benutzt werden. Diese zeigt die Eingaben des Controllers an. Zum 
-Beispiel: \href{https://hardwaretester.com/gamepad}{hardwaretester} (abgerufen am 02.01.2025) 
+Beispiel: \href{https://hardwaretester.com/gamepad}{hardwaretester} (letzter Zugriff: 02.01.2025).
 \\
-Als Programmiersprache wird Python 3 benutzt. Dies ist eine einfache Sprache, die viele Bibliotheken hat. Für die
-Controller-Eingaben wird die Bibliothek Pygame benutzt. Diese Bibliothek ist einfach zu benutzen und hat viele Funktionen.
-Sobald der Controller mit dem Raspberry Pi verbunden ist, wird dieser von Pygame erkannt. Die Eingaben des Controllers
+Als Programmiersprache wird Python 3 benutzt. Diese wurde für die Einfachheit und vielen verfügbaren Bibliotheken gewählt. 
+Für die
+Controller-Eingaben wird die Bibliothek \textit{pygame} benutzt. Diese Bibliothek ist einfach zu benutzen und hat viele Funktionen.
+Sobald der Controller mit dem Raspberry Pi verbunden ist, wird dieser von \textit{pygame} erkannt. Die Eingaben des Controllers
 können dann in Variablen gespeichert werden. Dabei gilt es zu beachten, dass der Gashebel oder die Ruderposition nicht
-zu schnell verändert werden. Dies könnte zu unerwünschten Ergebnissen führen. Daher werden diese Werte mit Tasten des
+zu schnell verändert werden. Dies könnte zu einem unkontrollierten Verhalten des Schiffes oder zu Schäden führen. 
+Daher werden diese Werte mit Tasten des
 Controllers eingegeben, welche nicht nur eine binäre Eingabe haben. Diese werden als Achsen bezeichnet. Diese ermöglichen
 eine stufenlose Eingabe. Bei einer vollständigen Eingabe soll die Gashebelposition nach 20 Sekunden 100\% erreichen.
 So ist sichergestellt, dass die Gashebelposition nicht zu schnell verändert wird. Die Ruderposition soll nach 2 Sekunden
@@ -35,11 +35,12 @@ in jede Richtung jeweils 100\% erreichen. Dies ist ein Kompromiss zwischen Gesch
 
 \section{Übersetzung Signale Controller - Schiff}
 
-Es gibt zuerst ein Programm, welches die Signale des Controllers erhält und in passende Variablen in Python interpretiert. Diese Variablen müssen
+Wie in \ref{fig:structureRogueDevice} zu sehen erhält \texttt{controllerInput.py} die Signale des Xbox-Controllers 
+erhält und in passende Variablen in Python interpretiert. Diese Variablen müssen
 dann in Nachrichten für den Can-Bus umgewandelt werden. Hierfür gibt es ein weiteres Programm. Damit die beiden Programme miteinander kommunizieren
 können, wird Inter-Process-Communication (IPC) benutzt. Als Methode werden hierbei Pipes benutzt. Diese sind einfach zu implementieren und haben
-eine automatische Synchronisierung zwischen den Prozessen. Das bedeutet, dass die Prozesse nicht aufeinander warten müssen, sondern einfach
-weiterarbeiten können. Es wird durch den Puffer der Pipe sichergestellt. Wenn dieser voll ist, wird der schreibende Prozess angehalten, bis der
+eine automatische Synchronisierung zwischen den Prozessen. Dadurch müssen Prozesse nicht aufeinander warten und können weiterarbeiten. 
+Die Synchronisierung wird durch den Puffer der Pipe sichergestellt. Wenn dieser voll ist, wird der schreibende Prozess angehalten, bis der
 lesende Prozess den Puffer geleert hat. Dies ist ein einfaches und effizientes Verfahren, 
 um die beiden Prozesse zu synchronisieren \cite{Venkataraman2015}. 
 
@@ -83,13 +84,14 @@ einzeln verändert werden. Mit diesen Werten kann dann eine neue CAN-ID berechne
 anhand der CAN-ID erkannt werden.\\
 Für die Gangschaltung musste eigene Nachricht in der DBC-Datei definiert werden. Das konnte anhand der Bedienungsanleitung
 der Motoren gemacht werden. Die Nachrichten wurden dann in \texttt{canInterpreter.py} erstellt und gesendet.
-Eine Schwierigkeit dabei hat sich ergeben, als die ID nicht als erweiterter J1939-Standard erkannt wurde. 
+Dabei hat sich eine Schwierigkeit ergeben, als die ID nicht als erweiterter J1939-Standard erkannt wurde. 
 Dafür wurde eine Lösung gefunden, indem die ID mit der Hexadezimalen Zahl 80000000 addiert wurde. Die neu erzeugte ID
 wird nun ohne Probleme als erweiterte ID erkannt. Diese Lösung konnte nicht in einer offiziellen Dokumentation für den
-DBC-Standard gefunden werden. Es wurde jedoch in einem Forum gefunden, dass diese Lösung funktioniert \cite{cantoolsIssue} (letzter Zugriff: 04.03.2025).
+DBC-Standard gefunden werden. In einem Forum wurde berichtet, dass diese Lösung funktioniert. \cite{cantoolsIssue} (letzter Zugriff: 04.03.2025).
+Zusätzlich hat diese Lösung im Anwendungsfall dieser Arbeit funktioniert. 
 Laut der gleichen Quelle hängt der Grund dafür damit zusammen, dass ein Bit für die ID in dem Dateiformat zweckentfremdet für
 die Erkennung einer erweiterten ID benutzt wird. Allerdings kann dies nicht bestätigt werden, aber es scheint eine plausible
-Erklärung zu sein.\\
+Erklärung zu sein. \\
 Da in der Nachricht für das Getriebe auch die aktuelle maximale zulässige Last gesendet wird, reicht es nicht aus, diese
 Nachricht nur bei einer Änderung des Gangs zu senden. Daher wird die Nachricht bei jeder Änderung der Gashebelposition
 gesendet. Damit hat die aktuelle maximale zulässige Last immer den derzeitigen Wert.
@@ -98,13 +100,13 @@ gesendet. Damit hat die aktuelle maximale zulässige Last immer den derzeitigen 
 
 \subsection{Eingabe-Interface}
 Durch die begrenzte Zeit dieser Arbeit, wurde die Rückmeldung mit Vibrationen im Xbox-Controller implementiert.
-Dabei wird bei Erreichen des Maximums oder Minimums der Gashebelposition eine Vibration ausgelöst. Dies ist eine einfache
+Dabei wird bei Erreichen des Maximums oder Minimums der Gashebelposition eine Vibration ausgelöst. Das ist eine einfache
 Methode, um dem Benutzer eine Rückmeldung zu geben. Auch bei der hälfte der Gashebelposition wird eine kurze und leichte 
 Vibration ausgelöst. Das soll ermöglichen, dass es eine ungefähre Vorstellung der Gashebelposition gibt.
 Bei der Ruderposition wird eine Vibration ausgelöst, wenn die Ruderposition 100\% erreicht hat in jeweils beide Richtungen
 erreicht hat. Bei der Mitte der Ruderposition wird eine kurze und leichte Vibration ausgelöst. Wenn die 
-Ruderposition auf 50\% in eine Richtung ist, werden zwei kurze und leichte Vibrationen ausgelöst. Dies soll die Bedienung
-erleichtern. \\
+Ruderposition auf 50\% in eine Richtung ist, werden zwei kurze und leichte Vibrationen ausgelöst. Das soll die Bedienung
+erleichtern. Die Bedienung von Gashebel und Ruderposition soll dabei möglichst getrennt voneinander vorgenommen werden.
 \\
 Die Ruderstellung wird durch den linken Stick des Controllers gesteuert. Wenn die Eingabe eine bestimmte Schwelle überschreitet,
 wird dies wie Folgt durch Vibrationen signalisiert: \\
@@ -133,6 +135,6 @@ wird dies wie Folgt durch Vibrationen signalisiert: \\
 Dabei ist die Schwelle so gewählt, dass die Vibrationen nicht zu oft ausgelöst werden. 
 Es ist wichtig zu wissen, dass der Wert basierend auf der Eingabe des Joysticks kontinuierlich berechnet wird.
 Die Eingabe beträgt -1 bis 1. Dabei ist -1 die maximale Position nach links und 1 die maximale Position nach rechts.
-Damit die Ruderstellung nicht zu schnell verändert wird, benötigt es eine volle Eingabe von 1 oder -1 für 2 Sekunden,
-damit die Ruderstellung 100\% erreicht. Entsprechend werden diese 100\% langsamer erreicht, wenn die Eingabe geringer
+Damit die Ruderstellung nicht zu schnell verändert wird, benötigt diese eine volle Eingabe von 1 oder -1 für 2 Sekunden,
+damit die Ruderstellung 100\% erreicht. Entsprechend werden die 100\% langsamer erreicht, wenn die Eingabe geringer
 ist.

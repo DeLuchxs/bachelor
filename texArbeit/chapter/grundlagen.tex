@@ -3,9 +3,9 @@
 \printmyminitoc{1}
 
 \section{CAN-Bus}
-Bei einem Can-Bus handelt es sich um eine serielle Netzwerktechnologie, 
-welche mehrere Geräte mit einem Draht verbindet.
-Die Entwicklung des Can-Bus wurde von Bosch im Jahr 1983 begonnen. 1986 wurde der erste Can-Bus Standard 
+Bei einem CAN-Bus handelt es sich um eine serielle Netzwerktechnologie, 
+die mehrere Geräte mit einem Draht verbindet.
+Die Entwicklung des CAN-Bus wurde von Bosch im Jahr 1983 begonnen. Im Jahr 1986 wurde der erste CAN-Bus Standard 
 veröffentlicht.
 Die Motivation der Entwicklung war die effiziente Kommunikation zwischen den Steuergeräten in einem Auto. 
 Als günstige
@@ -15,25 +15,27 @@ Aber auch in anderen Sektoren, wie z.B. der Medizintechnik, der Gebäudeautomati
 Can-Bus mittlwerweile eine wichtige Rolle.
 \cite[Seiten 2-10]{Voss2008}
 \\
-Man sprich von einem Bussystem, da alle Geräte gleichberechtigt sind. Dass heißt, dass jedes Gerät Nachrichten 
-senden und empfangen kann.
-Die Nachrichten werden nach Broadcasting-Prinzip übertragen. Jede Nachricht wird von allen Knoten empfangen, 
-aber nur die Knoten, die die Nachricht benötigen, verarbeiten sie. Diese werden nicht Einhaltung der Protokollregeln 
-überprüft,
-da dies zu einer größeren unnötigen Last auf dem Bus führen würde. 
+Man sprich von einem Bussystem, da mehrere Geräte miteinander über diesen miteinander verbunden werden. 
+Die Geräte auf an dem Bus sind in dem Fall die Knoten. Alle sind gleichberechtigt und können Nachrichten senden und empfangen.
+Die Nachrichten werden nach Broadcasting-Prinzip übertragen. Dabei wird jede Nachricht von allen Knoten empfangen, 
+aber nur die Knoten, welche die Nachricht benötigen, verarbeiten sie. 
+Die Nachrichten werden nicht auf Einhaltung der Protokollregeln 
+überprüft, da dies zu einer größeren unnötigen Last auf dem Bus führen würde. 
 Jedoch wird die Integrität der Nachrichten durch eine Prüfsumme sichergestellt. Das wird auch mit 
 einer Acknowledge-Nachricht(ACK) bestätigt. Wird eine Nachricht nicht bestätigt, wird von dem Sender eine Fehlermeldung
 auf den Bus gesendet.
-Bei einer fehlerhaften Nachricht reagieren
-die Knoten mit einer Fehlermeldung, die wieder der gesamte Bus empfängt. Wenn ein Knoten dauerhaft fehlerhafte
-Nachrichten sendet, wird dieser vom Bus getrennt. Die auf dem Bus gesendeten Daten werden mit einer Nachrichten-ID
-versehen, die die Priorität der Nachricht angibt. Die Nachrichten mit der niedrigsten ID haben die höchste Priorität.
-Die Maximale Länge einer Nachricht beträgt 8 Byte. Durch die vergleichsweise geringe Länge der Nachrichten, kann 
-eine geringe Latenz erreicht werden. Dabei kann eine höchste Baudrate von 1Mbit/s gesetzt werden.
+Bei einer fehlerhaften Nachricht sendet der Empfänger eine Fehlermeldung, die wieder von allen Knoten empfangen wird.
+Wenn ein Knoten dauerhaft fehlerhafte
+Nachrichten sendet, wird er vom Bus getrennt. Die auf den Bus gesendeten Daten werden mit einer Nachrichten-ID
+versehen, welche die Priorität der Nachricht angibt. Die Nachrichten mit der niedrigsten ID haben die höchste Priorität.
+Die Maximale Länge einer Nachricht beträgt 8 Byte. 
+Auf dem CAN-Bus kann eine maximale Baudrate von 1Mbit/s erreicht werden.
+Zusätzlich kann durch die geringe Länge der Nachrichten geringe Latenz erreicht werden. 
+Insgesamt ist der CAN-Bus damit gut für Echtzeitanwendungen geeignet, da die Reaktionszeit der Knoten möglichst gering gehalten wird.
 \cite[Seiten 13-19]{Voss2008}
 \\
-Alle Knoten in einem Can-Bus sind mit einem Zweiadrigen Kabel verbunden. Diese werden als High(CAN\_H) und Low(CAN\_L) 
-bezeichnet. Der Bus ist an beiden Enden mit einem Widerstand von 120 Ohm abgeschlossen um Reflexionen zu vermeiden.
+Alle Knoten in einem Can-Bus sind mit einem zweiadrigen Kabel verbunden. Diese werden als High(CAN\_H) und Low(CAN\_L) 
+bezeichnet. Der Bus ist an beiden Enden mit einem Widerstand von 120 $\Omega$ abgeschlossen, um Reflexionen zu vermeiden.
 \cite[Seite 132]{Voss2008}
 \\
 Eine Nachricht auf einem CAN-Bus ist im allgemeinen in einem Can-Frame verpackt. Dieser beginnt
@@ -49,12 +51,12 @@ Danacht folgt ein Interframe Space (IFS) von 3 Bit, welches eine Pause zwischen 
 Das Standard Can-Protokoll hat einen 11 Bit Identifier, während das erweiterte Can-Protokoll 29 Bit Identifier
 besitzt.
 Die Society of Automotive Engineers (SAE) hat das J1939-Protokoll entwickelt, um die Kommunikation in Nutzfahrzeugen
-zu verbessern. Der Fokus liegt auf der Kommunikation mit dem Antrieb des Fahrzeugs. Dafür wird der 11 Bit
-Identifier mit J1939 auf 29 Bit erweitert um mehr verschiedene Nachrichten zu ermöglichen.\\
+zu verbessern. Der Fokus liegt auf der Kommunikation mit dem Antrieb des Fahrzeugs. Der 11-Bit-Identifier wird in J1939 
+auf 29 Bit erweitert, um eine größere Anzahl verschiedener Nachrichten zu ermöglichen.\\
 Auf einem Can-Bus können der Standard 11 Bit Identifier und der erweiterte 29 Bit Identifier gleichzeitig verwendet werden.
-Wenn zwei Nachrichten den gleichen 11 Bit Identifier haben, wird die Nachricht mit dem 11 Bit Identifier bevorzugt immer die
-höhere Priorität haben. Die spezifierten Baudraten sind hier 250kbit/s und 500kbit/s. Die Hauptkomponenten des
-erweiterten Identifier sind die Priorität, eine Parameter Group Number (PGN) und eine Quell-Adresse.
+Eine Nachricht mit dem 11 Bit Identifier wird bevorzugt vor einer Nachricht mit 29 Bit Identifier, wenn diese die gleiche
+Priorität haben. Die spezifierten Baudraten sind hier 250kbit/s und 500kbit/s. Die Hauptkomponenten des
+erweiterten Identifier sind die Priority, eine Parameter Group Number (PGN) und eine Quell-Adresse.
 Das PGN-Feld ist aus 1 Bit Data Page (DP), 1 Bit Extended Data Page (DP), einer Protocol Data Unit (PDU) und einem PDU spezifischen 
 Feld (PS) aufgebaut. Die DP und EDP bestimmen mit welchem Standard die 
 Nachricht gesendet wird. Für SAE J1939 werden aber nur zwei Kombinationen verwendet. 
@@ -69,8 +71,9 @@ In dem anderen Fall wird das PS-Feld als Gruppenerweiterung verwendet.
     \label{fig:j1939header}
 \end{figure}
 
-Auch wenn in einem CAN-Bus jedes Gerät immer jede Nachricht empfängt, soll es durch die Zieladresse möglich sein,
-dass nur das Gerät die Nachricht verarbeitet, welches die Nachricht benötigt. Um eine Nachricht an alle Knoten 
+Trotz des Broadcasting-Prinzips soll nicht jede Nachricht von jedem Knoten verarbeitet werden.
+Die Zieladresse ermöglicht es, dass eine Nachricht nur von dem designierten Knoten verarbeitet wird.
+Um eine Nachricht an alle Knoten 
 zu senden, wird die Zieladresse auf 255 gesetzt. Mit der Gruppenerweiterung ist es nicht möglich eine Nachricht 
 zielgerichtet an bestimmte Geräte zu senden. \cite{Murvay2018}
 
@@ -79,20 +82,21 @@ zielgerichtet an bestimmte Geräte zu senden. \cite{Murvay2018}
 
 \section{Raspberry Pi}
 Ein Raspberry Pi ist ein Einplatinencomputer, der von der Raspberry Pi Foundation entwickelt wurde. 
-Dieser den Prozessor mit Grafikeinheit, Arbeitsspeicher, Speicher und Anschlüsse auf einem einzigen Board integriert.
+Dieser hat den Prozessor mit Grafikeinheit, Arbeitsspeicher, Speicher und Anschlüssen auf einem einzigen Board integriert.
 Es handelt sich um einen vollwertiger Computer, der kleiner als normale PCs ist. Für die Größe ist der Raspberry Pi
-leitsungsstark, während er einen recht günstigen Preis von unter 100€ hat. Er kann mit einem normalen Betriebssystem
-betrieben werden. Trotzdem gibt es ein spezielles Betriebssystem, das für den Raspberry Pi entwickelt wurde, das Raspberry Pi OS (ehemals Raspbian).
+leistungsstark. Zusätzlich kann dieser mit einem normalen Betriebssystem
+betrieben werden. Das macht ihn zu einem vielseitigen Werkzeug und attraktiv für diese Arbeit.
+Trotzdem gibt es ein spezielles Betriebssystem, das für den Raspberry Pi entwickelt wurde, das Raspberry Pi OS (ehemals Raspbian).
 Dieses basiert auf der Linux-Distribution Debian. Um viele Funktionen erfüllen zu können, hat der Raspberry Pi viele Anschlüsse.
 Der Raspberry Pi 5 hat 4 USB-Anschlüsse, 2 Micro-HDMI-Anschlüsse, 1 Ethernet-Anschluss, 1 USB-C-Anschluss für die Stromversorgung und einen Micro-SD-Kartensteckplatz.
 
 \subsection{Raspberry Pi als Rogue Device}
-Unter einem Rogue Device versteht man ein Gerät, welches sich unautorisiert und unauffällig in ein Netzwerk integriert. \cite{Scarfone2008}
+Unter einem Rogue Device versteht man ein Gerät, das sich unautorisiert und unauffällig in ein Netzwerk integriert. \cite{Scarfone2008}
 Dies kann ein Raspberry Pi sein, der sich in ein Netzwerk einbindet und Daten abfängt oder manipuliert. Hierüber können 
 sich Angreifer Zugriff auf das Netzwerk verschaffen. 
-Ein solches Gerät kann dazu verwendet werden, um eigenen Code auszuführen, der beispielsweise Daten verändert oder 
-weitere Angriffe vorbereitet. Zudem kann es von Angreifern aus der Ferne gesteuert werden, wodurch gezielte 
-Manipulationen oder Spionageangriffe möglich sind. Darüber hinaus lässt sich ein Rogue Device nutzen, um Informationen 
+Ein solches Gerät kann dazu verwendet werden, um eigenen Code auszuführen. Der kann beispielsweise Daten veränden oder 
+weitere Angriffe vorbereiten. Zudem kann es von Angreifern aus der Ferne gesteuert werden, wodurch gezielte 
+Manipulationen oder Spionageangriffe vereinfacht werden. Darüber hinaus lässt sich ein Rogue Device nutzen, um Informationen 
 über das Netzwerk zu sammeln, etwa durch das Mithören von Kommunikation oder die Analyse von Sicherheitsmechanismen.
 Das ermöglicht es, Schwachstellen im Netzwerk aufzudecken und gezielt auszunutzen.
 
@@ -103,61 +107,62 @@ In diesem Abschnitt wird der aktuelle Stand der Technik vorgestellt.
 
 \subsection{Anbindung von Raspberry Pi an CanBus}
 In der folgenden Arbeit soll ein Raspberry Pi an einen CAN-Bus angeschlossen werden. 
-Dafür gibt es verschiedene Möglichkeiten. Im Folgenden werden einige Möglichkeiten vorgestellt.\\
-Die erste Möglichkeit ist die Verwendung eines Microchip MCP251x, welcher als CAN-Controller dient. Dieser wird 
-mit dem Microchip MCP2551 ergänzt, welcher als CAN-Transceiver dient. Diese Kombination ermöglicht es, den
-Raspberry Pi mit dem CAN-Bus zu verbinden. Der MCP251x wird über die SPI-Schnittstelle(Serial Peripheral Interface) 
+Im Folgenden werden einige verschiede Möglichkeiten vorgestellt.\\
+Die erste Möglichkeit ist die Verwendung eines Microchip MCP251x, der als CAN-Controller dient. Dieser wird 
+mit dem Microchip MCP2551 ergänzt, der als CAN-Transceiver dient. Diese Kombination ermöglicht es, den
+Raspberry Pi mit dem CAN-Bus zu verbinden. Der MCP251x wird über die SPI-Schnittstelle (Serial Peripheral Interface) 
 des Raspberry Pi angeschlossen. Dazu wird ein Treiber benötigt, der die Kommunikation zwischen dem Raspberry Pi und dem
-MCP251x ermöglicht. Ein solcher Treiber ist bereits seit dem 05.05.2015 in das Raspberry Pi OS (ehemals Raspbian OS)
+MCP251x ermöglicht. Ein solcher Treiber ist bereits seit dem 05.05.2015 im Raspberry Pi OS (ehemals Raspbian OS)
 integriert. \cite{Salunkhe2016}
 Um diese Möglichkeit zu vereinfachen, gibt es auch verschiedene HATs (Hardware Attached on Top), die solche Microchips
 bereits integriert haben. Ein Beispiel dafür ist das PiCan2 von SK Pang Electronics. Dieses Board wird auf den 
-GPIO-Pins (General Purpose Input/Output) des Raspberry Pi gesteckt. Es erlaubt damit dem Raspberry Pi mit dem CAN-Bus
+GPIO-Pins (General Purpose Input/Output) des Raspberry Pi gesteckt. Es erlaubt dem Raspberry Pi mit dem CAN-Bus
 zu kommunizieren. Das PiCan2 unterstützt eine Geschwindigkeit von bis zu 1Mbit/s. \cite{Pant2019}\\
 Es besteht auch die Möglichkeit, einen USB-CAN-Adapter zu verwenden. Damit ist die Anbindung eines 
-beliebigen Linux-System an den CAN-Bus möglich. Unter Umständen ist es auch mit Windows und MacOS möglich.
-Ein Beispiel für einen solchen Adapter ist der UCAN von Fysetc. Dieser Adapter ist mit einer open-source Firmware
-ausgestattet. Zusätzlich ist auch die Hardware open-source. Die Verbindung zum Raspberry Pi erfolgt über USB-C.
-Zum CAN-Bus müssen lediglich CAN\_H und CAN\_L und die Masse verbunden werden. 
+beliebigen Computer an den CAN-Bus möglich.
+Ein Beispiel für einen solchen Adapter ist der UCAN von Fysetc. Die Hardware und Firmware des Adapters
+sind open-source. Die Verbindung zum Raspberry Pi erfolgt über USB-C.
+Zum CAN-Bus müssen lediglich CAN\_H und CAN\_L und die Masse verbunden werden. Mit dem richtigen Treiber funktioniert
+dieser Adapter mit Linux, Windows und MacOS.  
 \cite{FysetcUCAN} (letzter Zugriff: 17.02.2025)
 
 
 \subsection{Überseztung von CAN-Nachrichten}
-Es gibt viele Software-Tools, die es ermöglichen, mit dem CAN-Bus zu arbeiten. Um einen Überblick zu bekommen, 
+Viele Software Tools ermöglichen die Arbeit mit dem CAN-Bus. Um einen Überblick zu bekommen, 
 werden hier einige vorgestellt. Diese Tools unterscheiden sich in ihrem Funktionsumfang, ihrer Benutzerfreundlichkeit 
 und den unterstützten Anwendungsfällen. Einige Programme sind speziell für die Analyse und das Debugging von CAN-Nachrichten 
 ausgelegt, während andere umfassende Entwicklungs- und Simulationsmöglichkeiten bieten. Im Folgenden werden die wichtigsten 
 Eigenschaften, Einsatzbereiche und Besonderheiten der einzelnen Tools vorgestellt. \\
 \begin{itemize}
-    \item \textbf{canCommander}: Ein Tool, das es ermöglicht, CAN-Nachrichten zu senden und zu empfangen. Es bietet eine einfache 
+    \item \textbf{canCommander}: Dieses Tool ermöglicht das Senden und Empfangen von CAN-Nachrichten. Es bietet eine einfache 
     Benutzeroberfläche und umfangreiche Analysefunktionen. Mit canCommander können CAN-Nachrichten aufgezeichnet, 
     analysiert und bearbeitet werden. Dabei können auch Nachrichten gesendet und injiziert werden. Es wird auch eine
-    schon vorbereitete Platine verkauft, die es ermöglicht, mit dem CAN-Bus zu arbeiten. Trotzdem ist canCommander ein
+    schon vorbereitete Platine verkauft, die es ermöglicht, mit dem CAN-Bus zu arbeiten. Dennoch ist canCommander ein
     open-source Projekt und kann auch auf anderen Plattformen verwendet werden. Diese Plattformen beschränken sich aber
     auf Mikrocontroller, wie Arduino Uno oder ESP32. \cite{can_commander} (letzter Zugriff: 15.02.2025)
-    \item \textbf{cantools}: Eine Python-Bibliothek, die es ermöglicht, CAN-Nachrichten zu dekodieren. Mit cantools können 
-    CAN-Daten in ein lesbares Format umgewandelt werden, das von Menschen verstanden werden kann. Die Bibliothek 
+    \item \textbf{cantools}: Diese Python-Bibliothek ermöglicht es, CAN-Nachrichten zu dekodieren. Mit cantools können 
+    CAN-Daten in ein Menschenlesbares Format umgewandelt werden. Die Bibliothek 
     bietet eine Vielzahl von Funktionen und unterstützt verschiedene Protokolle und Datenformate. Damit ist cantools ist ein 
     nützliches Werkzeug für die Analyse und Verarbeitung von CAN-Nachrichten und eignet sich für die Entwicklung von 
     Anwendungen, die mit dem CAN-Bus arbeiten. \cite{cantools} (letzter Zugriff: 15.02.2025)
-    \item \textbf{CANoe}: Ein eigentständiges kommerzielles Tool, das von Vector Informatik GmbH. entwickelt wurde. 
+    \item \textbf{CANoe}: Dieses eigenständige kommerzielle Tool wurde von der Firma Vector Informatik GmbH. entwickelt.
     Es bietet eine vielzahl an verschiedenen Funktionen. CANoe ermöglicht die Entwicklung, Simulation und Analyse von
     CAN-Netzwerken. Es bietet eine umfangreiche Funktionalität und unterstützt verschiedene Protokolle und Datenformate.
     \cite{VectorCANoe} (letzter Zugriff: 15.02.2025)
-    \item \textbf{can\_decoder}: Ein Open-Source-Projekt, das es ermöglicht, CAN-Nachrichten zu dekodieren. Es wurde von der Firma
+    \item \textbf{can\_decoder}: Das Open-Source-Projekt ermöglicht das Dekodieren von CAN-Nachrichten. Es wurde von der Firma
     CSS-Electronics entwickelt und ist auf GitHub verfügbar. Allerdings ist das Projekt nicht mehr aktiv und wird nicht mehr
     weiterentwickelt. Trotzdem kann es ein nützliches Werkzeug für die Analyse und Verarbeitung von CAN-Nachrichten sein. 
     \cite{can_decoder} (letzter Zugriff: 15.02.2025)
-    \item \textbf{SavvyCAN}: Eine C++ Anwendung, mit der CAN-Nachrichten aufgezeichnet und durch Reverse-Engineering analysiert werden können.
+    \item \textbf{SavvyCAN}: Die C++ Anwendung kann CAN-Nachrichten aufzeichnen, welche durch Reverse-Engineering analysiert werden können.
     Hiermit können auch einzelne Nachrichten dekodiert werden. SavvyCAN ist ein Open-Source-Projekt und kann auf GitHub gefunden werden. Zusätzlich
     gibt es Unterstützung auf Linux und Windows. \cite{SavvyCAN} (letzter Zugriff: 15.02.2025)
-    \item \textbf{can-utils}: Ein Set von Linux-Tools, die es ermöglichen, mit dem CAN-Bus zu arbeiten. Damit ist es möglich, CAN-Nachrichten zu senden und zu empfangen.
+    \item \textbf{can-utils}: Diese Set an Linux-Tools ermöglichen die Arbeit mit dem CAN-Bus. Damit ist es möglich, CAN-Nachrichten zu senden und zu empfangen.
     Es ist ein Open-Source-Projekt und kann auf GitHub gefunden werden. Diese Tools bieten eine Grundlage für die Entwicklung von Anwendungen, die mit dem CAN-Bus arbeiten.
     \cite{can-utils} (letzter Zugriff: 15.02.2025)
 \end{itemize}
 Um der Nutzlast der CAN-Bus Nachrichten Informationen zuzuordnen, ist eine DBC-Datei essentiell. 
 Diese Datei schlüsselt auf, welche Informationen in den verschiedenen CAN-Nachrichten enthalten sind.
-Da auch sensitive Informationen in den Nachrichten enthalten sein können, wird diese Datei in den meisten 
+Da auch sensible Informationen in den Nachrichten enthalten sein können, wird diese Datei in den meisten 
 Fällen nicht öffentlich verfügbar gemacht. Ohne diese Datei können zwar Brute-Force Ansätze verwendet werden,
 allerdings ist dies sehr aufwendig und nicht zielführend. \cite{Choi2021} \\
 Um die vorher genannten Tools zu verwenden, ist es also notwendig, die DBC-Datei zu haben. Bei canCommander

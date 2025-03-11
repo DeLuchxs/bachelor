@@ -10,7 +10,8 @@ Dafür werden in dem folgenden Abschnitt die aufgedeckten Schwachstellen dieser 
 Der CAN-Bus ist eines der zentralen Systeme in modernen Fahrzeugen und Schiffen. So auch auf der Limanda.
 Nach dem CAN-Standard sind die Nachrichten auf dem Bus nicht verschlüsselt. Zusätzlich werden die Nachrichten nur 
 auf ihre Richtigkeit überprüft, jedoch nicht auf ihre Authentizität. Das bedeutet, dass ein Angreifer Nachrichten auf den Bus
-senden kann, die von anderen Systemen als legitim angesehen werden.\cite{Voss2008} (Seiten 13-19) Durch das Bus-Netzwerk wird die einfache Integration weiterer
+senden kann, die von anderen Systemen als legitim angesehen werden.\cite{Voss2008} (Seiten 13-19) Durch das Bus-Netzwerk wird die einfache Integration
+weiterer
 Geräte in das System ermöglicht. Ein Angreifer kann so durch physischen Zugriff auf den Bus ein Gerät hinzufügen, welches im schlimmsten Fall
 die Kontrolle über das gesamte System übernehmen kann. Die einzige Hürde, ein Gerät in ein CAN-Bus Netzwerk zu integrieren, ist das
 Beschaffen der richtigen DBC-Datei. Diese Datei wird häufig von den Herstellern der Geräte nicht öffentlich zur Verfügung gestellt.
@@ -23,12 +24,12 @@ verändert. Die Priorität ist gleich geblieben, da es bereits die höchste Prio
 einfach zu verändern. Mit der eigenen Nachrichten-ID konnten nun die 
 echten Nachrichten von den eigenen unterschieden werden. Das ist wichtig, um echte Nachrichten mit den eigenen zu überschreiben. 
 Alle Geräte in einem CAN-Bus sind gleichberechtigt\cite{Voss2008} (Seite 14). Dadurch wird die Überschreibung der älteren Nachrichten möglich.\\
-Die vorher beschriebenen Schwachstellen sind allgemein für CAN-Bus Netzwerke. Wobei nicht alle eine Schwachstelle beschreiben, sondern 
-Eigenschaften des Standards sind, welche zusammen mit den Schwachstellen ausgenutzt werden können.\\
+Nicht alle vorher beschriebenen Eigenschaften können als Schwachstelle bezeichnet werden. Jedoch können diese gemeinsam mit den
+Schwachstellen ausgenutzt werden. \\
 
 \subsection{Schwachstellen am J1939-Protokoll}
 Das J1939-Protokoll ist ein Protokoll, welches nicht für die Sicherheit, sondern für die Kommunikation zwischen den Steuergeräten
-entwickelt wurde. Es ist ein Protokoll, welches auf dem CAN-Bus aufbaut. Das Protokoll ist nicht verschlüsselt und die Nachrichten
+entwickelt wurde. Das Protokoll basiert auf dem Standard des CAN-Bus. Das Protokoll ist nicht verschlüsselt und die Nachrichten
 sind nicht authentifiziert. 
 Allerdings hat das Protokoll auch spezifische Schwachstellen, welche aber nicht alle in dieser Arbeit ausgenutzt wurden.\\
 Eine Schwachstelle ist, dass Nachrichten mit der niedrigsten ID die höchste Priorität haben. Zusätzlich ist es möglich, 
@@ -42,8 +43,9 @@ Adresse hat. Daher kann der Name recht einfach übernommen werden. Dadurch kann 
 werden. Mit der übernommenen Adresse kann der Angreifer nun Nachrichten senden, die von anderen Geräten als legitim angesehen werden.
 Die einzige Sicherheitsmaßnahme, die das J1939-Protokoll bietet, ist eine Zuweisungstabelle für die Adressen und Namen. Allerdings
 bietet diese bei der Namensübernahme keinen Schutz, wenn der Angreifer auch die Adresse übernimmt. Diese Schwachstelle 
-wurde in dieser Arbeit nicht ausgenutzt, da es zu unvorhersehbaren Folgen hätte führen können. Das spricht für die 
-Schwere der Schwachstelle.\\
+wurde in dieser Arbeit nicht ausgenutzt, da es zu unvorhersehbaren Folgen hätte führen können. 
+Im schlimmsten Fall könnte ein Gerät dauerhaft aus dem Netzwerk ausgeschlossen werden, was zu einem Ausfall des Systems führen würde.
+Das spricht für die Schwere der Schwachstelle.\\
 Eine weitere Möglichkeit den Bus zu stören, ist die globale Anfrage nach PGNs. Bei einer solchen Anfrage sollen alle Geräte
 mit der eigenen PGN antworten. Die Spezifikation rät dazu, maximal 3 Anfragen pro Sekunde für eine Parametergruppe zu senden.
 Es gibt aber keine feste obere Grenze für die Anzahl der Anfragen. Daher gibt es auch keine Gegenmaßnahmen bei zu vielen 
