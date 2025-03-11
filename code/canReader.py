@@ -20,6 +20,7 @@ db = cantools.database.load_file('dbc/j1939_1.dbc', strict=False)
 can_bus = can.interface.Bus(channel='vcan0', interface='socketcan')
 throttleMessage = db.get_message_by_name('TSC1')
 gearboxMessage = db.get_message_by_name('MAN1')
+eec1Message = db.get_message_by_name('EEC1')
 
 def isThrottleMessage(decodedMessage):
     if "EngRqedTorque_TorqueLimit" in decodedMessage and "MessageCounter" in decodedMessage:
@@ -40,6 +41,9 @@ while True:
             messageData = db.decode_message(gearboxMessage.frame_id, message.data)
             print ("gearboxMessage: ", messageData)
             print ()
+        elif message.arbitration_id == eec1Message.frame_id:
+            messageData = db.decode_message(eec1Message.frame_id, message.data)
+            print ("eec1Message: ", messageData)
     except Exception as e:
         print(f"Error decoding message: {e}")
         continue
