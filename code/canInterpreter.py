@@ -36,10 +36,11 @@ db = cantools.database.load_file('dbc/j1939_1.dbc', strict=False)
 db.messages
 gasLeverMessage = db.get_message_by_name('TSC1')
 gearboxMessage = db.get_message_by_name('MAN1')
+eecMessage = db.get_message_by_name('EEC1')
 can_bus = can.interface.Bus(channel='vcan0', interface='socketcan')
 
 # Functions
-def encodeThrottleMessage(speed, throttle, canFrameID):
+def encodeThrottleMessage(speed, throttle):
     torqueHiRes = throttle * 0.125
     if torqueHiRes > 0.875:
         torqueHiRes = 0.875
@@ -88,6 +89,26 @@ def encodeThrottleMessage(speed, throttle, canFrameID):
         return None
     print ("EngRqedTorque_TorqueLimit: ", throttle)
     return can.Message(arbitration_id=canFrameID, data=throttleInput, is_extended_id=False)
+
+def encodeEEC1Message(speed, throttle):
+    # EngSpeed darf maximal ca. bei 2500 liegen
+    # darf bei idling nicht unter 500 liegen
+    speed = throttle * 2000 + 500
+    try:
+        eecInput = eecMessage.encode({
+            'EngDemandPercentTorque' : throttle,
+            'EngStarterMode' : 4, # 4: starter inhibited due to engine already running
+            'SrcAddrssOfCntrollngDvcForEngCtrl' : 13, # own address
+            'EngSpeed' : speed,
+            'ActualEngPercentTorque' : 0,
+            'DriversDemandEngPercentTorque' : 0,
+            'ActlEngPrcntTorqueHighResolution' : 0,
+            'EngTorqueMode' : 0, # keine Information zu Modi
+        })
+    except Exception as e:
+        print(f"Error encoding message: {e}")
+        return None
+    return can.Message(arbitration_id=eecMessage.frame_id, data=eecInput, is_extended_id=True)
 
 def encodeGearboxMessage(throttle, backwards):
     throttle = (throttle * 250) - 125
@@ -166,15 +187,17 @@ try:
                         throttleRMessage = encodeThrottleMessage(speedR, throttleR, canRightFrameID)
                 case "throttleL":
                     throttleL = float(value)
-                    speedL = float(value) * 2031.75 # 8031.75 maximum value for rpm speed in DBC (scale 0.125)
+                    speedL = float(value) * 2000 + 500
                     throttleLMessage = encodeThrottleMessage(speedL, throttleL, canLeftFrameID)
+                    leftEEC1Message = encodeEEC1Message(speedL, throttleL)
                     #gearboxL = encodeGearboxMessage(throttleL, backwards)
                     can_bus.send(throttleLMessage)
                     #can_bus.send(gearboxL)
                 case "throttleR":
                     throttleR = float(value)
-                    speedR = float(value) * 2031.75
+                    speedR = float(value) * 2000 + 500
                     throttleRMessage = encodeThrottleMessage(speedR, throttleR, canRightFrameID)
+                    rightEEC1Message = encodeEEC1Message(speedR, throttleR)
                     #gearboxR = encodeGearboxMessage(throttleR, backwards)
                     #can_bus.send(throttleRMessage)
                     #can_bus.send(gearboxR) # can bus unterscheidung muss noch vorgenommen werden
@@ -207,3 +230,10 @@ except KeyboardInterrupt:
 finally:
     can_bus.shutdown()
 
+'''
+Maximale RPM auf 2500 begrenzt
+Minimale RPM auf 500 begrenzt
+Starter immer deaktiviert, weil Motor bereits laufen soll
+Actual werte immer 0, weil kein direkten Zugriff zu sensoren und als Täuschung für Schiffsführer
+Muss getestet werden, ob EEC1 oder TSC1 wichtiger ist
+'''
