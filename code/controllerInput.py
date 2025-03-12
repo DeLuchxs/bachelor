@@ -146,7 +146,7 @@ while running and len(joysticks) > 0:
         #if throttle passes treshold 0.5, rumble
         if (previousThrottleL < 0.5 and throttleL >= 0.5) or (previousThrottleL > 0.5 and throttleL <= 0.5):
             xboxController.rumble(0.2, 0.2, 100)
-        elif throttleL > 0.25:
+        elif throttleL > 0.25: # auf 0.25 begrenzen, um Test mit nicht mehr als 25% Gas zu fahren
             throttleL = 0.25
             rumbleAtMaximum()
         elif throttleL < 0:
@@ -165,7 +165,7 @@ while running and len(joysticks) > 0:
         #if throttle passes treshold 0.5, rumble
         if (previousThrottleR < 0.5 and throttleR >= 0.5) or (previousThrottleR > 0.5 and throttleR <= 0.5):
             xboxController.rumble(0.2, 0.2, 100)
-        elif throttleR > 0.25:
+        elif throttleR > 0.25: # auf 0.25 begrenzen, um Test mit nicht mehr als 25% Gas zu fahren
             throttleR = 0.25
             rumbleAtMaximum()
         elif throttleR < 0:

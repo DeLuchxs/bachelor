@@ -40,7 +40,7 @@ eecMessage = db.get_message_by_name('EEC1')
 can_bus = can.interface.Bus(channel='vcan0', interface='socketcan')
 
 # Functions
-def encodeThrottleMessage(speed, throttle):
+def encodeThrottleMessage(speed, throttle, canFrameID):
     torqueHiRes = throttle * 0.125
     if torqueHiRes > 0.875:
         torqueHiRes = 0.875
@@ -94,14 +94,16 @@ def encodeEEC1Message(speed, throttle):
     # EngSpeed darf maximal ca. bei 2500 liegen
     # darf bei idling nicht unter 500 liegen
     speed = throttle * 2000 + 500
+    torqueDemand = throttle * 250 - 125
+    driverTorque = throttle * 125
     try:
         eecInput = eecMessage.encode({
-            'EngDemandPercentTorque' : throttle,
+            'EngDemandPercentTorque' : torqueDemand,
             'EngStarterMode' : 4, # 4: starter inhibited due to engine already running
-            'SrcAddrssOfCntrollngDvcForEngCtrl' : 13, # own address
+            'SrcAddrssOfCntrllngDvcForEngCtrl' : 13, # own address
             'EngSpeed' : speed,
             'ActualEngPercentTorque' : 0,
-            'DriversDemandEngPercentTorque' : 0,
+            'DriversDemandEngPercentTorque' : driverTorque,
             'ActlEngPrcntTorqueHighResolution' : 0,
             'EngTorqueMode' : 0, # keine Information zu Modi
         })
@@ -191,7 +193,7 @@ try:
                     throttleLMessage = encodeThrottleMessage(speedL, throttleL, canLeftFrameID)
                     leftEEC1Message = encodeEEC1Message(speedL, throttleL)
                     #gearboxL = encodeGearboxMessage(throttleL, backwards)
-                    can_bus.send(throttleLMessage)
+                    #can_bus.send(throttleLMessage)
                     #can_bus.send(gearboxL)
                 case "throttleR":
                     throttleR = float(value)
@@ -199,7 +201,7 @@ try:
                     throttleRMessage = encodeThrottleMessage(speedR, throttleR, canRightFrameID)
                     rightEEC1Message = encodeEEC1Message(speedR, throttleR)
                     #gearboxR = encodeGearboxMessage(throttleR, backwards)
-                    #can_bus.send(throttleRMessage)
+                    can_bus.send(rightEEC1Message)
                     #can_bus.send(gearboxR) # can bus unterscheidung muss noch vorgenommen werden
                 case "rudderAngle":
                     rudderAngle = float(value)
