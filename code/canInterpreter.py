@@ -21,23 +21,23 @@ canRightFrameID = 0x20d # CAN4
 
 import sys
 
-"""os.system("sudo ip link set can0 down")
+os.system("sudo ip link set can0 down")
 os.system("sudo modprobe -r gs_usb")
 os.system("sudo modprobe gs_usb")
-os.system("sudo ip link set can0 up type can bitrate 125000") """
+os.system("sudo ip link set can0 up type can bitrate 125000") 
 
 
-os.system("sudo ip link delete vcan0")
+"""os.system("sudo ip link delete vcan0")
 os.system("sudo modprobe vcan")
 os.system("sudo ip link add dev vcan0 type vcan")
-os.system("sudo ip link set up vcan0")
+os.system("sudo ip link set up vcan0")"""
 
 db = cantools.database.load_file('dbc/j1939_1.dbc', strict=False)
 db.messages
 gasLeverMessage = db.get_message_by_name('TSC1')
 gearboxMessage = db.get_message_by_name('MAN1')
 eecMessage = db.get_message_by_name('EEC1')
-can_bus = can.interface.Bus(channel='vcan0', interface='socketcan')
+can_bus = can.interface.Bus(channel='can0', interface='socketcan')
 
 # Functions
 def encodeThrottleMessage(speed, throttle, canFrameID):
@@ -235,8 +235,8 @@ finally:
 '''
 Maximale RPM auf 2500 begrenzt
 Minimale RPM auf 500 begrenzt
-Starter immer deaktiviert, weil Motor bereits laufen soll
-Actual werte immer 0, weil kein direkten Zugriff zu sensoren und als Täuschung für Schiffsführer
+Starter immer deaktiviert, weil Motor bereits laufen soll (in eec1 Nachricht)
+Actual werte immer 0, weil kein direkten Zugriff zu sensoren und als Täuschung für Schiffsführer (in eec1 Nachricht)
 Muss getestet werden, ob EEC1 oder TSC1 wichtiger
 laut aufgezeichneten Werten ist nur bereich von -110 bis -85 bekannt in EngRequestedTorque_TorqueLimit
 '''

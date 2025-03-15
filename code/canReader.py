@@ -4,10 +4,10 @@ import can
 import sys
 from canId import CanId
 
-'''os.system("sudo ip link set can0 down")
+os.system("sudo ip link set can0 down")
 os.system("sudo modprobe -r gs_usb")
 os.system("sudo modprobe gs_usb")
-os.system("sudo ip link set can0 up type can bitrate 125000")'''
+os.system("sudo ip link set can0 up type can bitrate 125000")
 
 
 """os.system("sudo ip link delete vcan0")
@@ -17,7 +17,7 @@ os.system("sudo ip link set up vcan0")"""
 
 
 db = cantools.database.load_file('dbc/j1939_1.dbc', strict=False)
-can_bus = can.interface.Bus(channel='vcan0', interface='socketcan')
+can_bus = can.interface.Bus(channel='can0', interface='socketcan')
 throttleMessage = db.get_message_by_name('TSC1')
 gearboxMessage = db.get_message_by_name('MAN1')
 eec1Message = db.get_message_by_name('EEC1')
