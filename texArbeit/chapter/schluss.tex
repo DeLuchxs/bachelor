@@ -7,10 +7,19 @@
     \item Manipulierte CAN-Bus Nachrichten gesendet \begin{itemize}
         \item dabei keine Fehlermeldung im Steuergerät
         \item Motordrehzahl schießt in die Höhe (verhält sich unerwartet)
+        \item kann zu Schäden am Motor führen
     \end{itemize}
     \item Programm kann mit canReader.py auf Nachrichten des Gashebels reagieren
 \end{itemize}
 
 \section{Ausblick}
-Wo kann noch weiter geforscht werden?
-Was wurde nicht geschafft?
+\begin{itemize}
+    \item Motordrehzahl konnte bisher nicht auf vorhersehbare Weise manipuliert werden
+    \item aufgezeichnete Nachrichten konnten nicht alle dekodiert werden
+    \item darunter auch Nachrichten für die Gangschaltung
+    \item Manipulation von Nachrichten für die Gangschaltung
+    \item Rudersteuerung ist nicht implementiert
+    \item Nachrichten dafür nicht ganz verstanden
+    \item tatsächliche Implementierung von vorgeschlagenen Sicherheitsmaßnahmen
+    \item Prüfen auf die Effektivität der Sicherheitsmaßnahmen
+\end{itemize}
