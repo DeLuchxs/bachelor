@@ -8,7 +8,7 @@ vergleichbar mit einem normalen Linux-System. Der Standard Package Manager ist a
 Python 3.12 und die benötigten Bibliotheken installiert. Damit sind die Vorraussetzungen für die weitere Implementierung
 gesetzt.
 
-\section{Verbindung Rogue Device - Controller}
+\section{Verbindung Rogue Device - Controller} 
 
 Im ersten Schritt wird der Controller mit dem Raspberry Pi verbunden. Der Raspberry Pi wird mit Raspberry Pi OS betrieben.
 Als Standard-Bluetooth-Treiber wird \href{https://www.bluez.org/}{BlueZ} (letzter Zugriff: 02.01.2025) verwendet. Dieser ist bereits vorinstalliert und muss 
@@ -33,7 +33,7 @@ eine stufenlose Eingabe. Bei einer vollständigen Eingabe soll die Gashebelposit
 So ist sichergestellt, dass die Gashebelposition nicht zu schnell verändert wird. Die Ruderposition soll nach 2 Sekunden
 in jede Richtung jeweils 100\% erreichen. Dies ist ein Kompromiss zwischen Geschwindigkeit und Genauigkeit.
 
-\section{Übersetzung Signale Controller - Schiff}
+\section{Übersetzung Signale Controller - Schiff} \label{sec:signalControllerSchiff}
 
 Wie in \ref{fig:structureRogueDevice} zu sehen erhält \texttt{controllerInput.py} die Signale des Xbox-Controllers 
 erhält und in passende Variablen in Python interpretiert. Diese Variablen müssen
@@ -44,7 +44,7 @@ Die Synchronisierung wird durch den Puffer der Pipe sichergestellt. Wenn dieser 
 lesende Prozess den Puffer geleert hat. Dies ist ein einfaches und effizientes Verfahren, 
 um die beiden Prozesse zu synchronisieren \cite{Venkataraman2015}. 
 
-\subsection{CAN-Bus}
+\subsection{CAN-Bus} \label{sec:canBus}
 Die Übertragenen Eingabewerte werden in dem nächsten Programm \texttt{canInterpreter.py} erkannt. Basierend auf den
 Eingaben wird dann die entsprechende Nachricht erstellt. Um eine Nachricht zu kodieren, wird die Bibliothek \texttt{cantools} benutzt.
 Mit dieser Bibliothek können DBC-Dateien gelesen und Nachrichten erstellt werden. Mit einer solchen Datei kann eine

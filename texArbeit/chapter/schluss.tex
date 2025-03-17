@@ -2,14 +2,41 @@
 \printmyminitoc{1}
 
 \section{Ergebnis}
+In dieser Arbeit sollte die Machbarkeit von Angriffen auf das Steuergerät eines Schiffes untersucht werden. 
+Der Fokus lag dabei auf dem CAN-Bus für die Motorsteuerung und einer seriellen Verbindung für die Rudersteuerung.
+Um Schwachstellen zu veranschaulichen, sollte der Motor sowie das Ruder mittels eines Spiele-Controllers gesteuert werden.
+Im ersten Schritt wurde ein Konzept für die Steuerungslogik entwickelt, wie in \ref{sec:steuerungslogik} zu sehen.
+Damit die physichen Eingaben genutzt werden konnten, mussten diese in logische Eingabewerte für ein Programm umgewandelt werden.
+Das wurde in dem Programm \texttt{controllerInput.py} umgesetzt (\ref{sec:signalControllerSchiff}). 
+Damit auf eigenen Systemen CAN-Nachrichten getestet werden konnten, wurde ein CAN-Bus aufgebaut und Testnachrichten gesendet.
+Im nächsten Schritt wurden aufgezeichnete CAN-Bus Nachrichten mithilfe einer DBC-Datei dekodiert und anschließend analysiert. 
+Dabei wurden auch Nachrichten für die Rudersteuerung aufgezeichnet, diese konnten jedoch nicht dekodiert werden.
+Durch die Analyse der Nachrichten, konnten einzelne wichtige Nachrichten entdeckt werden. Durch die weitergehende Analyse
+der entsprechenden DBC-Datei zu den bestimmten Nachrichten, konnten diese auch verstanden werden (\ref{sec:canBus}).
+Damit konnte ein Programm entwickelt werden, welches die Eingaben des Spiele-Controllers erhält und in CAN-Bus Nachrichten umwandelt.
+Dazu musste auch eine entsprechende Prüfsumme berechnet werden, um die Nachrichten zu validieren. Das gleiche Vorgehen wurde auch
+für Nachrichten der Gangschaltung durchgeführt. Ein weiterer wichtiger Teil war die Echtzeitdekodierung der CAN-Bus Nachrichten,
+damit auf Eingaben des Gashebels reagiert werden konnte. Dazu wurde das Programm \texttt{canReader.py} entwickelt. 
+Die Rudersteuerung wurde nicht implementiert, da die Nachrichten nicht im Zeitrahmen dekodiert werden konnten.
+\\
+Im ersten Test wurden die Nachrichten auf dem CAN-Bus des Schiffes im normalen Betrieb mit dem Programm \texttt{canReader.py} dekodiert.
+Dabei hat die Echtzeitdekodierung der Nachrichten funktioniert. Es konnten die wichtigen Nachrichten für die Motorsteuerung
+erkannt werden. Allerdings konnten nicht alle Nachrichten dekodiert. Zusätzlich wurden keine Nachrichten für die Gangschaltung
+dekodiert. Dabei ist wichtig zu erwähnen, dass diese Nachrichten nicht in der Standard DBC-Datei enthalten waren. Durch das Handbuch
+des Motors konnte eine Nachricht nachgestellt werden. Eine solche Nachricht wurde aber nicht in der Kommunikation des Schiffes gefunden.
+Im zweiten Test wurden manipulierte Nachrichten auf den CAN-Bus gesendet. In der Vorbereitung wurde die Gangschaltung von dem Kapitän in den neutralen
+Gang geschaltet. In diesem Zustand wurden Nachrichten mit einer Zieldrehzahl von 650 Umdrehungen pro Minute gesendet. Dabei ist die 
+Drehzahl zügig angestiegen, aber über 650 Umdrehungen pro Minute hinaus. Bei einer Drehzahl von 1500 Umdrehungen pro Minute wurde die
+Nachrichtenübertragung gestoppt, um mögliche Schäden am Motor zu vermeiden. Dabei ist zu erwähnen, dass keine Fehlermeldung im Steuergerät 
+aufgetreten ist. Das Verhalten des Motorsteuergeräts war nicht erwartbar nach den Nachrichten aus dem J1939-Standard. Daher
+konnte auch nicht die Reaktion auf Gashebelbewegungen getestet werden. 
+\subsection{1. Forschungsfrage}
 \begin{itemize}
-    \item CAN-Bus Nachrichten aufgezeichnet und in Echtzeit dekodiert
-    \item Manipulierte CAN-Bus Nachrichten gesendet \begin{itemize}
-        \item dabei keine Fehlermeldung im Steuergerät
-        \item Motordrehzahl schießt in die Höhe (verhält sich unerwartet)
-        \item kann zu Schäden am Motor führen
-    \end{itemize}
-    \item Programm kann mit canReader.py auf Nachrichten des Gashebels reagieren
+    \item Einzelne Erkenntnisse können auf andere Fahrzeuge übertragen werden
+\end{itemize}
+\subsection{2. Forschungsfrage}
+\begin{itemize}
+    \item Sicherheitsmaßnahmen wurden vorgeschlagen    
 \end{itemize}
 
 \section{Ausblick}
