@@ -81,7 +81,6 @@ verhindert. Mit dem richtigen Werkzeug kann diese Abdeckung einfach entfernt wer
 Eine weitere Hürde ist, dass die richtige Baudrate für den CAN-Bus des Schiffes gewählt werden muss. Ohne vorherige Kenntnisse
 muss dabei ausprobiert werden, welche Baudrate die richtige ist. Das stellt aber keine Schutzmaßnahme dar, sondern einfach
 eine wichtige Eigenschaft des CAN-Standards.\\
-\\
 Im CAN-Standard gibt es keine dedizierten Sicherheitsmaßnahmen. Daher müssen diese nachträglich implementiert werden.
 Eine vergleichsweise einfache Maßnahme ist die Implementierung von Intrusion Detection Systemen (IDS). Diese Systeme überwachen
 den Bus und erkennen mögliche Angriffe. Ein Vorteil dabei ist, dass der CAN-Standard in keiner Form für den 
@@ -109,23 +108,4 @@ Netwerken zu benutzen, in denen die Geräte nicht vom selben Hersteller sind.
 Desweiteren gibt es viele Open-Source-Bibliotheken,
 die PKI unterstützen. 
 \cite{Murvay2018} \\
-\section{Relevanz für andere Schiffe}
-Der Mehrwert dieser Arbeit fokussiert sich nicht nur auf die Limanda, sondern auch auf andere Schiffe.
-Aufgrund der weiten Verbreitung des CAN-Bus, ist davon auszugehen, dass auch viele andere Schiffe diesen nutzen.
-Der CAN-Bus der Limanda hat keine speziellen Sicherheitsmaßnahmen, die über den Standard hinausgehen. 
-Die Limanda wurde erst 2021 in Betrieb genommen und ist daher auf einem aktuellen Stand der Technik \cite{limanda} (letzter Zugriff 14.03.2025).
-Es kann davon ausgegangen werden, dass auch andere Schiffe, die in den letzten Jahren in Betrieb genommen wurden, auf einem
-ähnlichen Stand der Technik sind. Daher ist es wahrscheinlich, dass der CAN-Bus auch auf anderen Schiffen keine speziellen
-Sicherheitsmaßnahmen hat. \\
-In dem Fall der Limanda wurde nur der Motor mit einem CAN-Bus angesteuert. Es besteht jedoch die Möglichkeit, dass auch 
-andere Systeme, wie die Rudersteuerung, mit einem CAN-Bus angesteuert werden. Auf größeren Schiffen kann das eher der Fall sein. 
-Eine mechanische Rudersteuerung ist auf größeren Schiffen nicht mehr üblich, da die Brücke zu weit von dem Ruder entfernt ist.
-Daher kann die Rudersteuerung elektronisch sein. \\
-In dieser Arbeit wurde gezeigt, dass NMEA-0183 Nachrichten einfach mitgelesen werden können. Dadurch können mindestens 
-alle Informationen, die über NMEA-0183 übertragen werden, abgefangen werden. Es gibt bereits einen Nachfolger von NMEA-0183,
-NMEA-2000. der Standard ist auch auf der Limanda implementiert, allerdings war dieser nicht relevant für diese Arbeit.
-Deswegen kann keine Einschätzung über die Sicherheit von NMEA-2000 gemacht werden. \\
-In dieser Arbeit konnten die Motoren nur manipuliert werden, wenn diese schon in Betrieb waren. Zusätzlich konnte
-Manipulation durch das ausschalten der Motoren verhindert werden. Im Rahmen dieser Arbeit kann keine Aussage über 
-die Möglichkeit der Manipulation von Motoren gemacht werden, die nicht in Betrieb sind. Es würde eine größere Gefahr
-darstellen, wenn die Motoren von einem Angreifer ein- und ausgeschaltet werden könnten. \\
+

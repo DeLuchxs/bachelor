@@ -3,6 +3,9 @@
 \printmyminitoc{1}
 
 \section{Motivation}
+In der Seefahrt ist die Anzahl an Cyberangriffen in den letzten Jahren stark angestiegen. Von 2021 auf 2022 hat sich die Anzahl von öffentlich
+bekannten Angriffen mehr als verdoppelt. Im Jahr 2021 sind lediglich 24 Angriffe bekannt geworden, im Jahr 2022 waren es bereits 65 Angriffe 
+\cite{mcad} (letzter Zugriff 18.03.2025). Darunter fallen Angriffe auf Häfen, Schifffahrtsunternehmen und Schiffe.
 Jedes Jahr werden zahlreiche Passagiere mit Schiffen befördert. Dabei kann es vorkommen, dass bösartige Aktoren ein Teil dieser Passagiere sind.
 Ein Angriff auf die Steuerung eines Schiffes könnte katastrophale Folgen haben. Dennoch wird die Sicherheit von Schiffen oft vernachlässigt.
 Wenn die Kommunikation auf einem internen Systemen nicht ausreichend geschützt ist, könnte ein Angreifer durch physischen Zugriff auf das Schiff die 
@@ -13,15 +16,26 @@ zu viele Menschen, um verdächtige Aktivitäten sofort zu bemerken. \\
 \section{Ziel der Arbeit}
 Die Arbeit soll zeigen, wie wichtig es ist, die Systemkommunikation eines Schiffes zu schützen.
 Dabei soll die Aufmerksamkeit auf die Sicherheit in Schiffen gelenkt werden.
-Die Arbeit erforscht die Möglichkeit eines Angriffs mit Steuerungsübernahme. Dazu wird ein Rogue Device entwickelt, 
-welches in der 
+Dazu wird das zentrale Augenmerk auf die Machbarkeitstudie eines Angriffs auf die Steuerung eines Schiffes gelegt.
+Durch diese Machbarkeitsstudie sollen zwei zusätzliche Forschungsfragen beantwortet werden.
+Zum einen soll untersucht werden, wie die Manipulation von Steuergeräten erschwert werden kann.
+Zum anderen soll die Relevanz der Ergebnisse für andere Schiffe betrachtet werden. \\
+Dazu wird ein Rogue Device entwickelt, welches in der 
 Lage, ist externe Steuerungsbefehle zu erhalten und mit diesen Kontrollnachrichten auf die Schiffskommunikation zu senden.
 Dabei wird auf Netzwerke zugegriffen, die eine Kommunikation zwischen den verschiedenen Steuerungssystemen des Schiffes 
-ermöglichen. Als Netzwerkprotokolle spielen dabei NMEA 2000, NMEA 0183 und J1939 eine wichtige Rolle. Unter anderem wird auch 
+ermöglichen. Als Netzwerkprotokolle spielen dabei NMEA 0183 und J1939 eine wichtige Rolle. Unter anderem wird auch 
 auf eine serielle Schnittstelle zugegriffen, um mehr Kontrolle über das System zu erlangen. \\
-Hier soll die Machbarkeit eines solchen Angriffs gezeigt werden. Zusätzlich werden die Auswirkungen auf die Steuerung des 
+Durch die Simulation eines Angriffes werden die Auswirkungen auf die Steuerung des 
 Schiffes analysiert. Es soll ein Bewusstsein für die Sicherheit von Schiffen geschaffen werden. Zusätzlich 
 sollen auch mögliche Gegenmaßnahmen betrachtet werden. \\
 Um die Sicherheitslücken zu veranschaulichen, soll das Schiff mit einem Gaming-Controller gesteuert werden.
 Dies soll zeigen, wie einfach es ist, die Steuerung eines Schiffes zu übernehmen, wenn die Kommunikation nicht 
 ausreichend geschützt ist.\\
+Dazu werden zuerst die Grundlagen für die Arbeit erläutert. Im gleichen Kapitel wird auch auf den aktuellen Stand der Technik eingegangen.
+Ein wichtiger Teil dabei sind schon vorhandene Tools, die als Hilfsmittel für die Arbeit genutzt werden können.
+Im nächsten Schritt werden Konzepte für die Steuerung des Schiffes entwickelt. Dabei wird auf die Steuerungslogik eingegangen, aber
+vor allem Integration des Rogue Devices in das System. Mit diesen Konzepten wird in die Implementierung eingestiegen. Dabei sind 
+die Verbindung des Spiele-Controllers mit dem Rogue Device und die Kommunikation mit dem Schiff wichtige Schritte.
+In der Kommunikation mit dem Schiff wird auf die CAN-Bus Kommunikation und die serielle Kommunikation eingegangen.
+Damit kann die Machbarkeit des Angriffs getestet werden. Im Anschluss werden Sicherheitslücken aufgezeigt und mögliche Gegenmaßnahmen
+vorgeschlagen. Zum Schluss wird die Relevanz der Ergebnisse für andere Schiffe betrachtet und ein Ausblick gegeben. \\

@@ -30,23 +30,43 @@ Drehzahl zügig angestiegen, aber über 650 Umdrehungen pro Minute hinaus. Bei e
 Nachrichtenübertragung gestoppt, um mögliche Schäden am Motor zu vermeiden. Dabei ist zu erwähnen, dass keine Fehlermeldung im Steuergerät 
 aufgetreten ist. Das Verhalten des Motorsteuergeräts war nicht erwartbar nach den Nachrichten aus dem J1939-Standard. Daher
 konnte auch nicht die Reaktion auf Gashebelbewegungen getestet werden. 
-\subsection{1. Forschungsfrage}
+\subsection{Wie kann die Manipulation von Steuergeräten erschwert werden?}
 \begin{itemize}
-    \item Einzelne Erkenntnisse können auf andere Fahrzeuge übertragen werden
+    \item Sicherheitsmaßnahmen wurden vorgeschlagen (welche)
+    \item Aufmerksamkeit von Schiffsführern für Gefahren sensibilisieren und richtige Verhalten bei Angriffen
 \end{itemize}
-\subsection{2. Forschungsfrage}
-\begin{itemize}
-    \item Sicherheitsmaßnahmen wurden vorgeschlagen    
-\end{itemize}
+\subsection{Relevanz für andere Schiffe}
+Der Mehrwert dieser Arbeit fokussiert sich nicht nur auf die Limanda, sondern auch auf andere Schiffe.
+Aufgrund der weiten Verbreitung des CAN-Bus, ist davon auszugehen, dass auch viele andere Schiffe diesen nutzen.
+Der CAN-Bus der Limanda hat keine speziellen Sicherheitsmaßnahmen, die über den Standard hinausgehen. 
+Die Limanda wurde erst 2021 in Betrieb genommen und ist daher auf einem aktuellen Stand der Technik \cite{limanda} (letzter Zugriff 14.03.2025).
+Es kann davon ausgegangen werden, dass auch andere Schiffe, die in den letzten Jahren in Betrieb genommen wurden, auf einem
+ähnlichen Stand der Technik sind. Daher ist es wahrscheinlich, dass der CAN-Bus auch auf anderen Schiffen keine speziellen
+Sicherheitsmaßnahmen hat. \\
+In dem Fall der Limanda wurde nur der Motor mit einem CAN-Bus angesteuert. Es besteht jedoch die Möglichkeit, dass auch 
+andere Systeme, wie die Rudersteuerung, mit einem CAN-Bus angesteuert werden. Auf größeren Schiffen kann das eher der Fall sein. 
+Eine mechanische Rudersteuerung ist auf größeren Schiffen nicht mehr üblich, da die Brücke zu weit von dem Ruder entfernt ist.
+Daher kann die Rudersteuerung elektronisch sein. \\
+In dieser Arbeit wurde gezeigt, dass NMEA-0183 Nachrichten einfach mitgelesen werden können. Dadurch können mindestens 
+alle Informationen, die über NMEA-0183 übertragen werden, abgefangen werden. Es gibt bereits einen Nachfolger von NMEA-0183,
+NMEA-2000. der Standard ist auch auf der Limanda implementiert, allerdings war dieser nicht relevant für diese Arbeit.
+Deswegen kann keine Einschätzung über die Sicherheit von NMEA-2000 gemacht werden. \\
+In dieser Arbeit konnten die Motoren nur manipuliert werden, wenn diese schon in Betrieb waren. Zusätzlich konnte
+Manipulation durch das ausschalten der Motoren verhindert werden. Im Rahmen dieser Arbeit kann keine Aussage über 
+die Möglichkeit der Manipulation von Motoren gemacht werden, die nicht in Betrieb sind. Es würde eine größere Gefahr
+darstellen, wenn die Motoren von einem Angreifer ein- und ausgeschaltet werden könnten. \\
 
 \section{Ausblick}
-\begin{itemize}
-    \item Motordrehzahl konnte bisher nicht auf vorhersehbare Weise manipuliert werden
-    \item aufgezeichnete Nachrichten konnten nicht alle dekodiert werden
-    \item darunter auch Nachrichten für die Gangschaltung
-    \item Manipulation von Nachrichten für die Gangschaltung
-    \item Rudersteuerung ist nicht implementiert
-    \item Nachrichten dafür nicht ganz verstanden
-    \item tatsächliche Implementierung von vorgeschlagenen Sicherheitsmaßnahmen
-    \item Prüfen auf die Effektivität der Sicherheitsmaßnahmen
-\end{itemize}
+In dieser Arbeit wurde gezeigt, dass die Steuerung eines Schiffsmotor durch Manipulation von CAN-Bus Nachrichten möglich ist.
+Allerdings konnte die Manipulation nicht auf vorhersehbare Weise durchgeführt werden. Die Motordrehzahl konnte nicht
+vorhersehbar manipuliert werden. Eine Lösung dafür könnte in anderen Nachrichten von dem CAN-Bus liegen, welche nicht
+dekodiert werden konnten. Daher könnte die Dekodierung von weiteren Nachrichten untersucht werden.
+In den dekodierten Nachrichten konnten keine Informationen über die Gangschaltung gefunden werden. Daher ist anzunehmen,
+dass diese Nachrichten auch nicht dekodiert werden konnten. Mit einer vollständigen Dekodierung der aller Nachrichten,
+ist es wahrscheinlich, die Gangschaltung zu manipulieren. \\
+Zusätzlich konnte nicht gezeigt werden, dass die Rudersteuerung manipuliert werden kann. Dies ist der begrenzten Zeit
+und den fehlenden Informationen über die Rudersteuerung geschuldet. Es ist daher empfehlenswert, die Rudersteuerung
+in einer weiteren Arbeit zu untersuchen. Dazu sollten die Nachrichten für die Rudersteuerung dekodiert werden. \\
+In dieser Arbeit wurden Sicherheitsmaßnahmen vorgeschlagen, die nicht implementiert wurden. Diese müssen in einer weiteren
+Arbeit auf Effektivität geprüft werden. Dazu können die Sicherheitsmaßnahmen implementiert und getestet werden.
+Dabei kann auch die Reaktion auf Angriffe getestet werden. \\
