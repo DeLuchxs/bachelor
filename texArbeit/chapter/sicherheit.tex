@@ -58,7 +58,7 @@ Die Rudersteuerung wird nur durch das physikalische Steuerrad oder den Autopilot
 Angriff auf das Steuerrad nicht verdeckt durchgeführt werden kann, werden keine außerordentlichen Schutzmaßnahmen benötigt.
 Bei dem Autopiloten von Navitron handelt es sich um ein Gerät, welches Informationen zu dem Kurs, Geschwindigkeit und
 Position des Schiffes über den NMEA-0183-Bus erhält. Durch die Eigenschaft, dass NMEA-0183 direkt mit ASCII-Nachrichten
-arbeitet, ist es möglich mit physikalischem Zugriff auf den Bus Nachrichten zu lesen. \cite{nmea0183} (letzter Zugriff 07.03.2025) \\
+arbeitet, ist es möglich mit physikalischem Zugriff auf den Bus Nachrichten zu lesen \cite{nmea0183} (letzter Zugriff 07.03.2025). \\
 Diese können zur Überwachung oder auch späteren Manipulation der Kommunikation genutzt werden. Mit aufgezeichneten Nachrichten
 kann ein Angreifer die Kommunikation von den Sensoren zu dem Autopiloten nachvolziehen. Durch das Senden von eigenen Nachrichten
 könnte es möglich, den Autopiloten indirekt zu steuern. Das könnte durch eine Manipulation der Kursdaten mittels einer Man-in-the-Middle-Attacke
@@ -72,7 +72,7 @@ bekannt. Das stellt zwar keine Sicherheitsmaßnahme dar, aber es ist eine Hürde
 der Standard bekannt ist, kann ein Angreifer die Nachrichten zumindest mitlesen. Eine Authentifizierung wurde auch
 nicht festgestellt, aber es kann nicht ausgeschlossen werden, dass eine Authentifizierung stattfindet.\\
 
-\section{Schutzmaßnahmen}
+\section{Schutzmaßnahmen} \label{sec:schutzmassnahmen}
 Schutzmaßnahmen sind notwendig, um die Schwachstellen zu schließen und Angriffe zu verhindern.
 Eine Schwierigkeit bei dem Zugriff auf den CAN-Bus ist, dass dieser physisch zugänglich sein muss. Dies ist auch auf der Limanda
 der Fall. Wenn man allerdings unbemerkten Zugriff erhält, kann das Rogue Device versteckt in dem System integriert werden. 
@@ -82,23 +82,25 @@ Eine weitere Hürde ist, dass die richtige Baudrate für den CAN-Bus des Schiffe
 muss dabei ausprobiert werden, welche Baudrate die richtige ist. Das stellt aber keine Schutzmaßnahme dar, sondern einfach
 eine wichtige Eigenschaft des CAN-Standards.\\
 Im CAN-Standard gibt es keine dedizierten Sicherheitsmaßnahmen. Daher müssen diese nachträglich implementiert werden.
-Eine vergleichsweise einfache Maßnahme ist die Implementierung von Intrusion Detection Systemen (IDS). Diese Systeme überwachen
+Eine vergleichsweise einfache Maßnahme ist die Implementierung von Intrusion Detection Systemen (IDS) \cite{Gmiden2016}. 
+Diese Systeme überwachen
 den Bus und erkennen mögliche Angriffe. Ein Vorteil dabei ist, dass der CAN-Standard in keiner Form für den 
 Anwendungsfall modifiziert werden muss. Es ist auch keine Implementation in jedem Gerät eines Netzwerkes notwendig.
-Das System kann auf einem zentralen Gerät laufen und den Bus überwachen. \cite{Gmiden2016} 
-Ein IDS kann auf zwei Arten implementiert werden. Zum einen kann ein Signatur/Regel-basiertes System verwendet werden.
+Das System kann auf einem zentralen Gerät laufen und den Bus überwachen.  
+Ein IDS kann auf zwei Arten implementiert werden \cite{Hoppe2009}. Zum einen kann ein Signatur/Regel-basiertes System verwendet werden.
 Hier können bereits bekannte Angriffe erkannt werden. Dies wird mit einer Erkennung von bestimmten Kombinationen oder Sequenzen
 von Nachrichten erreicht. Um ständig neue Angriffe zu erkennen, müssen die Regeln ständig aktualisiert werden.
 Für bekannte Angriffe ist dieses System sehr zuverlässig. Zum anderen kann ein Anomalie-basiertes System verwendet werden.
 Hier wird das normale Verhalten des Systems überwacht. Abweichungen von diesem Verhalten werden als möglicher Angriff erkannt.
 Dieses System ist weniger wartungsintensiv, da keine ständige Aktualisierung der Regeln notwendig ist. Es ist auch besser für
 unbekannte Angriffe geeignet, da es keine explizite Regel für den Angriff geben muss. Allerdings gibt es auch mehr Fehlalarme,
-die in einigen Anwendungen nicht toleriert werden können. \cite{Hoppe2009} \\
+die in einigen Anwendungen nicht toleriert werden können. \\
 Mit der Nutzung von J1939-Netzwerken ist keine höhere Sicherheit geschaffen. Ein großes Problem dabei ist, dass
 eine kryptographische Authentifizierung fehlt. Das bedeutet, dass Nachrichten nicht auf ihre Authentizität überprüft werden.
 Daher ist es möglich, dass ein Angreifer Nachrichten sendet, die von anderen Geräten als legitim angesehen werden.
 Eine einheitliche Lösung für dieses Problem ist schwer zu finden, da in einem solchen Netzwerk verschiedene Geräte
-von verschiedenen Herstellern zusammenarbeiten. Eine Lösung für dieses Problem ist die Implementierung einer Public Key Infrastruktur (PKI).
+von verschiedenen Herstellern zusammenarbeiten. Laut \cite{Murvay2018} ist eine Lösung für dieses Problem die Implementierung einer 
+Public Key Infrastruktur (PKI).
 Hier werden die Geräte mit einem Zertifikat ausgestattet, welches von einer zentralen Stelle signiert wird, beispielsweise
 dem Fahrzeughersteller. Mittels dieses Zertifikats kann ein Gerät seine Identität beweisen und auch die Identität anderer Geräte
 überprüfen. 
@@ -107,5 +109,10 @@ Vorallem in der Automobilindustrie ist die Nutzung von PKI teilweise etabliert. 
 Netwerken zu benutzen, in denen die Geräte nicht vom selben Hersteller sind.
 Desweiteren gibt es viele Open-Source-Bibliotheken,
 die PKI unterstützen. 
-\cite{Murvay2018} \\
+ \\
+Für Rudersteuerung sendet der nur der Autopilot Nachrichten an die Steuerungseinheit. Es ist aber nicht davon auszugehen,
+dass diese beiden Geräte miteinander verschlüsselt kommunizieren. Diese Geräte stammen auch nicht von dem selben Hersteller.
+Daher ist eine symmetrische Verschlüsselung zu aufwendig für den praktischen Einsatz. Bei dieser Verschlüsselung müssten
+die Geräte einen gemeinsamen Schlüssel aushandeln. Das kann nicht immer auf einem sicheren Weg gewährleistet werden.
+Auch wenn in diesem Fall nur zwei Geräte an der Kommunikation beteiligt sind, kann wieder eine PKI verwendet werden.
 

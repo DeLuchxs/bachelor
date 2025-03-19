@@ -30,11 +30,19 @@ Drehzahl zügig angestiegen, aber über 650 Umdrehungen pro Minute hinaus. Bei e
 Nachrichtenübertragung gestoppt, um mögliche Schäden am Motor zu vermeiden. Dabei ist zu erwähnen, dass keine Fehlermeldung im Steuergerät 
 aufgetreten ist. Das Verhalten des Motorsteuergeräts war nicht erwartbar nach den Nachrichten aus dem J1939-Standard. Daher
 konnte auch nicht die Reaktion auf Gashebelbewegungen getestet werden. 
+
 \subsection{Wie kann die Manipulation von Steuergeräten erschwert werden?}
-\begin{itemize}
-    \item Sicherheitsmaßnahmen wurden vorgeschlagen (welche)
-    \item Aufmerksamkeit von Schiffsführern für Gefahren sensibilisieren und richtige Verhalten bei Angriffen
-\end{itemize}
+Wie in dem Kapitel \ref{sec:schutzmassnahmen} genauer beschrieben, gibt es verschiedene Möglichkeiten, die Manipulation von Steuergeräten zu erschweren.
+Die einfachste Methode ist dabei den physischen Zugang zu den Steuergeräten zu erschweren und möglicherweise für Unbefugte dauerhaft zu unterbinden.
+Dazu kann die Verkabelung in einem geschlossenen Gehäuse untergebracht werden. 
+Bei einem CAN-Bus ist eine weitere Maßnahme die Verwendung von Intrusion Detection Systemen (IDS).
+Diese können den CAN-Bus überwachen und bei ungewöhnlichen Nachrichten Alarm schlagen. Diese arbeiten entweder Regelbasiert oder erkennen Anomalien in den Nachrichten.
+\\
+Eine Verschlüsselung von Nachrichten ist in der Theorie auch möglich, aber in der Praxis nicht umsetzbar. Das ist darauf zurückzuführen, dass die verschiedenen
+Geräte von verschiedenen Herstellern stammen. Daher ist der Schlüsselaustausch nur schwer möglich. Eine weitere Möglichkeit ist die Verwendung von digitalen Signaturen.
+Dies findet bei der Nutzung von einer Public Key Infrastructure (PKI) statt. Hier kann ein Gerät mit einem Zertifikat seine Identität beweisen. 
+Eine solche PKI zu benutzen ist eine gerechtfertigte Maßnahme, wenn die Sicherheit der Kommunikation gewährleistet werden muss. In der Automobilindustrie
+ist das bereits weit verbreitet. \\
 \subsection{Relevanz für andere Schiffe}
 Der Mehrwert dieser Arbeit fokussiert sich nicht nur auf die Limanda, sondern auch auf andere Schiffe.
 Aufgrund der weiten Verbreitung des CAN-Bus, ist davon auszugehen, dass auch viele andere Schiffe diesen nutzen.
