@@ -5,7 +5,8 @@
 \section{CAN-Bus}
 Bei einem CAN-Bus handelt es sich um eine serielle Netzwerktechnologie, 
 die mehrere Geräte mit einem Draht verbindet.
-Die Entwicklung des CAN-Bus wurde von Bosch im Jahr 1983 begonnen. Im Jahr 1986 wurde der erste CAN-Bus Standard 
+Die Entwicklung des CAN-Bus wurde von Bosch im Jahr 1983 begonnen \cite[Seiten 2-10]{Voss2008}. 
+Im Jahr 1986 wurde der erste CAN-Bus Standard 
 veröffentlicht.
 Die Motivation der Entwicklung war die effiziente Kommunikation zwischen den Steuergeräten in einem Auto. 
 Als günstige
@@ -13,9 +14,8 @@ Nebenwirkung konnte damit die Kabelmenge reduziert werden, da alle Geräte mit e
 Durch die höhere Zuverlässigkeit und Funktionalität des Can-Bus, wurde dieser schnell in der Autoindustrie etabliert.
 Aber auch in anderen Sektoren, wie z.B. der Medizintechnik, der Gebäudeautomation oder der Luftfahrt, spielt der
 Can-Bus mittlwerweile eine wichtige Rolle.
-\cite[Seiten 2-10]{Voss2008}
 \\
-Man sprich von einem Bussystem, da mehrere Geräte miteinander über diesen miteinander verbunden werden. 
+Man sprich von einem Bussystem, da mehrere Geräte miteinander über diesen miteinander verbunden werden \cite[Seiten 13-19]{Voss2008}. 
 Die Geräte auf an dem Bus sind in dem Fall die Knoten. Alle sind gleichberechtigt und können Nachrichten senden und empfangen.
 Die Nachrichten werden nach Broadcasting-Prinzip übertragen. Dabei wird jede Nachricht von allen Knoten empfangen, 
 aber nur die Knoten, welche die Nachricht benötigen, verarbeiten sie. 
@@ -32,24 +32,22 @@ Die Maximale Länge einer Nachricht beträgt 8 Byte.
 Auf dem CAN-Bus kann eine maximale Baudrate von 1Mbit/s erreicht werden.
 Zusätzlich kann durch die geringe Länge der Nachrichten geringe Latenz erreicht werden. 
 Insgesamt ist der CAN-Bus damit gut für Echtzeitanwendungen geeignet, da die Reaktionszeit der Knoten möglichst gering gehalten wird.
-\cite[Seiten 13-19]{Voss2008}
 \\
-Alle Knoten in einem Can-Bus sind mit einem zweiadrigen Kabel verbunden. Diese werden als High(CAN\_H) und Low(CAN\_L) 
+Alle Knoten in einem Can-Bus sind mit einem zweiadrigen Kabel verbunden \cite[Seite 132]{Voss2008}. 
+Diese werden als High(CAN\_H) und Low(CAN\_L) 
 bezeichnet. Der Bus ist an beiden Enden mit einem Widerstand von 120 $\Omega$ abgeschlossen, um Reflexionen zu vermeiden.
-\cite[Seite 132]{Voss2008}
 \\
-Eine Nachricht auf einem CAN-Bus ist im allgemeinen in einem Can-Frame verpackt. Dieser beginnt
-mit einem Startbit, welches Start of Frame (SOF) genannt wird. Darauf folgt das Arbitration Field, 
+Eine Nachricht auf einem CAN-Bus ist im allgemeinen in einem Can-Frame verpackt \cite[Seite 36]{Voss2008}. 
+Dieser beginnt mit einem Startbit, welches Start of Frame (SOF) genannt wird. Darauf folgt das Arbitration Field, 
 in dem die Nachrichten-ID und ein Bit RTR (Remote Transmission Request) gesetzt wird. Das RTR-Bit wird gesetzt,
 wenn der Sender eine Antwort auf die Nachricht erwartet. Das Control Field wird für die Datengröße und die Nachrichtenlänge
 verwendet. Im Data Field sind die eigentlichen Nutzdaten kodiert. Das CRC Field enthält eine Prüfsumme, welches die Richtigkeit
 der Nachricht überprüft. Hier folgt ein ACK Field, welches die Prüfsumme bestätigt. Die Nachricht endet mit einem End of Frame (EOF).
 Danacht folgt ein Interframe Space (IFS) von 3 Bit, welches eine Pause zwischen den Nachrichten darstellt.
-\cite[Seite 36]{Voss2008}
 
 \subsection{Erweitertes Can-Protokoll}
 Das Standard Can-Protokoll hat einen 11 Bit Identifier, während das erweiterte Can-Protokoll 29 Bit Identifier
-besitzt.
+besitzt \cite{Murvay2018}.
 Die Society of Automotive Engineers (SAE) hat das J1939-Protokoll entwickelt, um die Kommunikation in Nutzfahrzeugen
 zu verbessern. Der Fokus liegt auf der Kommunikation mit dem Antrieb des Fahrzeugs. Der 11-Bit-Identifier wird in J1939 
 auf 29 Bit erweitert, um eine größere Anzahl verschiedener Nachrichten zu ermöglichen.\\
@@ -63,7 +61,6 @@ Nachricht gesendet wird. Für SAE J1939 werden aber nur zwei Kombinationen verwe
 Das PS-Feld kann entweder eine Zieladresse oder eine Gruppenerweiterung (GE) sein. Welches PS-Feld
 verwendet wird, hängt von der PDU ab. Wenn diese einen Wert von unter 240 hat, wird das PS-Feld als Zieladresse verwendet. 
 In dem anderen Fall wird das PS-Feld als Gruppenerweiterung verwendet.
-\cite{Murvay2018}
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.28]{images/j1939header.png}
@@ -71,11 +68,11 @@ In dem anderen Fall wird das PS-Feld als Gruppenerweiterung verwendet.
     \label{fig:j1939header}
 \end{figure}
 
-Trotz des Broadcasting-Prinzips soll nicht jede Nachricht von jedem Knoten verarbeitet werden.
+Trotz des Broadcasting-Prinzips soll nicht jede Nachricht von jedem Knoten verarbeitet werden \cite{Murvay2018}.
 Die Zieladresse ermöglicht es, dass eine Nachricht nur von dem designierten Knoten verarbeitet wird.
 Um eine Nachricht an alle Knoten 
 zu senden, wird die Zieladresse auf 255 gesetzt. Mit der Gruppenerweiterung ist es nicht möglich eine Nachricht 
-zielgerichtet an bestimmte Geräte zu senden. \cite{Murvay2018}
+zielgerichtet an bestimmte Geräte zu senden. 
 
 
 
@@ -88,10 +85,11 @@ leistungsstark. Zusätzlich kann dieser mit einem normalen Betriebssystem
 betrieben werden. Das macht ihn zu einem vielseitigen Werkzeug und attraktiv für diese Arbeit.
 Trotzdem gibt es ein spezielles Betriebssystem, das für den Raspberry Pi entwickelt wurde, das Raspberry Pi OS (ehemals Raspbian).
 Dieses basiert auf der Linux-Distribution Debian. Um viele Funktionen erfüllen zu können, hat der Raspberry Pi viele Anschlüsse.
-Der Raspberry Pi 5 hat 4 USB-Anschlüsse, 2 Micro-HDMI-Anschlüsse, 1 Ethernet-Anschluss, 1 USB-C-Anschluss für die Stromversorgung und einen Micro-SD-Kartensteckplatz.
+Der Raspberry Pi 5 hat 4 USB-Anschlüsse, 2 Micro-HDMI-Anschlüsse, 1 Ethernet-Anschluss, 1 USB-C-Anschluss 
+für die Stromversorgung und einen Micro-SD-Kartensteckplatz.
 
 \subsection{Raspberry Pi als Rogue Device}
-Unter einem Rogue Device versteht man ein Gerät, das sich unautorisiert und unauffällig in ein Netzwerk integriert. \cite{Scarfone2008}
+Unter einem Rogue Device versteht man ein Gerät, das sich unautorisiert und unauffällig in ein Netzwerk integriert \cite{Scarfone2008}.
 Dies kann ein Raspberry Pi sein, der sich in ein Netzwerk einbindet und Daten abfängt oder manipuliert. Hierüber können 
 sich Angreifer Zugriff auf das Netzwerk verschaffen. 
 Ein solches Gerät kann dazu verwendet werden, um eigenen Code auszuführen. Der kann beispielsweise Daten veränden oder 
@@ -108,23 +106,24 @@ In diesem Abschnitt wird der aktuelle Stand der Technik vorgestellt.
 \subsection{Anbindung von Raspberry Pi an CanBus}
 In der folgenden Arbeit soll ein Raspberry Pi an einen CAN-Bus angeschlossen werden. 
 Im Folgenden werden einige verschiede Möglichkeiten vorgestellt.\\
-Die erste Möglichkeit ist die Verwendung eines Microchip MCP251x, der als CAN-Controller dient. Dieser wird 
+Die erste Möglichkeit ist die Verwendung eines Microchip MCP251x, der als CAN-Controller dient \cite{Salunkhe2016}. Dieser wird 
 mit dem Microchip MCP2551 ergänzt, der als CAN-Transceiver dient. Diese Kombination ermöglicht es, den
 Raspberry Pi mit dem CAN-Bus zu verbinden. Der MCP251x wird über die SPI-Schnittstelle (Serial Peripheral Interface) 
 des Raspberry Pi angeschlossen. Dazu wird ein Treiber benötigt, der die Kommunikation zwischen dem Raspberry Pi und dem
 MCP251x ermöglicht. Ein solcher Treiber ist bereits seit dem 05.05.2015 im Raspberry Pi OS (ehemals Raspbian OS)
-integriert. \cite{Salunkhe2016}
+integriert. 
 Um diese Möglichkeit zu vereinfachen, gibt es auch verschiedene HATs (Hardware Attached on Top), die solche Microchips
-bereits integriert haben. Ein Beispiel dafür ist das PiCan2 von SK Pang Electronics. Dieses Board wird auf den 
+bereits integriert haben \cite{Pant2019}. Ein Beispiel dafür ist das PiCan2 von SK Pang Electronics. Dieses Board wird auf den 
 GPIO-Pins (General Purpose Input/Output) des Raspberry Pi gesteckt. Es erlaubt dem Raspberry Pi mit dem CAN-Bus
-zu kommunizieren. Das PiCan2 unterstützt eine Geschwindigkeit von bis zu 1Mbit/s. \cite{Pant2019}\\
+zu kommunizieren. Das PiCan2 unterstützt eine Geschwindigkeit von bis zu 1Mbit/s. \\
 Es besteht auch die Möglichkeit, einen USB-CAN-Adapter zu verwenden. Damit ist die Anbindung eines 
 beliebigen Computer an den CAN-Bus möglich.
-Ein Beispiel für einen solchen Adapter ist der UCAN von Fysetc. Die Hardware und Firmware des Adapters
+Ein Beispiel für einen solchen Adapter ist der UCAN von Fysetc \cite{FysetcUCAN} (letzter Zugriff: 17.02.2025). 
+Die Hardware und Firmware des Adapters
 sind open-source. Die Verbindung zum Raspberry Pi erfolgt über USB-C.
 Zum CAN-Bus müssen lediglich CAN\_H und CAN\_L und die Masse verbunden werden. Mit dem richtigen Treiber funktioniert
 dieser Adapter mit Linux, Windows und MacOS.  
-\cite{FysetcUCAN} (letzter Zugriff: 17.02.2025)
+
 
 
 \subsection{Überseztung von CAN-Nachrichten}
@@ -160,11 +159,11 @@ Eigenschaften, Einsatzbereiche und Besonderheiten der einzelnen Tools vorgestell
     Es ist ein Open-Source-Projekt und kann auf GitHub gefunden werden. Diese Tools bieten eine Grundlage für die Entwicklung von Anwendungen, die mit dem CAN-Bus arbeiten.
     \cite{can-utils} (letzter Zugriff: 15.02.2025)
 \end{itemize}
-Um der Nutzlast der CAN-Bus Nachrichten Informationen zuzuordnen, ist eine DBC-Datei essentiell. 
+Um der Nutzlast der CAN-Bus Nachrichten Informationen zuzuordnen, ist eine DBC-Datei essentiell \cite{Choi2021}. 
 Diese Datei schlüsselt auf, welche Informationen in den verschiedenen CAN-Nachrichten enthalten sind.
 Da auch sensible Informationen in den Nachrichten enthalten sein können, wird diese Datei in den meisten 
 Fällen nicht öffentlich verfügbar gemacht. Ohne diese Datei können zwar Brute-Force Ansätze verwendet werden,
-allerdings ist dies sehr aufwendig und nicht zielführend. \cite{Choi2021} \\
+allerdings ist dies sehr aufwendig und nicht zielführend. \\
 Um die vorher genannten Tools zu verwenden, ist es also notwendig, die DBC-Datei zu haben. Bei canCommander
 sind einige DBC-Dateien bereits vorinstalliert. Bei cantools kann die DBC-Datei in das Programm geladen werden.
 Allerdings kann es eine Schwierigkeit darstellen, die bestimmte DBC-Datei zu erhalten.

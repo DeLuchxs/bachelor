@@ -40,9 +40,10 @@ erhält und in passende Variablen in Python interpretiert. Diese Variablen müss
 dann in Nachrichten für den Can-Bus umgewandelt werden. Hierfür gibt es ein weiteres Programm. Damit die beiden Programme miteinander kommunizieren
 können, wird Inter-Process-Communication (IPC) benutzt. Als Methode werden hierbei Pipes benutzt. Diese sind einfach zu implementieren und haben
 eine automatische Synchronisierung zwischen den Prozessen. Dadurch müssen Prozesse nicht aufeinander warten und können weiterarbeiten. 
-Die Synchronisierung wird durch den Puffer der Pipe sichergestellt. Wenn dieser voll ist, wird der schreibende Prozess angehalten, bis der
+Die Synchronisierung wird durch den Puffer der Pipe sichergestellt \cite{Venkataraman2015}. 
+Wenn dieser voll ist, wird der schreibende Prozess angehalten, bis der
 lesende Prozess den Puffer geleert hat. Dies ist ein einfaches und effizientes Verfahren, 
-um die beiden Prozesse zu synchronisieren \cite{Venkataraman2015}. 
+um die beiden Prozesse zu synchronisieren. 
 
 \subsection{CAN-Bus} \label{sec:canBus}
 Die Übertragenen Eingabewerte werden in dem nächsten Programm \texttt{canInterpreter.py} erkannt. Basierend auf den
@@ -87,7 +88,7 @@ der Motoren gemacht werden. Die Nachrichten wurden dann in \texttt{canInterprete
 Dabei hat sich eine Schwierigkeit ergeben, als die ID nicht als erweiterter J1939-Standard erkannt wurde. 
 Dafür wurde eine Lösung gefunden, indem die ID mit der Hexadezimalen Zahl 80000000 addiert wurde. Die neu erzeugte ID
 wird nun ohne Probleme als erweiterte ID erkannt. Diese Lösung konnte nicht in einer offiziellen Dokumentation für den
-DBC-Standard gefunden werden. In einem Forum wurde berichtet, dass diese Lösung funktioniert. \cite{cantoolsIssue} (letzter Zugriff: 04.03.2025).
+DBC-Standard gefunden werden. In einem Forum wurde berichtet, dass diese Lösung funktioniert \cite{cantoolsIssue} (letzter Zugriff: 04.03.2025). 
 Zusätzlich hat diese Lösung im Anwendungsfall dieser Arbeit funktioniert. 
 Laut der gleichen Quelle hängt der Grund dafür damit zusammen, dass ein Bit für die ID in dem Dateiformat zweckentfremdet für
 die Erkennung einer erweiterten ID benutzt wird. Allerdings kann dies nicht bestätigt werden, aber es scheint eine plausible

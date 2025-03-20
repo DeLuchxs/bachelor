@@ -10,7 +10,7 @@ Dafür werden in dem folgenden Abschnitt die aufgedeckten Schwachstellen dieser 
 Der CAN-Bus ist eines der zentralen Systeme in modernen Fahrzeugen und Schiffen. So auch auf der Limanda.
 Nach dem CAN-Standard sind die Nachrichten auf dem Bus nicht verschlüsselt. Zusätzlich werden die Nachrichten nur 
 auf ihre Richtigkeit überprüft, jedoch nicht auf ihre Authentizität. Das bedeutet, dass ein Angreifer Nachrichten auf den Bus
-senden kann, die von anderen Systemen als legitim angesehen werden.\cite{Voss2008} (Seiten 13-19) Durch das Bus-Netzwerk wird die einfache Integration
+senden kann, die von anderen Systemen als legitim angesehen werden \cite{Voss2008} (Seiten 13-19). Durch das Bus-Netzwerk wird die einfache Integration
 weiterer
 Geräte in das System ermöglicht. Ein Angreifer kann so durch physischen Zugriff auf den Bus ein Gerät hinzufügen, welches im schlimmsten Fall
 die Kontrolle über das gesamte System übernehmen kann. Die einzige Hürde, ein Gerät in ein CAN-Bus Netzwerk zu integrieren, ist das
@@ -64,8 +64,7 @@ kann ein Angreifer die Kommunikation von den Sensoren zu dem Autopiloten nachvol
 könnte es möglich, den Autopiloten indirekt zu steuern. Das könnte durch eine Manipulation der Kursdaten mittels einer Man-in-the-Middle-Attacke
 erreicht werden. Dies wurde in dieser Arbeit aber nicht getestet und ist daher nur eine Annahme. 
 NMEA-0183 unterstützt eine Baudrate von 4800. Das bedeutet, dass die Nachrichten mit einer Geschwindigkeit von 9600 Bit pro Sekunde
-gesendet werden. Dadurch können Geräte mit diesem Standard möglicherweise durch eine Denial-of-Service-Attacke gestört werden.
-\cite{Tran2021}
+gesendet werden. Dadurch können Geräte mit diesem Standard möglicherweise durch eine Denial-of-Service-Attacke gestört werden \cite{Tran2021}.
 Der Autopilot sendet basierend auf den Kursdaten und den eigenen Einstellungen Nachrichten an die Rudersteuerung. Für diese 
 Nachrichten wurde im Rahmen dieser Arbeit keine Verschlüsselung festgestellt. Aber der Standard dieser Nachrichten ist nicht
 bekannt. Das stellt zwar keine Sicherheitsmaßnahme dar, aber es ist eine Hürde für einen Angreifer. Wenn jedoch 
