@@ -3,27 +3,24 @@
 
 \section{Umsetzung des Rogue Device}
 Wie vorher schon beschrieben, wird ein Raspberry Pi 5 als Rogue Device benutzt. 
-Als Betriebssystem wird Raspberry Pi OS benutzt. Da der Raspberry Pi mit Linux betrieben wird, ist es die Bedienung
-vergleichbar mit einem normalen Linux-System. Der Standard Package Manager ist apt. Unter dessen Benutzung werden 
+Als Betriebssystem wird Raspberry Pi OS benutzt. Der Standard Package Manager ist APT. Unter dessen Benutzung werden 
 Python 3.12 und die benötigten Bibliotheken installiert. Damit sind die Vorraussetzungen für die weitere Implementierung
 gesetzt.
 
 \section{Verbindung Rogue Device - Controller} 
 
-Im ersten Schritt wird der Controller mit dem Raspberry Pi verbunden. Der Raspberry Pi wird mit Raspberry Pi OS betrieben.
+Im ersten Schritt wird der Spiele-Controller mit dem Raspberry Pi verbunden. Der Raspberry Pi wird mit Raspberry Pi OS betrieben.
 Als Standard-Bluetooth-Treiber wird \href{https://www.bluez.org/}{BlueZ} (letzter Zugriff: 02.01.2025) verwendet. Dieser ist bereits vorinstalliert und muss 
-nicht extra installiert werden. Da es sich in diesem Fall um einen XBox Controllers handelt, wurde der Treiber
-\href{https://github.com/xboxdrv/xboxdrv}{xboxdrv} (letzter Zugriff: 02.01.2025) installiert. Diese können im apt-Repository gefunden werden.
+nicht manuell installiert werden. Da es sich in diesem Fall um einen Xbox-Controllers handelt, wurde der Treiber
+\href{https://github.com/xboxdrv/xboxdrv}{xboxdrv} (letzter Zugriff: 02.01.2025) installiert. Diese können im APT-Repository gefunden werden.
 Zusätzlich muss der Enhanced Re-Transmission Mode (ERTM) deaktiviert werden. Dieser Modus ist standardmäßig aktiviert und
-verhindert die korrekte Verbindung des Controllers. Zum Schluss soll der Controller auf die aktuelle Firmware geupdatet werden.
-Dies kann über die Xbox Accessories App gemacht werden, allerdings ist dies nur auf Windows möglich. Nun kann 
-der Controller mit dem Raspberry Pi verbunden werden. Dies geschieht über die Bluetooth-Einstellungen des Raspberry Pi.
-Um die Verbindung zu testen, kann eine Webapplikation benutzt werden. Diese zeigt die Eingaben des Controllers an. Zum 
-Beispiel: \href{https://hardwaretester.com/gamepad}{hardwaretester} (letzter Zugriff: 02.01.2025).
+verhindert die korrekte Verbindung des Controllers. Zusätzlich muss sichergestellt werden, dass die Firmware des Spiele-Controllers
+auf dem aktuellen Stand ist. Um den Xbox-Controller zu verbinden, kann die graphische Benutzeroberfläche benutzt werden.
 \\
-Als Programmiersprache wird Python 3 benutzt. Diese wurde für die Einfachheit und vielen verfügbaren Bibliotheken gewählt. 
+Als Programmiersprache wird Python 3 benutzt. Die Sprache wurde gewählt, da für alle benötigten Funktionen bereits eine Bibliothek
+existiert.
 Für die
-Controller-Eingaben wird die Bibliothek \textit{pygame} benutzt. Diese Bibliothek ist einfach zu benutzen und hat viele Funktionen.
+Controller-Eingaben wird die Bibliothek \texttt{pygame} benutzt. Diese Bibliothek ist einfach zu benutzen und hat viele Funktionen.
 Sobald der Controller mit dem Raspberry Pi verbunden ist, wird dieser von \textit{pygame} erkannt. Die Eingaben des Controllers
 können dann in Variablen gespeichert werden. Dabei gilt es zu beachten, dass der Gashebel oder die Ruderposition nicht
 zu schnell verändert werden. Dies könnte zu einem unkontrollierten Verhalten des Schiffes oder zu Schäden führen. 
@@ -37,7 +34,7 @@ in jede Richtung jeweils 100\% erreichen. Dies ist ein Kompromiss zwischen Gesch
 
 Wie in \ref{fig:structureRogueDevice} zu sehen erhält \texttt{controllerInput.py} die Signale des Xbox-Controllers 
 erhält und in passende Variablen in Python interpretiert. Diese Variablen müssen
-dann in Nachrichten für den Can-Bus umgewandelt werden. Hierfür gibt es ein weiteres Programm. Damit die beiden Programme miteinander kommunizieren
+dann in Nachrichten für den CAN-Bus umgewandelt werden. Hierfür gibt es ein weiteres Programm. Damit die beiden Programme miteinander kommunizieren
 können, wird Inter-Process-Communication (IPC) benutzt. Als Methode werden hierbei Pipes benutzt. Diese sind einfach zu implementieren und haben
 eine automatische Synchronisierung zwischen den Prozessen. Dadurch müssen Prozesse nicht aufeinander warten und können weiterarbeiten. 
 Die Synchronisierung wird durch den Puffer der Pipe sichergestellt \cite{Venkataraman2015}. 
@@ -45,7 +42,7 @@ Wenn dieser voll ist, wird der schreibende Prozess angehalten, bis der
 lesende Prozess den Puffer geleert hat. Dies ist ein einfaches und effizientes Verfahren, 
 um die beiden Prozesse zu synchronisieren. 
 
-\subsection{CAN-Bus} \label{sec:canBus}
+\subsection{CAN-Bus Nachrichtenkodierung} \label{sec:canBus}
 Die Übertragenen Eingabewerte werden in dem nächsten Programm \texttt{canInterpreter.py} erkannt. Basierend auf den
 Eingaben wird dann die entsprechende Nachricht erstellt. Um eine Nachricht zu kodieren, wird die Bibliothek \texttt{cantools} benutzt.
 Mit dieser Bibliothek können DBC-Dateien gelesen und Nachrichten erstellt werden. Mit einer solchen Datei kann eine
@@ -69,9 +66,9 @@ geht aus einer Analyse der aufgezeichneten Nachrichten hervor.
 In der benötigten Nachricht ist eine Prüfsumme von 4 Bit notwendig. Jedoch gibt es zwei Methoden der Prüfsummenberechnung
 nach dem SAE J1939 Standard \cite{VectorSAE} (letzter Zugriff: 18.02.2025). Die richtige Methode für das System der 
 Limanda wurde durch aufgezeichnete Nachrichten ermittelt. Am Ende wird die Prüfsumme der Nachricht hinzugefügt und die
-Nachricht wird an den Can-Bus gesendet. \\
-Zusätzlich hilft das Programm \texttt{canReader.py} bei der Überwachung des Can-Bus. Es kann die Nachrichten auf dem
-Can-Bus lesen und in Echtzeit dekodieren. Dazu wurde wieder die Bibliothek \texttt{cantools} benutzt. Auch hier wird
+Nachricht wird an den CAN-Bus gesendet. \\
+Zusätzlich hilft das Programm \texttt{canReader.py} bei der Überwachung des CAN-Bus. Es kann die Nachrichten auf dem
+CAN-Bus lesen und in Echtzeit dekodieren. Dazu wurde wieder die Bibliothek \texttt{cantools} benutzt. Auch hier wird
 mit der gleichen DBC-Datei gearbeitet, da es sich um die gleichen Nachrichten handelt. In den dekodierten Nachrichten
 können die Signale und deren Werte gesehen werden. Dies hilft bei der Überwachung des Systems. 
 In den aufgezeichneten Nachrichten wurde entdeckt, dass Nachrichten des Gashebels

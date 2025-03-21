@@ -33,16 +33,19 @@ Um alle gewünschten Funktionen umzusetzen, werden nicht alle Tasten benötigt.
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.5]{images/vorderseite.jpg}
-    \caption{Vorderseite des Xbox-Controllers \cite{XboxController}(letzter Zugriff: 24.01.2025)}
+    \caption{Vorderseite des Xbox-Controllers \cite{XboxController}}
     \label{fig:vorderseite}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.5]{images/rueckseite.jpg}
-    \caption{Rückseite des Xbox-Controllers \cite{XboxController}(letzter Zugriff: 24.01.2025)}
+    \caption{Rückseite des Xbox-Controllers \cite{XboxController}}
     \label{fig:rueckseite}
 \end{figure}
+
+In den Abbildungen \ref{fig:vorderseite} und \ref{fig:rueckseite} sind die Tasten des Xbox-Controllers zu sehen.
+Die Tastenbelegung ist wie folgt:
 
 \begin{table}[H]
     \begin{tabular}{|c|c|}
@@ -104,8 +107,8 @@ verschieden. Dies ist eine einfache Methode, um die eigenen Nachrichten zu erken
 eine eigene CAN-ID zu berechnen. Diese kann dann genutzt werden, um die eigenen Nachrichten zu erkennen. \\
 Wie in der Abbildung \ref{fig:j1939header} zu sehen, besteht der Header aus einer PGN, einer Quelladresse und einer Priorität. Um nun Nachrichten
 an den Motor zu senden, kann eine Nachricht des Gashebels abgefangen werden. Die PGN kann für die eigene Nachricht genutzt
-werden. Die Quelladresse kann man auch kopieren. Die Priorität sollte möglichst klein gewählt werden, 
-damit die eigene Nachricht bevorzugt wird. In der eigenen Nachricht kann dann die gewünschte Gashebelposition gesendet werden.
+werden. Die Quelladresse kann auch kopiert werden. Die Priorität sollte möglichst klein gewählt werden, 
+damit die Nachricht des Rogue Devices bevorzugt wird. In der eigenen Nachricht kann dann die gewünschte Gashebelposition gesendet werden.
 \\
 Um die Rudersteuerung zu manipulieren, muss der Raspberry Pi mit dem Autopiloten verbunden werden. Bei dem Autopiloten
 handelt es sich um ein Navitron NT888G. Dieser ist über eine serielle Schnittstelle mit einer elektronischen Kontrolleinheit
@@ -129,7 +132,7 @@ Dabei sollte die Rückmeldung möglichst unauffällig sein. Ein kleiner Bildschi
 muss dieser physisch an den Raspberry Pi angeschlossen werden. Das würde das Verstecken des Rogue Devices erschweren.
 Eine App auf einem Handy könnte die Rückmeldung geben. Diese App könnte dann die gewünschten Positionen anzeigen.
 Dafür muss der Raspberry Pi mit dem Handy verbunden werden. Dies könnte über Bluetooth geschehen.
-Hier ist zu beachten, dass die Verbindung stabil ist und nicht von anderen Geräten gestört wird.
+Hier ist zu beachten, dass die Verbindung stabil sein muss und nicht von anderen Geräten gestört wird.
 Jedoch kann ist hier mit einem größeren Aufwand zu rechnen, da die App erst entwickelt werden muss.
 Eine weitere Möglichkeit würden Vibrationen im Xbox Controller sein. Diese könnten genutzt werden, wenn die derzeitige
 Eingabe ein Maximum oder Minimum erreicht hat. Allerdings ist dies nicht so genau wie eine Anzeige auf einem Bildschirm.

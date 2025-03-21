@@ -5,32 +5,37 @@
 \section{Motivation}
 In der Seefahrt ist die Anzahl an Cyberangriffen in den letzten Jahren stark angestiegen. Von 2021 auf 2022 hat sich die Anzahl von öffentlich
 bekannten Angriffen mehr als verdoppelt. Im Jahr 2021 sind lediglich 24 Angriffe bekannt geworden, im Jahr 2022 waren es bereits 65 Angriffe 
-\cite{mcad} (letzter Zugriff 18.03.2025). Darunter fallen Angriffe auf Häfen, Schifffahrtsunternehmen und Schiffe.
+\cite{mcad}. Darunter fallen Angriffe auf Häfen, Schifffahrtsunternehmen und Schiffe.
 Jedes Jahr werden zahlreiche Passagiere mit Schiffen befördert. Dabei kann es vorkommen, dass bösartige Aktoren ein Teil dieser Passagiere sind.
-Ein Angriff auf die Steuerung eines Schiffes könnte katastrophale Folgen haben. Dennoch wird die Sicherheit von Schiffen oft vernachlässigt.
-Wenn die Kommunikation auf einem internen Systemen nicht ausreichend geschützt ist, könnte ein Angreifer durch physischen Zugriff auf das Schiff die 
-Kommunikation manipulieren und so die Steuerung des Schiffes übernehmen. Auf großen Passagierschiffen ist das Risiko besonders hoch, da es
-schwierig ist, einen solchen Angriff zu bemerken. Ein bösartiger Aktor kann sich als Passagier tarnen. Es gibt dort
-zu viele Menschen, um verdächtige Aktivitäten sofort zu bemerken. \\
+Ein Angriff auf die Steuerung eines Schiffes kann katastrophale Folgen haben. Dennoch ist die Sicherheit von Schiffen nicht 
+immer ausreichend gewährleistet \cite{Reilly2016}.
+Um das zu verdeutlichen, soll in dieser Arbeit durch physischen Zugriff auf ein Schiff die Kommunikation manipuliert werden.
+Damit soll die Kontrolle über die Steuerung des Schiffes übernommen werden. 
+Auf großen Passagierschiffen ist das Risiko besonders hoch, da es
+schwierig ist, einen solchen Angriff rechtzeitig zu bemerken. Es besteht die Gefahr, 
+dass unbefugte Personen unbemerkten Zugriff zu kritischen Systemen erhalten. \\
 
 \section{Ziel der Arbeit}
+Diese Arbeit untersucht die Möglichkeit eines Angriffes auf die Steuerung eines gegebenes Beispielschiffes.
+Dabei soll auf die notwendige Sicherheit in Schiffen aufmerksam gemacht werden.
 Die Arbeit soll zeigen, wie wichtig es ist, die Systemkommunikation eines Schiffes zu schützen.
-Dabei soll die Aufmerksamkeit auf die Sicherheit in Schiffen gelenkt werden.
-Dazu wird das zentrale Augenmerk auf die Machbarkeitstudie eines Angriffs auf die Steuerung eines Schiffes gelegt.
-Durch diese Machbarkeitsstudie sollen zwei zusätzliche Forschungsfragen beantwortet werden.
-Zum einen soll untersucht werden, wie die Manipulation von Steuergeräten erschwert werden kann.
-Zum anderen soll die Relevanz der Ergebnisse für andere Schiffe betrachtet werden. \\
+Durch die Untersuchung eines Angriffes sollen zwei zusätzliche Forschungsfragen beantwortet werden: \\
+Wie kann die Manipulation von Steuergeräten auf Schiffen erschwert werden? \\
+Wie relevant sind die Ergebnisse für andere Schiffe? \\
 Dazu wird ein Rogue Device entwickelt, welches in der 
 Lage, ist externe Steuerungsbefehle zu erhalten und mit diesen Kontrollnachrichten auf die Schiffskommunikation zu senden.
 Dabei wird auf Netzwerke zugegriffen, die eine Kommunikation zwischen den verschiedenen Steuerungssystemen des Schiffes 
-ermöglichen. Als Netzwerkprotokolle spielen dabei NMEA 0183 und J1939 eine wichtige Rolle. Unter anderem wird auch 
+ermöglichen. Als Kommunikation spielt dabei der CAN-Bus eine wichtige Rolle.
+Unter anderem wird auch 
 auf eine serielle Schnittstelle zugegriffen, um mehr Kontrolle über das System zu erlangen. \\
 Durch die Simulation eines Angriffes werden die Auswirkungen auf die Steuerung des 
-Schiffes analysiert. Es soll ein Bewusstsein für die Sicherheit von Schiffen geschaffen werden. Zusätzlich 
+Schiffes analysiert. Zusätzlich 
 sollen auch mögliche Gegenmaßnahmen betrachtet werden. \\
 Um die Sicherheitslücken zu veranschaulichen, soll das Schiff mit einem Gaming-Controller gesteuert werden.
 Dies soll zeigen, wie einfach es ist, die Steuerung eines Schiffes zu übernehmen, wenn die Kommunikation nicht 
 ausreichend geschützt ist.\\
+
+\section{Aufbau der Arbeit}
 Dazu werden zuerst die Grundlagen für die Arbeit erläutert. 
 Um die Sicherheit von einem CAN-Bus zu diskutieren, muss dieser im Vorfeld verstanden werden. Daher wird
 im Detail auf den CAN-Bus und den J1939-Standard eingegangen.
