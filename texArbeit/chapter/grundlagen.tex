@@ -2,15 +2,19 @@
 
 \printmyminitoc{1}
 
+In diesem Kapitel werden die Grundlagen für die Arbeit erläutert.
+Dabei wird sich auf die wichtigen Begriffe und Technologien für den Rahmen dieser Arbeit fokussiert.
+Damit wird ein Verständnis für die Arbeit geschaffen und die Grundlage für die weiteren Kapitel gelegt.
+
 \section{CAN-Bus}
 Bei einem CAN-Bus handelt es sich um eine serielle Netzwerktechnologie, 
-die mehrere Geräte mit einem Draht verbindet.
+die mehrere Geräte mit einem Kabel verbindet.
 Die Entwicklung des CAN-Bus wurde von Bosch im Jahr 1983 begonnen \cite[Seiten 2--10]{Voss2008}. 
 Im Jahr 1986 wurde der erste CAN-Bus Standard 
 veröffentlicht.
 Die Motivation der Entwicklung war die effiziente Kommunikation zwischen den Steuergeräten in einem Auto. 
-Als günstige
-Nebenwirkung konnte damit die Kabelmenge reduziert werden, da alle Geräte mit einem Bus verbunden werden können.
+Als günstigen
+Seiteneffekt konnte damit die Kabelmenge reduziert werden, da alle Geräte mit einem Bus verbunden werden können.
 Durch die höhere Zuverlässigkeit und Funktionalität des CAN-Bus, wurde dieser schnell in der Autoindustrie etabliert.
 Aber auch in anderen Sektoren, wie z. B. der Medizintechnik, der Gebäudeautomation oder der Luftfahrt, spielt der
 CAN-Bus mittlwerweile eine wichtige Rolle.
@@ -18,16 +22,24 @@ CAN-Bus mittlwerweile eine wichtige Rolle.
 Man sprich von einem Bussystem, da mehrere Geräte miteinander über diesen miteinander verbunden werden \cite[Seiten 13--19]{Voss2008}. 
 Die Geräte auf an dem Bus sind in dem Fall die Knoten. Alle sind gleichberechtigt und können Nachrichten senden und empfangen.
 Die Nachrichten werden nach Broadcasting-Prinzip übertragen. Dabei wird jede Nachricht von allen Knoten empfangen, 
-aber nur die Knoten, welche die Nachricht benötigen, verarbeiten sie. 
-Die Nachrichten werden nicht auf Einhaltung der Protokollregeln 
-überprüft, da dies zu einer größeren unnötigen Last auf dem Bus führen würde. 
-Jedoch wird die Integrität der Nachrichten durch eine Prüfsumme sichergestellt. Die Richtigkeit der Prüfsumme wird mit 
-einer Acknowledge-Nachricht (ACK) bestätigt. Wird eine Nachricht nicht bestätigt, wird von dem Sender eine Fehlermeldung
-auf den Bus gesendet.
-Bei einer falschen Prüfsumme sendet der Empfänger eine Fehlermeldung, die wieder von allen Knoten empfangen wird.
-Wenn ein Knoten dauerhaft fehlerhafte
-Nachrichten sendet, wird er vom Bus getrennt. Die auf den Bus gesendeten Daten werden mit einer Nachrichten-ID
-versehen, welche die Priorität der Nachricht angibt. Die Nachrichten mit der niedrigsten ID haben die höchste Priorität.
+aber nur die Knoten, welche die Nachricht benötigen, verarbeiten sie. \\
+Die Nachrichten werden nicht explizit bestätigt, da dies zu einer größeren unnötigen Last auf dem Bus führen würde.
+Trotzdem erwartet der Sender eine positive Bestätigung der Nachricht. Das Passiert mit einem Acknowledge (ACK) Bit 
+im CAN-Frame, wie in Abbildung \ref{fig:canframe} zu sehen ist. Wenn eine Nachricht nicht bestätigt wird, 
+sendet der Sender eine Fehlermeldung auf den Bus. Wenn ein Sender zu viele fehlerhafte Nachrichten sendet, soll
+dieser sich selbst logisch von dem CAN-Bus trennen. Eine Nachricht wird als fehlerhaft angesehen, wenn z. B. die Prüfsumme
+nicht stimmt oder die Nachricht nicht dem Standard entspricht.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.25]{images/canFrame.png}
+    \caption{Aufbau eines CAN-Frames \cite{Voss2008}}
+    \label{fig:canframe}
+\end{figure}
+
+Die auf den Bus gesendeten Daten werden mit einer Nachrichten-ID
+versehen, welche die Priorität der Nachricht angibt. Die Priorität existiert, damit zeitkritische Nachrichten
+schneller verarbeitet werden können.Die Nachrichten mit der niedrigsten ID haben die höchste Priorität.
 Die Maximale Länge einer Nachricht beträgt 8 Byte. 
 Auf dem CAN-Bus kann eine maximale Baudrate von \ 1Mbit/s erreicht werden.
 Zusätzlich kann durch die geringe Länge der Nachrichten geringe Latenz erreicht werden. 
@@ -38,6 +50,7 @@ Diese werden als High (CAN\_H) und Low (CAN\_L)
 bezeichnet. Der Bus ist an beiden Enden mit einem Widerstand von 120 $\Omega$ abgeschlossen, um Reflexionen zu vermeiden.
 \\
 Eine Nachricht auf einem CAN-Bus ist in einem CAN-Frame verpackt \cite[Seite 36]{Voss2008}. 
+Der Aufbau eines CAN-Frames ist in Abbildung \ref{fig:canframe} zu sehen.
 Dieser beginnt mit einem Startbit, welches Start of Frame (SOF) genannt wird. Darauf folgt das Arbitration Field, 
 in dem die Nachrichten-ID und ein Bit RTR (Remote Transmission Request) gesetzt wird. Das RTR-Bit wird gesetzt,
 wenn der Sender eine Antwort auf die Nachricht erwartet. Das Control Field wird für die Datengröße und die Nachrichtenlänge
