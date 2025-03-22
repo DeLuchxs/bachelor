@@ -32,7 +32,14 @@ in jede Richtung jeweils 100\% erreichen. Dies ist ein Kompromiss zwischen Gesch
 
 \section{Übersetzung Signale Controller - Schiff} \label{sec:signalControllerSchiff}
 
-Wie in \ref{fig:structureRogueDevice} zu sehen erhält \texttt{controllerInput.py} die Signale des Xbox-Controllers 
+Die Struktur des Rogue Devices soll wie folgt aussehen:
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{images/piKonzept.png}
+    \caption{Programmstruktur auf dem Rogue Device}
+    \label{fig:structureRogueDevice}
+\end{figure}
+Wie in \ref{fig:structureRogueDevice} zu sehen ist, erhält \texttt{controllerInput.py} die Signale des Xbox-Controllers 
 erhält und in passende Variablen in Python interpretiert. Diese Variablen müssen
 dann in Nachrichten für den CAN-Bus umgewandelt werden. Hierfür gibt es ein weiteres Programm. Damit die beiden Programme miteinander kommunizieren
 können, wird Inter-Process-Communication (IPC) benutzt. Als Methode werden hierbei Pipes benutzt. Diese sind einfach zu implementieren und haben
