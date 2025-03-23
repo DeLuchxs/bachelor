@@ -1,10 +1,12 @@
 \chapter{Sicherheit}
 \printmyminitoc{1}
 
+In diesem Kapitel wird die Sicherheit der Arbeit diskutiert. Dabei werden die Schwachstellen 
+
 \section{Schwachstellen}
 Die durchgeführte Arbeit konnte in diesem Format nur durch einige Schwachstellen in der Kommunikation durchgeführt werden.
 Um einen solchen Angriff möglichst zu vermeiden, ist es wichtig, dass die Schwachstellen aufgedeckt und behoben werden.
-Dafür werden in dem folgenden Abschnitt die aufgedeckten Schwachstellen dieser Arbeit aufgeführt und diskutiert.
+Dafür werden in dem folgenden Abschnitt die genutzten Schwachstellen dieser Arbeit aufgeführt und diskutiert.
 
 \subsection{Schwachstellen am CAN-Bus}
 Der CAN-Bus ist eines der zentralen Systeme in modernen Fahrzeugen und Schiffen. So auch auf der Limanda.
@@ -13,8 +15,9 @@ auf ihre Richtigkeit überprüft, jedoch nicht auf ihre Authentizität. Das bede
 senden kann, die von anderen Systemen als legitim angesehen werden \cite{Voss2008} (Seiten 13-19). Durch das Bus-Netzwerk wird die einfache Integration
 weiterer
 Geräte in das System ermöglicht. Ein Angreifer kann so durch physischen Zugriff auf den Bus ein Gerät hinzufügen, welches im schlimmsten Fall
-die Kontrolle über das gesamte System übernehmen kann. Die einzige Hürde, ein Gerät in ein CAN-Bus Netzwerk zu integrieren, ist das
-Beschaffen der richtigen DBC-Datei. Diese Datei wird häufig von den Herstellern der Geräte nicht öffentlich zur Verfügung gestellt.
+die Kontrolle über das gesamte System übernehmen kann. Die einzige Hürde, ein Gerät in ein CAN-Bus Netzwerk zu integrieren, ist die
+Kenntniss über das Format der Nachrichten. Eine Möglichkeit das Format zu speichern, ist die Verwendung von DBC-Dateien.
+Diese Datei wird häufig von den Herstellern der Geräte nicht öffentlich zur Verfügung gestellt.
 Es sind jedoch einige DBC-Dateien im Internet verfügbar, die von anderen Nutzern erstellt wurden. Durch das Ausprobieren von dem Dekodieren
 der CAN-Nachrichten mit verschiedenen DBC-Dateien, kann eine passende Datei gefunden werden. \\
 In dieser Arbeit wurde zuerst ausgenutzt, dass die Nachrichten durch physischen Zugriff auf den Bus mitgelesen werden können.
@@ -23,64 +26,70 @@ eine Nachricht mit dem gleichen Syntax und eigenen Werten erstellt werden. Die a
 verändert. Die Priorität ist gleich geblieben, da es bereits die höchste Priorität war. In anderen Fällen ist es möglich, die Priorität
 einfach zu verändern. Mit der eigenen Nachrichten-ID konnten nun die 
 echten Nachrichten von den eigenen unterschieden werden. Das ist wichtig, um echte Nachrichten mit den eigenen zu überschreiben. 
+Eine Schwachstelle bei der Priorität ist, dass Nachrichten mit der niedrigsten ID die höchste Priorität haben. Zusätzlich ist es möglich, 
+eine eigene Priorität so zu setzen, dass die Nachrichten mit der eigenen ID die höchste Priorität haben. Durch das Senden von
+vielen Nachrichten mit hoher Priorität kann ein Denial-of-Service-Angriff durchgeführt werden \cite{Murvay2018}. 
+Dabei wird der Bus so stark belastet,
+dass die echten Nachrichten nicht in einem angemessenen Zeitraum gesendet werden können. 
 Alle Geräte in einem CAN-Bus sind gleichberechtigt\cite{Voss2008} (Seite 14). Dadurch wird die Überschreibung der älteren Nachrichten möglich.\\
 Nicht alle vorher beschriebenen Eigenschaften können als Schwachstelle bezeichnet werden. Jedoch können diese gemeinsam mit den
 Schwachstellen ausgenutzt werden. \\
 
 \subsection{Schwachstellen am J1939-Protokoll}
-Das J1939-Protokoll ist ein Protokoll, welches nicht für die Sicherheit, sondern für die Kommunikation zwischen den Steuergeräten
+Das J1939-Protokoll ist ein Protokoll, welches für die Kommunikation zwischen den Steuergeräten
 entwickelt wurde. Das Protokoll basiert auf dem Standard des CAN-Bus. Das Protokoll ist nicht verschlüsselt und die Nachrichten
 sind nicht authentifiziert. 
 Allerdings hat das Protokoll auch spezifische Schwachstellen, welche aber nicht alle in dieser Arbeit ausgenutzt wurden.\\
-Eine Schwachstelle ist, dass Nachrichten mit der niedrigsten ID die höchste Priorität haben. Zusätzlich ist es möglich, 
-eine eigene Priorität so zu setzen, dass die Nachrichten mit der eigenen ID die höchste Priorität haben. Durch das Senden von
-vielen Nachrichten mit hoher Priorität kann ein Denial-of-Service-Angriff durchgeführt werden. Dabei wird der Bus so stark belastet,
-dass die echten Nachrichten nicht in einem angemessenen Zeitraum gesendet werden können. Jedes Gerät in einem J1939-Netzwerk
-benötigt eine eindeutige Adresse und einen einzigartigen Namen \cite{JungerJ1939}. Da ein Gerät vollständige Kontrolle über 
-den eigenen Namen und die eigene Adresse hat, kann ein Angreifer sich als ein anderes Gerät ausgeben. Die Namensübernahme führt
+Wie bereits in Kapitel \ref{sec:j1939} beschrieben, muss jedes Gerät eine eindeutige Addressse und Namen besitzen.
+Da ein Gerät vollständige Kontrolle über 
+den eigenen Namen und die eigene Adresse hat, kann ein Angreifer sich als ein anderes Gerät ausgeben \cite{Murvay2018}. 
+Die Namensübernahme führt
 zunächst zu einem Konflikt, da zwei Geräte den gleichen Namen haben. Diesen Konflikt gewinnt das Gerät, welches die niedrigere
 Adresse hat. Daher kann der Name recht einfach übernommen werden. Dadurch kann ein originelles Gerät aus dem Netzwerk ausgeschlossen
 werden. Mit der übernommenen Adresse kann der Angreifer nun Nachrichten senden, die von anderen Geräten als legitim angesehen werden.
 Die einzige Sicherheitsmaßnahme, die das J1939-Protokoll bietet, ist eine Zuweisungstabelle für die Adressen und Namen. Allerdings
 bietet diese bei der Namensübernahme keinen Schutz, wenn der Angreifer auch die Adresse übernimmt. Diese Schwachstelle 
 wurde in dieser Arbeit nicht ausgenutzt, da es zu unvorhersehbaren Folgen hätte führen können. 
-Im schlimmsten Fall könnte ein Gerät dauerhaft aus dem Netzwerk ausgeschlossen werden, was zu einem Ausfall des Systems führen würde.
+Im schlimmsten Fall könnte ein Gerät bis zu einem Neutstart des Gerätes aus dem Netzwerk ausgeschlossen werden, 
+was zu einem Ausfall des Systems führen würde.
 Das spricht für die Schwere der Schwachstelle.\\
 Eine weitere Möglichkeit den Bus zu stören, ist die globale Anfrage nach PGNs. Bei einer solchen Anfrage sollen alle Geräte
 mit der eigenen PGN antworten. Die Spezifikation rät dazu, maximal 3 Anfragen pro Sekunde für eine Parametergruppe zu senden.
 Es gibt aber keine feste obere Grenze für die Anzahl der Anfragen. Daher gibt es auch keine Gegenmaßnahmen bei zu vielen 
 Anfragen. Ein Angreifer kann also durch das Senden von vielen Anfragen alle Geräte auf dem Bus dazu bringen, zu antworten.
 Damit ist ein Distributed-Denial-of-Service-Angriff (DDoS) möglich, weil die Überlastung von mehreren Geräten ausgeht. \\
-\cite{Murvay2018}
+
 
 \subsection{Schwachstellen an der Rudersteuerung}
 Die Rudersteuerung wird nur durch das physikalische Steuerrad oder den Autopiloten gesteuert. Da ein physikalischer
 Angriff auf das Steuerrad nicht verdeckt durchgeführt werden kann, werden keine außerordentlichen Schutzmaßnahmen benötigt.
 Bei dem Autopiloten von Navitron handelt es sich um ein Gerät, welches Informationen zu dem Kurs, Geschwindigkeit und
 Position des Schiffes über den NMEA-0183-Bus erhält. Durch die Eigenschaft, dass NMEA-0183 direkt mit ASCII-Nachrichten
-arbeitet, ist es möglich mit physikalischem Zugriff auf den Bus Nachrichten zu lesen \cite{nmea0183} (letzter Zugriff 07.03.2025). \\
+arbeitet, ist es möglich mit physikalischem Zugriff auf den Bus Nachrichten zu lesen \cite{nmea0183}. \\
 Diese können zur Überwachung oder auch späteren Manipulation der Kommunikation genutzt werden. Mit aufgezeichneten Nachrichten
 kann ein Angreifer die Kommunikation von den Sensoren zu dem Autopiloten nachvolziehen. Durch das Senden von eigenen Nachrichten
 könnte es möglich, den Autopiloten indirekt zu steuern. Das könnte durch eine Manipulation der Kursdaten mittels einer Man-in-the-Middle-Attacke
 erreicht werden. Dies wurde in dieser Arbeit aber nicht getestet und ist daher nur eine Annahme. 
-NMEA-0183 unterstützt eine Baudrate von 4800. Das bedeutet, dass die Nachrichten mit einer Geschwindigkeit von 9600 Bit pro Sekunde
-gesendet werden. Dadurch können Geräte mit diesem Standard möglicherweise durch eine Denial-of-Service-Attacke gestört werden \cite{Tran2021}.
-Der Autopilot sendet basierend auf den Kursdaten und den eigenen Einstellungen Nachrichten an die Rudersteuerung. Für diese 
-Nachrichten wurde im Rahmen dieser Arbeit keine Verschlüsselung festgestellt. Aber der Standard dieser Nachrichten ist nicht
-bekannt. Das stellt zwar keine Sicherheitsmaßnahme dar, aber es ist eine Hürde für einen Angreifer. Wenn jedoch 
-der Standard bekannt ist, kann ein Angreifer die Nachrichten zumindest mitlesen. Eine Authentifizierung wurde auch
-nicht festgestellt, aber es kann nicht ausgeschlossen werden, dass eine Authentifizierung stattfindet.\\
+NMEA-0183 unterstützt eine Baudrate von 4800. Dadurch können Geräte mit diesem Standard möglicherweise durch eine 
+Denial-of-Service-Attacke gestört werden \cite{Tran2021}.
+Der Autopilot sendet basierend auf den Kursdaten und den eigenen Einstellungen Nachrichten an die Rudersteuerung. 
+Das Format dieser Nachrichten ist nicht bekannt. Dazu wurde es im Rahmen der Arbeit nicht verstanden.
+Das stellt zwar keine Sicherheitsmaßnahme dar, aber es ist eine Hürde für einen Angreifer. Wenn jedoch 
+das Format bekannt ist, kann ein Angreifer die Nachrichten zumindest mitlesen. Zusätzlich kann
+nicht ausgeschlossen werden, dass eine Authentifizierung stattfindet.\\
 
 \section{Schutzmaßnahmen} \label{sec:schutzmassnahmen}
-Schutzmaßnahmen sind notwendig, um die Schwachstellen zu schließen und Angriffe zu verhindern.
+Schutzmaßnahmen sind notwendig, um eine Manipulation der Kommunikation zu erschweren. Dazu werden Schutzmaßnahmen betrachtet,
+um einen möglichen Angriff, wie in dieser Arbeit durchgeführt, zu verhindern.
 Eine Schwierigkeit bei dem Zugriff auf den CAN-Bus ist, dass dieser physisch zugänglich sein muss. Dies ist auch auf der Limanda
 der Fall. Wenn man allerdings unbemerkten Zugriff erhält, kann das Rogue Device versteckt in dem System integriert werden. 
-Das stellt die einzige Schutzmaßnahme dar, die in dieser Arbeit umgangen wurde. Jedoch wird der Zugriff nur durch eine Abdeckung 
-zu der Technik des Schiffes
+Das stellt die einzige Schutzmaßnahme dar, die in dieser Arbeit umgangen wurde. Zunächst muss der Zugang zur Kabine 
+gesichert werden. Das kann durch eine Tür mit einem Schloss erreicht werden.
+Der weitere Zugriff zu der Technik des Schiffes ist nur durch eine Abdeckung
 verhindert. Mit dem richtigen Werkzeug kann diese Abdeckung einfach entfernt werden.
-Eine weitere Hürde ist, dass die richtige Baudrate für den CAN-Bus des Schiffes gewählt werden muss. Ohne vorherige Kenntnisse
-muss dabei ausprobiert werden, welche Baudrate die richtige ist. Das stellt aber keine Schutzmaßnahme dar, sondern einfach
-eine wichtige Eigenschaft des CAN-Standards.\\
+Eine weitere Hürde ist, dass die richtige Bitrate für den CAN-Bus des Schiffes gewählt werden muss. Ohne vorherige Kenntnisse
+muss dabei ausprobiert werden, welche Baudrate die richtige ist. Das stellt aber keine Schutzmaßnahme dar, sondern
+eine Eigenschaft des CAN-Standards.\\
 Im CAN-Standard gibt es keine dedizierten Sicherheitsmaßnahmen. Daher müssen diese nachträglich implementiert werden.
 Eine vergleichsweise einfache Maßnahme ist die Implementierung von Intrusion Detection Systemen (IDS) \cite{Gmiden2016}. 
 Diese Systeme überwachen
@@ -95,8 +104,9 @@ Hier wird das normale Verhalten des Systems überwacht. Abweichungen von diesem 
 Dieses System ist weniger wartungsintensiv, da keine ständige Aktualisierung der Regeln notwendig ist. Es ist auch besser für
 unbekannte Angriffe geeignet, da es keine explizite Regel für den Angriff geben muss. Allerdings gibt es auch mehr Fehlalarme,
 die in einigen Anwendungen nicht toleriert werden können. \\
-Mit der Nutzung von J1939-Netzwerken ist keine höhere Sicherheit geschaffen. Ein großes Problem dabei ist, dass
-eine kryptographische Authentifizierung fehlt. Das bedeutet, dass Nachrichten nicht auf ihre Authentizität überprüft werden.
+Durch die Nutzung von J1939-Netwerken ist keine höhere Sicherheit gegeben, als bei der Nutzung von einfachen CAN-Netzwerken. 
+Ein großes Problem dabei ist, dass
+eine kryptographische Authentisierung fehlt. Das bedeutet, dass Nachrichten nicht auf ihre Authentizität überprüft werden.
 Daher ist es möglich, dass ein Angreifer Nachrichten sendet, die von anderen Geräten als legitim angesehen werden.
 Eine einheitliche Lösung für dieses Problem ist schwer zu finden, da in einem solchen Netzwerk verschiedene Geräte
 von verschiedenen Herstellern zusammenarbeiten. Laut \cite{Murvay2018} ist eine Lösung für dieses Problem die Implementierung einer 
@@ -104,12 +114,13 @@ Public Key Infrastruktur (PKI).
 Hier werden die Geräte mit einem Zertifikat ausgestattet, welches von einer zentralen Stelle signiert wird, beispielsweise
 dem Fahrzeughersteller. Mittels dieses Zertifikats kann ein Gerät seine Identität beweisen und auch die Identität anderer Geräte
 überprüfen. 
-Die Nutzung von PKI in J1939-Netzwerken ist nicht ungewöhnlich. Es gibt bereits einige Implementierungen, die PKI nutzen.
-Vorallem in der Automobilindustrie ist die Nutzung von PKI teilweise etabliert. Außerdem ist es notwendig, eine PKI in 
+
+Laut der Murvay et al. \cite{Murvay2018} ist die Nutzung von PKI in der Automobilindustrie teilweise etabliert. 
+Außerdem ist es notwendig, eine PKI in 
 Netwerken zu benutzen, in denen die Geräte nicht vom selben Hersteller sind.
-Desweiteren gibt es viele Open-Source-Bibliotheken,
-die PKI unterstützen. 
- \\
+Bei der Limanda liegt eine solche Situation vor. Die Geräte stammen von verschiedenen Herstellern. Jedoch wird nicht
+davon ausgegangen, dass die Hersteller eine PKI implementiert haben. Daher ist die in der Arbeit simulierte Manipulation
+möglich. \\
 Für Rudersteuerung sendet der nur der Autopilot Nachrichten an die Steuerungseinheit. Es ist aber nicht davon auszugehen,
 dass diese beiden Geräte miteinander verschlüsselt kommunizieren. Diese Geräte stammen auch nicht von dem selben Hersteller.
 Daher ist eine symmetrische Verschlüsselung zu aufwendig für den praktischen Einsatz. Bei dieser Verschlüsselung müssten
