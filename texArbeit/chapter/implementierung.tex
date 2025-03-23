@@ -107,28 +107,20 @@ damit die Ruderstellung 100\% erreicht. Entsprechend werden die 100\% langsamer 
 ist.
 
 \subsection{CAN-Bus Nachrichtenkodierung} \label{sec:canBus}
-Die Übertragenen Eingabewerte werden in dem nächsten Programm \texttt{canInterpreter.py} erkannt. Basierend auf den
-Eingaben wird dann die entsprechende Nachricht erstellt. Um eine Nachricht zu kodieren, wird die Bibliothek \texttt{cantools} benutzt.
+Die Kodierung der CAN-Bus Nachrichten ist der Hauptbestandteil des Programms \texttt{canInterpreter.py}, welches im Rahmen dieser Arbeit
+entwickelt wurde. 
+Das Teilprogramm \texttt{canInterpreter.py} erhält Eingaben von \texttt{controllerInput.py}. Basierend auf den
+Eingaben des Xbox-Controllers wird dann die entsprechende Nachricht erstellt. Um eine Nachricht zu kodieren, wird die Bibliothek \texttt{cantools} benutzt.
 Mit dieser Bibliothek können DBC-Dateien gelesen und Nachrichten erstellt werden. Mit einer solchen Datei kann eine
-bestimmte Nachricht mit ihren Signalen definiert werden. Es ist dafür notwendig, diese DBC-Datei zu verstehen.
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.2]{images/CAN-DBC-File-Format-Explained-Intro-Basics_2.png}
-    \caption{Auszug aus einer Beispiel DBC-Datei \cite{cssElectronics}(letzter Zugriff: 18.02.2025)}
-    \label{fig:dbcfile}
-\end{figure}
-
-In dieser sind einzelne Nachrichten aufgelistet. Jede Nachricht hat eine ID, eine Länge und Signale. Diese Signale
-haben eine Länge, einen Offset und einen Faktor. Mit diesen Informationen kann eine Nachricht erstellt werden.
-Im Anschluss an die Nachrichtentypen werden in der DBC-Datei für bestimmte Signale die möglichen Eingaben definiert.
-Das hilft bei der richtigen Wahl der Eingabe. 
+bestimmte Nachricht mit ihren Signalen definiert werden. In Kapitel \ref{sec:canTranslation} wurde bereits auf den
+Aufbau einer DBC-Datei eingegangen. \\
 Bei der Verarbeitung der Eingabe ist es wichtig, dass diese in den richtigen Wertebereich umgewandelt wird.
 Beispielsweise dürfen die Umdrehungen pro Minute (RPM) nicht unter 500 liegen, wenn der Motor in Betrieb ist.
 Daher wird die Eingabe auf den Wertebereich von 500 bis 2500 Umdrehungen pro Minute umgewandelt. Dieser Bereich
 geht aus einer Analyse der aufgezeichneten Nachrichten hervor.
 \\
 In der benötigten Nachricht ist eine Prüfsumme von 4 Bit notwendig. Jedoch gibt es zwei Methoden der Prüfsummenberechnung
-nach dem SAE J1939 Standard \cite{VectorSAE} (letzter Zugriff: 18.02.2025). Die richtige Methode für das System der 
+nach dem SAE J1939 Standard \cite{VectorSAE}. Die richtige Methode für das System der 
 Limanda wurde durch aufgezeichnete Nachrichten ermittelt. Am Ende wird die Prüfsumme der Nachricht hinzugefügt und die
 Nachricht wird an den CAN-Bus gesendet. \\
 Zusätzlich hilft das Programm \texttt{canReader.py} bei der Überwachung des CAN-Bus. Es kann die Nachrichten auf dem

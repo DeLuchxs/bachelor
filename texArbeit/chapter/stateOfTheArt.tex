@@ -45,7 +45,7 @@ vorhanden sind, kann der UCAN mit diesen Betriebssystemen verwendet werden.
 
 
 
-\subsection{Übersetzung von CAN-Nachrichten}
+\subsection{Übersetzung von CAN-Nachrichten} \label{sec:canTranslation}
 Viele Software Tools ermöglichen die Arbeit mit dem CAN-Bus. Diese Tools unterscheiden sich in ihrem Funktionsumfang
 und den Anwendungsbereichen.
 Einige Programme sind speziell für die Analyse und das Debugging von CAN-Nachrichten 
@@ -88,3 +88,15 @@ allerdings ist dies sehr aufwendig und nicht zielführend. \\
 Um die vorher genannten Tools zu verwenden, sind DBC-Dateien notwendig, um die zu dekodierenden und kodierenden Nachrichten zu beschreiben. 
 Bei canCommander
 sind einige DBC-Dateien bereits vorinstalliert. Bei cantools kann die DBC-Datei in das Programm geladen werden.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.2]{images/CAN-DBC-File-Format-Explained-Intro-Basics_2.png}
+    \caption{Auszug aus einer Beispiel DBC-Datei \cite{cssElectronics}}
+    \label{fig:dbcfile}
+\end{figure}
+In Abbildung \ref{fig:dbcfile} ist ein Ausschnitt aus einer DBC-Datei zu sehen.
+In dieser sind einzelne Nachrichten aufgelistet. Jede Nachricht hat eine ID, eine Länge und Signale. Diese Signale
+haben eine Länge, einen Offset und einen Faktor. Die Signale sind die eigentlichen Informationen, die in den CAN-Nachrichten
+kodiert sind. Sie stellen also die Nutzlast der Nachrichten dar. Mit diesen Informationen kann eine Nachricht erstellt werden.
+Im Anschluss an die Nachrichtentypen werden in der DBC-Datei für bestimmte Signale die möglichen Eingaben definiert.
+Das hilft bei der richtigen Wahl der Eingabe. 
