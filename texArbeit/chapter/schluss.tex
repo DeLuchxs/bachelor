@@ -1,19 +1,28 @@
 \chapter{Abschließende Betrachtung}
 \printmyminitoc{1}
 
+Mit den fertiggestellten Implementierungen und Sicherheitsbetrachtungen werden in diesem Kapitel die 
+Ergebnisse evaluiert. Dabei werden die aufgestellten Forschungsfragen beantwortet und ein Ausblick auf
+weitere Forschungsmöglichkeiten gegeben.
+
 \section{Ergebnis}
-In dieser Arbeit sollte die Machbarkeit von Angriffen auf das Steuergerät eines Schiffes untersucht werden. 
-Der Fokus lag dabei auf dem CAN-Bus für die Motorsteuerung und einer seriellen Verbindung für die Rudersteuerung.
-Um Schwachstellen zu veranschaulichen, sollte der Motor sowie das Ruder mittels eines Spiele-Controllers gesteuert werden.
-Im ersten Schritt wurde ein Konzept für die Steuerungslogik entwickelt, wie in \ref{sec:steuerungslogik} zu sehen.
-Damit die physichen Eingaben genutzt werden konnten, mussten diese in logische Eingabewerte für ein Programm umgewandelt werden.
-Das wurde in dem Programm \texttt{controllerInput.py} umgesetzt (\ref{sec:signalControllerSchiff}). 
+In dieser Arbeit sollte die Machbarkeit von Angriffen auf das Steuergerät eines Schiffes untersucht werden, mit dem Ziel, 
+das Schiff fernzusteuern.
+Der Fokus lag dabei auf dem CAN-Bus für die Motorsteuerung und der Rudersteuerung. Um das Ruder zu steuern lag der Fokus
+vor allem auf einer Manipulation an dem Autopiloten.
+Damit Schwachstellen zu veranschaulicht werden, sollte der Motor sowie das Ruder mittels eines Spiele-Controllers gesteuert werden. \\
+Zunächst wurde in Abschnitt \ref{sec:steuerungslogik} ein Konzept für die Steuerungslogik entwickelt.
+Damit die physichen Eingaben des Spiele-Controllers für die Motor- und Rudersteuerung gentutzt werden können, 
+mussten diese in logische Eingabewerte für ein Programm umgewandelt werden.
+Das wurde in dem Programm \texttt{controllerInput.py} umgesetzt (Abschnitt \ref{sec:signalControllerSchiff}). 
 Damit auf eigenen Systemen CAN-Nachrichten getestet werden konnten, wurde ein CAN-Bus aufgebaut und Testnachrichten gesendet.
-Im nächsten Schritt wurden aufgezeichnete CAN-Bus Nachrichten mithilfe einer DBC-Datei dekodiert und anschließend analysiert. 
+Im nächsten Schritt wurden aufgezeichnete CAN-Bus Nachrichten mithilfe einer zur Verfügung gestellten 
+DBC-Datei dekodiert und anschließend analysiert. 
 Dabei wurden auch Nachrichten für die Rudersteuerung aufgezeichnet, diese konnten jedoch nicht dekodiert werden.
-Durch die Analyse der Nachrichten, konnten einzelne wichtige Nachrichten entdeckt werden. Durch die weitergehende Analyse
-der entsprechenden DBC-Datei zu den bestimmten Nachrichten, konnten diese auch verstanden werden (\ref{sec:canBus}).
-Damit konnte ein Programm entwickelt werden, welches die Eingaben des Spiele-Controllers erhält und in CAN-Bus Nachrichten umwandelt.
+Durch die Analyse der CAN-Nachrichten, konnten einzelne wichtige Nachrichten entdeckt werden. Durch die weitergehende Analyse
+der entsprechenden DBC-Datei zu den bestimmten Nachrichten, konnten diese auch verstanden werden (Abschnitt \ref{sec:canBus}).
+Damit konnte das Programm \texttt{canInterpreter.py} entwickelt werden, welches die Eingaben des Spiele-Controllers erhält und 
+in CAN-Bus Nachrichten umwandelt.
 Dazu musste auch eine entsprechende Prüfsumme berechnet werden, um die Nachrichten zu validieren. Das gleiche Vorgehen wurde auch
 für Nachrichten der Gangschaltung durchgeführt. Ein weiterer wichtiger Teil war die Echtzeitdekodierung der CAN-Bus Nachrichten,
 damit auf Eingaben des Gashebels reagiert werden konnte. Dazu wurde das Programm \texttt{canReader.py} entwickelt. 
@@ -22,14 +31,14 @@ Die Rudersteuerung wurde nicht implementiert, da die Nachrichten nicht im Zeitra
 Im ersten Test wurden die Nachrichten auf dem CAN-Bus des Schiffes im normalen Betrieb mit dem Programm \texttt{canReader.py} dekodiert.
 Dabei hat die Echtzeitdekodierung der Nachrichten funktioniert. Es konnten die wichtigen Nachrichten für die Motorsteuerung
 erkannt werden. Allerdings konnten nicht alle Nachrichten dekodiert. Zusätzlich wurden keine Nachrichten für die Gangschaltung
-dekodiert. Dabei ist wichtig zu erwähnen, dass diese Nachrichten nicht in der Standard DBC-Datei enthalten waren. Durch das Handbuch
+dekodiert. Durch das Handbuch
 des Motors konnte eine Nachricht nachgestellt werden. Eine solche Nachricht wurde aber nicht in der Kommunikation des Schiffes gefunden.
 Im zweiten Test wurden manipulierte Nachrichten auf den CAN-Bus gesendet. In der Vorbereitung wurde die Gangschaltung von dem Kapitän in den neutralen
 Gang geschaltet. In diesem Zustand wurden Nachrichten mit einer Zieldrehzahl von 650 Umdrehungen pro Minute gesendet. Dabei ist die 
 Drehzahl zügig angestiegen, aber über 650 Umdrehungen pro Minute hinaus. Bei einer Drehzahl von 1500 Umdrehungen pro Minute wurde die
 Nachrichtenübertragung gestoppt, um mögliche Schäden am Motor zu vermeiden. Dabei ist zu erwähnen, dass keine Fehlermeldung im Steuergerät 
 aufgetreten ist. Das Verhalten des Motorsteuergeräts war nicht erwartbar nach den Nachrichten aus dem J1939-Standard. Daher
-konnte auch nicht die Reaktion auf Gashebelbewegungen getestet werden. 
+wurde von weiteren Tests abgsehen und es konnte auch nicht die Reaktion auf Gashebelbewegungen getestet werden. 
 
 \subsection{Wie kann die Manipulation von Steuergeräten erschwert werden?}
 Wie in dem Kapitel \ref{sec:schutzmassnahmen} genauer beschrieben, gibt es verschiedene Möglichkeiten, die Manipulation von Steuergeräten zu erschweren.
@@ -41,26 +50,25 @@ Diese können den CAN-Bus überwachen und bei ungewöhnlichen Nachrichten Alarm 
 Eine Verschlüsselung von Nachrichten ist in der Theorie auch möglich, aber in der Praxis nicht umsetzbar. Das ist darauf zurückzuführen, dass die verschiedenen
 Geräte von verschiedenen Herstellern stammen. Daher ist der Schlüsselaustausch nur schwer möglich. Eine weitere Möglichkeit ist die Verwendung von digitalen Signaturen.
 Dies findet bei der Nutzung von einer Public Key Infrastructure (PKI) statt. Hier kann ein Gerät mit einem Zertifikat seine Identität beweisen. 
-Eine solche PKI zu benutzen ist eine gerechtfertigte Maßnahme, wenn die Sicherheit der Kommunikation gewährleistet werden muss. In der Automobilindustrie
-ist das bereits weit verbreitet. \\
-\subsection{Relevanz für andere Schiffe}
+Eine solche PKI zu benutzen ist eine gerechtfertigte Maßnahme, wenn die Sicherheit der Kommunikation gewährleistet werden muss. \\
+
+\subsection{Wie relevant sind die Ergebnisse für andere Schiffe?}
 Der Mehrwert dieser Arbeit fokussiert sich nicht nur auf die Limanda, sondern auch auf andere Schiffe.
 Aufgrund der weiten Verbreitung des CAN-Bus, ist davon auszugehen, dass auch viele andere Schiffe diesen nutzen.
 Der CAN-Bus der Limanda hat keine speziellen Sicherheitsmaßnahmen, die über den Standard hinausgehen. 
-Die Limanda wurde erst 2021 in Betrieb genommen und ist daher auf einem aktuellen Stand der Technik \cite{limanda} (letzter Zugriff 14.03.2025).
+Die Limanda wurde erst 2021 in Betrieb genommen und ist daher auf einem aktuellen Stand der Technik \cite{limanda}.
 Es kann davon ausgegangen werden, dass auch andere Schiffe, die in den letzten Jahren in Betrieb genommen wurden, auf einem
-ähnlichen Stand der Technik sind. Daher ist es wahrscheinlich, dass der CAN-Bus auch auf anderen Schiffen keine speziellen
-Sicherheitsmaßnahmen hat. \\
+ähnlichen Stand der Technik sind. Ein CAN-Bus in einem beliebigen Schiff ist anfällig für Manipulationen, wenn keine
+Sicherheitsmaßnahmen, wie IDS oder PKI, implementiert sind. \\
 In dem Fall der Limanda wurde nur der Motor mit einem CAN-Bus angesteuert. Es besteht jedoch die Möglichkeit, dass auch 
-andere Systeme, wie die Rudersteuerung, mit einem CAN-Bus angesteuert werden. Auf größeren Schiffen kann das eher der Fall sein. 
-Eine mechanische Rudersteuerung ist auf größeren Schiffen nicht mehr üblich, da die Brücke zu weit von dem Ruder entfernt ist.
-Daher kann die Rudersteuerung elektronisch sein. \\
-In dieser Arbeit wurde gezeigt, dass NMEA-0183 Nachrichten einfach mitgelesen werden können. Dadurch können mindestens 
-alle Informationen, die über NMEA-0183 übertragen werden, abgefangen werden. Es gibt bereits einen Nachfolger von NMEA-0183,
-NMEA-2000. der Standard ist auch auf der Limanda implementiert, allerdings war dieser nicht relevant für diese Arbeit.
-Deswegen kann keine Einschätzung über die Sicherheit von NMEA-2000 gemacht werden. \\
+andere Systeme, wie die Rudersteuerung, mit einem CAN-Bus angesteuert werden. Wenn dies der Fall ist, dann 
+ist die Gefahr einer erfolgreichen Fernsteuerung des Schiffes noch größer. Auf der Limanda ist das Ruder Mechanisch
+mit dem Steuerrad verbunden. Daher ist die Gefahr hier geringer.
+\\
+NMEA-0183 Nachrichten werden im ASCII-Format übertrange. Dadurch können mindestens 
+alle Informationen, die über NMEA-0183 übertragen werden, abgefangen werden. Das kann einen weiteren Angriffspunkt darstellen. \\
 In dieser Arbeit konnten die Motoren nur manipuliert werden, wenn diese schon in Betrieb waren. Zusätzlich konnte
-Manipulation durch das ausschalten der Motoren verhindert werden. Im Rahmen dieser Arbeit kann keine Aussage über 
+Manipulation durch das Ausschalten der Motoren momentan verhindert werden. Im Rahmen dieser Arbeit kann keine Aussage über 
 die Möglichkeit der Manipulation von Motoren gemacht werden, die nicht in Betrieb sind. Es würde eine größere Gefahr
 darstellen, wenn die Motoren von einem Angreifer ein- und ausgeschaltet werden könnten. \\
 

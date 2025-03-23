@@ -113,7 +113,7 @@ Das Teilprogramm \texttt{canInterpreter.py} erhält Eingaben von \texttt{control
 Eingaben des Xbox-Controllers wird dann die entsprechende Nachricht erstellt. Um eine Nachricht zu kodieren, wird die Bibliothek \texttt{cantools} benutzt.
 Mit dieser Bibliothek können DBC-Dateien gelesen und Nachrichten erstellt werden. Mit einer solchen Datei kann eine
 bestimmte Nachricht mit ihren Signalen definiert werden. In Kapitel \ref{sec:canTranslation} wurde bereits auf den
-Aufbau einer DBC-Datei eingegangen. \\
+Aufbau einer DBC-Datei eingegangen. Die in der Arbeit verwendete DBC-Datei wurde von der Universität bereitgestellt. \\
 Bei der Verarbeitung der Eingabe ist es wichtig, dass diese in den richtigen Wertebereich umgewandelt wird.
 Beispielsweise dürfen die Umdrehungen pro Minute (RPM) nicht unter 500 liegen, wenn der Motor in Betrieb ist.
 Daher wird die Eingabe auf den Wertebereich von 500 bis 2500 Umdrehungen pro Minute umgewandelt. Dieser Bereich
