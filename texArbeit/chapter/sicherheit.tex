@@ -1,14 +1,11 @@
 \chapter{Sicherheit}
 \printmyminitoc{1}
 
-In diesem Kapitel wird die Sicherheit der Arbeit diskutiert. Dabei werden die Schwachstellen 
-
-\section{Schwachstellen}
-Die durchgeführte Arbeit konnte in diesem Format nur durch einige Schwachstellen in der Kommunikation durchgeführt werden.
+Die durchgeführte Arbeit wurde in diesem Format nur durch einige Schwachstellen in der Kommunikation ermöglicht.
 Um einen solchen Angriff möglichst zu vermeiden, ist es wichtig, dass die Schwachstellen aufgedeckt und behoben werden.
 Dafür werden in dem folgenden Abschnitt die genutzten Schwachstellen dieser Arbeit aufgeführt und diskutiert.
 
-\subsection{Schwachstellen am CAN-Bus}
+\section{Schwachstellen am CAN-Bus}
 Der CAN-Bus ist eines der zentralen Systeme in modernen Fahrzeugen und Schiffen. So auch auf der Limanda.
 Nach dem CAN-Standard sind die Nachrichten auf dem Bus nicht verschlüsselt. Zusätzlich werden die Nachrichten nur 
 auf ihre Richtigkeit überprüft, jedoch nicht auf ihre Authentizität. Das bedeutet, dass ein Angreifer Nachrichten auf den Bus
@@ -35,7 +32,7 @@ Alle Geräte in einem CAN-Bus sind gleichberechtigt\cite{Voss2008} (Seite 14). D
 Nicht alle vorher beschriebenen Eigenschaften können als Schwachstelle bezeichnet werden. Jedoch können diese gemeinsam mit den
 Schwachstellen ausgenutzt werden. \\
 
-\subsection{Schwachstellen am J1939-Protokoll}
+\section{Schwachstellen am J1939-Protokoll}
 Das J1939-Protokoll ist ein Protokoll, welches für die Kommunikation zwischen den Steuergeräten
 entwickelt wurde. Das Protokoll basiert auf dem Standard des CAN-Bus. Das Protokoll ist nicht verschlüsselt und die Nachrichten
 sind nicht authentifiziert. 
@@ -60,7 +57,7 @@ Anfragen. Ein Angreifer kann also durch das Senden von vielen Anfragen alle Ger�
 Damit ist ein Distributed-Denial-of-Service-Angriff (DDoS) möglich, weil die Überlastung von mehreren Geräten ausgeht. \\
 
 
-\subsection{Schwachstellen an der Rudersteuerung}
+\section{Schwachstellen an der Rudersteuerung}
 Die Rudersteuerung wird nur durch das physikalische Steuerrad oder den Autopiloten gesteuert. Da ein physikalischer
 Angriff auf das Steuerrad nicht verdeckt durchgeführt werden kann, werden keine außerordentlichen Schutzmaßnahmen benötigt.
 Bei dem Autopiloten von Navitron handelt es sich um ein Gerät, welches Informationen zu dem Kurs, Geschwindigkeit und

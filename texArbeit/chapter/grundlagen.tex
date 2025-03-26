@@ -6,6 +6,26 @@ In diesem Kapitel werden die Grundlagen für die Arbeit erläutert.
 Dabei wird sich auf die wichtigen Begriffe und Technologien für den Rahmen dieser Arbeit fokussiert.
 Damit wird ein Verständnis für die Arbeit geschaffen und die Grundlage für die weiteren Kapitel gelegt.
 
+\section{Forschungsschiff Limanda}
+Als Beispiel für ein Schiff wird in dieser Arbeit der Foschungskatermaran Limanda verwendet. Dabei handelt es sich um das 
+Forschungsschiff der Universität Rostock \cite{limanda}. Auf Abbildung \ref{fig:limanda} ist das Schiff zu sehen. 
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{images/limanda.jpg}
+    \caption{Forschungsschiff Limanda \cite{limanda}}
+    \label{fig:limanda}
+\end{figure} 
+
+Es wurde im Juli 2021 getauft und damit in den Einsatz der Universität gestellt. Das Schiff wird für Forschungszwecke 
+in der Ostsee eingesetzt. Darunter fallen Untersuchungen zur Meeresbiologie und die Ausbildung von 
+Forschungstauchern.\footnote{\href{https://www.inf.uni-rostock.de/storages/uni-rostock/Alle_INF/INF/Flyer\_Limanda.pdf}{Flyer Limanda} (besucht am 26.03.2025)}
+Es ist 15,73 Meter lang und 6,16 Meter breit. Der Antrieb des Schiffes erfolgt durch zwei MAN Diesel Motoren mit jeweils 373 kW Leistung.
+Es hat verschiene Sensoren an Bord, unter anderem ein Radar, GPS und Windsensor. Zusätzlich gibt es einen einen 
+Navitron NT888G Autopiloten an Bord. Dieser kann das Ruder des Schiffes steuern. Die Kommunikation findet über ein unbekanntes
+Proprietäres Format statt. Die Daten für die Kursberechnung erhält der Autopilot über NMEA-0183 von den Sensoren.
+Das Schiff besitzt mehrere CAN-Busse für die Kommunikation zwischen den Steuergeräten. Die beiden Motoren 
+sind jeweils über einen J1939-CAN-Bus mit dem elektronischen Fahrtwähler (Gashebel) verbunden.
+
 \section{CAN-Bus}
 Bei einem CAN-Bus handelt es sich um eine serielle Netzwerktechnologie, 
 die mehrere Geräte mit einem Kabel verbindet.
