@@ -25,14 +25,16 @@ Damit konnte das Programm \texttt{canInterpreter.py} entwickelt werden, welches 
 in CAN-Bus Nachrichten umwandelt.
 Dazu musste auch eine entsprechende Prüfsumme berechnet werden, um die Nachrichten zu validieren. Das gleiche Vorgehen wurde auch
 für Nachrichten der Gangschaltung durchgeführt. Ein weiterer wichtiger Teil war die Echtzeitdekodierung der CAN-Bus Nachrichten,
-damit auf Eingaben des Gashebels reagiert werden konnte. Dazu wurde das Programm \texttt{canReader.py} entwickelt. 
-Die Rudersteuerung wurde nicht implementiert, da die Nachrichten nicht im Zeitrahmen dekodiert werden konnten.
+damit auf Eingaben des Gashebels reagiert werden konnte. Dazu wurde das Programm \texttt{canReader.py} entwickelt.
 \\
-Im zweiten Test wurden manipulierte Nachrichten auf den CAN-Bus gesendet. In diesem Zustand wurden Nachrichten mit einer Zieldrehzahl von 650 Umdrehungen pro Minute gesendet. Dabei ist die 
-Drehzahl zügig angestiegen, aber über 650 Umdrehungen pro Minute hinaus. Bei einer Drehzahl von 1500 Umdrehungen pro Minute wurde die
-Nachrichtenübertragung gestoppt, um mögliche Schäden am Motor zu vermeiden. Dabei ist zu erwähnen, dass keine Fehlermeldung im Steuergerät 
-aufgetreten ist. Das Verhalten des Motorsteuergeräts war nicht erwartbar nach den Nachrichten aus dem J1939-Standard. Daher
-wurde von weiteren Tests abgesehen und es konnte auch nicht die Reaktion auf Gashebelbewegungen getestet werden. 
+Wie in Abschnitt \ref{sec:evManipulationMotor} beschrieben, konnte die Manipulation der Motorsteuerung in Teilen 
+erfolgreich durchgeführt werden. Die Drehzahl des Motors konnte erhöht werden, jedoch nicht auf eine vorhersehbare Weise.
+Es konnte gezeigt werden, dass die Manipulation von CAN-Bus Nachrichten auf einem Schiff möglich ist.
+Jedoch konnte eine Manipulation der Gangschaltung nicht durchgeführt werden, da die Nachrichten nicht dekodiert werden konnten.\\
+Die Manipulation der Rudersteuerung wurde nicht implementiert. Es konnte jedoch ein Konzept für die Manipulation
+entwickelt werden. Dabei sollte die Nachrichten zwischen dem Autopiloten und der Verteilungseinheit manipuliert werden.
+Ein weiterer Ansatz war die Manipulation der NMEA-0183 Nachrichten, die von den Sensoren gesendet werden.
+
 
 \subsection{Wie kann die Manipulation von Steuergeräten erschwert werden?}
 Wie in dem Kapitel \ref{sec:schutzmassnahmen} genauer beschrieben, gibt es verschiedene Möglichkeiten, die Manipulation von Steuergeräten zu erschweren.
@@ -61,8 +63,8 @@ mit dem Steuerrad verbunden. Daher ist die Gefahr hier geringer.
 \\
 NMEA-0183 Nachrichten werden im ASCII-Format übertrange. Dadurch können mindestens 
 alle Informationen, die über NMEA-0183 übertragen werden, abgefangen werden. Das kann einen weiteren Angriffspunkt darstellen. \\
-In dieser Arbeit konnten die Motoren nur manipuliert werden, wenn diese schon in Betrieb waren. Zusätzlich konnte
-Manipulation durch das Ausschalten der Motoren momentan verhindert werden. Im Rahmen dieser Arbeit kann keine Aussage über 
+In dieser Arbeit konnten die Motoren nur manipuliert werden, wenn diese schon in Betrieb waren. 
+Im Rahmen dieser Arbeit kann keine Aussage über 
 die Möglichkeit der Manipulation von Motoren gemacht werden, die nicht in Betrieb sind. Es würde eine größere Gefahr
 darstellen, wenn die Motoren von einem Angreifer ein- und ausgeschaltet werden könnten. \\
 

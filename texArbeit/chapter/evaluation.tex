@@ -5,8 +5,7 @@ Mit den fertiggestellten Implementierungen und Sicherheitsbetrachtungen werden i
 Versuche betrachtet und die Ergebnisse evaluiert. Es werden sowohl erfolgreich umgesetzte Aspekte als auch
 Herausforderungen betrachtet und analysiert.
 
-\section{Manipulation der Motorsteuerung}
-
+\section{Manipulation der Motorsteuerung} \label{sec:evManipulationMotor}
 Im ersten Test wurden die Nachrichten auf dem CAN-Bus des Schiffes im normalen Betrieb mit dem Programm \texttt{canReader.py} 
 dekodiert. Dazu wurde ein Laptop mit einem Linux Betriebssystem verwendet. Dieser wurde über ein USB-C-Kabel mit einem 
 UCAN-Adapter verbunden. Dieser UCAN-Adapter wurde bereits in Abschnitt \ref{sec:raspberryPiToCAN} beschrieben. 
@@ -14,7 +13,8 @@ Dabei hat die Echtzeitdekodierung der Nachrichten funktioniert. Es konnten die w
 erkannt werden. Allerdings konnten nicht alle Nachrichten dekodiert. Zusätzlich wurden keine Nachrichten für die Gangschaltung
 dekodiert. Durch das Handbuch
 des Motors konnte eine Nachricht nachgestellt werden. Eine solche Nachricht wurde aber nicht in der Kommunikation des 
-Schiffes gefunden. \\
+Schiffes gefunden. Daher wurde auch kein Versuch mit den nachgestellten Nachrichten durchgeführt. Damit hat sich 
+das weitere Vorgehen auf die Drehzahl des Motors fokussiert. \\
 In Kapitel \ref{sec:canBus} wurde die Implementierung der CAN-Bus Nachrichtenkodierung beschrieben. 
 Damit konnte ein Versuch
 aufgebaut werden, um den tatsächlichen Effekt der Nachrichten zu testen, die im Rahmen der Arbeit manipuliert wurden. 
@@ -37,7 +37,6 @@ Obwohl die manipulierten Nachrichten nicht den gewünschten Effekt hatten, konnt
 Dadurch konnte ein Sicherheitsrisiko aufgezeigt werden. 
 
 \section{Manipulation der Rudersteuerung}
-
 Die Manipulation der Rudersteuerung wurde lediglich in einem Konzept in Abschnitt \ref{sec:manipulationRuder} beschrieben.
 Eine Implementierung dieser Manipulation wurde nicht umgesetzt. 
 Der verfolgte Ansatz für die Manipulation war, die Nachrichten zwischen der Eingabe des Autopiloten und der 
