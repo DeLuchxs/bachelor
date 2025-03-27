@@ -17,13 +17,15 @@ Steuerung des Schiffes betrachtet. Dabei sind die wichtigsten Systeme die Gasheb
     \label{fig:limandaSystem}
 \end{figure}
 In \ref{fig:limandaSystem} sind die genannten Systeme veranschaulicht. Die beiden Gashebel sind jeweils
-mit einem CAN-Bus verbunden. Über diese Bussen senden die Gashebel Steuerbefehle an die Motoren. Als Higher-Layer-Protokoll wird J1939 genutzt. \\
-Der Autopilot ist ein eigenständiges System, das über eine serielle Schnittstelle mit einer elektronischen Kontrolleinheit(ECU) 
-für die Rudersteuerung verbunden ist.
-Dieser hat keine Verbindung zu den Gashebeln oder Motoren. Er kann lediglich Signale an die ECU für die Rudersteuerung über
-eine serielle Verbindung senden. Die Rudersteuerung ist mit dem Ruderstellmotor über eine unbekannte Verbindung angeschlossen. Diese Verbindung ist
-jedoch nicht relevant für diese Arbeit. Für die Kursberechnung erhält der Autopilot Daten von unter anderem einem GPS-Modul und Geschwindigkeitssensor.
-Diese Daten werden über NMEA-0183 Nachrichten übertragen. 
+mit einem CAN-Bus verbunden. Über diese Bussen senden die Gashebel Steuerbefehle an die Motoren. Als Higher-Layer-Protokoll wird 
+J1939 genutzt. \\
+Der Autopilot ist ein eigenständiges System. Dabei handelt es sich um ein Navitron NT888G Autopiloten. Der hat zwei Hauptkomponenten,
+eine Kontrolleinheit und eine Verteilungseinheit. Die Kontrolleinheit ist die Eingabe für den Kapitän. Die 
+Verteilungseinheit erhält den gewünschten Kurs über eine serielle Verbindung von der Kontrolleinheit. Zusätzlich erhält die 
+Verteilungseinheit Daten der Sensoren, wie GPS und Geschwindigkeitssensor über NMEA-0183 Nachrichten. 
+Der Autopilot hat keine Verbindung zu den Gashebeln oder Motoren. Die Verteilungseinheit ist mit dem Ruderstellmotor über 
+eine unbekannte Verbindung angeschlossen. Diese Verbindung ist
+jedoch nicht relevant für diese Arbeit. 
 
 \section{Steuerungslogik des Spiele-Controllers} \label{sec:steuerungslogik}
 Der benutzte Spiele-Controller ist ein Xbox Series X Controller. Dieser wurde gewählt, da er kabellos ist und kann somit frei bewegt werden. 
@@ -113,7 +115,7 @@ an den Motor zu senden, kann eine Nachricht des Gashebels abgefangen werden. Die
 werden. Die Quelladresse kann auch kopiert werden. Die Priorität sollte möglichst klein gewählt werden, 
 damit die Nachricht des Rogue Devices bevorzugt wird. In der eigenen Nachricht kann dann die gewünschte Gashebelposition gesendet werden.
 
-\subsection{Manipulation der Rudersteuerung}
+\subsection{Manipulation der Rudersteuerung} \label{sec:manipulationRuder}
 Um die Rudersteuerung zu manipulieren, muss der Raspberry Pi mit dem Autopiloten verbunden werden. Bei dem Autopiloten
 handelt es sich um ein Navitron NT888G. Die Eingabeeinheit ist über eine serielle Schnittstelle mit einer elektronischen Kontrolleinheit. 
 Diese Verbindung ist unverschlüsselt, benutzt jedoch ein Proprietäres Protokoll von Navitron.

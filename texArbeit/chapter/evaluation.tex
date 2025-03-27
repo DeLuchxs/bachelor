@@ -1,6 +1,54 @@
 \chapter{Evaluation}
 \printmyminitoc{1}
 
+Mit den fertiggestellten Implementierungen und Sicherheitsbetrachtungen werden in diesem Kapitel die
+Versuche betrachtet und die Ergebnisse evaluiert. Es werden sowohl erfolgreich umgesetzte Aspekte als auch
+Herausforderungen betrachtet und analysiert.
+
 \section{Manipulation der Motorsteuerung}
 
+Im ersten Test wurden die Nachrichten auf dem CAN-Bus des Schiffes im normalen Betrieb mit dem Programm \texttt{canReader.py} 
+dekodiert. Dazu wurde ein Laptop mit einem Linux Betriebssystem verwendet. Dieser wurde über ein USB-C-Kabel mit einem 
+UCAN-Adapter verbunden. Dieser UCAN-Adapter wurde bereits in Abschnitt \ref{sec:raspberryPiToCAN} beschrieben. 
+Dabei hat die Echtzeitdekodierung der Nachrichten funktioniert. Es konnten die wichtigen Nachrichten für die Motorsteuerung
+erkannt werden. Allerdings konnten nicht alle Nachrichten dekodiert. Zusätzlich wurden keine Nachrichten für die Gangschaltung
+dekodiert. Durch das Handbuch
+des Motors konnte eine Nachricht nachgestellt werden. Eine solche Nachricht wurde aber nicht in der Kommunikation des 
+Schiffes gefunden. \\
+In Kapitel \ref{sec:canBus} wurde die Implementierung der CAN-Bus Nachrichtenkodierung beschrieben. 
+Damit konnte ein Versuch
+aufgebaut werden, um den tatsächlichen Effekt der Nachrichten zu testen, die im Rahmen der Arbeit manipuliert wurden. 
+Für den zweiten Versuch wurde wieder ein Laptop mit einem Linux Betriebssystem verwendet, anstatt des Raspberry Pi. 
+Das hat den Vorteil, dass
+die Programme einfacher gestartet und debuggt werden können. Der Laptop wurde mit einem UCAN-Adapter verbunden.  
+Dieser wurde wiederum mit dem CAN-Bus des Schiffes verbunden. Um ein leichteres Debuggen zu ermöglichen, wurde bei diesem 
+Versuchsaufbau kein Spiele-Controller verwendet. Stattdessen wurde die gleiche Nachricht mehrmals gesendet. Die Zieldrehzahl in 
+dieser Nachricht beträgt 650 Umdrehungen pro Minute. Gleichzeitig wurde das Siagnal \texttt{'EngRequestedTorque\_TorqueLimit'} 
+auf 0\% gesetzt. In der Vorbereitung wurde die Gangschaltung von dem Kapitän in den neutralen
+Gang geschaltet. \\
+Der Motor wurde gestartet und mit dem
+Senden dieser Nachricht konnte kein Fehler auf dem CAN-Bus festgestellt werden. Gleichzeitig stieg die Drehzahl des Motors
+schnell an. Trotz der Zielvorgabe von 650 RPM stieg die Drehzahl auf 1500 RPM. Bei dieser Drehzahl wurde der
+Motor abgeschalten und die Nachrichtenübertragung gestoppt. Das Motorsteuergerät hat sich nicht nach den Erwartungen verhalten,
+die aus dem J1939-Standard abgeleitet wurden. Um mögliche Schäden am Motor zu vermeiden, wurde von weiteren Tests abgesehen.
+Daher konnte auch nicht die Reaktion auf Gashebelbewegungen getestet werden. \\
+Die Ergebnisse des Versuchs zeigen, dass die Manipulation von CAN-Bus Nachrichten auf einem Schiff möglich ist.
+Obwohl die manipulierten Nachrichten nicht den gewünschten Effekt hatten, konnte die Drehzahl des Motors erhöht werden.
+Dadurch konnte ein Sicherheitsrisiko aufgezeigt werden. 
+
 \section{Manipulation der Rudersteuerung}
+
+Die Manipulation der Rudersteuerung wurde lediglich in einem Konzept in Abschnitt \ref{sec:manipulationRuder} beschrieben.
+Eine Implementierung dieser Manipulation wurde nicht umgesetzt. 
+Der verfolgte Ansatz für die Manipulation war, die Nachrichten zwischen der Eingabe des Autopiloten und der 
+Verteilungseinheit zu manipulieren. Wie in Abbildung \ref{fig:limandaSystem} zu sehen ist, handelt es sich hierbei um eine 
+serielle Verbindung.
+Dabei sollte der Kurs der originalen Nachrichten durch die manipulierten Nachrichten
+ersetzt werden. Das Problem bei der Implementierung war, dass die Nachrichten nicht dekodiert werden konnten. 
+Das Format der Nachrichten konnte nicht endgültig verstanden werden. Es handelt sich um ein proprietäres Format,
+welches keine öffentliche Dokumentation hat. \\
+Aufgrund der zeitlichen Begrenzung der Arbeit, konnte der zweite Ansatz nicht weiter verfolgt werden. 
+Der zweite Ansatz war die Manipulation der NMEA-0183 Nachrichten, die von den Sensoren gesendet werden.
+Ein Nachteil dieses Ansatzes ist, dass mehr Verbindungen manipuliert werden müssen.
+Durch die Nutzung von NMEA-0183 besteht ein möglicher Angriffspunkt für die Manipulation der Rudersteuerung.
+Daher kann das als potentielles Sicherheitsrisiko angesehen werden.

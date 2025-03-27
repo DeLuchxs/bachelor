@@ -28,17 +28,11 @@ für Nachrichten der Gangschaltung durchgeführt. Ein weiterer wichtiger Teil wa
 damit auf Eingaben des Gashebels reagiert werden konnte. Dazu wurde das Programm \texttt{canReader.py} entwickelt. 
 Die Rudersteuerung wurde nicht implementiert, da die Nachrichten nicht im Zeitrahmen dekodiert werden konnten.
 \\
-Im ersten Test wurden die Nachrichten auf dem CAN-Bus des Schiffes im normalen Betrieb mit dem Programm \texttt{canReader.py} dekodiert.
-Dabei hat die Echtzeitdekodierung der Nachrichten funktioniert. Es konnten die wichtigen Nachrichten für die Motorsteuerung
-erkannt werden. Allerdings konnten nicht alle Nachrichten dekodiert. Zusätzlich wurden keine Nachrichten für die Gangschaltung
-dekodiert. Durch das Handbuch
-des Motors konnte eine Nachricht nachgestellt werden. Eine solche Nachricht wurde aber nicht in der Kommunikation des Schiffes gefunden.
-Im zweiten Test wurden manipulierte Nachrichten auf den CAN-Bus gesendet. In der Vorbereitung wurde die Gangschaltung von dem Kapitän in den neutralen
-Gang geschaltet. In diesem Zustand wurden Nachrichten mit einer Zieldrehzahl von 650 Umdrehungen pro Minute gesendet. Dabei ist die 
+Im zweiten Test wurden manipulierte Nachrichten auf den CAN-Bus gesendet. In diesem Zustand wurden Nachrichten mit einer Zieldrehzahl von 650 Umdrehungen pro Minute gesendet. Dabei ist die 
 Drehzahl zügig angestiegen, aber über 650 Umdrehungen pro Minute hinaus. Bei einer Drehzahl von 1500 Umdrehungen pro Minute wurde die
 Nachrichtenübertragung gestoppt, um mögliche Schäden am Motor zu vermeiden. Dabei ist zu erwähnen, dass keine Fehlermeldung im Steuergerät 
 aufgetreten ist. Das Verhalten des Motorsteuergeräts war nicht erwartbar nach den Nachrichten aus dem J1939-Standard. Daher
-wurde von weiteren Tests abgsehen und es konnte auch nicht die Reaktion auf Gashebelbewegungen getestet werden. 
+wurde von weiteren Tests abgesehen und es konnte auch nicht die Reaktion auf Gashebelbewegungen getestet werden. 
 
 \subsection{Wie kann die Manipulation von Steuergeräten erschwert werden?}
 Wie in dem Kapitel \ref{sec:schutzmassnahmen} genauer beschrieben, gibt es verschiedene Möglichkeiten, die Manipulation von Steuergeräten zu erschweren.

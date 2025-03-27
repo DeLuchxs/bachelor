@@ -8,3 +8,5 @@ kann man da auf dem Schiff einiges anstellen (Sicherheitskapitel)
 - Evaluation eigenes Kapitel (ausschalten des Motors hat Manipulation erstmal pausiert)!!!
 
 - Ausblick ausführlicher
+
+- Schluss wegen evaluation bearbeiten!!
