@@ -128,36 +128,42 @@ bestimmt und so den aufgezeichneten Nachrichten angepasst.
 Am Ende wird die Prüfsumme der Nachricht hinzugefügt und die
 Nachricht wird an den CAN-Bus gesendet. \\
 Insgesamt sieht die Kodierung einer TSC1-Nachricht wie folgt aus:
-\begin{minted}[linenos, fontsize=\footnotesize, frame=lines]{python3}
-    def encodeThrottleMessage(speed, throttle, canFrameID):
-    torqueHiRes = throttle * 0.125
-    if torqueHiRes > 0.875:
-        torqueHiRes = 0.875
-    throttle = (throttle * 35) - 110 
-    # laut aufgezeichneten Werten ist nur bereich von -110 bis -85 bekannt
-    if messageCounter != 4 and messageCounter != 15: 
-        checksum = 0
-    elif messageCounter == 4:
-        checksum = 3
-    else:
-        checksum = 15
-    try:
-        throttleInput = gasLeverMessage.encode({ 
-            'EngOverrideCtrlMode': 3, #3: Speed / Torque Limit Control Mode
-            'EngRequestedSpeedCtrlConditions': 0, 
-            # 0: Transient Optimized for driveline disengaged and non-lockup conditions
-            'OverrideCtrlModePriority': 0, # 0: Highest Priority
-            'EngRequestedSpeed_SpeedLimit': speed,
-            'EngRequestedTorque_TorqueLimit': throttle,
-            'TSC1TransRate': 4, # Transmission Rate of 100ms
-            'TSC1CtrlPurpose': 31, # Temporary PowerTrain Control
-            'EngRequestedTorqueHighResolution': torqueHiRes,
-            'MessageCounter': messageCounter,
-            'MessageChecksum': checksum
-        })
-        return can.Message(arbitration_id=canFrameID, data=throttleInput, is_extended_id=False)
-\end{minted}
-Wie in dem Code zu sehen ist, werden die Eingaben des Xbox-Controllers vor der Kodierung in den richtigen Wertebereich umgewandelt.
+\begin{figure}[H]
+    \begin{minted}[linenos, fontsize=\footnotesize, frame=lines]{python3}
+        def encodeThrottleMessage(speed, throttle, canFrameID):
+            torqueHiRes = throttle * 0.125
+            if torqueHiRes > 0.875:
+                torqueHiRes = 0.875
+            throttle = (throttle * 35) - 110 
+            # laut aufgezeichneten Werten ist nur bereich von -110 bis -85 bekannt
+            if messageCounter != 4 and messageCounter != 15: 
+                checksum = 0
+            elif messageCounter == 4:
+                checksum = 3
+            else:
+                checksum = 15
+            try:
+                throttleInput = gasLeverMessage.encode({ 
+                    'EngOverrideCtrlMode': 3, #3: Speed / Torque Limit Control Mode
+                    'EngRequestedSpeedCtrlConditions': 0, 
+                    # 0: Transient Optimized for driveline disengaged and non-lockup conditions
+                    'OverrideCtrlModePriority': 0, # 0: Highest Priority
+                    'EngRequestedSpeed_SpeedLimit': speed,
+                    'EngRequestedTorque_TorqueLimit': throttle,
+                    'TSC1TransRate': 4, # Transmission Rate of 100ms
+                    'TSC1CtrlPurpose': 31, # Temporary PowerTrain Control
+                    'EngRequestedTorqueHighResolution': torqueHiRes,
+                    'MessageCounter': messageCounter,
+                    'MessageChecksum': checksum
+                })
+            return can.Message(arbitration_id=canFrameID, data=throttleInput, is_extended_id=False)
+    \end{minted}
+    \caption{Kodierung einer TSC1-Nachricht}
+    \label{fig:encodeThrottleMessage}
+\end{figure}
+
+
+Wie in dem Code \ref{fig:encodeThrottleMessage} zu sehen ist, werden die Eingaben des Xbox-Controllers vor der Kodierung in den richtigen Wertebereich umgewandelt.
 Das passiert in den Zeilen 2--5. Danach wird auf Grundlage des Nachrichtenzählers die Prüfsumme bestimmt. Die genauen Werte wurden 
 den aufgezeichneten Nachrichten entnommen. In den Zeilen 14--25 wird die Nachricht erstellt. Dabei werden den Signalen die entsprechenden
 Werte zugewiesen. Mithilfe von \texttt{cantools} wird die Nachricht mit einer bestimmten ID erstellt. Nun liegt die Nachricht als
