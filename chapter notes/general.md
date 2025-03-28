@@ -5,6 +5,6 @@ die irgendwie anders noch vernetzt sind und zugriff auf z.B. den CAN bus haben. 
 der einen eigenen WLAN Hotspot besitzt und Zugriff auf jeden CAN-Bus auf dem Schiff hat. Wenn jemand das WLAN Passwort "knackt" und irgendwie root wird, 
 kann man da auf dem Schiff einiges anstellen (Sicherheitskapitel)
 
-- Ausblick ausführlicher
+- (Ausblick ausführlicher)
 
 - code beispiel genauer erklären (figure draus machen)

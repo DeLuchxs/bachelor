@@ -52,8 +52,8 @@ def encodeThrottleMessage(speed, throttle, canFrameID):
             'OverrideCtrlModePriority': 0, # 0: Highest Priority
             'EngRequestedSpeed_SpeedLimit': speed,
             'EngRequestedTorque_TorqueLimit': throttle,
-            'TSC1TransRate': 4, # Transmission Rate of 100ms
-            'TSC1CtrlPurpose': 31, # Temporary PowerTrain Control
+            'TSC1TransRate': 6, # Transmission Rate of 20ms
+            'TSC1CtrlPurpose': 0, # Accelerator Pedal/Operator Selection 
             'EngRequestedTorqueHighResolution': torqueHiRes,
             'MessageCounter': messageCounter,
             'MessageChecksum': 0
@@ -78,8 +78,8 @@ def encodeThrottleMessage(speed, throttle, canFrameID):
             'OverrideCtrlModePriority': 0, # 0: Highest Priority
             'EngRequestedSpeed_SpeedLimit': speed,
             'EngRequestedTorque_TorqueLimit': throttle,
-            'TSC1TransRate': 4, # Transmission Rate of 100ms
-            'TSC1CtrlPurpose': 31, # Temporary PowerTrain Control
+            'TSC1TransRate': 6, # Transmission Rate of 20ms
+            'TSC1CtrlPurpose': 0, # Accelerator Pedal/Operator Selection
             'EngRequestedTorqueHighResolution': torqueHiRes,
             'MessageCounter': messageCounter,
             'MessageChecksum': currentChecksum

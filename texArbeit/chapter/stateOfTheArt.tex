@@ -16,6 +16,22 @@ Manipulationen oder Spionageangriffe vereinfacht werden. Darüber hinaus lässt 
 Das ermöglicht es, Schwachstellen im Netzwerk aufzudecken und gezielt auszunutzen.
 
 \subsection{Angriff mit einem Rogue Device}
+Die Idee einen Angriff mit einem Rogue Device durchzuführen, ist nicht neu. Im Jahr 2017 hat Buttigieg et al. \cite{Buttigieg2017}
+den möglichen Angriff auf ein automobiles System mit einem Rogue Device untersucht. Bei dem System handelte es sich um einen
+CAN-Bus, um das Armaturenbrett eines Fahrzeugs zu steuern. Der weitere Fahrzeugteil wurde in einer Simulation dargestellt.
+Buttigieg et al. hat erforscht, ob ein Rogue Device als unautorisiertes 
+Gerät in einem CAN-Bus eingebunden werden kann. 
+Dazu wurden zuerst die Schwachstellen eines CAN-Bus untersucht. Diese
+sind in Abschnitt \ref{sec:canBusVulnerabilities} näher beleuchtet. Es werden zwei verschiedene Angriffe beschrieben.
+Der erste Angriff umfasst das Einfügen von bösartigem Code in ein originales Steuergerät. Die zweite Methode ist das Ersetzen
+des originalen Steuergerätes durch ein Rogue Device. Die letztere Methode ist für diese Arbeit relevant, da dieser Ansatz
+ähnlich ist, wie der in dieser Arbeit verfolgte. Allerdings wurde in der Arbeit von Buttigieg et al. nicht mit einem
+J1939-Standard gearbeitet, sondern mit dem ursprünglichen CAN-Standard. Es sollte weiterhin ein Man-in-the-Middle-Angriff
+mit dem Rogue Device realisiert werden. \\
+Im Ergebnis konnte ein Rogue Device erfolgreich unentdeckt integiert werden. Es konnten manipulierte CAN-Nachrichten gesendet werden.
+Die manipulierten Informationen wurden von den Instrumenten dargestellt. Jedoch wurde nicht die Möglichkeit untersucht, manipulierte
+Nachrichten an das Motorsteuergerät zu senden.
+
 
 \section{Arbeit mit dem CAN-Bus}
 Die Technologie des CAN-Bus wird in vielen Bereichen eingesetzt.

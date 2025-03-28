@@ -6,7 +6,7 @@ mit dem Controller und dem Schiff eingegangen. Zudem wird die Umsetzung der Komm
 beschrieben. Dabei hat die Übersetzung von CAN-Bus Nachrichten eine wichtige Rolle gespielt.
 
 \section{Umsetzung des Rogue Device}
-Wie bereits in Kapitel \ref{sec:raspberrypi} beschrieben, wird ein Raspberry Pi 5 als Rogue Device benutzt. 
+Wie bereits in Abschnitt \ref{sec:raspberrypi} beschrieben, wird ein Raspberry Pi 5 als Rogue Device benutzt. 
 Als Betriebssystem wird Raspberry Pi OS benutzt. Der Standard Package Manager ist APT. Unter dessen Benutzung werden 
 Python 3.12 und die benötigten Bibliotheken installiert. Damit sind die Vorraussetzungen für die weitere Implementierung
 gesetzt.
@@ -112,7 +112,7 @@ entwickelt wurde.
 Das Teilprogramm \texttt{canInterpreter.py} erhält Eingaben von \texttt{controllerInput.py}. Basierend auf den
 Eingaben des Xbox-Controllers wird dann die entsprechende Nachricht erstellt. Um eine Nachricht zu kodieren, wird die Bibliothek \texttt{cantools} benutzt.
 Mit dieser Bibliothek können DBC-Dateien gelesen und Nachrichten erstellt werden. Mit einer solchen Datei kann eine
-bestimmte Nachricht mit ihren Signalen definiert werden. In Kapitel \ref{sec:canTranslation} wurde bereits auf den
+bestimmte Nachricht mit ihren Signalen definiert werden. In Abschnitt \ref{sec:canTranslation} wurde bereits auf den
 Aufbau einer DBC-Datei eingegangen. Die in der Arbeit verwendete DBC-Datei wurde von der Universität bereitgestellt. \\
 Bei der Verarbeitung der Eingabe ist es wichtig, dass diese in den richtigen Wertebereich umgewandelt wird.
 Beispielsweise dürfen die Umdrehungen pro Minute (RPM) nicht unter 500 liegen, wenn der Motor in Betrieb ist.
@@ -150,8 +150,8 @@ Insgesamt sieht die Kodierung einer TSC1-Nachricht wie folgt aus:
                     'OverrideCtrlModePriority': 0, # 0: Highest Priority
                     'EngRequestedSpeed_SpeedLimit': speed,
                     'EngRequestedTorque_TorqueLimit': throttle,
-                    'TSC1TransRate': 4, # Transmission Rate of 100ms
-                    'TSC1CtrlPurpose': 31, # Temporary PowerTrain Control
+                    'TSC1TransRate': 6, # Transmission Rate of 20ms
+                    'TSC1CtrlPurpose': 0, # P1 = Accelerator Pedal/Operator Selection
                     'EngRequestedTorqueHighResolution': torqueHiRes,
                     'MessageCounter': messageCounter,
                     'MessageChecksum': checksum
@@ -166,7 +166,17 @@ Insgesamt sieht die Kodierung einer TSC1-Nachricht wie folgt aus:
 Wie in dem Code \ref{fig:encodeThrottleMessage} zu sehen ist, werden die Eingaben des Xbox-Controllers vor der Kodierung in den richtigen Wertebereich umgewandelt.
 Das passiert in den Zeilen 2--5. Danach wird auf Grundlage des Nachrichtenzählers die Prüfsumme bestimmt. Die genauen Werte wurden 
 den aufgezeichneten Nachrichten entnommen. In den Zeilen 14--25 wird die Nachricht erstellt. Dabei werden den Signalen die entsprechenden
-Werte zugewiesen. Mithilfe von \texttt{cantools} wird die Nachricht mit einer bestimmten ID erstellt. Nun liegt die Nachricht als
+Werte zugewiesen. Wobei die festen Werte einzelner Signale nur auf Annahmen basierend auf den aufgezeichneten Nachrichten gewählt wurden.
+Diese müssen in der Praxis überprüft werden. In Zeile 15 wurde für das Signal \texttt{'EngOverrideCtrlMode'} der 
+\texttt{Speed / Torque Limit Control Mode} gewählt, unter der Annahme, dass dieser viel Kontrolle über den Motor erlaubt.
+Für das Signal \texttt{'EngRequestedSpeedCtrlConditions'} wurde der Wert 0 gewählt, da dieser in den aufgezeichneten Nachrichten
+am häufigsten erkannt wurde. Die Priorität im Signal \texttt{'OverrideCtrlModePriority'} wurde auf 0 gesetzt, da der Wert 0 die 
+höchste Priorität beschreibt und somit Vorrang vor anderen Nachrichten hat. Die Übertragungsgeschwindigkeit 
+in dem Signals \texttt{'TSC1TransRate'} wurde auf 20 ms festgelegt, da die eigenen Nachrichten des Spiele-Controllers
+60 Mal pro Sekunde geschickt werden. Daraus resultiert eine Rate von 16,67 ms und damit ist die Rate von 20 ms die nächste
+Annäherung. Das Signal \texttt{'TSC1CtrlPurpose'} wurde auf 0 gesetzt, da dieser Wert in den aufgezeichneten Nachrichten
+am häufigsten verwendet wurde. Zusätzlich macht der Modus den Anschein, dass diese Nachrichten von dem Gashebel gesendet wurden. 
+Mithilfe von \texttt{cantools} wird die Nachricht mit einer bestimmten ID erstellt. Nun liegt die Nachricht als
 CAN-Nachricht vor und kann an den CAN-Bus gesendet werden.
 \\
 Zur Überwachung des CAN-Bus wurde das Programm \texttt{canReader.py} entwickelt. Es kann die wichtigen Nachrichten für diese Arbeit 
@@ -185,7 +195,7 @@ Wenn das gesuchte Signal entdeckt wird, dann muss eine eigene Nachricht
 gesendet werden, um die wahren Eingaben zu verhindern
 Dies passiert wieder durch \texttt{canInterpreter.py} nach 
 einem über Pipes übermittelten Signal. Um hier zu verhindern, dass eigene Nachrichten vom eigenen System erkannt werden,
-wird ein eigener Identifier benutzt. Das allgemeine Problem wurde bereits in Kapitel \ref{sec:manipulationGashebel}
+wird ein eigener Identifier benutzt. Das allgemeine Problem wurde bereits in Abschnitt \ref{sec:manipulationGashebel}
 betrachtet.
 Um den Identifier zu berechnen, wurde mit einer Portierung von \texttt{canboatjs} auf Python gearbeitet 
 \cite{canboatjs}. 
