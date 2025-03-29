@@ -163,9 +163,15 @@ Insgesamt sieht die Kodierung einer TSC1-Nachricht wie folgt aus:
 \end{figure}
 
 
-Wie in dem Code \ref{fig:encodeThrottleMessage} zu sehen ist, werden die Eingaben des Xbox-Controllers vor der Kodierung in den richtigen Wertebereich umgewandelt.
-Das passiert in den Zeilen 2--5. Danach wird auf Grundlage des Nachrichtenzählers die Prüfsumme bestimmt. Die genauen Werte wurden 
-den aufgezeichneten Nachrichten entnommen. In den Zeilen 14--25 wird die Nachricht erstellt. Dabei werden den Signalen die entsprechenden
+Der Quellcode in Abbildung \ref{fig:encodeThrottleMessage} zeigt, wie die Eingaben des Xbox-Controllers vor der Kodierung in den 
+richtigen Wertebereich umgewandelt werden.
+In den Zeilen 2--4 wird \texttt{torqueHiRes} auf den Wertebereich von 0 bis 0,875 umgewandelt.
+In Zeile 5 wird die Eingabe des Gashebels in den Wertebereich von -110 bis -85 umgewandelt.
+Dieser Wertebereich wurde aus den aufgezeichneten Nachrichten entnommen.
+Danach wird in den Zeilen 7--12 auf Grundlage des Nachrichtenzählers die Prüfsumme bestimmt. Die genauen Werte wurden 
+den aufgezeichneten Nachrichten entnommen. Beispielsweise konnte festgestellt werden, dass die Prüfsumme
+immer 3 ist, wenn der Nachrichtenzähler 4 ist. 
+In den Zeilen 14--25 wird die Nachricht erstellt. Dabei werden den Signalen die entsprechenden
 Werte zugewiesen. Wobei die festen Werte einzelner Signale nur auf Annahmen basierend auf den aufgezeichneten Nachrichten gewählt wurden.
 Diese müssen in der Praxis überprüft werden. In Zeile 15 wurde für das Signal \texttt{'EngOverrideCtrlMode'} der 
 \texttt{Speed / Torque Limit Control Mode} gewählt, unter der Annahme, dass dieser viel Kontrolle über den Motor erlaubt.
@@ -176,7 +182,15 @@ in dem Signals \texttt{'TSC1TransRate'} wurde auf 20 ms festgelegt, da die eigen
 60 Mal pro Sekunde geschickt werden. Daraus resultiert eine Rate von 16,67 ms und damit ist die Rate von 20 ms die nächste
 Annäherung. Das Signal \texttt{'TSC1CtrlPurpose'} wurde auf 0 gesetzt, da dieser Wert in den aufgezeichneten Nachrichten
 am häufigsten verwendet wurde. Zusätzlich macht der Modus den Anschein, dass diese Nachrichten von dem Gashebel gesendet wurden. 
-Mithilfe von \texttt{cantools} wird die Nachricht mit einer bestimmten ID erstellt. Nun liegt die Nachricht als
+Mithilfe von \texttt{cantools} wird die Nachricht \texttt{gasLeverMessage} mit einer bestimmten ID erstellt. 
+Um den Identifier zu berechnen, wurde mit einer Portierung von \texttt{canboatjs} auf Python gearbeitet 
+\cite{canboatjs}. 
+In diesem Programm kann eine bestehende CAN-ID in Quelle, Priorität und PGN aufgeteilt werden. Diese Werte können dann
+einzeln verändert werden. Mit diesen Werten kann dann eine neue CAN-ID berechnet werden. 
+Damit werden im eigenen Code die Quelladresse verändert, während die PGN beibehalten wird.
+Nun können eigene Nachrichten 
+anhand der CAN-ID erkannt werden.
+Nun liegt die Nachricht als
 CAN-Nachricht vor und kann an den CAN-Bus gesendet werden.
 \\
 Zur Überwachung des CAN-Bus wurde das Programm \texttt{canReader.py} entwickelt. Es kann die wichtigen Nachrichten für diese Arbeit 
@@ -188,35 +202,32 @@ In den aufgezeichneten Nachrichten wurde entdeckt, dass Nachrichten für die Mot
 immer eine PGN von 0 haben. Da nur diese Nachrichten
 mit der PGN 0 gesendet werden, kann nach dieser gefiltert werden. Die gefundenen Nachrichten werden dann dekodiert und
 spezifisch nach
-dem Signal \texttt{'EngRequestedTorque\_TorqueLimit'} durchsucht. 
+dem Signal \texttt{EngRequestedTorque\_TorqueLimit} durchsucht. 
 Das Dekodieren wird mit Hilfe von \texttt{cantools} realisiert. Zuerst wird die ID der Nachricht einem Nachrichtentyp in der DBC-Datei
 zugeordnet. Danach wird die Nachricht dekodiert und die Signale und deren Werte ausgegeben.
 Wenn das gesuchte Signal entdeckt wird, dann muss eine eigene Nachricht
 gesendet werden, um die wahren Eingaben zu verhindern
 Dies passiert wieder durch \texttt{canInterpreter.py} nach 
 einem über Pipes übermittelten Signal. Um hier zu verhindern, dass eigene Nachrichten vom eigenen System erkannt werden,
-wird ein eigener Identifier benutzt. Das allgemeine Problem wurde bereits in Abschnitt \ref{sec:manipulationGashebel}
-betrachtet.
-Um den Identifier zu berechnen, wurde mit einer Portierung von \texttt{canboatjs} auf Python gearbeitet 
-\cite{canboatjs}. 
-In diesem Programm kann eine bestehende CAN-ID in Quelle, Priorität und PGN aufgeteilt werden. Diese Werte können dann
-einzeln verändert werden. Mit diesen Werten kann dann eine neue CAN-ID berechnet werden. 
-Damit werden im eigenen Code die Quelladresse verändert, während die PGN beibehalten wird.
-Nun können eigene Nachrichten 
-anhand der CAN-ID erkannt werden.\\
+wird der eigene Identifier benutzt. 
+Das allgemeine Problem wurde bereits in Abschnitt \ref{sec:manipulationGashebel} betrachtet.
+\\
 Für die Gangschaltung musste eigene Nachricht in der DBC-Datei definiert werden. Hierfür konnte auf die Bedienungsanleitung
 des Motors zurückgegriffen werden. In dieser sind die Nachrichten für die Gangschaltung definiert.
+Dabei sind die verschiedenen Signale mit den entsprechenden Werten und Bitlängen angegeben. Die wurde in der DBC-Datei nach der 
+Vorlage von der Anleitung und der TSC1-Nachricht als eigene Nachricht definiert.
 Die Nachrichten wurden dann in \texttt{canInterpreter.py} erstellt und gesendet.
 Dabei hat sich eine Schwierigkeit ergeben, als die ID nicht als erweiterter J1939-Standard von \texttt{cantools} erkannt wurde. 
-Dafür wurde eine Lösung gefunden, indem die ID mit der Hexadezimalen Zahl 80000000 addiert wurde. Mit der Addition dieser Zahl
+Dafür wurde eine Lösung gefunden, indem die ID mit der Hexadezimalen Zahl 80000000 addiert wurde \cite{cantoolsIssue}. 
+Mit der Addition dieser Zahl
 wird in der binären Darstellung das erste Bit von 0 auf 1 gesetzt. Alternativ kann bei der binären Darstellung der ID das erste Bit
 manuell auf 1 gesetzt werden. Die neu erzeugte ID
-wird nun ohne Probleme als erweiterte ID erkannt. Diese Lösung konnte nicht in einer offiziellen Dokumentation für den
-DBC-Standard gefunden werden. In einem Forum wurde berichtet, dass diese Lösung funktioniert \cite{cantoolsIssue}. 
+wird nun als erweiterte ID von \texttt{cantools} erkannt. Diese Lösung konnte nicht in einer offiziellen Dokumentation für den
+DBC-Standard gefunden werden. 
 Zusätzlich hat diese Lösung im Anwendungsfall dieser Arbeit funktioniert. 
 Laut der gleichen Quelle hängt der Grund dafür damit zusammen, dass ein Bit für die ID in dem Dateiformat zweckentfremdet für
 die Erkennung einer erweiterten ID benutzt wird. Allerdings kann dies nicht bestätigt werden. \\
-Da in der Nachricht für das Getriebe auch die aktuelle maximale zulässige Last (\texttt{'CurrentMaxPermissibleLoad'}) gesendet wird, 
+Da in der Nachricht für das Getriebe auch die aktuelle maximale zulässige Last (\texttt{CurrentMaxPermissibleLoad}) gesendet wird, 
 reicht es nicht aus, diese
 Nachricht nur bei einer Änderung des Gangs zu senden. Daher wird die Nachricht bei jeder Änderung der Gashebelposition
 gesendet. Damit hat die aktuelle maximale zulässige Last immer den aktuellen Wert der Eingabe des Xbox-Controllers.

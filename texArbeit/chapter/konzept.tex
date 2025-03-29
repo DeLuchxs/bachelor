@@ -1,31 +1,36 @@
 \chapter{Konzept und Systemdesign}
 \printmyminitoc{1}
 
-In diesem Kapitel wird das Konzept und das Systemdesign für die Arbeit vorgestellt. Insgesamt soll das Forschungsschiff durch einen Spielecontroller
-gesteuert werden. Dafür soll ein Rogue Device entwickelt werden, welches in der Lage ist, die Kommunikation des Schiffes zu manipulieren. 
-Das Rogue Device soll dabei unbemerkt in das System integriert werden und auf den CAN-Bus für die Motorsteuerung zugreifen. Darauf sollen
-manipulierte Steuerbefehle gesendet werden, um den Motor zu steuern. Zusätzlich soll auf den Autopiloten zugegriffen werden, um darüber die Rudersteuerung
-zu manipulieren. \\
+In diesem Kapitel wird das Konzept und das Systemdesign für die Arbeit vorgestellt. Das Ziel der Arbeit ist, dass 
+das Forschungsschiff durch einen Spielecontroller
+gesteuert werden soll. Dafür soll ein Rogue Device entwickelt werden, welches in der Lage ist, die Kommunikation des Schiffes zu manipulieren. 
+Das Rogue Device soll dabei unbemerkt in das System integriert werden und auf den CAN-Bus der Motorsteuerung zugreifen. Darauf sollen
+manipulierte Steuerbefehle gesendet werden, um den Motor zu steuern. Zusätzlich sollen manipulierte Nachrichten
+an die Rudersteuerung gesendet werden, um diese zu übernehmen. \\
 
 \section{Aufbau Schiffsysteme}
-Ein Schiff besteht aus vielen verschiedenen Systemen, welche verschiedene Aufgaben haben. In diesem Fall wird die
-Steuerung des Schiffes betrachtet. Dabei sind die wichtigsten Systeme die Gashebel und die Rudersteuerung, welche den Autopiloten enschließt.
+Ein Schiff besteht aus vielen verschiedenen Systemen, welche verschiedene Aufgaben haben. 
+Nachfolgend werden die relevanten Systeme der Limanda für diese Arbeit vorgestellt.
+Dabei sind die wichtigsten Systeme die Gashebel und die Rudersteuerung, 
+welche den Autopiloten enschließt. Gleichzeitig kann das Ruder über ein hydraulisch verbundenes Steuerrad bewegt werden.
+Das kann aber nicht in dieser Arbeit genutzt werden.
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.5]{images/limandaSystem.png}
     \caption{Vereinfachte Darstellung der Systeme auf der Limanda}
     \label{fig:limandaSystem}
 \end{figure}
-In \ref{fig:limandaSystem} sind die genannten Systeme veranschaulicht. Die beiden Gashebel sind jeweils
-mit einem CAN-Bus verbunden. Über diese Bussen senden die Gashebel Steuerbefehle an die Motoren. Als Higher-Layer-Protokoll wird 
-J1939 genutzt. \\
-Der Autopilot ist ein eigenständiges System. Dabei handelt es sich um ein Navitron NT888G Autopiloten. Der hat zwei Hauptkomponenten,
-eine Kontrolleinheit und eine Verteilungseinheit. Die Kontrolleinheit ist die Eingabe für den Kapitän. Die 
-Verteilungseinheit erhält den gewünschten Kurs über eine serielle Verbindung von der Kontrolleinheit. Zusätzlich erhält die 
-Verteilungseinheit Daten der Sensoren, wie GPS und Geschwindigkeitssensor über NMEA-0183 Nachrichten. 
-Der Autopilot hat keine Verbindung zu den Gashebeln oder Motoren. Die Verteilungseinheit ist mit dem Ruderstellmotor über 
-eine unbekannte Verbindung angeschlossen. Diese Verbindung ist
-jedoch nicht relevant für diese Arbeit. 
+Abbildung \ref{fig:limandaSystem} veranschaulicht den Zusammenhang der genannten Systeme. Die beiden Gashebel sind jeweils
+mit einem CAN-Bus mit dem Motorsteuergerät verbunden. Über diese Busse senden die Gashebel Steuerbefehle an die Motoren. 
+Als Higher-Layer-Protokoll wird J1939 genutzt. Die Gashebel steuern die Drehzahl der Motoren und das Getriebe.
+\\
+Bei dem Autopiloten handelt es sich um ein Navitron NT888G. Der hat zwei Hauptkomponenten,
+eine Control Unit und eine Distribution Unit. Die Control Unit ist die Eingabe für den Kapitän. Die 
+Distribution Unit erhält den gewünschten Kurs über eine serielle Verbindung von der Kontrolleinheit. Zusätzlich erhält die 
+Distribution Unit Daten der Sensoren, wie GPS und Geschwindigkeitssensor über NMEA-0183 Nachrichten. 
+Der Autopilot hat keine Verbindung zu den Gashebeln oder Motoren. Die Distribution Unit ist mit dem Ruderstellmotor über 
+eine unbekannte Verbindung angeschlossen. Obwohl diese Verbindung interessant für diese Arbeit wäre, wird sie nicht betrachtet, 
+damit mögliche Schäden vermieden werden und der Kapitän im Notfall die Kontrolle über das Ruder hat.
 
 \section{Steuerungslogik des Spiele-Controllers} \label{sec:steuerungslogik}
 Der benutzte Spiele-Controller ist ein Xbox Series X Controller. Dieser wurde gewählt, da er kabellos ist und kann somit frei bewegt werden. 
