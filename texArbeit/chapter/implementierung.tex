@@ -52,10 +52,11 @@ in jede Richtung jeweils 100\% erreichen. Dies ist ein Kompromiss zwischen Gesch
 Wie in Abbildung \ref{fig:structureRogueDevice} zu sehen ist, erhält \texttt{controllerInput.py} die Signale des Xbox-Controllers 
 erhält Variablen in Python interpretiert.
 Diese Variablen müssen
-dann in Nachrichten für den CAN-Bus umgewandelt werden. Hierfür wurde ein weiteres Programm entwickelt, welches die Übersetzung die 
-Kodierung der CAN-Bus Nachrichten realisiert. Dieses Programm wird \texttt{canInterpreter.py} genannt.
+dann in Nachrichten für den CAN-Bus umgewandelt werden. Hierfür wurde ein weiteres Programm entwickelt, welches die Übersetzung 
+von der Kodierung der CAN-Bus Nachrichten realisiert. Dieses Programm wird \texttt{canInterpreter.py} genannt.
 Damit die beiden Programme miteinander kommunizieren
-können, wird Inter-Process-Communication (IPC) benutzt. Als Methode werden hierbei Pipes benutzt. Diese sind einfach zu implementieren und haben
+können, wird Inter-Process-Communication (IPC) benutzt. Als Methode werden hierbei Pipes benutzt. Diese sind einfach zu 
+implementieren und haben
 eine automatische Synchronisierung zwischen den Prozessen. Dadurch müssen Prozesse nicht aufeinander warten und können weiterarbeiten. 
 Die Synchronisierung wird durch den Puffer der Pipe sichergestellt \cite{Venkataraman2015}. 
 Wenn dieser voll ist, wird der schreibende Prozess angehalten, bis der
@@ -178,9 +179,9 @@ Diese müssen in der Praxis überprüft werden. In Zeile 15 wurde für das Signa
 Für das Signal \texttt{'EngRequestedSpeedCtrlConditions'} wurde der Wert 0 gewählt, da dieser in den aufgezeichneten Nachrichten
 am häufigsten erkannt wurde. Die Priorität im Signal \texttt{'OverrideCtrlModePriority'} wurde auf 0 gesetzt, da der Wert 0 die 
 höchste Priorität beschreibt und somit Vorrang vor anderen Nachrichten hat. Die Übertragungsgeschwindigkeit 
-in dem Signals \texttt{'TSC1TransRate'} wurde auf 20 ms festgelegt, da die eigenen Nachrichten des Spiele-Controllers
-60 Mal pro Sekunde geschickt werden. Daraus resultiert eine Rate von 16,67 ms und damit ist die Rate von 20 ms die nächste
-Annäherung. Das Signal \texttt{'TSC1CtrlPurpose'} wurde auf 0 gesetzt, da dieser Wert in den aufgezeichneten Nachrichten
+in dem Signals \texttt{'TSC1TransRate'} wurde auf 20 ms festgelegt, da die Eingaben des Spiele-Controllers von dem eigenen Programm
+60 Mal pro Sekunde geschickt werden. Daraus resultiert eine Rate von 16,67 ms und damit ist 20 ms der nächstgelegene Wert. 
+Das Signal \texttt{'TSC1CtrlPurpose'} wurde auf 0 gesetzt, da dieser Wert in den aufgezeichneten Nachrichten
 am häufigsten verwendet wurde. Zusätzlich macht der Modus den Anschein, dass diese Nachrichten von dem Gashebel gesendet wurden. 
 Mithilfe von \texttt{cantools} wird die Nachricht \texttt{gasLeverMessage} mit einer bestimmten ID erstellt. 
 Um den Identifier zu berechnen, wurde mit einer Portierung von \texttt{canboatjs} auf Python gearbeitet 
@@ -188,7 +189,7 @@ Um den Identifier zu berechnen, wurde mit einer Portierung von \texttt{canboatjs
 In diesem Programm kann eine bestehende CAN-ID in Quelle, Priorität und PGN aufgeteilt werden. Diese Werte können dann
 einzeln verändert werden. Mit diesen Werten kann dann eine neue CAN-ID berechnet werden. 
 Damit werden im eigenen Code die Quelladresse verändert, während die PGN beibehalten wird.
-Nun können eigene Nachrichten 
+Nun können die eigenen Nachrichten 
 anhand der CAN-ID erkannt werden.
 Nun liegt die Nachricht als
 CAN-Nachricht vor und kann an den CAN-Bus gesendet werden.

@@ -88,7 +88,7 @@
         \fi
     	
     	\vspace{3.5cm}
-    	\tiny{}	\unirostockprintednotice\\
+    	\tiny{}	
         \rule{1.90cm}{0.4pt}\\
     	\unirostocklastchange: \today
     \end{flushright}

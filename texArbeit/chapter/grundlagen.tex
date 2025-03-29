@@ -5,6 +5,9 @@
 In diesem Kapitel werden die Grundlagen für die Arbeit erläutert.
 Dabei wird sich auf die wichtigen Begriffe und Technologien für den Rahmen dieser Arbeit fokussiert.
 Damit wird ein Verständnis für die Arbeit geschaffen und die Grundlage für die weiteren Kapitel gelegt.
+Dazu wird zuerst das Forschungsschiff Limanda vorgestellt. Danach wird auf den CAN-Bus und das J1939-Protokoll eingegangen.
+Das NMEA-0183 Protokoll wird ebenfalls kurz vorgestellt. Zum Schluss wird auf den Raspberry Pi eingegangen,
+der als Hardware für die Implementierung verwendet wird.
 
 \section{Forschungsschiff Limanda}
 Als Beispiel für ein Schiff wird in dieser Arbeit der Foschungskatermaran Limanda verwendet. Dabei handelt es sich um das 
@@ -46,6 +49,7 @@ Die Geräte auf an dem Bus sind in dem Fall die Knoten. Alle sind gleichberechti
 Die Nachrichten werden nach Broadcasting-Prinzip übertragen. Dabei wird jede Nachricht von allen Knoten empfangen, 
 aber nur die Knoten, welche die Nachricht benötigen, verarbeiten sie. \\
 Die Nachrichten werden nicht explizit bestätigt, da dies zu einer größeren unnötigen Last auf dem Bus führen würde.
+Das bedeutet, dass es keine zusätzliche Nachricht als Bestätigung gibt.
 Trotzdem erwartet der Sender eine positive Bestätigung der Nachricht. Das Passiert mit einem Acknowledge (ACK) Bit 
 im CAN-Frame, wie in Abbildung \ref{fig:canframe} zu sehen ist. Wenn eine Nachricht nicht bestätigt wird, 
 sendet der Sender eine Fehlermeldung auf den Bus. Wenn ein Sender zu viele fehlerhafte Nachrichten sendet, soll
@@ -69,7 +73,8 @@ Insgesamt ist der CAN-Bus damit gut für Echtzeitanwendungen geeignet, da die Re
 \\
 Alle Knoten in einem CAN-Bus sind mit einem zweiadrigen Kabel verbunden \cite[Seite 132]{Voss2008}. 
 Diese werden als High (CAN\_H) und Low (CAN\_L) 
-bezeichnet. Der Bus ist an beiden Enden mit einem Widerstand von 120 $\Omega$ abgeschlossen, um Reflexionen zu vermeiden.
+bezeichnet. Der Bus ist an beiden Enden mit einem Widerstand von 120 $\Omega$ abgeschlossen, um Reflexionen von 
+elektrischen Signalen wieder auf den Bus zu vermeiden.
 \\
 Eine Nachricht auf einem CAN-Bus ist in einem CAN-Frame verpackt \cite[Seite 36]{Voss2008}. 
 Der Aufbau eines CAN-Frames ist in Abbildung \ref{fig:canframe} zu sehen.
@@ -114,16 +119,17 @@ zielgerichtet an bestimmte Geräte zu senden.
 
 \section{NMEA-0183}
 NMEA-0183 ist ein Standard für die Kommunikation zwischen verschiedenen Geräten in der Schifffahrt \cite{nmea0183}. Es handelt sich um
-einen Schnittstellenstandar, der von der National Marine Electronics Association (NMEA) entwickelt wurde. 
+einen Schnittstellenstandart, der von der National Marine Electronics Association (NMEA) entwickelt wurde. 
 Er kann nur einen Sender haben, aber mehrere Empfänger. Die Daten werden in ASCII-Format übertragen. In den Daten 
 können unter anderem Informationen über die Position, die Geschwindigkeit und die Richtung des Schiffes enthalten sein.
 
 \section{Raspberry Pi} \label{sec:raspberrypi}
 Ein Raspberry Pi ist ein Einplatinencomputer, der von der Raspberry Pi Foundation entwickelt wurde. 
 Dieser hat den Prozessor mit Grafikeinheit, Arbeitsspeicher, Speicher und Anschlüssen auf einem einzigen Board integriert.
-Es handelt sich um einen vollwertiger Computer, der kleiner als normale PCs ist. Zusätzlich kann dieser mit einem normalen Betriebssystem
-betrieben werden. Aus diesem Grund wurd der Raspberry Pi im Rahmen dieser Arbeit verwendet.
+Es handelt sich um einen vollwertigen Computer, der kleiner als normale PCs ist. Zusätzlich kann dieser mit einem Linux Betriebssystem
+betrieben werden. Aus diesem Grund wurde der Raspberry Pi im Rahmen dieser Arbeit verwendet.
 Trotzdem gibt es ein spezielles Betriebssystem, das für den Raspberry Pi entwickelt wurde, das Raspberry Pi OS (ehemals Raspbian).
 Dieses basiert auf der Linux-Distribution Debian. Um viele Funktionen erfüllen zu können, hat der Raspberry Pi viele Anschlüsse.
 Der Raspberry Pi 5 hat 4 USB-Anschlüsse, 2 Micro-HDMI-Anschlüsse, 1 Ethernet-Anschluss, 1 USB-C-Anschluss 
-für die Stromversorgung und einen Micro-SD-Kartensteckplatz.
+für die Stromversorgung und einen Micro-SD-Kartensteckplatz. Zusätzlich besitzt der Raspberry Pi GPIO-Pins (General Purpose Input/Output),
+die für die Kommunikation mit verschiedenen Geräten verwendet werden können.

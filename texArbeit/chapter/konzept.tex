@@ -57,7 +57,6 @@ Um alle gewünschten Funktionen umzusetzen, werden nicht alle Tasten benötigt.
 
 In den Abbildungen \ref{fig:vorderseite} und \ref{fig:rueckseite} sind die Tasten des Xbox-Controllers zu sehen.
 Die Tastenbelegung ist wie folgt:
-
 \begin{table}[H]
     \begin{tabular}{|c|c|}
     \hline
@@ -73,7 +72,13 @@ Die Tastenbelegung ist wie folgt:
      B + 2 + 7 & Umschalten des Rückwärtsgangs an beiden Motoren \\
       & (basierend auf dem derzeitigen Gang am rechten Motor) \\ \hline
     \end{tabular}
+    \caption{Tastenbelegung des Xbox-Controllers}
+    \label{fig:tableTastenbelegung}
 \end{table}
+Wie in der Tabelle \ref{fig:tableTastenbelegung} zu sehen, wird das Ruder mit dem linken Stick (hier: Taste 1) gesteuert.
+Während eine Eingabe geschieht, soll das Ruder langsam in die jeweilige Richtung bewegt werden. Ohne Eingabe soll das
+Ruder an der derzeitigen Position stehen bleiben.
+Mit den Tasten 11 und 14 werden jeweils beide Gashebelposition erhöht. 
 Das Einlegen des Rückwärtsgangs ist durch eine Tastenkombination so gewählt, dass es nicht aus Versehen passieren kann.
 Mit jeweils der Taste 2 oder 7 wird die Gashebelposition reduziert. Mit der zusätzlichen Betätigung der Taste B wird der 
 Rückwärtsgang eingelegt an dem jeweiligen Motor. Wenn die Tasten 2, 7 und B gleichzeitig betätigt werden, 
@@ -104,7 +109,7 @@ Das Rogue Device wird dazu als externes Gerät an den CAN-Bus angeschlossen. Der
 Sollte der Gashebel in der normalen Benutzung vom Schiffsführer benutzt werden, wird ein Signal an den CAN-Bus gesendet. 
 Dieses Signal wird dann an die Motoren weitergeleitet. Wenn das Rogue Device keine Nachricht sendet, kann es durchaus sein, dass
 die der Gashebel die Befehle überschreibt.
-Um echte Eingaben zu verhindern, muss auf diese Nachricht erkannt und darauf reagiert werden. 
+Um echte Eingaben zu verhindern, muss diese Nachricht erkannt und darauf reagiert werden. 
 Dazu muss ein Programm auf dem Rogue Device die Nachrichten auf dem CAN-Bus abhören und analysieren.
 Wenn eine Nachricht für die Motorsteuerung erkannt wird, kann eine Nachricht des Rogue Device gesendet werden, um die Gashebelposition
 zu überschreiben. 
@@ -130,11 +135,11 @@ eigene Nachrichten erstellt werden oder bestehende Nachrichten in eigener Reihen
 Zusätzlich kann das Ruder auch physikalisch über das Steuerrad bewegt werden. Dieser Weg wird jedoch nicht betrachtet.
 Ein weiterer Ansatz wäre es, die echten Kursdaten abzufangen und zu manipulieren. Dadurch müsste der Autopilot reagieren
 und das Ruder steuern. Die Kursdaten werden nach dem NMEA-0183-Standard gesendet. \\
-Aufgrund des Alters dieses Standards sind Informationen über das Format der Nachrichten verfügbar. Damit können die Kursdaten
-einfach verstanden und manipuliert werden. Mit dem Austauschen der echten Daten durch manipulierte, wäre ein 
+Es sind Informationen über das Format der Nachrichten verfügbar, jedoch ist die offizielle Dokumentation kostenpflichtig. 
+Damit können die Kursdaten einfach verstanden und manipuliert werden. Mit dem Austauschen der echten Daten durch manipulierte, wäre ein 
 physikalischer Man-in-the-Middle Angriff realisiert.\\
 
-\subsection{Rückmeldung der Eingaben}
+\subsection{Rückmeldung zu den Eingaben}
 Es muss eine Art der Rückmeldung für den 'Angreifer' geben, um in etwa die Eingaben im Vergleich zum momentanen Zustand zu sehen.
 Dabei sollte die Rückmeldung möglichst unauffällig sein. Ein kleiner Bildschirm könnte benutzt werden, dieser kann 
 physisch an den Raspberry Pi angeschlossen werden. Das würde das Verstecken des Rogue Devices erschweren.

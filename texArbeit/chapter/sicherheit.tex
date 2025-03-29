@@ -15,7 +15,7 @@ Geräte in das System ermöglicht. Ein Angreifer kann so durch physischen Zugrif
 die Kontrolle über das gesamte System übernehmen kann. Die einzige Hürde, ein Gerät in ein CAN-Bus Netzwerk zu integrieren, ist die
 Kenntniss über das Format der Nachrichten. Eine Möglichkeit das Format zu speichern, ist die Verwendung von DBC-Dateien.
 Diese Datei wird häufig von den Herstellern der Geräte nicht öffentlich zur Verfügung gestellt.
-Es sind jedoch einige DBC-Dateien im Internet verfügbar, die von anderen Nutzern erstellt wurden. Durch das Ausprobieren von dem Dekodieren
+Es sind jedoch einige DBC-Dateien im Internet verfügbar, die von anderen Personen erstellt wurden. Durch das Ausprobieren von dem Dekodieren
 der CAN-Nachrichten mit verschiedenen DBC-Dateien, kann eine passende Datei gefunden werden. \\
 In dieser Arbeit wurde zuerst ausgenutzt, dass die Nachrichten durch physischen Zugriff auf den Bus mitgelesen werden können.
 Die Nachrichten wurden aufgezeichnet und mit einer passenden DBC-Datei dekodiert. Nachdem die Nachrichten verstanden wurden, konnte
@@ -64,8 +64,8 @@ Bei dem Autopiloten von Navitron handelt es sich um ein Gerät, welches Informat
 Position des Schiffes über den NMEA-0183-Bus erhält. Durch die Eigenschaft, dass NMEA-0183 direkt mit ASCII-Nachrichten
 arbeitet, ist es möglich mit physikalischem Zugriff auf den Bus Nachrichten zu lesen \cite{nmea0183}. \\
 Diese können zur Überwachung oder auch späteren Manipulation der Kommunikation genutzt werden. Mit aufgezeichneten Nachrichten
-kann ein Angreifer die Kommunikation von den Sensoren zu dem Autopiloten nachvolziehen. Durch das Senden von eigenen Nachrichten
-könnte es möglich, den Autopiloten indirekt zu steuern. Das könnte durch eine Manipulation der Kursdaten mittels einer Man-in-the-Middle-Attacke
+kann ein Angreifer die Kommunikation von den Sensoren zu dem Autopiloten nachvollziehen. Durch das Senden von eigenen Nachrichten
+könnte es möglich sein, den Autopiloten indirekt zu steuern. Das könnte durch eine Manipulation der Kursdaten mittels einer Man-in-the-Middle-Attacke
 erreicht werden. Dies wurde in dieser Arbeit aber nicht getestet und ist daher nur eine Annahme. 
 NMEA-0183 unterstützt eine Baudrate von 4800. Dadurch können Geräte mit diesem Standard möglicherweise durch eine 
 Denial-of-Service-Attacke gestört werden \cite{Tran2021}.
@@ -93,7 +93,7 @@ Diese Systeme überwachen
 den Bus und erkennen mögliche Angriffe. Ein Vorteil dabei ist, dass der CAN-Standard in keiner Form für den 
 Anwendungsfall modifiziert werden muss. Es ist auch keine Implementation in jedem Gerät eines Netzwerkes notwendig.
 Das System kann auf einem zentralen Gerät laufen und den Bus überwachen.  
-Ein IDS kann auf zwei Arten implementiert werden \cite{Hoppe2009}. Zum einen kann ein Signatur/Regel-basiertes System verwendet werden.
+Ein IDS kann unter anderem auf zwei Arten implementiert werden \cite{Hoppe2009}. Zum einen kann ein Signatur/Regel-basiertes System verwendet werden.
 Hier können bereits bekannte Angriffe erkannt werden. Dies wird mit einer Erkennung von bestimmten Kombinationen oder Sequenzen
 von Nachrichten erreicht. Um ständig neue Angriffe zu erkennen, müssen die Regeln ständig aktualisiert werden.
 Für bekannte Angriffe ist dieses System sehr zuverlässig. Zum anderen kann ein Anomalie-basiertes System verwendet werden.
@@ -116,8 +116,8 @@ Laut der Murvay et al. \cite{Murvay2018} ist die Nutzung von PKI in der Automobi
 Außerdem ist es notwendig, eine PKI in 
 Netwerken zu benutzen, in denen die Geräte nicht vom selben Hersteller sind.
 Bei der Limanda liegt eine solche Situation vor. Die Geräte stammen von verschiedenen Herstellern. Jedoch wird nicht
-davon ausgegangen, dass die Hersteller eine PKI implementiert haben. Daher ist die in der Arbeit simulierte Manipulation
-möglich. \\
+davon ausgegangen, dass die Hersteller eine PKI implementiert haben. Aus diesem Grund ist die simulierte Manipulation
+möglich, die im Rahmen dieser Arbeit durchgeführt wurde. \\
 Für Rudersteuerung sendet der nur der Autopilot Nachrichten an die Steuerungseinheit. Es ist aber nicht davon auszugehen,
 dass diese beiden Geräte miteinander verschlüsselt kommunizieren. Diese Geräte stammen auch nicht von dem selben Hersteller.
 Daher ist eine symmetrische Verschlüsselung zu aufwendig für den praktischen Einsatz. Bei dieser Verschlüsselung müssten
